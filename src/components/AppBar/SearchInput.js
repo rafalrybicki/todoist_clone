@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import SearchIcon from './SearchIcon';
+import Icon from '../shared/Icon';
 
 const StyledSearchInput = styled.div`
    position: relative;
@@ -62,7 +62,7 @@ function SearchInput() {
    return (
       <StyledSearchInput>
          <input type="text" placeholder="Find" />
-         <SearchIcon />
+         <Icon icon="search" />
       </StyledSearchInput>
    )
 }

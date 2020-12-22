@@ -1,12 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import BellBtn from './BellBtn';
-import GraphBtn from './GraphBtn';
-import HomeBtn from './HomeBtn';
-import InfoBtn from './InfoBtn';
-import MenuBtn from './MenuBtn';
-import PlusBtn from './PlusBtn';
+import IconBtn from '../shared/IconBtn';
 import SearchInput from './SearchInput';
 
 const StyledAppBar = styled.div`
@@ -37,10 +32,6 @@ const StyledAppBar = styled.div`
       margin-right: 7px
    }
 
-   button:hover {
-      background-color: #e27065;
-   }
-
    .circle {
       background-color: #0197A6;
       border-radius: 50%;
@@ -62,13 +53,13 @@ const StyledAppBar = styled.div`
 function AppBar() {
    return (
       <StyledAppBar>
-         <MenuBtn />
-         <HomeBtn />
+         <IconBtn icon="menu" hoverColor="#e27065" />
+         <IconBtn icon="home" hoverColor="#e27065" />
          <SearchInput />
-         <PlusBtn />
-         <GraphBtn />
-         <InfoBtn />
-         <BellBtn />
+         <IconBtn icon="plus" hoverColor="#e27065" />
+         <IconBtn icon="graph" hoverColor="#e27065" />
+         <IconBtn icon="info" hoverColor="#e27065" />
+         <IconBtn icon="bell" hoverColor="#e27065" />
          <span className="circle">R</span>
       </StyledAppBar>
    )

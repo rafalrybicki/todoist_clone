@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Icon from '../shared/Icon';
+
 const StyledListItem = styled.li`
    padding-left: 11px;
    flex-grow: 1;
@@ -22,10 +24,10 @@ const StyledListItem = styled.li`
    }
 `
 
-function ListItem({ text, children }) {
+function ListItem({ text, icon }) {
    return (
       <StyledListItem>
-         {children}
+         <Icon icon={icon} />
          <span className="link">{text}</span>
       </StyledListItem>
    )
