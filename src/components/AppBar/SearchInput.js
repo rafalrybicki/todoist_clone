@@ -5,7 +5,7 @@ import SearchIcon from './SearchIcon';
 
 const StyledSearchInput = styled.div`
    position: relative;
-   margin-left: 5px;
+   margin-left: 7px;
    height: 29px;
 
    input {
@@ -37,7 +37,7 @@ const StyledSearchInput = styled.div`
       color: black;
    }
 
-   .bi-search {
+   .search-icon {
       position: absolute;
       top: 7px;
       left: 7px;
@@ -62,7 +62,7 @@ function SearchInput() {
    return (
       <StyledSearchInput>
          <input type="text" placeholder="Find" />
-         <SearchIcon className="search-icon" />
+         <SearchIcon />
       </StyledSearchInput>
    )
 }

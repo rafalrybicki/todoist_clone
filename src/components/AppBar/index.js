@@ -10,6 +10,10 @@ import PlusBtn from './PlusBtn';
 import SearchInput from './SearchInput';
 
 const StyledAppBar = styled.div`
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
    padding: 0 15px 0 7px;
    height: 43px;
    background-color: #DB4C3F;
@@ -17,21 +21,24 @@ const StyledAppBar = styled.div`
    align-items: center;
 
    button {
-      margin-right: 5px;
       height: 32px;
       min-width: 32px;
       display: flex;
       justify-content: center;
       align-items: center;
+      border-radius: 3px;
    }
 
    button:nth-of-type(3) {
       margin-left: auto
    }
 
-   .button:hover {
+   button:nth-of-type(n+3) {
+      margin-right: 7px
+   }
+
+   button:hover {
       background-color: #e27065;
-      border-radius: 3px;
    }
 
    .circle {
@@ -44,7 +51,7 @@ const StyledAppBar = styled.div`
       align-items: center;
       color: white;
       font-weight: 500;
-      margin-left: 5px;
+      margin-left: 3px;
    }
 
    @media (min-width: 750px) {

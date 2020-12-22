@@ -2,10 +2,19 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
-   font-family: inherit;
+   font-family: "Open Sans", sans-serif;
 }
 
 button {
    background-color: transparent;
    border: none;
+   cursor: pointer;
+}
+
+ul {
+   list-style: none;
+}
+
+#root {
+   padding-top: 43px;
 }
