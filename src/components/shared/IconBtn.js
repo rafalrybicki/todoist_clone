@@ -16,12 +16,13 @@ const StyledIconBtn = styled.button`
    }
 `
 
-function IconBtn({ icon, width='32px', height='32px', hoverColor = 'white' }) {
+function IconBtn({ icon, width='32px', height='32px', hoverColor = 'white', onClick }) {
    return (
       <StyledIconBtn
          width={width}
          height={height}
          hoverColor={hoverColor}
+         onClick={onClick ? onClick : undefined }
       >
          <Icon icon={icon} />
       </StyledIconBtn>

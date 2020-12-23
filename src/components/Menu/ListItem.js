@@ -5,10 +5,9 @@ import Icon from '../shared/Icon';
 
 const StyledListItem = styled.li`
    padding-left: 11px;
-   flex-grow: 1;
-   height: 34px;
    display: flex;
-   align-items:center;
+   height: 34px;
+   align-items: center;
    font-size: 14px;
    position: relative;
    cursor: pointer;
@@ -20,6 +19,7 @@ const StyledListItem = styled.li`
    }
 
    .link {
+      flex-grow: 1;
       padding-left: 15px
    }
 `

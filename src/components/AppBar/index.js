@@ -45,15 +45,19 @@ const StyledAppBar = styled.div`
       margin-left: 3px;
    }
 
+   @media (max-width: 749px) {
+      z-index: 100;
+   }
+
    @media (min-width: 750px) {
       padding: 0 40px;
    }
 `
 
-function AppBar() {
+function AppBar({ toggleMenu }) {
    return (
       <StyledAppBar>
-         <IconBtn icon="menu" hoverColor="#e27065" />
+         <IconBtn icon="menu" hoverColor="#e27065" onClick={toggleMenu} />
          <IconBtn icon="home" hoverColor="#e27065" />
          <SearchInput />
          <IconBtn icon="plus" hoverColor="#e27065" />

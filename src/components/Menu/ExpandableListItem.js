@@ -20,7 +20,7 @@ const StyledExpandableListItem = styled.div`
 
    .grip {
       position: absolute;
-      top: 9px;
+      top: 8px;
       left: 0;
       cursor: move;
       width: 20px

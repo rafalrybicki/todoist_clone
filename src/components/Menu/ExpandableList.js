@@ -20,7 +20,7 @@ const StyledExpandableList = styled.div`
       font-size: 14px;
       height: 34px;
       width: 211px;
-      margin-left: 32px;
+      margin-left: 5px
    }
 
    button:nth-of-type(2) {
@@ -32,7 +32,6 @@ const StyledExpandableList = styled.div`
    &:hover button:nth-of-type(2) {
       visibility: visible;
    }
-
 
    button:nth-of-type(2) svg{
       fill: black;
