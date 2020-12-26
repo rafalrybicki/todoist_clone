@@ -30,6 +30,10 @@ const StyledMenu = styled.div`
    .inbox {
       margin-left: -1px;
    }
+   
+   .circle {
+      margin-top: 2px
+   }
 `
 
 function Menu({ isOpen, close }) {
@@ -61,13 +65,13 @@ function Menu({ isOpen, close }) {
             
             <ExpandableList text="Projects">
                <ExpandableListItem text="project">
-                  <CircleFill size={12} />
+                  <CircleFill size={12} className="circle" />
                </ExpandableListItem>
-               <ExpandableListItem text="project 2">
-                  <CircleFill size={12} />
+               <ExpandableListItem text="sdfsdfsdf 2">
+                  <CircleFill size={12} className="circle" />
                </ExpandableListItem>
                <ExpandableListItem text="project 3">
-                  <CircleFill size={12} />
+                  <CircleFill size={12} className="circle" />
                </ExpandableListItem>
             </ExpandableList>
 

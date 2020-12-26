@@ -9,24 +9,7 @@ button {
    background-color: transparent;
    border: none;
    cursor: pointer;
-}
-
-button.btn {
-   padding: 7px 12px;
-   font-weight: 600;
-   border-radius: 3px;
-   background-color: #f3f3f3;
-   border: 1px solid #ddd;
-}
-
-button.btn:hover {
-   border-color: #999;
-}
-
-button.btn-submit {
-   background-color: #db4c3f;
-   border: none !important;
-   color: white;
+   transition: background-color 0.1s;
 }
 
 button[disabled] {

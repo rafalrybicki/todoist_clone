@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import CancelBtn from '../shared/CancelBtn';
+import SubmitBtn from '../shared/SubmitBtn';
 
 const StyledProjectFooter = styled.footer`
    height: 57px;
@@ -15,8 +17,8 @@ const StyledProjectFooter = styled.footer`
 function ProjectFooter() {
    return (
       <StyledProjectFooter>
-         <button className="btn">Cancel</button>
-         <button disabled className="btn btn-submit">Add</button>
+         <CancelBtn />
+         <SubmitBtn text="Add" disabled={false} />
       </StyledProjectFooter>
    )
 }

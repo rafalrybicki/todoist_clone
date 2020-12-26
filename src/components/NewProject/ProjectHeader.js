@@ -20,7 +20,9 @@ function Header() {
    return (
       <StyledProjectHeader>
          <h1>Add project</h1>
-         <QuestionCircle />
+         <a href="https://todoist.com/help/articles/how-to-best-use-projects" target="_blank" rel="noreferrer">
+            <QuestionCircle />
+         </a>
       </StyledProjectHeader>
    )
 }
