@@ -11,10 +11,28 @@ button {
    cursor: pointer;
 }
 
-ul {
-   list-style: none;
+button.btn {
+   padding: 7px 12px;
+   font-weight: 600;
+   border-radius: 3px;
+   background-color: #f3f3f3;
+   border: 1px solid #ddd;
 }
 
-#root {
-   padding-top: 43px;
+button.btn:hover {
+   border-color: #999;
+}
+
+button.btn-submit {
+   background-color: #db4c3f;
+   border: none !important;
+   color: white;
+}
+
+button[disabled] {
+   opacity: 0.3;
+}
+
+ul {
+   list-style: none;
 }
