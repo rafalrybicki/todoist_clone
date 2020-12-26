@@ -6,6 +6,8 @@ import ExpandableListItem from './ExpandableListItem';
 import ListItem from './ListItem';
 import Overlay from '../shared/Overlay'
 
+import { InboxFill, Calendar, Calendar3, CircleFill, DropletFill } from 'react-bootstrap-icons';
+
 const StyledMenu = styled.div`
    padding-top: 30px;
    background-color: #FAFAFA;
@@ -46,21 +48,39 @@ function Menu({ isOpen, close }) {
       <>
          <StyledMenu isOpen={isOpen}>
             <ul>
-               <ListItem text="Inbox 6" icon="inbox" />
-               <ListItem text="Today 2" icon="today" />
-               <ListItem text="Upcoming" icon="upcoming" />
+               <ListItem text="Inbox 6">
+                  <InboxFill color="#246fe0" size={18} className="inbox"/>
+               </ListItem>
+               <ListItem text="Today 2">
+                  <Calendar color="#058527" size={16} />
+               </ListItem>
+               <ListItem text="Upcoming">
+                  <Calendar3 color="#692fc2" size={16} />
+               </ListItem>
             </ul>
             
             <ExpandableList text="Projects">
-               <ExpandableListItem text="project" icon="project" />
-               <ExpandableListItem text="project 2" icon="project" />
-               <ExpandableListItem text="project 3" icon="project" />
+               <ExpandableListItem text="project">
+                  <CircleFill size={12} />
+               </ExpandableListItem>
+               <ExpandableListItem text="project 2">
+                  <CircleFill size={12} />
+               </ExpandableListItem>
+               <ExpandableListItem text="project 3">
+                  <CircleFill size={12} />
+               </ExpandableListItem>
             </ExpandableList>
 
             <ExpandableList text="Filters">
-               <ExpandableListItem text="filter" icon="filter" />
-               <ExpandableListItem text="filter 2" icon="filter" />
-               <ExpandableListItem text="filter 3" icon="filter" />
+               <ExpandableListItem text="filter">
+                  <DropletFill />
+               </ExpandableListItem>
+               <ExpandableListItem text="filter 2">
+                  <DropletFill />
+               </ExpandableListItem>
+               <ExpandableListItem text="filter 3">
+                  <DropletFill />
+               </ExpandableListItem>
             </ExpandableList>
 
          </StyledMenu>

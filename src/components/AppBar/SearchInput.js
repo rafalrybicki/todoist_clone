@@ -1,32 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import Icon from '../shared/Icon';
+import { Search } from 'react-bootstrap-icons';
 
 const StyledSearchInput = styled.div`
    position: relative;
    margin-left: 7px;
    height: 29px;
+   background-color: ${props => props.focus ? 'white' : '#E27065'};
+   border-radius: 3px;
+   transition: background-color .2s;
+
+   &:hover {
+      background-color: white;
+   }
 
    input {
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: relative;
       padding-left: 30px;
       height: 100%;
-      background-color: #E27065;
       border: none;
-      border-radius: 3px;
       font-size: 15px;
-      width: 45px
+      width: 45px;
+      background-color: transparent;
+      z-index: 10;
+      transition: width .2s;
    }
 
    input::-webkit-input-placeholder {
       color: transparent
-   }
-
-   input:focus, input:hover {
-      background-color: white
    }
 
    input:focus {
@@ -41,6 +43,11 @@ const StyledSearchInput = styled.div`
       position: absolute;
       top: 7px;
       left: 7px;
+      color: white;
+   }
+
+   .search-icon :hover, input:focus + .search-icon , input:hover + .search-icon  {
+      color: black;
    }
 
    @media (min-width: 750px) {
@@ -59,10 +66,12 @@ const StyledSearchInput = styled.div`
 `
 
 function SearchInput() {
+   const [focus, setFocus] = useState(false);
+
    return (
-      <StyledSearchInput>
-         <input type="text" placeholder="Find" />
-         <Icon icon="search" />
+      <StyledSearchInput focus={focus} >
+         <input type="text" placeholder="Find" onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} />
+         <Search className="search-icon" />
       </StyledSearchInput>
    )
 }

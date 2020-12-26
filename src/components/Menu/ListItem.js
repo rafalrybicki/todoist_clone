@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Icon from '../shared/Icon';
-
 const StyledListItem = styled.li`
    padding-left: 11px;
    display: flex;
@@ -14,7 +12,7 @@ const StyledListItem = styled.li`
    border-radius: 3px;
 
    &.active {
-      background-color: grey;
+      background-color: white;
       font-weight: 700
    }
 
@@ -24,10 +22,10 @@ const StyledListItem = styled.li`
    }
 `
 
-function ListItem({ text, icon }) {
+function ListItem({ text, children }) {
    return (
       <StyledListItem>
-         <Icon icon={icon} />
+         {children}
          <span className="link">{text}</span>
       </StyledListItem>
    )

@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import styled from 'styled-components';
 
-import Icon from '../shared/Icon'
+import { ChevronRight, Plus } from 'react-bootstrap-icons';
 
 const StyledExpandableList = styled.div`
    display: flex;
@@ -33,17 +33,17 @@ const StyledExpandableList = styled.div`
       visibility: visible;
    }
 
-   button:nth-of-type(2) svg{
-      fill: black;
-   }
-
    .chevron {
-      margin-left: 6.5px;
-      margin-right: 13.5px;
+      margin-left: 6px;
+      margin-right: 14px;
       height: 16px;
       width: 16px;
       transition: transform 0.1s;
       transform: ${props => props.open ? 'rotate(0)' : 'rotate(90deg)' };
+   }
+
+   ul {
+      width: 100%;
    }
 `
 
@@ -53,13 +53,11 @@ function ExpandableList({ text, children }) {
    return (
       <StyledExpandableList open={open}>
          <button onClick={() => setOpen(!open)}>
-            <div className="chevron">
-               <Icon icon="chevron" />
-            </div>
+            <ChevronRight className="chevron" />
             {text}
          </button>
          <button>
-            <Icon icon="plus" />
+            <Plus size={24} />
          </button>
          <ul>{children}</ul>
       </StyledExpandableList>

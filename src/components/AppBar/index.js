@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import IconBtn from '../shared/IconBtn';
 import SearchInput from './SearchInput';
 
+import { Justify, HouseDoor, Plus, GraphUp, QuestionCircle, Bell } from 'react-bootstrap-icons';
+
 const StyledAppBar = styled.div`
    position: absolute;
    top: 0;
@@ -57,13 +59,25 @@ const StyledAppBar = styled.div`
 function AppBar({ toggleMenu }) {
    return (
       <StyledAppBar>
-         <IconBtn icon="menu" hoverColor="#e27065" onClick={toggleMenu} />
-         <IconBtn icon="home" hoverColor="#e27065" />
+         <IconBtn hoverColor="#e27065" onClick={toggleMenu}>
+            <Justify color="white" size={22}/>
+         </IconBtn>
+         <IconBtn hoverColor="#e27065">
+            <HouseDoor color="white" size={18}/>
+         </IconBtn>
          <SearchInput />
-         <IconBtn icon="plus" hoverColor="#e27065" />
-         <IconBtn icon="graph" hoverColor="#e27065" />
-         <IconBtn icon="info" hoverColor="#e27065" />
-         <IconBtn icon="bell" hoverColor="#e27065" />
+         <IconBtn hoverColor="#e27065">
+            <Plus color="white" size={32}/>
+         </IconBtn>
+         <IconBtn hoverColor="#e27065">
+            <GraphUp color="white" size={18}/>
+         </IconBtn>
+         <IconBtn hoverColor="#e27065">
+            <QuestionCircle color="white" size={18}/>
+         </IconBtn>
+         <IconBtn hoverColor="#e27065">
+            <Bell color="white" size={18}/>
+         </IconBtn>
          <span className="circle">R</span>
       </StyledAppBar>
    )

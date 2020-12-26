@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Icon from './Icon.js';
-
 const StyledIconBtn = styled.button`
    display: flex;
    justify-content: center;
@@ -16,7 +14,7 @@ const StyledIconBtn = styled.button`
    }
 `
 
-function IconBtn({ icon, width='32px', height='32px', hoverColor = 'white', onClick }) {
+function IconBtn({ width='32px', height='32px', hoverColor = 'white', onClick, children }) {
    return (
       <StyledIconBtn
          width={width}
@@ -24,7 +22,7 @@ function IconBtn({ icon, width='32px', height='32px', hoverColor = 'white', onCl
          hoverColor={hoverColor}
          onClick={onClick ? onClick : undefined }
       >
-         <Icon icon={icon} />
+         {children}
       </StyledIconBtn>
    )
 }
