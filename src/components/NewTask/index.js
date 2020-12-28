@@ -5,7 +5,7 @@ import IconBtn from '../shared/IconBtn';
 import { Tag, Alarm, CalendarEvent, InboxFill } from 'react-bootstrap-icons';
 import CancelBtn from '../shared/CancelBtn';
 import SubmitBtn from '../shared/SubmitBtn';
-// import PriorityPicker from './PriorityPicker';
+import PriorityPicker from './PriorityPicker';
 
 const StyledNewTask = styled.form`
    position: absolute;
@@ -107,7 +107,7 @@ function NewTask({ headerText }) {
                <IconBtn hoverColor="#eee" height="28px" width="28px">
                   <Tag color="grey" size={20} />
                </IconBtn>
-               {/* <PriorityPicker currentPriority={1} /> */}
+               <PriorityPicker currentPriority={4} />
                <IconBtn hoverColor="#eee" height="28px" width="28px">
                   <Alarm color="grey" size={18} />
                </IconBtn>
