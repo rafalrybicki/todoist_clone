@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ListItem from './ListItem';
-import { GripVertical, ThreeDots } from 'react-bootstrap-icons';
+import { ThreeDots } from 'react-bootstrap-icons';
+import Grip from '../shared/Grip';
 
 const StyledExpandableListItem = styled.div`
    position: relative;
@@ -10,11 +11,9 @@ const StyledExpandableListItem = styled.div`
    padding-left: 17px;
 
    .grip {
-      position: absolute;
-      top: 8px;
-      left: 0;
-      cursor: move;
-      width: 20px
+      top: 4px;
+      left: -2px;
+      background-color: transparent;
    }
 
    .more {
@@ -26,15 +25,18 @@ const StyledExpandableListItem = styled.div`
       padding-right: 6px;
    }
 
-   .grip, .more {
+   .more {
       visibility: hidden;
       color: #999;
       height: 20px;
    }
 
    &:hover {
-      .grip, .more {
+      .more {
          visibility: visible;
+      }
+      .grip {
+         color: #999
       }
    }
 
@@ -46,7 +48,7 @@ const StyledExpandableListItem = styled.div`
 function ExpandableListItem({ text, children }) {
    return (
       <StyledExpandableListItem>
-         <GripVertical className="grip" />
+         <Grip />
          <ListItem text={text} >
             {children}
          </ListItem>
