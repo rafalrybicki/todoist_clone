@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import AppBar from './components/AppBar';
 import Menu from './components/Menu';
 import NewProject from './components/NewProject';
+import NewTask from './components/NewTask';
 
 const StyledApp = styled.div`
   padding-top: 43px;
@@ -21,7 +22,8 @@ function App() {
     <StyledApp className="App">
       <AppBar toggleMenu={toggleMenu} />
       <Menu isOpen={menuOpen} close={toggleMenu}/>
-      <NewProject />
+      {/* <NewProject /> */}
+      <NewTask headerText="Quick Add Task"/>
     </StyledApp>
   );
 }

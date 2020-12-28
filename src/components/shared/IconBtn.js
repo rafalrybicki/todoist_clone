@@ -21,6 +21,7 @@ function IconBtn({ width='32px', height='32px', hoverColor = 'white', onClick, c
          height={height}
          hoverColor={hoverColor}
          onClick={onClick ? onClick : undefined }
+         type="button"
       >
          {children}
       </StyledIconBtn>
