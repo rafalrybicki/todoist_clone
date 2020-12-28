@@ -14,7 +14,12 @@ const StyledActions = styled.div`
    visibility: hidden;
 
    button {
-      margin-left: 2px
+      margin-left: 2px;
+      color: grey;
+   }
+
+   button:hover {
+      color: #202020;
    }
 `
 

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const StyledCheckbox = styled.span`
    position: absolute;
    top: 8px;
-   left: 30px;
+   left: 0px;
    display: block;
    border-radius: 50%;
    border-width: ${props => props.color === 'grey' ? '1px' : '2px'};

@@ -5,6 +5,7 @@ import { ChatSquare, ArrowDownUp, ThreeDots } from 'react-bootstrap-icons';
 
 import IconBtn from '../shared/IconBtn';
 import Task from '../Task'
+// import TaskSection from '../shared/TaskSection';
 
 const StyledInbox = styled.div`
    display: flex;
@@ -28,12 +29,11 @@ const StyledInbox = styled.div`
       flex-grow: 1
    }
 
-   button {
+   header button {
       color: grey;
-      margin-left: 8px;
    }
 
-   button:hover {
+   header button:hover {
       color: #202020;
    }
 
@@ -61,6 +61,12 @@ function Inbox() {
          <Task priority="2" />
          <Task priority="3" />
          <Task priority="4" />
+         {/* <TaskSection name="ToDo section">
+            <Task priority="1" />
+            <Task priority="2" />
+            <Task priority="3" />
+            <Task priority="4" />
+         </TaskSection> */}
       </StyledInbox>
    )
 }
