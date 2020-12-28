@@ -29,6 +29,7 @@ const StyledIconBtn = styled.button`
          height: 20px;
          border-radius: 3px;
          font-size: 12px;
+         text-align: center;
       }
 
       &:hover {
@@ -42,7 +43,7 @@ const StyledIconBtn = styled.button`
 
 `
 
-function IconBtn({ width='32px', height, hoverColor = 'white', onClick, tooltip, tooltipWidth, children }) {
+function IconBtn({ width='32px', height, hoverColor = 'white', onClick, tooltip, tooltipWidth, cssClass, children }) {
    return (
       <StyledIconBtn
          width={width}
@@ -52,6 +53,7 @@ function IconBtn({ width='32px', height, hoverColor = 'white', onClick, tooltip,
          type="button"
          tooltip={tooltip}
          tooltipWidth={tooltipWidth}
+         className={cssClass}
       >
          {children}
       </StyledIconBtn>
