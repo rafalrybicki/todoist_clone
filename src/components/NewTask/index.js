@@ -104,11 +104,11 @@ function NewTask({ headerText }) {
                <button className="btn inbox">
                   <InboxFill /> Inbox
                </button>
-               <IconBtn hoverColor="#eee" height="28px" width="28px">
+               <IconBtn hoverColor="#eee" width="28px">
                   <Tag color="grey" size={20} />
                </IconBtn>
                <PriorityPicker currentPriority={4} />
-               <IconBtn hoverColor="#eee" height="28px" width="28px">
+               <IconBtn hoverColor="#eee" width="28px">
                   <Alarm color="grey" size={18} />
                </IconBtn>
             </div>

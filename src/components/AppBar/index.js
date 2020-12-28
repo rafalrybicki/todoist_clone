@@ -59,25 +59,69 @@ const StyledAppBar = styled.div`
 function AppBar({ toggleMenu }) {
    return (
       <StyledAppBar>
-         <IconBtn hoverColor="#e27065" onClick={toggleMenu}>
-            <Justify color="white" size={22}/>
+         <IconBtn
+            hoverColor="#e27065"
+            onClick={toggleMenu}
+            tooltip="Open menu"
+            tooltipWidth="78px"
+         >
+            <Justify
+               color="white"
+               size={22}
+            />
          </IconBtn>
-         <IconBtn hoverColor="#e27065">
-            <HouseDoor color="white" size={18}/>
+
+         <IconBtn
+            hoverColor="#e27065"
+            tooltip="Go to start page"
+            tooltipWidth="102px"
+         >
+            <HouseDoor
+               color="white"
+               size={18}
+            />
          </IconBtn>
+
          <SearchInput />
-         <IconBtn hoverColor="#e27065">
-            <Plus color="white" size={32}/>
+
+         <IconBtn
+            hoverColor="#e27065"
+            tooltip="Quick Add Task"
+            tooltipWidth="98px"
+         >
+            <Plus
+               color="white"
+               size={32}
+            />
          </IconBtn>
-         <IconBtn hoverColor="#e27065">
-            <GraphUp color="white" size={18}/>
+
+         <IconBtn
+            hoverColor="#e27065"
+         >
+            <GraphUp
+               color="white"
+               size={18}
+            />
          </IconBtn>
-         <IconBtn hoverColor="#e27065">
-            <QuestionCircle color="white" size={18}/>
+
+         <IconBtn
+            hoverColor="#e27065"
+         >
+            <QuestionCircle
+               color="white"
+               size={18}
+            />
          </IconBtn>
-         <IconBtn hoverColor="#e27065">
-            <Bell color="white" size={18}/>
+
+         <IconBtn
+            hoverColor="#e27065"
+         >
+            <Bell
+               color="white"
+               size={18}
+            />
          </IconBtn>
+
          <span className="circle">R</span>
       </StyledAppBar>
    )

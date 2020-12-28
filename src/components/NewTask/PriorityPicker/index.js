@@ -28,6 +28,8 @@ function PriorityPicker({ currentPriority }) {
             height="28px"
             width="28px"
             onClick={() => togglePriorityList(!showPriorityList)}
+            tooltip="Set the priority"
+            tooltipWidth="98px"
          >
             <PriorityIcon priority={priority} />
          </IconBtn>

@@ -8,7 +8,7 @@ const StyledPriorityList = styled.ul`
    transform: translateY(100%) translateX(-50%);
    margin-left: 25px;
    background-color: white;
-   z-index: 100;
+   z-index: 10000;
    width: 210px;
    border-radius: 5px;
    border: 1px solid rgba(0,0,0,.1);

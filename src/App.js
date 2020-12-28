@@ -23,7 +23,7 @@ function App() {
       <AppBar toggleMenu={toggleMenu} />
       <Menu isOpen={menuOpen} close={toggleMenu}/>
       {/* <NewProject /> */}
-      <NewTask headerText="Quick Add Task"/>
+      {/* <NewTask headerText="Quick Add Task"/> */}
     </StyledApp>
   );
 }
