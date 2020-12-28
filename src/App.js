@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import AppBar from './components/AppBar';
 import Menu from './components/Menu';
+import Inbox from './components/Inbox';
 import NewProject from './components/NewProject';
 import NewTask from './components/NewTask';
 
@@ -22,6 +23,7 @@ function App() {
     <StyledApp className="App">
       <AppBar toggleMenu={toggleMenu} />
       <Menu isOpen={menuOpen} close={toggleMenu}/>
+      <Inbox />
       {/* <NewProject /> */}
       {/* <NewTask headerText="Quick Add Task"/> */}
     </StyledApp>

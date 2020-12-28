@@ -7,29 +7,36 @@ const StyledIconBtn = styled.button`
    justify-content: center;
    align-items: center;
    border-radius: 3px;
+   border: 2px solid transparent;
    width: ${props => props.width};
    height: ${props => props.height};
    
-   &::after {
-      position: absolute;
-      z-index: 1001;
-      bottom: -30px;
-      content: "${props => props.tooltip}";
-      color: white;
-      display: none;
-      background-color: black;
-      padding: 3px 0 1px;
-      width: ${props => props.tooltipWidth};
-      height: 20px;
-      border-radius: 3px;
-      font-size: 12px;
-   }
-
    &:hover {
       background-color: ${props => props.hoverColor};
+   }
 
+   @media screen and (min-width: 750px) {
       &::after {
-         display: block
+         position: absolute;
+         z-index: 1001;
+         bottom: -31px;
+         content: "${props => props.tooltip}";
+         color: white;
+         display: none;
+         background-color: rgba(0,0,0,.7);
+         padding: 3px 0 1px;
+         width: ${props => props.tooltipWidth};
+         height: 20px;
+         border-radius: 3px;
+         font-size: 12px;
+      }
+
+      &:hover {
+         background-color: ${props => props.hoverColor};
+
+         &::after {
+            display: block
+         }
       }
    }
 
