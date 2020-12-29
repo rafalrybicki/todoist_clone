@@ -50,7 +50,7 @@ function ExpandableList({ text, children }) {
    return (
       <StyledExpandableList open={open}>
          <button onClick={() => setOpen(!open)}>
-            <ChevronIcon rotate={open} />
+            <ChevronIcon rotate={open.toString()} />
             {text}
          </button>
          <button>

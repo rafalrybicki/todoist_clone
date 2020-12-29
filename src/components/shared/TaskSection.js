@@ -68,7 +68,7 @@ function TaskSection({ name = 'section', children }) {
       <StyledTaskSection showList={showList}>
          <Grip />
          <IconBtn hoverColor="#eee" width="28px" onClick={() => toggleSectionList(!showList)} cssClass="chevron">
-            <ChevronIcon rotate={showList} />
+            <ChevronIcon rotate={showList.toString()} />
          </IconBtn>
 
          <h2>{name}</h2>
