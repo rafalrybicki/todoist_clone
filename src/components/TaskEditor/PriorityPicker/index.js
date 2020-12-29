@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import IconBtn from '../../shared/IconBtn';
 import PriorityIcon from './PriorityIcon';

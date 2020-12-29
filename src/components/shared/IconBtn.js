@@ -1,12 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const StyledIconBtn = styled.button`
    position: relative;
    display: flex;
    justify-content: center;
    align-items: center;
-   border-radius: 3px;
    border: 2px solid transparent;
    width: ${props => props.width};
    height: ${props => props.height};

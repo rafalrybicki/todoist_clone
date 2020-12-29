@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import { ChatSquare, ArrowDownUp, ThreeDots } from 'react-bootstrap-icons';
 
@@ -15,7 +15,7 @@ const StyledInbox = styled.div`
    align-content: flex-start;
    margin: 0 auto;
    width: 90%;
-   max-width: 800px;
+   max-width: 900px;
    padding: 30px 40px;;
 
    > header {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import { Circle } from 'react-bootstrap-icons';
 import { CheckCircleFill } from 'react-bootstrap-icons';

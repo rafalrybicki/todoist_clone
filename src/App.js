@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import AppBar from './components/AppBar';
 import Menu from './components/Menu';
 import Inbox from './components/Inbox';
 import NewProject from './components/NewProject';
-import NewTask from './components/NewTask';
+import TaskEditor from './components/TaskEditor';
 
 const StyledApp = styled.div`
   padding-top: 43px;
@@ -25,7 +25,7 @@ function App() {
       <Menu isOpen={menuOpen} close={toggleMenu}/>
       <Inbox />
       {/* <NewProject /> */}
-      {/* <NewTask headerText="Quick Add Task"/> */}
+      <TaskEditor headerText="Quick Add Task"/>
     </StyledApp>
   );
 }

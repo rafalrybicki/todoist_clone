@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import CancelBtn from '../shared/CancelBtn';
 import SubmitBtn from '../shared/SubmitBtn';
 

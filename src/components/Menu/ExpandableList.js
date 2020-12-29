@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import { Plus } from 'react-bootstrap-icons';
 import ChevronIcon from '../shared/ChevronIcon';
@@ -41,6 +41,14 @@ const StyledExpandableList = styled.div`
 
    ul {
       width: 100%;
+   }
+
+   ul button {
+      margin: 10px 0 20px 10px;
+   }
+
+   ul button span {
+      margin-right: 12px
    }
 `
 

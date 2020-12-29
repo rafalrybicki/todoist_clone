@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const StyledNewitemBtn = styled.button`
    height: 35px;
@@ -8,6 +8,7 @@ const StyledNewitemBtn = styled.button`
    display: flex;
    align-items: center;
    color: grey;
+   transition: all .2s;
 
    span {
       height: 18px;
@@ -18,7 +19,7 @@ const StyledNewitemBtn = styled.button`
       vertical-align: middle;
       line-height: 17px;
       border-radius: 50%;
-      transition: all .1s;
+      transition: background-color .1s;
    }
 
    &:hover {

@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
+
 import PriorityIcon from './PriorityIcon';
 
 const StyledPriorityListItem = styled.li`
@@ -35,7 +36,7 @@ function PriorityListItem({ priority, onClick, active }) {
       <StyledPriorityListItem active={active} onClick={onClick}>
          <PriorityIcon priority={priority} />
          Priority {priority}
-         {active && <span className="tick">&#10003;</span>}
+         { active && <span className="tick">&#10003;</span> }
       </StyledPriorityListItem>
    )
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import IconBtn from '../shared/IconBtn';
 import SearchInput from './SearchInput';
@@ -20,10 +20,6 @@ const StyledAppBar = styled.div`
    button {
       height: 32px;
       min-width: 32px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 3px;
    }
 
    button:nth-of-type(3) {
@@ -95,27 +91,21 @@ function AppBar({ toggleMenu }) {
             />
          </IconBtn>
 
-         <IconBtn
-            hoverColor="#e27065"
-         >
+         <IconBtn hoverColor="#e27065">
             <GraphUp
                color="white"
                size={18}
             />
          </IconBtn>
 
-         <IconBtn
-            hoverColor="#e27065"
-         >
+         <IconBtn hoverColor="#e27065">
             <QuestionCircle
                color="white"
                size={18}
             />
          </IconBtn>
 
-         <IconBtn
-            hoverColor="#e27065"
-         >
+         <IconBtn hoverColor="#e27065">
             <Bell
                color="white"
                size={18}

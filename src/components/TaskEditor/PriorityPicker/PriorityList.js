@@ -1,9 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const StyledPriorityList = styled.ul`
    position: absolute;
-   bottom: 0;
+   bottom: 5px;
    display: ${props => props.show ? 'block' : 'none'};
    transform: translateY(100%) translateX(-50%);
    margin-left: 25px;

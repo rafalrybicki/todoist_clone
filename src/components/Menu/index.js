@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import ExpandableList from './ExpandableList';
 import ExpandableListItem from './ExpandableListItem';
 import ListItem from './ListItem';
+import NewItemBtn from '../shared/NewItemBtn';
 import Overlay from '../shared/Overlay'
 
 import { InboxFill, Calendar, Calendar3, CircleFill, DropletFill } from 'react-bootstrap-icons';
@@ -73,6 +74,7 @@ function Menu({ isOpen, close }) {
                <ExpandableListItem text="project 3">
                   <CircleFill size={12} className="circle" />
                </ExpandableListItem>
+               <NewItemBtn text="Add project" width="110px" />
             </ExpandableList>
 
             <ExpandableList text="Filters">
