@@ -5,7 +5,7 @@ import { ChatSquare, ArrowDownUp, ThreeDots } from 'react-bootstrap-icons';
 
 import IconBtn from '../shared/IconBtn';
 import Task from '../Task'
-// import TaskSection from '../shared/TaskSection';
+import TaskSection from '../shared/TaskSection';
 
 const StyledInbox = styled.div`
    display: flex;
@@ -61,12 +61,12 @@ function Inbox() {
          <Task priority="2" />
          <Task priority="3" />
          <Task priority="4" />
-         {/* <TaskSection name="ToDo section">
+         <TaskSection name="ToDo section">
             <Task priority="1" />
             <Task priority="2" />
             <Task priority="3" />
             <Task priority="4" />
-         </TaskSection> */}
+         </TaskSection>
       </StyledInbox>
    )
 }
