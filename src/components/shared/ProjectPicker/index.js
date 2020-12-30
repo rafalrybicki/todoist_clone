@@ -19,7 +19,7 @@ const StyledProjectPicker = styled.div`
       }
    }
 
-   button:hover {
+   button:hover, button:focus {
       background-color: #eee;
    }
 `

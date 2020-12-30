@@ -12,11 +12,16 @@ button {
    transition: background-color 0.1s;
    border-radius: 3px;
    border: 1px solid transparent;
+   outline: none;
 }
 
 button[disabled] {
    opacity: 0.3;
    cursor: no-drop;
+}
+
+input {
+   outline: none;
 }
 
 ul {
