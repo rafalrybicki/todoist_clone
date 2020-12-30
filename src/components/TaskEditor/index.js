@@ -74,7 +74,7 @@ function TaskEditor({ headerText }) {
             <input
                type="text"
                name="content"
-               autocomplete="off"
+               autoComplete="off"
             />
             <DatePicker />
             <ProjectPicker />

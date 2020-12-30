@@ -14,6 +14,7 @@ const StyledMenu = styled.div`
    background-color: #FAFAFA;
    height: calc(100vh - 43px);
    width: ${props => props.isOpen ? '291px' : '0'};
+   flex-shrink: 0;
    padding-top: 25px;
    font-size: 14px;
    overflow-y: auto;

@@ -4,9 +4,11 @@ import styled from 'styled-components/macro';
 import { CalendarEvent } from 'react-bootstrap-icons';
 
 import Suggestions from './Suggestions';
-import DateInput from './DateInput';
+import Calendar from './Calendar';
+import TimePicker from './TimePicker';
 
 const StyledDatePicker = styled.div`
+   width: 250px;
    > button {
       height: 28px;
       padding: 0 8px;
@@ -25,30 +27,13 @@ const StyledDatePicker = styled.div`
    }
 
    > div {
-      display: flex;
-      flex-direction: column;
-      width: 250px;
+      position: relative;
+      width: 100%;
       background-color: white;
-      border: 1px solid black;
       border-radius: 3px;
       box-shadow: 0 1px 8px 0 rgba(0,0,0,.08), 0 0 1px 0 rgba(0,0,0,.3);
       overflow: hidden;
-
-      div {
-         border-top: 1px solid #ddd;
-      }
-
-      .suggestions {
-         height: 138px;
-      }
-
-      .calendar {
-         height: 237px;
-      }
-
-      .actions {
-         height: 41px;
-      }
+      font-family: Arial, Helvetica, sans-serif;
    }
 `
 
@@ -59,14 +44,9 @@ function DatePicker() {
             <CalendarEvent /> Today
          </button>
          <div>
-            <DateInput />
             <Suggestions />
-            <div className="calendar">
-               calendar
-            </div>
-            <div className="actions">
-               add time
-            </div>
+            <Calendar />
+            <TimePicker />
          </div>
       </StyledDatePicker>
 
