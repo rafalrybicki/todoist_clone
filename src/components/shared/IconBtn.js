@@ -6,7 +6,6 @@ const StyledIconBtn = styled.button`
    display: flex;
    justify-content: center;
    align-items: center;
-   border: 2px solid transparent;
    width: ${props => props.width};
    height: ${props => props.height};
    
@@ -39,7 +38,6 @@ const StyledIconBtn = styled.button`
          }
       }
    }
-
 `
 
 function IconBtn({ width='32px', height, hoverColor = 'white', onClick, tooltip, tooltipWidth, cssClass, children }) {
