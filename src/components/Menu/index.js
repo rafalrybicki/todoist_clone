@@ -7,7 +7,8 @@ import ListItem from './ListItem';
 import NewItemBtn from '../shared/NewItemBtn';
 import Overlay from '../shared/Overlay'
 
-import { InboxFill, Calendar, Calendar3, CircleFill, DropletFill } from 'react-bootstrap-icons';
+import { Calendar, Calendar3, CircleFill, DropletFill } from 'react-bootstrap-icons';
+import InboxIcon from '../shared/InboxIcon';
 
 const StyledMenu = styled.div`
    padding-top: 30px;
@@ -29,7 +30,7 @@ const StyledMenu = styled.div`
       padding-right: 10px;
    }
 
-   .inbox {
+   .inbox-icon {
       margin-left: -1px;
    }
    
@@ -55,7 +56,7 @@ function Menu({ isOpen, close }) {
          <StyledMenu isOpen={isOpen}>
             <ul>
                <ListItem text="Inbox 6">
-                  <InboxFill color="#246fe0" size={18} className="inbox"/>
+                  <InboxIcon size={18} />
                </ListItem>
                <ListItem text="Today 2">
                   <Calendar color="#058527" size={16} />
