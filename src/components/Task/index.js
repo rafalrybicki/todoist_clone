@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import Actions from './Actions';
-import Checkbox from './Checkbox';
+import Checkbox from '../shared/Checkbox';
 import Date from './Date';
 import Grip from '../shared/Grip';
 

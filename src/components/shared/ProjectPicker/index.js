@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { InboxFill } from 'react-bootstrap-icons';
+import InboxIcon from '../InboxIcon';
 
 const StyledProjectPicker = styled.div`
    margin-right: auto;
@@ -28,7 +28,7 @@ function ProjectPicker() {
    return (
       <StyledProjectPicker>
          <button>
-            <InboxFill  size="14"/> Inbox
+            <InboxIcon  size={14} /> Inbox
          </button>
       </StyledProjectPicker>
    )

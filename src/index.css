@@ -5,6 +5,11 @@
    font-family: inherit;
 }
 
+#root {
+   width: 100vw;
+   height: 100vh;
+}
+
 body {
    font-family: "Open Sans", sans-serif;
 }
@@ -16,16 +21,11 @@ button {
    transition: background-color 0.1s;
    border-radius: 3px;
    border: 1px solid transparent;
-   outline: none;
 }
 
 button[disabled] {
    cursor: no-drop;
    background-color: transparent !important;
-}
-
-input {
-   outline: none;
 }
 
 ul {

@@ -39,15 +39,15 @@ const StyledDatePicker = styled.div`
 
 function DatePicker() {
    return (
-      <StyledDatePicker>
+      <StyledDatePicker className="date-picker">
          <button>
             <CalendarEvent /> Today
          </button>
-         <div>
+         {/* <div>
             <Suggestions />
             <Calendar />
             <TimePicker />
-         </div>
+         </div> */}
       </StyledDatePicker>
 
    )
