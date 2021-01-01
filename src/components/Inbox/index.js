@@ -9,15 +9,6 @@ import TaskSection from '../shared/TaskSection';
 import NewItemBtn from '../shared/NewItemBtn';
 
 const StyledInbox = styled.div`
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
-   align-content: flex-start;
-   margin: 0 auto;
-   width: 90%;
-   max-width: 900px;
-   padding: 30px 40px;;
-
    > header {
       flex-grow: 1;
       display: flex;
@@ -26,7 +17,6 @@ const StyledInbox = styled.div`
    }
 
    h1 {
-      font-size: 20px;
       flex-grow: 1
    }
 
