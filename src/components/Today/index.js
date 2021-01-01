@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 import IconBtn from '../shared/IconBtn';
 import { ArrowDownUp } from 'react-bootstrap-icons';
 import Task from '../Task';
+import { getDisplayDate } from '../../helpers';
 
 const StyledToday = styled.div`
    position: relative;
@@ -23,12 +24,12 @@ const StyledToday = styled.div`
 `
 
 function Today() {
-   const date = new Date().toGMTString().replace(',', '').split(' ');
-
+   const date = getDisplayDate();
+   
    return (
       <StyledToday>
          <h1>Today
-            <span className="date">{date[0]} {+date[1]} {date[2]}</span>
+            <span className="date">{date}</span>
          </h1>
 
          <IconBtn tooltip="Sort" tooltipWidth="36px" cssClass="sort-btn">

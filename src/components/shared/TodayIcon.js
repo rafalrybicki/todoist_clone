@@ -28,7 +28,6 @@ const StyledTodayIcon = styled.div`
 
 function TodayIcon({ size }) {
    const day = new Date().getDate();
-   console.log(day);
 
    return (
       <StyledTodayIcon size={size}>

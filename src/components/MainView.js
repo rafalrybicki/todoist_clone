@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 const StyledMainView = styled.main`
-   padding: 36px 55px;
+   position: relative;
+   padding: 0 55px 36px;
    flex-grow: 1;
+   overflow-y: scroll;
 
    > div {
       margin: 0 auto;
@@ -14,6 +16,7 @@ const StyledMainView = styled.main`
       font-size: 20px;
       flex-grow: 1;
       margin-bottom: 12px;
+      font-family: Arial, Helvetica, sans-serif
    }
 
    .icon-btn {
