@@ -1,0 +1,43 @@
+import React from 'react';
+import styled from 'styled-components/macro';
+
+import { Calendar } from 'react-bootstrap-icons';
+
+const StyledTodayIcon = styled.div`
+   position: relative;
+   color: #058527;
+   height: ${props => props.size + 'px'};
+   width: ${props => props.size + 'px'};
+
+   .day {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: ${props => props.size === 16 ? '2px' : '3px'};
+      height: ${props => props.size + 'px'};
+      width: ${props => props.size + 'px'};
+      line-height: 1;
+      font-weight: bold;
+      font-size: ${props => (props.size - 6) + 'px' };
+      z-index: 100
+   }
+`
+
+function TodayIcon({ size }) {
+   const day = new Date().getDate();
+   console.log(day);
+
+   return (
+      <StyledTodayIcon size={size}>
+         <Calendar size={size} />
+         <span className="day">
+            {day}
+         </span>
+      </StyledTodayIcon> 
+   )
+}
+
+export default TodayIcon
