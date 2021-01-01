@@ -30,8 +30,8 @@ function App() {
       <AppBar toggleMenu={toggleMenu} />
       <Menu isOpen={menuOpen} close={toggleMenu}/>
       <MainView>
-        {/* <Inbox /> */}
-        <Today />
+        <Inbox />
+        {/* <Today /> */}
       </MainView>
       {/* <NewProject /> */}
       {/* <TaskEditor headerText="Quick Add Task"/> */}

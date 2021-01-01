@@ -7,6 +7,7 @@ import IconBtn from '../shared/IconBtn';
 import Task from '../Task'
 import TaskSection from '../shared/TaskSection';
 import NewItemBtn from '../shared/NewItemBtn';
+import NewSection from '../shared/NewSection';
 
 const StyledInbox = styled.div`
    > header {
@@ -53,6 +54,7 @@ function Inbox() {
          <Task priority="3" />
          <Task priority="4" />
          <NewItemBtn text="Add task" onClick={() => console.log('new task')} />
+         <NewSection />
          <TaskSection name="ToDo section">
             <Task priority="1" />
             <Task priority="2" />
@@ -60,6 +62,7 @@ function Inbox() {
             <Task priority="4" />
             <NewItemBtn text="Add task" onClick={() => console.log('new task')} />
          </TaskSection>
+         <NewSection />
       </StyledInbox>
    )
 }

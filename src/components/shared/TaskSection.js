@@ -8,7 +8,7 @@ import { ThreeDots } from 'react-bootstrap-icons';
 
 const StyledTaskSection = styled.div`
    position: relative;
-   padding: 20px 0;
+   padding: 20px 0 10px;
    width: 100%;
 
    h2, .quantity {
