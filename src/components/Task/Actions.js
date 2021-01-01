@@ -26,16 +26,16 @@ const StyledActions = styled.div`
 function Actions() {
    return (
       <StyledActions className="actions">
-         <IconBtn hoverColor="#eee" width="28px" tooltip="Edit" tooltipWidth="33px">
+         <IconBtn width="28px" tooltip="Edit" tooltipWidth="33px">
             <Pen size="16"/>
          </IconBtn>
-         <IconBtn hoverColor="#eee" width="28px" tooltip="Schedule" tooltipWidth="64px">
+         <IconBtn width="28px" tooltip="Schedule" tooltipWidth="64px">
             <CalendarEvent size="16"/>
          </IconBtn>
-         <IconBtn hoverColor="#eee" width="28px" tooltip="Comment" tooltipWidth="68px">
+         <IconBtn width="28px" tooltip="Comment" tooltipWidth="68px">
             <ChatSquare className="chat-icon" size="18"/>
          </IconBtn>
-         <IconBtn hoverColor="#eee" width="28px" tooltip="More task actions" tooltipWidth="112px">
+         <IconBtn width="28px" tooltip="More task actions" tooltipWidth="112px">
             <ThreeDots size="20"/>
          </IconBtn>
       </StyledActions>

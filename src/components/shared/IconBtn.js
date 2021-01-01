@@ -8,10 +8,6 @@ const StyledIconBtn = styled.button`
    align-items: center;
    width: ${props => props.width};
    height: ${props => props.height};
-   
-   &:hover {
-      background-color: ${props => props.hoverColor};
-   }
 
    @media screen and (min-width: 750px) {
       &::after {
@@ -40,17 +36,16 @@ const StyledIconBtn = styled.button`
    }
 `
 
-function IconBtn({ width='32px', height, hoverColor = 'white', onClick, tooltip, tooltipWidth, cssClass, children }) {
+function IconBtn({ width='32px', height, onClick, tooltip, tooltipWidth, cssClass, children }) {
    return (
       <StyledIconBtn
          width={width}
          height={height || width}
-         hoverColor={hoverColor}
          onClick={onClick ? onClick : undefined }
          type="button"
          tooltip={tooltip}
          tooltipWidth={tooltipWidth}
-         className={cssClass}
+         className={cssClass ? "icon-btn " + cssClass : "icon-btn"}
       >
          {children}
       </StyledIconBtn>
