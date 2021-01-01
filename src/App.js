@@ -3,7 +3,9 @@ import styled from 'styled-components/macro';
 
 import AppBar from './components/AppBar';
 import Menu from './components/Menu';
+import MainView from './components/MainView';
 import Inbox from './components/Inbox';
+import Today from './components/Today';
 import NewProject from './components/NewProject';
 import TaskEditor from './components/TaskEditor';
 import TaskModal from './components/TaskModal';
@@ -27,7 +29,10 @@ function App() {
     <StyledApp className="App">
       <AppBar toggleMenu={toggleMenu} />
       <Menu isOpen={menuOpen} close={toggleMenu}/>
-      <Inbox />
+      <MainView>
+        <Inbox />
+      </MainView>
+      {/* <Today /> */}
       {/* <NewProject /> */}
       {/* <TaskEditor headerText="Quick Add Task"/> */}
       {/* <TaskModal /> */}
