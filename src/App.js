@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
 import AppBar from './components/AppBar';
-import Menu from './components/Menu';
+import AppMenu from './components/AppMenu';
 import MainView from './views/MainView';
 import Inbox from './views/Inbox';
 import Today from './views/Today';
@@ -30,7 +30,7 @@ function App() {
   return (
     <StyledApp className="App">
       <AppBar toggleMenu={toggleMenu} />
-      <Menu isOpen={menuOpen} close={toggleMenu}/>
+      <AppMenu isOpen={menuOpen} close={toggleMenu}/>
       <MainView>
         {/* <Upcoming /> */}
         <Inbox />
