@@ -9,10 +9,6 @@
    height: 100vh;
 }
 
-body {
-   font-family: "Open Sans", sans-serif;
-}
-
 button {
    background-color: transparent;
    border: none;
