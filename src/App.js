@@ -3,13 +3,14 @@ import styled from 'styled-components/macro';
 
 import AppBar from './components/AppBar';
 import Menu from './components/Menu';
-import MainView from './components/MainView';
-import Inbox from './components/Inbox';
-import Today from './components/Today';
+import MainView from './views/MainView';
+import Inbox from './views/Inbox';
+import Today from './views/Today';
+import Upcoming from './views/Upcoming';
+
 import NewProject from './components/NewProject';
 import TaskEditor from './components/TaskEditor';
 import TaskModal from './components/TaskModal';
-import Upcoming from './components/Upcoming';
 
 const StyledApp = styled.div`
   padding-top: 43px;
@@ -31,8 +32,8 @@ function App() {
       <AppBar toggleMenu={toggleMenu} />
       <Menu isOpen={menuOpen} close={toggleMenu}/>
       <MainView>
-        <Upcoming />
-        {/* <Inbox /> */}
+        {/* <Upcoming /> */}
+        <Inbox />
         {/* <Today /> */}
       </MainView>
       {/* <NewProject /> */}

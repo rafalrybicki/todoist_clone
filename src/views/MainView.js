@@ -12,11 +12,22 @@ const StyledMainView = styled.main`
       max-width: 800px;
    }
 
-   > div h1 {
-      font-size: 20px;
-      flex-grow: 1;
-      margin-bottom: 12px;
-      font-family: Arial, Helvetica, sans-serif
+   header {
+      display: flex;
+      position: sticky;
+      top: 0;
+      padding: 36px 55px 10px;
+      margin-left: -55px;
+      margin-right: -55px;
+      background-color: white;
+      z-index: 1000;
+
+      h1 {
+         font-size: 20px;
+         flex-grow: 1;
+         display: flex;
+         align-items: center;
+         font-family: 'Roboto', sans-serif;
    }
 
    .icon-btn {

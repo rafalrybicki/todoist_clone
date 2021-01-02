@@ -4,9 +4,8 @@ import styled from 'styled-components/macro';
 import WeekDay from './WeekDay';
 
 const StyledWeek = styled.div`
+   margin-top: 17px;
    width: 100%;
-   top: 75px;
-   left: 55px;
    height: 48px;
    display: flex;
    font-family: Arial, Helvetica, sans-serif;

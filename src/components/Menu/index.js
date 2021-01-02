@@ -24,6 +24,7 @@ const StyledMenu = styled.div`
    transition: 0.2s width;
    position: relative;
    z-index: 1000;
+   font-family: 'Roboto', sans-serif;
 
    > * {
       width: 291px;

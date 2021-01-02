@@ -29,6 +29,7 @@ const StyledWeekControls = styled.div`
    }
 
    button:last-of-type {
+      color: #555;
       padding: 0 8px;
       margin-left: 10px;
    }

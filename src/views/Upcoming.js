@@ -2,25 +2,19 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import { ChevronDown } from 'react-bootstrap-icons';
-import WeekControls from './WeekControls';
-import Week from './Week';
-import Day from './Day';
+import WeekControls from '../components/Upcoming/WeekControls';
+import Week from '../components/Upcoming/Week';
+import Day from '../components/Upcoming/Day';
 
 const StyledUpcoming = styled.div`
    position: relative;
 
    header {
-      position: sticky;
-      top: 0;
-      padding: 36px 55px;
-      margin-left: -55px;
-      margin-right: -55px;
-      background-color: white;
-      z-index: 1000
-   }
+      display: block;
 
-   h1 {
-      cursor: pointer;
+      h1 {
+         display: inline;
+      }
    }
 
    h1 svg {

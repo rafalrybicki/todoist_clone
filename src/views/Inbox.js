@@ -3,30 +3,15 @@ import styled from 'styled-components/macro';
 
 import { ChatSquare, ArrowDownUp, ThreeDots } from 'react-bootstrap-icons';
 
-import IconBtn from '../shared/IconBtn';
-import Task from '../Task'
-import TaskSection from '../shared/TaskSection';
-import NewItemBtn from '../shared/NewItemBtn';
-import NewSection from '../shared/NewSection';
+import IconBtn from '../components/shared/IconBtn';
+import Task from '../components/Task'
+import TaskSection from '../components/shared/TaskSection';
+import NewItemBtn from '../components/shared/NewItemBtn';
+import NewSection from '../components/shared/NewSection';
 
 const StyledInbox = styled.div`
-   > header {
-      flex-grow: 1;
-      display: flex;
-      height: 29px;
-      margin-bottom: 10px;
-   }
-
-   h1 {
-      flex-grow: 1
-   }
-
    header button {
-      color: grey;
-   }
-
-   header button:hover {
-      color: #202020;
+      margin-left: 10px;
    }
 
    .chat-icon {
@@ -49,6 +34,14 @@ function Inbox() {
                <ThreeDots size="20"/>
             </IconBtn>
          </header>
+         <Task priority="1" />
+         <Task priority="2" />
+         <Task priority="3" />
+         <Task priority="4" />
+         <Task priority="1" />
+         <Task priority="2" />
+         <Task priority="3" />
+         <Task priority="4" />
          <Task priority="1" />
          <Task priority="2" />
          <Task priority="3" />
