@@ -6,11 +6,11 @@ const StyledPopover = styled.div`
    > *:last-child {
       position: absolute;
       z-index: 10000;
-      background-color: red;
-      bottom: -50px;
+      transform: translate(-50%, 100%);
+      bottom: 4px;
       opacity: ${props => props.isOpen ? '1' : '0'};
       visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
-      transition: all 0.2s;
+      transition: all .3s;
    }
 `
 

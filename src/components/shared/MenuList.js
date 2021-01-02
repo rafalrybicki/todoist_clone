@@ -38,7 +38,7 @@ const StyledMenuList = styled.ul`
       top: 6px;
       right: -2px;
       content: '✔';
-      color: black;
+      color: #202020;
       font-size: 16px;
       height: 30px;
       width: 30px;
