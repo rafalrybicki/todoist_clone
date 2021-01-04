@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import ExpandableList from './ExpandableList';
-import ExpandableListItem from './ExpandableListItem';
-import ListItem from './ListItem';
-import NewItemBtn from '../shared/NewItemBtn';
 import Overlay from '../shared/Overlay'
 
-import InboxIcon from '../shared/InboxIcon';
-import TodayIcon from '../shared/TodayIcon';
-import { Calendar3, CircleFill, DropletFill } from 'react-bootstrap-icons';
+import ViewList from './ViewList';
+import ProjectList from './ProjectList';
+import FilterList from './FilterList';
 
 const StyledMenu = styled.div`
-   padding-top: 30px;
+   position: absolute;
+   z-index: 1000;
+   top: 43px;
+   padding: 30px 0;
    background-color: #FAFAFA;
-   height: calc(100vh - 43px);
+   height: calc(100% - 43px);
    width: ${props => props.isOpen ? '291px' : '0'};
    flex-shrink: 0;
-   padding-top: 25px;
    font-size: 14px;
    overflow-y: auto;
    overflow-x: hidden;
    transition: 0.2s width;
-   position: relative;
-   z-index: 1000;
-   font-family: 'Roboto', sans-serif;
 
    > * {
       width: 291px;
@@ -32,21 +28,19 @@ const StyledMenu = styled.div`
       padding-right: 10px;
    }
 
-   .inbox-icon {
-      margin-left: -1px;
-   }
-   
-   .circle {
-      margin-top: 2px
+   @media (min-width: 750px) {
+      position: relative;
+      top: 0;
+      height: 100%;
    }
 `
 
-function AppMenu({ isOpen, close }) {
-   const [mobile, setMobile] = useState(window.innerWidth < 750);
+function AppMenu({ isOpen, closeMenu }) {
+   const [isMobile, setIsMobile] = useState(window.innerWidth < 750);
 
    useEffect(() => {
       function handleResize() {
-         setMobile(window.innerWidth < 750);
+         setIsMobile(window.innerWidth < 750);
       }
   
       window.addEventListener('resize', handleResize);
@@ -56,47 +50,29 @@ function AppMenu({ isOpen, close }) {
    return (
       <>
          <StyledMenu isOpen={isOpen}>
-            <ul>
-               <ListItem text="Inbox 6">
-                  <InboxIcon size={18} />
-               </ListItem>
-               <ListItem text="Today 2">
-                  <TodayIcon size={16} />
-               </ListItem>
-               <ListItem text="Upcoming">
-                  <Calendar3 color="#692fc2" size={16} />
-               </ListItem>
-            </ul>
-            
-            <ExpandableList text="Projects">
-               <ExpandableListItem text="project">
-                  <CircleFill size={12} className="circle" />
-               </ExpandableListItem>
-               <ExpandableListItem text="sdfsdfsdf 2">
-                  <CircleFill size={12} className="circle" />
-               </ExpandableListItem>
-               <ExpandableListItem text="project 3">
-                  <CircleFill size={12} className="circle" />
-               </ExpandableListItem>
-               <NewItemBtn text="Add project" width="110px" />
-            </ExpandableList>
+            <ViewList
+               isMobile={isMobile}
+               closeMenu={closeMenu}
+            />
+            <ProjectList
+               isMobile={isMobile}
+               closeMenu={closeMenu}
+            />
 
-            <ExpandableList text="Filters">
-               <ExpandableListItem text="filter">
-                  <DropletFill />
-               </ExpandableListItem>
-               <ExpandableListItem text="filter 2">
-                  <DropletFill />
-               </ExpandableListItem>
-               <ExpandableListItem text="filter 3">
-                  <DropletFill />
-               </ExpandableListItem>
-            </ExpandableList>
-
+            <FilterList
+               isMobile={isMobile}
+               closeMenu={closeMenu}
+            />
          </StyledMenu>
-         <Overlay show={isOpen && mobile} hide={close} />
+
+         <Overlay show={isOpen && isMobile} hide={closeMenu} />
       </>
    )
+}
+
+AppMenu.propTyps = {
+   isOpen: PropTypes.bool.isRequired,
+   closeMenu: PropTypes.func.isRequired
 }
 
 export default AppMenu

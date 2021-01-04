@@ -6,6 +6,7 @@ const StyledMainView = styled.main`
    padding: 0 55px 36px;
    flex-grow: 1;
    overflow-y: scroll;
+   z-index: 1;
 
    > div {
       margin: 0 auto;
@@ -28,6 +29,7 @@ const StyledMainView = styled.main`
          display: flex;
          align-items: center;
          font-family: 'Roboto', sans-serif;
+      }
    }
 
    .icon-btn {

@@ -7,11 +7,11 @@ const StyledOverlay = styled.span`
    left: 0;
    z-index: 100;
    visibility: ${props => props.show ? 'visible' : 'hidden'};
+   opacity: ${props => props.show ? '1' : '0'};
    width: 100%;
    height: calc(100% - 43px);
-   opacity: ${props => props.show ? '0.46' : '0'};
    background-color: rgba(0,0,0,.5);
-   transition: all .5s;
+   transition: all .3s;
 `
 
 function Overlay({ show, hide }) {

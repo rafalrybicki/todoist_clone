@@ -1,4 +1,6 @@
 import React, { useState} from 'react';
+import PropTypes from 'prop-types';
+
 import styled from 'styled-components/macro';
 
 import { Plus } from 'react-bootstrap-icons';
@@ -19,6 +21,7 @@ const StyledExpandableList = styled.div`
       display: flex;
       align-items: center;
       font-size: 14px;
+      font-weight: 500;
       height: 34px;
       width: 211px;
       margin-left: 5px
@@ -67,6 +70,11 @@ function ExpandableList({ text, children }) {
          <ul>{children}</ul>
       </StyledExpandableList>
    )
+}
+
+ExpandableList.propTypes = {
+   text: PropTypes.string.isRequired,
+   children: PropTypes.node.isRequired
 }
 
 export default ExpandableList

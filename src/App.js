@@ -15,10 +15,6 @@ import Today from './views/Today';
 import Upcoming from './views/Upcoming';
 import Project from './views/Project';
 
-import NewProject from './components/NewProject';
-import TaskEditor from './components/TaskEditor';
-import TaskModal from './components/TaskModal';
-
 const StyledApp = styled.div`
   padding-top: 43px;
   display: flex;
@@ -38,7 +34,7 @@ function App() {
     <Router>
       <StyledApp className="App">
         <AppBar toggleMenu={toggleMenu} />
-        <AppMenu isOpen={menuOpen} close={toggleMenu}/>
+        <AppMenu isOpen={menuOpen} closeMenu={toggleMenu}/>
         <MainView>
           <Switch>
             <Route path="/inbox" component={Inbox} />
@@ -48,9 +44,6 @@ function App() {
             <Route path='/' render={() => <Redirect to= "/inbox" />} />
           </Switch>
         </MainView>
-        {/* <NewProject /> */}
-        {/* <TaskEditor headerText="Quick Add Task"/> */}
-        {/* <TaskModal /> */}
       </StyledApp>
     </Router>
   );

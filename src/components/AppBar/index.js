@@ -44,7 +44,7 @@ const StyledAppBar = styled.div`
    }
 
    @media (max-width: 749px) {
-      z-index: 100;
+      z-index: 1001;
    }
 
    @media (min-width: 750px) {

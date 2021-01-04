@@ -16,7 +16,6 @@ const StyledGrip = styled.button`
 
    &:hover {
       color: #202020 !important;
-      background-color: #eee;
    } 
 `
 

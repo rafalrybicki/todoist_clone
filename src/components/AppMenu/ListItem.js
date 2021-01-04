@@ -1,34 +1,97 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
+import { ThreeDots } from 'react-bootstrap-icons';
+import Grip from '../shared/Grip';
+
 const StyledListItem = styled.li`
-   padding-left: 11px;
-   display: flex;
-   height: 34px;
-   align-items: center;
    font-size: 14px;
    position: relative;
    cursor: pointer;
+   width: 244px;
    border-radius: 3px;
 
-   &.active {
-      background-color: white;
-      font-weight: 700
+   .grip {
+      top: -7px;
+      left: -40px;
    }
 
-   .link {
-      flex-grow: 1;
-      padding-left: 15px
+   a {
+      display: flex;
+      align-items: center;
+      border-radius: 3px;
+      padding-left: 12px;
+      color: #202020;
+      height: 34px;
+      
+      &.active {
+         font-weight: 700;
+         background-color: white;
+      }
+      
+      svg, div {
+         margin-right: 13px;
+      }
+
+      .project-icon {
+         margin-top: 2px;
+         margin-left: 0.5px;
+         font-size: 12px;
+      }
+
+      .filter-icon {
+         margin-top: 1px;
+      }
+   }
+
+   .more {
+      position: absolute;
+      top: 10px;
+      right: 0;
+      visibility: hidden;
+      cursor: pointer;
+      width: 25px;
+      padding-right: 6px;
+      color: grey;
+
+      &:hover {
+         color: #202020;
+      }
+   }
+
+   &:hover {
+      background-color: white;
+
+      .grip {
+         color: grey;
+      }
+
+      .more {
+         visibility: visible;
+      }
    }
 `
 
-function ListItem({ text, children }) {
+function ListItem({ text, path, onClick, children }) {
    return (
       <StyledListItem>
-         {children}
-         <span className="link">{text}</span>
+         <Grip />
+         <NavLink to={path} onClick={onClick}>
+            {children}
+            <span>{text}</span>
+         </NavLink>
+         <ThreeDots className="more" />
       </StyledListItem>
    )
+}
+
+ListItem.propTypes = {
+   text: PropTypes.string.isRequired,
+   path: PropTypes.string.isRequired,
+   onClick: PropTypes.func.isRequired,
+   children: PropTypes.node.isRequired,
 }
 
 export default ListItem
