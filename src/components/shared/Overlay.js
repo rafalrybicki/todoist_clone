@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const StyledOverlay = styled.div`
+const StyledOverlay = styled.span`
    position: absolute;
-   top: 0;
+   top: 43px;
    left: 0;
-   z-index: ${props => props.show ? '1' : '-100'};
-   min-width: 100%;
-   min-height: 100%;
+   z-index: 100;
+   visibility: ${props => props.show ? 'visible' : 'hidden'};
+   width: 100%;
+   height: calc(100% - 43px);
    opacity: ${props => props.show ? '0.46' : '0'};
-   background-color: rgb(33, 33, 33);
-   transition: opacity .2s;
+   background-color: rgba(0,0,0,.5);
+   transition: all .5s;
 `
 
 function Overlay({ show, hide }) {
