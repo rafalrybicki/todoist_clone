@@ -67,7 +67,7 @@ Task.propTypes = {
    priority: PropTypes.number.isRequired,
    endDate: PropTypes.string,
    completionDate: PropTypes.string,
-   subTasks: PropTypes.string
+   subTasks: PropTypes.array
 }
 
 export default Task

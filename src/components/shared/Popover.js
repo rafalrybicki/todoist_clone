@@ -8,10 +8,12 @@ const StyledPopover = styled.div`
    > *:last-child {
       position: absolute;
       z-index: 10000;
-      bottom: 4px;
+      bottom: 0;
+      right: 0;
+      transform: translateY(100%);
       opacity: ${props => props.isOpen ? '1' : '0'};
       visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
-      transition: all .3s;
+      transition: all .2s;
    }
 `
 

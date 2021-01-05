@@ -1,6 +1,7 @@
 export const projects = {
    0: {
       name: 'Inbox',
+      sortBy: '',
       tasks: [
          { 
             id: (Math.random() * Math.random()).toString(),
@@ -46,7 +47,7 @@ export const projects = {
    },
    1: {
       name: "Project 1",
-      sort: 'priority',
+      sortBy: 'priority',
       tasks: [
          { 
             id: (Math.random() * Math.random()).toString(),
@@ -95,7 +96,7 @@ export const projects = {
    },
    2: {
       name: "Project 2",
-      sort: 'priority',
+      sortBy: 'alphabetically',
       tasks: [
          { 
             id: (Math.random() * Math.random()).toString(),
@@ -144,7 +145,7 @@ export const projects = {
    },
    3: {
       name: "Project 3",
-      sort: 'priority',
+      sortBy: 'date',
       tasks: [
          { 
             id: (Math.random() * Math.random()).toString(),

@@ -9,8 +9,8 @@ import TaskSection from '../components/shared/TaskSection';
 import NewItemBtn from '../components/shared/NewItemBtn';
 import NewSection from '../components/shared/NewSection';
 import Popover from '../components/shared/Popover';
-import MenuList from '../components/shared/MenuList';
 import SortOptions from '../components/shared/SortOptions';
+import SortedBy from '../components/shared/SortedBy';
 
 import { projects } from './data';
 
@@ -48,20 +48,18 @@ function Project({ match }) {
 
             <Popover 
                activator={
-                  <IconBtn tooltip="More project actions" tooltipWidth="128px">
+                  <IconBtn tooltip="Sort" tooltipWidth="36px">
                      <ArrowDownUp size="16"/>
                   </IconBtn>
                }
                content={
-                  <MenuList>
-                     <SortOptions />
-                  </MenuList>
+                  <SortOptions sortBy={state.sortBy}/>
                }
             />
 
             <Popover 
                activator={
-                  <IconBtn tooltip="Sort" tooltipWidth="36px">
+                  <IconBtn tooltip="More project actions" tooltipWidth="125px">
                      <ThreeDots size="20"/>
                   </IconBtn>
                }
@@ -75,6 +73,7 @@ function Project({ match }) {
                }
             />
          </header>
+         {state.sortBy && <SortedBy sortBy={state.sortBy} />}
          {state.tasks.map(task => (
             <Task
                key={task.id}
@@ -86,28 +85,33 @@ function Project({ match }) {
                subTasks={task.subTasks}
             />
          ))}
+
          <NewItemBtn text="Add task" onClick={() => console.log('new task')} />
          <NewSection />
          <TaskSection name="ToDo section">
             <Task
+               id="1das123234"
                content="hardcoded 2"
                priority={2}
                endDate=""
                completionDate=""
             />
             <Task
+               id="1das1adsr234"
                content="hardcoded 4"
                priority={4}
                endDate=""
                completionDate=""
             />
             <Task
+               id="1das12adq334"
                content="hardcoded 1"
                priority={1}
                endDate=""
                completionDate=""
             />
             <Task
+               id="1das122w434"
                content="hardcoded 3"
                priority={3}
                endDate=""
