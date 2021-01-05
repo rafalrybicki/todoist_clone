@@ -5,7 +5,7 @@ import NextWeekIcon from '../icons/NextWeekIcon';
 
 function NextWeekBtn() {
    return (
-      <IconBtn >
+      <IconBtn tooltip="Next week">
          <NextWeekIcon />
       </IconBtn>
    )

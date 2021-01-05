@@ -5,7 +5,7 @@ import NoDateIcon from '../icons/NoDateIcon';
 
 function NoDateBtn() {
    return (
-      <IconBtn>
+      <IconBtn tooltip="No date">
          <NoDateIcon />
       </IconBtn>
    )

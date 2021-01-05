@@ -16,12 +16,12 @@ const StyledTodayIcon = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      padding-top: ${props => props.size === 16 ? '2px' : '3px'};
+      padding-top: 2px;
       height: ${props => props.size + 'px'};
       width: ${props => props.size + 'px'};
       line-height: 1;
       font-weight: bold;
-      font-size: ${props => (props.size - 6) + 'px' };
+      font-size: ${props => props.size === 16 ?  '10px' : '11.5px' };
       z-index: 100
    }
 `

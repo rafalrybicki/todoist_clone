@@ -5,7 +5,7 @@ import TomorrowIcon from '../icons/TomorrowIcon';
 
 function TomorrowBtn() {
    return (
-      <IconBtn>
+      <IconBtn tooltip="Tomorrow">
          <TomorrowIcon />
       </IconBtn>
    )

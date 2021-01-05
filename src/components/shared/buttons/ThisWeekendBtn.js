@@ -5,7 +5,7 @@ import ThisWeekendIcon from '../icons/ThisWeekendIcon';
 
 function ThisWeekendBtn() {
    return (
-      <IconBtn>
+      <IconBtn tooltip="This weekend">
          <ThisWeekendIcon />
       </IconBtn>
    )

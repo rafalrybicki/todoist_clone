@@ -3,6 +3,8 @@ import styled from 'styled-components/macro';
 
 import IconBtn from '../shared/IconBtn';
 import { Pen, ChatSquare, CalendarEvent, ThreeDots } from 'react-bootstrap-icons';
+import Popover from '../shared/Popover';
+import TaskMenu from '../TaskMenu';
 
 const StyledActions = styled.div`
    position: absolute;
@@ -35,9 +37,16 @@ function Actions() {
          <IconBtn width="28px" tooltip="Comment" tooltipWidth="68px">
             <ChatSquare className="chat-icon" size="18"/>
          </IconBtn>
-         <IconBtn width="28px" tooltip="More task actions" tooltipWidth="112px">
-            <ThreeDots size="20"/>
-         </IconBtn>
+         <Popover
+            activator={
+               <IconBtn width="28px" tooltip="More task actions" tooltipWidth="112px">
+                  <ThreeDots size="20"/>
+               </IconBtn>
+            }
+            content={
+               <TaskMenu />
+            }
+         />
       </StyledActions>
    )
 }

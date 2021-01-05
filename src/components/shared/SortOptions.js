@@ -7,23 +7,23 @@ function SortOptions() {
    return (
       <MenuList>
          <li>
-            <CalendarEvent size={15} color="grey" />
+            <CalendarEvent size={16} />
             Sort by due date
          </li>
          <li className="active">
-            <Flag size={15} color="grey" />
+            <Flag size={16} />
             Sort by priority
          </li>
          <li>
-            <SortAlphaDown size={15} color="grey" />
+            <SortAlphaDown size={16} />
             Sort alphabetically
          </li>
          <li>
-            <Person size={15} color="grey" />
+            <Person size={16} />
             Sort by assignee
          </li>
          <li>
-            <Gear size={15} color="grey" />
+            <Gear size={16} />
             Custom sort
          </li>
       </MenuList>

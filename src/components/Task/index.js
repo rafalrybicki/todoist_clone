@@ -41,6 +41,11 @@ const StyledTask = styled.li`
          visibility: visible;
       }
    }
+
+   .arrow-icon {
+      top: 5px;
+      left: 6px;
+   }
 `
 
 function Task({ priority }) {

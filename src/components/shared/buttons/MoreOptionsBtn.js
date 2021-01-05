@@ -5,7 +5,7 @@ import MoreOptionsIcon from '../icons/MoreOptionsIcon'
 
 function MoreOptionsBtn() {
    return (
-      <IconBtn >
+      <IconBtn tooltip="More">
          <MoreOptionsIcon size={18} />
       </IconBtn>
    )

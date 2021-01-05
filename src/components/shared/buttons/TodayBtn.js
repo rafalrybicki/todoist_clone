@@ -5,8 +5,8 @@ import TodayIcon from '../icons/TodayIcon.js';
 
 function TodayBtn() {
    return (
-      <IconBtn>
-         <TodayIcon size={19} />
+      <IconBtn tooltip="Today">
+         <TodayIcon size={18} />
       </IconBtn>
    )
 }
