@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 
 import Grip from './Grip';
 import IconBtn from './IconBtn';
-import ChevronIcon from './ChevronIcon';
+import ChevronIcon from './icons/ChevronIcon';
 import { ThreeDots } from 'react-bootstrap-icons';
 
 const StyledTaskSection = styled.div`

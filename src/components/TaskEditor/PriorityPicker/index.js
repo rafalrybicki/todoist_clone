@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
 import IconBtn from '../../shared/IconBtn';
-import PriorityIcon from './PriorityIcon';
+import PriorityIcon from '../../shared/icons/PriorityIcon';
 import PriorityList from './PriorityList';
 import PriorityListItem from './PriorityListItem';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import InboxIcon from '../InboxIcon';
+import InboxIcon from '../icons/InboxIcon';
 
 const StyledProjectPicker = styled.div`
    margin-right: auto;

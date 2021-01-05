@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import ListItem from './ListItem';
-import InboxIcon from '../shared/InboxIcon';
-import TodayIcon from '../shared/TodayIcon';
+import InboxIcon from '../shared/icons/InboxIcon';
+import TodayIcon from '../shared/icons/TodayIcon';
 import { Calendar3 } from 'react-bootstrap-icons';
 
 const StyledViewList = styled.ul`

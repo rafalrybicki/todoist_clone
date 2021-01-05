@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import InboxIcon from '../shared/InboxIcon';
+import InboxIcon from '../shared/icons/InboxIcon';
 import Checkbox from '../shared/Checkbox';
 import DatePicker from '../shared/DatePicker';
 import { Alarm, FlagFill, ListUl, Tag, ThreeDots, X } from 'react-bootstrap-icons';
