@@ -10,7 +10,6 @@ import styled from 'styled-components/macro';
 import AppBar from './components/AppBar';
 import AppMenu from './components/AppMenu';
 import MainView from './views/MainView';
-import Inbox from './views/Inbox';
 import Today from './views/Today';
 import Upcoming from './views/Upcoming';
 import Project from './views/Project';
@@ -37,7 +36,7 @@ function App() {
         <AppMenu isOpen={menuOpen} closeMenu={toggleMenu}/>
         <MainView>
           <Switch>
-            <Route path="/inbox" component={Inbox} />
+            <Route path="/inbox" component={Project} />
             <Route path="/today" component={Today} />
             <Route path="/upcoming" component={Upcoming} />
             <Route path="/project/:id" component={Project} />
