@@ -90,7 +90,7 @@ function ListItem({ text, path, onClick, children }) {
 ListItem.propTypes = {
    text: PropTypes.string.isRequired,
    path: PropTypes.string.isRequired,
-   onClick: PropTypes.func.isRequired,
+   onClick: PropTypes.func,
    children: PropTypes.node.isRequired,
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import Actions from './Actions';
@@ -48,16 +49,25 @@ const StyledTask = styled.li`
    }
 `
 
-function Task({ priority }) {
+function Task({ id, content, priority, endDate, completionDate, subTasks }) {
    return (
       <StyledTask>
          <Grip />
          <Checkbox priority={priority} />
-         <span className="content">task</span>
+         <span className="content">{content}</span>
          <Date />
          <Actions className="actions" />
       </StyledTask>
    )
+}
+
+Task.propTypes = {
+   id: PropTypes.string.isRequired,
+   content: PropTypes.string.isRequired,
+   priority: PropTypes.number.isRequired,
+   endDate: PropTypes.string,
+   completionDate: PropTypes.string,
+   subTasks: PropTypes.string
 }
 
 export default Task
