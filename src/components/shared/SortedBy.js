@@ -10,18 +10,16 @@ const StyledSortedBy = styled.div`
    display: flex;
    align-items: center;
    justify-content: flex-end;
-   font-family: Arial, Helvetica, sans-serif;
-   font-weight: 700;
-   font-size: 14px;
-   color: grey;
 
    button {
       height: 32px;
       color: grey;
 
       &:nth-of-type(2) {
+         font-size: 14px;
+         font-family: Arial, Helvetica, sans-serif;
          font-weight: 700;
-         padding: 0 6px 2px;
+         padding: 0 4px;
          margin-left: -2px;
       }
 

@@ -8,14 +8,17 @@ const StyledGrip = styled.button`
    justify-content: center;
    align-items: center;
    height: 28px;
-   width: 28px;
+   width: 35px;
+   padding-left: 7px;
    cursor: move;
    position: absolute;
    color: transparent;
    border-radius: 3px;
 
    &:hover {
-      color: #202020 !important;
+      svg {
+         color: #202020 !important;
+      }
    } 
 `
 

@@ -1,26 +1,31 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import IconBtn from '../shared/IconBtn';
-import { Pen, ChatSquare, CalendarEvent, ThreeDots } from 'react-bootstrap-icons';
+import { ListUl, Pen, ChatSquare, CalendarEvent, ThreeDots } from 'react-bootstrap-icons';
 import Popover from '../shared/Popover';
 import TaskMenu from '../TaskMenu';
 
 const StyledActions = styled.div`
-   position: absolute;
+   position: ${props => props.modal ? 'static' : 'absolute'};
    top: 0;
-   height: 100%;
-   padding-top: 6px;
+   padding-top: 5px;
    right: -40px;
    width: auto;
    display: flex;
-   padding-right: 10px;
+   justify-content: ${props => props.modal ? 'flex-end' : 'flex-start'};
 
    button {
-      margin-left: 4px;
+      margin-right: ${props => props.modal ? '0' : '7px'};
+      margin-left: ${props => props.modal ? '5px' : '0'};
 
       svg {
-         color: transparent;
+         color: ${props => props.modal ? 'grey' : 'transparent'};
+      }
+
+      &.project-select-icon {
+         display: none;
       }
    }
 
@@ -35,9 +40,14 @@ const StyledActions = styled.div`
    }
 `
 
-function Actions() {
+function Actions({ modal }) {
    return (
-      <StyledActions className="actions">
+      <StyledActions className="actions" modal={modal} >
+         {modal &&
+            <IconBtn width="26px" tooltip="Select a Project" tooltipWidth="94px">
+               <ListUl size={20} />
+            </IconBtn>
+         }
          <IconBtn width="28px" tooltip="Edit" tooltipWidth="33px">
             <Pen size="16"/>
          </IconBtn>
@@ -59,6 +69,10 @@ function Actions() {
          />
       </StyledActions>
    )
+}
+
+Actions.propTypes = {
+   modal: PropTypes.bool
 }
 
 export default Actions

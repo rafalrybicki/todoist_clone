@@ -6,7 +6,6 @@ import styled from 'styled-components/macro';
 import InboxIcon from '../shared/icons/InboxIcon';
 import { CircleFill } from 'react-bootstrap-icons';
 
-
 const StyledProjectLink = styled(Link)`
    position: absolute;
    display: flex;

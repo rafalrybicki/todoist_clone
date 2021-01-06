@@ -1,6 +1,6 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 import Actions from './Actions';
@@ -8,7 +8,7 @@ import Checkbox from '../shared/Checkbox';
 import Date from './Date';
 import Grip from '../shared/Grip';
 import { Link } from 'react-router-dom';
-import TaskModal from './TaskModal';
+import Modal from './Modal';
 import Overlay from '../shared/Overlay';
 import ProjectLink from './ProjectLink';
 
@@ -62,12 +62,12 @@ function Task({ id, projectId, content, priority, endDate, completionDate, subTa
             <Link to={`/project/${projectId}/${id}`} className="link">
                {content}
             </Link>
-            <Actions className="actions" />
+            <Actions />
             <Date />
             <ProjectLink name="ProjectName" id={projectId} />
          </StyledTask>
          {showModal && <>
-            <TaskModal
+            <Modal
                key={id}
                id={id}
                projectId={projectId}
@@ -76,6 +76,7 @@ function Task({ id, projectId, content, priority, endDate, completionDate, subTa
                endDate={endDate}
                completionDate={completionDate}
                subTasks={subTasks}
+               close={closeModal}
             />
             <Overlay show={true} hide={closeModal} />
          </>}
