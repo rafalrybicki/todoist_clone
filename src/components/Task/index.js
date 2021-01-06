@@ -8,8 +8,9 @@ import Checkbox from '../shared/Checkbox';
 import Date from './Date';
 import Grip from '../shared/Grip';
 import { Link } from 'react-router-dom';
-import TaskModal from '../TaskModal';
+import TaskModal from './TaskModal';
 import Overlay from '../shared/Overlay';
+import ProjectLink from './ProjectLink';
 
 const StyledTask = styled.li`
    position: relative;
@@ -61,8 +62,9 @@ function Task({ id, projectId, content, priority, endDate, completionDate, subTa
             <Link to={`/project/${projectId}/${id}`} className="link">
                {content}
             </Link>
-            <Date />
             <Actions className="actions" />
+            <Date />
+            <ProjectLink name="ProjectName" id={projectId} />
          </StyledTask>
          {showModal && <>
             <TaskModal
