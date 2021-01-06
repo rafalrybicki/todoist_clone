@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 const StyledMainView = styled.main`
-   position: relative;
    padding: 0 55px 36px;
    flex-grow: 1;
    overflow-y: scroll;
-   z-index: 1;
+   overflow-x: hidden;
+   z-index: 10;
 
    > div {
       margin: 0 auto;
@@ -21,7 +21,7 @@ const StyledMainView = styled.main`
       margin-left: -55px;
       margin-right: -55px;
       background-color: white;
-      z-index: 1000;
+      z-index: 100;
 
       h1 {
          font-size: 20px;

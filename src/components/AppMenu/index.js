@@ -10,7 +10,7 @@ import FilterList from './FilterList';
 
 const StyledMenu = styled.div`
    position: absolute;
-   z-index: 1000;
+   z-index: 111;
    top: 43px;
    padding: 30px 0;
    background-color: #FAFAFA;
@@ -29,6 +29,7 @@ const StyledMenu = styled.div`
    }
 
    @media (min-width: 750px) {
+      z-index: 10;
       position: relative;
       top: 0;
       height: 100%;
