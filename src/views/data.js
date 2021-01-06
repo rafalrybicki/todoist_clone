@@ -5,6 +5,7 @@ export const projects = {
       tasks: [
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectId: 0,
             content: 'inbox task name',
             priority: 1,
             endDate: '',
@@ -15,6 +16,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectId: 0,
             content: 'inbox task name 2',
             priority: 2,
             endDate: '',
@@ -25,6 +27,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectId: 0,
             content: 'inbox task name 3',
             priority: 3,
             endDate: '',
@@ -35,6 +38,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectId: 0,
             content: 'inbox task name 4',
             priority: 4,
             endDate: '',
@@ -51,6 +55,7 @@ export const projects = {
       tasks: [
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectId: 1,
             content: 'task name',
             priority: 1,
             endDate: '',
@@ -61,6 +66,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectId: 1,
             content: 'task name 2',
             priority: 2,
             endDate: '',
@@ -71,6 +77,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectId: 1,
             content: 'task name 3',
             priority: 3,
             endDate: '',
@@ -81,6 +88,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectId: 1,
             content: 'task name 4',
             priority: 4,
             endDate: '',
@@ -100,6 +108,7 @@ export const projects = {
       tasks: [
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectid: 2,
             content: 'project 2 task',
             priority: 1,
             endDate: '',
@@ -110,6 +119,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectid: 2,
             content: 'project 2 task 2',
             priority: 2,
             endDate: '',
@@ -120,6 +130,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectid: 2,
             content: 'project 2 task 3',
             priority: 3,
             endDate: '',
@@ -130,6 +141,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectid: 2,
             content: 'project 2 task 4',
             priority: 4,
             endDate: '',
@@ -149,6 +161,7 @@ export const projects = {
       tasks: [
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectId: 3,
             content: 'project 3 task',
             priority: 1,
             endDate: '',
@@ -159,6 +172,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectId: 3,
             content: 'project 3 task2',
             priority: 2,
             endDate: '',
@@ -169,6 +183,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectId: 3,
             content: 'project 3 task 3',
             priority: 3,
             endDate: '',
@@ -179,6 +194,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
+            projectId: 3,
             content: 'project 3 task 4',
             priority: 4,
             endDate: '',

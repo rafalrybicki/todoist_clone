@@ -13,6 +13,8 @@ import SortOptions from '../components/shared/SortOptions';
 import SortedBy from '../components/shared/SortedBy';
 
 import { projects } from './data';
+import TaskModal from '../components/TaskModal';
+import Overlay from '../components/shared/Overlay';
 
 const StyledProject = styled.div`
    header button {
@@ -24,9 +26,13 @@ const StyledProject = styled.div`
    }
 `
 
-function Project({ match }) {
-   const projectId = match.params.id;
+function Project({ match, history }) {
+   const projectId = match.params.projectId;
+   const taskId = match.params.taskId;
+
    const [state, setState] = useState(projectId ? projects[projectId] : projects[0]);
+
+   const closeModal = () => history.push({ pathname: projectId > 0 ? "/project/" + projectId : "/inbox"})
 
    useEffect(() => {
       setState(projectId ? projects[projectId] : projects[0])
@@ -78,6 +84,7 @@ function Project({ match }) {
             <Task
                key={task.id}
                id={task.id}
+               projectId={task.projectId}
                content={task.content}
                priority={task.priority}
                endDate={task.endDate}
@@ -120,6 +127,10 @@ function Project({ match }) {
             <NewItemBtn text="Add task" onClick={() => console.log('new task')} />
          </TaskSection>
          <NewSection />
+         {taskId && <>
+            <TaskModal />
+            <Overlay show={true} hide={closeModal} />
+         </>}
       </StyledProject>
    )
 }
