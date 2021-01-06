@@ -108,7 +108,7 @@ export const projects = {
       tasks: [
          { 
             id: (Math.random() * Math.random()).toString(),
-            projectid: 2,
+            projectId: 2,
             content: 'project 2 task',
             priority: 1,
             endDate: '',
@@ -119,7 +119,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
-            projectid: 2,
+            projectId: 2,
             content: 'project 2 task 2',
             priority: 2,
             endDate: '',
@@ -130,7 +130,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
-            projectid: 2,
+            projectId: 2,
             content: 'project 2 task 3',
             priority: 3,
             endDate: '',
@@ -141,7 +141,7 @@ export const projects = {
          },
          { 
             id: (Math.random() * Math.random()).toString(),
-            projectid: 2,
+            projectId: 2,
             content: 'project 2 task 4',
             priority: 4,
             endDate: '',

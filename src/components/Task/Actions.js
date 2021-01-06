@@ -8,20 +8,30 @@ import TaskMenu from '../TaskMenu';
 
 const StyledActions = styled.div`
    position: absolute;
-   top: 6px;
-   height: 24px;
-   right: -29px;
+   top: 0;
+   height: 100%;
+   padding-top: 6px;
+   right: -40px;
    width: auto;
    display: flex;
-   visibility: hidden;
+   padding-right: 10px;
 
    button {
-      margin-left: 2px;
-      color: grey;
+      margin-left: 4px;
+
+      svg {
+         color: transparent;
+      }
    }
 
-   button:hover {
-      color: #202020;
+   &:hover {
+      button svg {
+         color: grey;
+      }
+
+      button:hover svg {
+         color: #202020;
+      }
    }
 `
 
