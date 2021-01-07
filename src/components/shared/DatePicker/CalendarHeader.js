@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import IconBtn from '../shared/IconBtn';
+import IconBtn from '../buttons/IconBtn';
 import { ChevronLeft, Circle, ChevronRight} from 'react-bootstrap-icons';
 
 const StyledCalendarHeader = styled.div`

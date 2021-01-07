@@ -13,7 +13,11 @@ const StyledSubmitBtn = styled.button`
 `
 function SubmitBtn({ text, disabled }) {
    return (
-      <StyledSubmitBtn type="submit" disabled={disabled}>
+      <StyledSubmitBtn
+         type="submit"
+         disabled={disabled}
+         className="submit-btn"
+      >
          {text}
       </StyledSubmitBtn>
    )

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import Checkbox from '../shared/Checkbox';
-// import DatePicker from '../shared/DatePicker';
+import DatePicker from '../shared/DatePicker';
 import CloseBtn from '../shared/buttons/CloseBtn';
 import NewItemBtn from '../shared/NewItemBtn';
 import ProjectLink from './ProjectLink';
@@ -67,7 +67,7 @@ function Modal({ id, projectId, content, priority, endDate, completionDate, subT
 
          <Checkbox priority="3" />
          <span className="content">task content</span>
-         {/* <DatePicker /> */}
+         <DatePicker />
          <Actions modal />
 
          <ModalTabs />

@@ -43,11 +43,11 @@ function DatePicker() {
          <button>
             <CalendarEvent /> Today
          </button>
-         {/* <div>
+         <div>
             <Suggestions />
             <Calendar />
             <TimePicker />
-         </div> */}
+         </div>
       </StyledDatePicker>
 
    )

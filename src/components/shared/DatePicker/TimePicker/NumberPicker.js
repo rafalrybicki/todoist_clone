@@ -32,9 +32,24 @@ const StyledNumberPicker = styled.div`
       }
    }
 `
+function getHours() {
+   let hours = new Date().getHours();
+   
+   if (hours > 12) {
+      hours = hours - 12
+   } 
+
+   return hours < 10 ? '0' + hours : hours;
+}
+
+function getMinutes() {
+   const minutes = new Date().getMinutes();
+
+   return minutes < 10 ? '0' + minutes : minutes;
+}
 
 function NumberPicker({ initialValue, max, onChange }) {
-   const [inputValue, setInputValue] = useState(initialValue);
+   const [inputValue, setInputValue] = useState(max === 12 ? getHours() : getMinutes());
 
    useEffect(() => {
       onChange(inputValue)
@@ -97,7 +112,6 @@ function NumberPicker({ initialValue, max, onChange }) {
 }
 
 NumberPicker.propTypes = {
-   initialValue: PropTypes.string.isRequired,
    max: PropTypes.number.isRequired,
    onChange: PropTypes.func.isRequired
 }

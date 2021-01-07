@@ -15,7 +15,10 @@ const StyledCancelBtn = styled.button`
 
 function CancelBtn() {
    return (
-      <StyledCancelBtn type="button">
+      <StyledCancelBtn
+         type="button"
+         className="cancel-btn"
+      >
          Cancel
       </StyledCancelBtn>
    )
