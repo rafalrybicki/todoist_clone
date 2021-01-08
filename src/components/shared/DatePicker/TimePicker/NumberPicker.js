@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
+import { getHours, getMinutes } from '../../../../utils';
 import { ChevronUp, ChevronDown } from 'react-bootstrap-icons';
 
 const StyledNumberPicker = styled.div`
@@ -32,23 +33,9 @@ const StyledNumberPicker = styled.div`
       }
    }
 `
-function getHours() {
-   let hours = new Date().getHours();
-   
-   if (hours > 12) {
-      hours = hours - 12
-   } 
 
-   return hours < 10 ? '0' + hours : hours;
-}
 
-function getMinutes() {
-   const minutes = new Date().getMinutes();
-
-   return minutes < 10 ? '0' + minutes : minutes;
-}
-
-function NumberPicker({ initialValue, max, onChange }) {
+function NumberPicker({ max, onChange }) {
    const [inputValue, setInputValue] = useState(max === 12 ? getHours() : getMinutes());
 
    useEffect(() => {
