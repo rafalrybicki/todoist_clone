@@ -31,3 +31,22 @@ export function getDisplayDate(date) {
 
    return `${arr[0]} ${+arr[2]} ${arr[1]}`
 }
+
+export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+export function getDate(miliseconds) {
+   const date = miliseconds ? new Date(miliseconds) : new Date();
+   const year = date.getFullYear();
+   const month = date.getMonth() + 1;
+   const day = date.getDate();
+   const today = `${year}-${month}-${day}`
+   const weekDay = date.getDay() === 0 ? 7 : date.getDay();
+
+   return  {
+      year,
+      month,
+      day,
+      today,
+      weekDay
+   }
+}
