@@ -36,7 +36,7 @@ function SortListItem({ changeSorting, value, active, children }) {
 }
 
 SortListItem.propTypes = {
-   onClick: PropTypes.func.isRequired,
+   changeSorting: PropTypes.func.isRequired,
    value: PropTypes.string.isRequired,
    active: PropTypes.bool.isRequired,
    children: PropTypes.element.isRequired

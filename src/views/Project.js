@@ -9,8 +9,9 @@ import TaskSection from '../components/shared/TaskSection';
 import NewItemBtn from '../components/shared/NewItemBtn';
 import NewSection from '../components/shared/NewSection';
 import Popover from '../components/shared/Popover';
-import SortOptions from '../components/shared/SortOptions';
-import SortedBy from '../components/shared/SortedBy';
+import SortList from '../components/shared/SortList';
+import ViewSortOptions from '../components/shared/ViewSortOptions';
+import { dynamicSort } from '../utils'
 
 import { projects } from './data';
 
@@ -24,7 +25,7 @@ const StyledProject = styled.div`
    }
 `
 
-function Project({ match, history }) {
+function Project({ match }) {
    const projectId = match.params.projectId;
    const taskId = match.params.taskId;
 
@@ -33,6 +34,15 @@ function Project({ match, history }) {
    useEffect(() => {
       setState(projectId ? projects[projectId] : projects[0])
    }, [projectId])
+
+   const changeSorting = (val) => {
+      setState({ ...state, sortBy: val });
+   }
+
+   const reverseDirection = () => {
+      const newDirection = state.sortDirection === 'up' ? 'down' : 'up';
+      setState({ ...state, sortDirection: newDirection });
+   }
 
    return (
       <StyledProject>
@@ -55,7 +65,10 @@ function Project({ match, history }) {
                   </IconBtn>
                }
                content={
-                  <SortOptions sortBy={state.sortBy}/>
+                  <SortList
+                     sortBy={state.sortBy}
+                     changeSorting={changeSorting}
+                  />
                }
             />
 
@@ -75,8 +88,15 @@ function Project({ match, history }) {
                }
             />
          </header>
-         {state.sortBy && <SortedBy sortBy={state.sortBy} />}
-         {state.tasks.map(task => (
+         {state.sortBy !== 'order' && 
+            <ViewSortOptions
+               sortBy={state.sortBy}
+               sortDirection={state.sortDirection}
+               reverseDirection={reverseDirection}
+               resetSorting={() => changeSorting('order')}
+            />
+         }
+         {state.tasks.sort(dynamicSort(state.sortBy, state.sortDirection)).map(task => (
             <Task
                key={task.id}
                id={task.id}
@@ -90,7 +110,7 @@ function Project({ match, history }) {
             />
          ))}
 
-         <NewItemBtn text="Add task" onClick={() => console.log('new task')} />
+         <NewItemBtn text="Add task" onClick={() => alert('new task')} />
          <NewSection />
          <TaskSection name="ToDo section">
             <Task
@@ -121,7 +141,7 @@ function Project({ match, history }) {
                endDate=""
                completionDate=""
             />
-            <NewItemBtn text="Add task" onClick={() => console.log('new task')} />
+            <NewItemBtn text="Add task" onClick={() => alert('new task')} />
          </TaskSection>
          <NewSection />
       </StyledProject>
