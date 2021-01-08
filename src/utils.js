@@ -34,26 +34,42 @@ export function getDisplayDate(date) {
 
 export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+export function getMiliseconds(dateString) {
+   if (!dateString) {
+      const date = new Date();
+      dateString = `${date.getFullYear()} ${date.getMonth() + 1} ${date.getDate()}`
+   }
+
+   return Date.parse(dateString)
+}
+
 export function getDate(miliseconds) {
-   const date = miliseconds ? new Date(miliseconds) : new Date();
+   if (!miliseconds) {
+      miliseconds = getMiliseconds();
+   }
+
+   const date = new Date(miliseconds);
    const year = date.getFullYear();
    const month = date.getMonth() + 1;
    const day = date.getDate();
    const today = `${year}-${month}-${day}`
-   const weekDay = date.getDay() === 0 ? 7 : date.getDay();
 
    return  {
-      year,
-      month,
       day,
+      miliseconds,
+      month,
       today,
-      weekDay
+      year
    }
 }
 
 export function getWeek(miliseconds) {
+   if (!miliseconds) {
+      miliseconds = getMiliseconds();
+   }
+
    const week = [];
-   const today = miliseconds ? new Date(miliseconds) : new Date();
+   const today = new Date(miliseconds);
    const weekDay = today.getDay() === 0 ? 7 : today.getDay();
    const todayMiliseconds = today.valueOf();
    let newMiliseconds 
