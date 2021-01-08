@@ -50,3 +50,25 @@ export function getDate(miliseconds) {
       weekDay
    }
 }
+
+export function getWeek(miliseconds) {
+   const week = [];
+   const today = miliseconds ? new Date(miliseconds) : new Date();
+   const weekDay = today.getDay() === 0 ? 7 : today.getDay();
+   const todayMiliseconds = today.valueOf();
+   let newMiliseconds 
+
+   if (weekDay === 1) {
+      newMiliseconds = todayMiliseconds;
+   } else {
+      const difference = (weekDay - 1) * 86400000;
+      newMiliseconds = todayMiliseconds - difference;
+   }
+   
+   while (week.length < 7) {
+      week.push(getDate(newMiliseconds));
+      newMiliseconds += 86400000;
+   }
+
+   return week
+}
