@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 import CloseBtn from './buttons/CloseBtn';
 import IconBtn from './IconBtn';
-import { ArrowDown } from 'react-bootstrap-icons';
+import { ArrowDown, ArrowUp } from 'react-bootstrap-icons';
 
-const StyledSortedBy = styled.div`
+const StyledViewSortOptions = styled.div`
    padding: 10px 3px 10px 0;
    display: flex;
    align-items: center;
@@ -34,7 +34,7 @@ const StyledSortedBy = styled.div`
    }
 `
 
-function SortedBy({ sortBy }) {
+function ViewSortOptions({ sortBy, sortDirection, reverseDirection, resetSorting }) {
    let text;
 
    switch(sortBy) {
@@ -44,7 +44,7 @@ function SortedBy({ sortBy }) {
       case 'priority':
          text = 'Sorted by priority';
          break;
-      case 'alphabetically':
+      case 'content':
          text = 'Sorted alphabetically';
          break; 
       case 'assignee':
@@ -55,18 +55,27 @@ function SortedBy({ sortBy }) {
    }
 
    return (
-      <StyledSortedBy sortBy={sortBy}>
-         <IconBtn>
-            <ArrowDown size={16} />
+      <StyledViewSortOptions sortBy={sortBy}>
+         <IconBtn
+            onClick={reverseDirection}
+         >
+            {sortDirection === 'up' ?  <ArrowDown size={16} /> : <ArrowUp size={16} />}
          </IconBtn>
-         <button>{text}</button>
-         <CloseBtn />
-      </StyledSortedBy>
+         <button
+            onClick={() => alert('custom sorting')}
+         >
+            {text}
+         </button>
+         <CloseBtn onClick={resetSorting} />
+      </StyledViewSortOptions>
    )
 }
 
-SortedBy.propTypes = {
-   sortBy: PropTypes.string.isRequired
+ViewSortOptions.propTypes = {
+   sortBy: PropTypes.oneOf(['date', 'priority', 'content', 'assignee', 'custom']).isRequired,
+   sortDirection: PropTypes.oneOf(['up', 'down']).isRequired,
+   reverseDirection: PropTypes.func.isRequired,
+   resetSorting: PropTypes.func.isRequired
 }
 
-export default SortedBy
+export default ViewSortOptions
