@@ -52,13 +52,13 @@ export function getDate(miliseconds) {
    const year = date.getFullYear();
    const month = date.getMonth() + 1;
    const day = date.getDate();
-   const today = `${year}-${month}-${day}`
+   const stringDate = `${year}-${month}-${day}`
 
    return  {
       day,
       miliseconds,
       month,
-      today,
+      stringDate,
       year
    }
 }
@@ -87,4 +87,16 @@ export function getWeek(miliseconds) {
    }
 
    return week
+}
+
+export function scrollToElement(elementId, viewId) {
+   const view = document.querySelector(viewId);
+   const target = document.getElementById(elementId).offsetTop - 134;
+
+   view.scrollTo({
+      top: target,
+      left: 0,
+      behavior: 'smooth'
+   });
+
 }
