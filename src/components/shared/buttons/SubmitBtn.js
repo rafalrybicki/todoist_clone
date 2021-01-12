@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 const StyledSubmitBtn = styled.button`
@@ -9,6 +10,10 @@ const StyledSubmitBtn = styled.button`
 
    &:hover {
       border-color: black;
+   }
+
+   &:disabled {
+      opacity: .5
    }
 `
 function SubmitBtn({ text, disabled }) {
@@ -21,6 +26,11 @@ function SubmitBtn({ text, disabled }) {
          {text}
       </StyledSubmitBtn>
    )
+}
+
+SubmitBtn.propTypes = {
+   text: PropTypes.string.isRequired,
+   disabled: PropTypes.bool
 }
 
 export default SubmitBtn
