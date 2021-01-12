@@ -6,7 +6,7 @@ import IconBtn from '../shared/buttons/IconBtn';
 import MenuList from '../shared/MenuList';
 import PriorityIcon from '../shared/icons/PriorityIcon';
 
-function PriorityPicker({ currentPriority}) {
+function PriorityPicker({ currentPriority }) {
    const [priority, setPriority] = useState(currentPriority);
 
    return (

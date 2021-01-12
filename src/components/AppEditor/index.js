@@ -1,46 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import CancelBtn from '../shared/buttons/CancelBtn';
-import SubmitBtn from '../shared/buttons/SubmitBtn';
-// import PriorityPicker from '../PriorityPicker';
-import ReminderPicker from './ReminderPicker';
-import LabelPicker from './LabelPicker';
+import Popover from '../shared/Popover';
+import { CalendarEvent } from 'react-bootstrap-icons';
 import DatePicker from '../shared/DatePicker';
-import ProjectPicker from '../shared/ProjectPicker';
+import InboxIcon from '../shared/icons/InboxIcon';
+import LabelPicker from './LabelPicker';
+import PriorityPicker from './PriorityPicker';
+import ReminderPicker from './ReminderPicker';
+import SubmitBtn from '../shared/buttons/SubmitBtn';
+import CancelBtn from '../shared/buttons/CancelBtn';
 
 const StyledAppEditor = styled.form`
-   h1 {
-      height: 50px;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
+   position: relative;
+   width: 100%;
+
+   input {
+      display: block;
+      width: ${props => props.isTask ? '100%' : 'auto'};
+      height: ${props => props.isTask ? '81px' : '35px'};
+      padding: ${props => props.isTask ? '0 10px 40px' : '0 10px'};
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+
+      &:focus {
+         border: 1px solid grey;
+      }
    }
 
    section {
-      position: relative;
-      height: 81px;
+      position: absolute;
+      top: 43px;
+      width: 100%;
       display: flex;
 
-      > *:nth-child(n+2) {
-         position: relative;
+      > * {
          margin-left: 10px;
-         margin-top: 43px;
+
+         &.label-picker {
+            margin-left: auto;
+            margin-right: 0;
+         }
       }
 
-      input[name="content"] {
-         position: absolute;
-         display: block;
-         width: 100%;
-         height: 100%;
-         padding: 0 10px 40px;
-         border: 1px solid #ddd;
-         border-radius: 5px;
-         outline: none;
-      }
+      .activator {
+         height: 28px;
+         padding: 0 8px;
+         border: 1px solid #ccc;
+         border-radius: 3px;
+         color: #555;
 
-      input[name="content"]:focus {
-         border: 1px solid grey;
+         &:hover, &:focus {
+            background-color: #eee;
+         }
+
+         svg {
+            margin-right: 3px;
+            margin-bottom: -1.5px;
+         }
       }
    }
 
@@ -49,31 +68,72 @@ const StyledAppEditor = styled.form`
    }
 `
 
-function AppEditor({ headerText }) {
-   const onTaskSubmit = (e) => {
-      e.preventDefault();
-      console.log('add or edit');
-   }
+function AppEditor({ currentValue, isTask, onSubmit, onClose }) {
+   const [text, setText] = useState(currentValue || '')
 
    return (
-      <StyledAppEditor onSubmit={onTaskSubmit}>
-         {headerText && <h1>{headerText}</h1>}
+      <StyledAppEditor
+         onSubmit={onSubmit}
+         isTask={isTask}
+      >
+         <input
+            type="text"
+            name="content"
+            autoComplete="off"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+         />
+         { isTask &&
          <section>
-            <input
-               type="text"
-               name="content"
-               autoComplete="off"
+            <Popover
+               activator={
+                  <button
+                     type="button"
+                     className="activator"
+                  >
+                     <CalendarEvent /> Today
+                  </button>
+               }
+               content={
+                  <DatePicker />
+               }
             />
-            <DatePicker />
-            <ProjectPicker />
+            <Popover
+               activator={
+                  <button
+                     type="button"
+                     className="activator"
+                  >
+                     <InboxIcon  size={14} /> Inbox
+                  </button>
+               }
+               content={
+                  <ul>
+                     <li>project option</li>
+                     <li>project option</li>
+                     <li>projectOption</li>
+                  </ul>
+               }
+            />
             <LabelPicker />
-            {/* <PriorityPicker currentPriority={4} /> */}
+            <PriorityPicker currentPriority={4} />
             <ReminderPicker />
-         </section>
-         <SubmitBtn text="Add task" />
-         <CancelBtn />
+         </section>}
+         <SubmitBtn
+            text="Add task"
+            disabled={text === ''}
+            onClick={onSubmit}
+         />
+         <CancelBtn onClick={onClose} />
       </StyledAppEditor>
    )
+}
+
+AppEditor.propTypes = {
+   currentValue: PropTypes.string,
+   isTask: PropTypes.bool,
+   onSubmit: PropTypes.func.isRequired,
+   onClose: PropTypes.func.isRequired
 }
 
 export default AppEditor
