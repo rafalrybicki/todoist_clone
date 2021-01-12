@@ -39,7 +39,7 @@ function App() {
             <Route path="/inbox" component={Project} />
             <Route path="/today" component={Today} />
             <Route path="/upcoming" component={Upcoming} />
-            <Route path="/project/:projectId/:taskId?"  component={Project} />
+            <Route path="/project/:projectId"  component={Project} />
             <Route path='/' render={() => <Redirect to= "/inbox" />} />
           </Switch>
         </MainView>

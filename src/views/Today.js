@@ -25,7 +25,7 @@ function Today() {
    const date = getDisplayDate();
    
    return (
-      <StyledToday>
+      <StyledToday className="view">
          <header>
             <h1>Today
                <span className="date">{date}</span>

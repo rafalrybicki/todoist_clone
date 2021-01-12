@@ -104,6 +104,7 @@ function Upcoming() {
       <StyledUpcoming
          id="upcomingView"
          onScroll={handleScroll}
+         className="view">
       >
          <header>
             <h1>

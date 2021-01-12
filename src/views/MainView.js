@@ -7,7 +7,7 @@ const StyledMainView = styled.main`
    overflow: hidden;
    z-index: 10;
 
-   > div {
+   .view {
       position: relative;
       width: 100%;
       height: 100%;

@@ -9,9 +9,10 @@ import NewItemBtn from '../shared/buttons/NewItemBtn';
 import ProjectLink from './ProjectLink';
 import Actions from './Actions';
 import ModalTabs from './ModalTabs';
+import Overlay from '../shared/Overlay';
 
 const StyledTaskModal = styled.div`
-   position: absolute;
+   position: fixed;
    top: 0;
    left: 0;
    z-index: 10000;
@@ -59,34 +60,40 @@ const StyledTaskModal = styled.div`
    }
 `
 
-function Modal({ id, projectId, content, priority, endDate, completionDate, subTasks, close }) {
+function Modal({ location, history }) {
+   let state;
+
+   if (location.state) {
+      state = location.state
+   } else {
+      alert('implement firebase!');
+      history.push('/inbox');
+   }
+
+   const close = () => {
+      history.push(state.prevPath)
+   }
+
    return (
-      <StyledTaskModal>
-         <ProjectLink modal />
-         <CloseBtn onClick={close} />
+      <>
+         {state &&
+            <StyledTaskModal>
+               <ProjectLink modal />
+               <CloseBtn onClick={close} />
+               <Checkbox priority={state.priority} />
+               <span className="content">{state.content}</span>
+               <DatePicker />
+               <Actions modal />
 
-         <Checkbox priority="3" />
-         <span className="content">task content</span>
-         <DatePicker />
-         <Actions modal />
-
-         <ModalTabs />
-         <div className="subtasks">
-            <NewItemBtn text="Add sub-task" />
-         </div>
-      </StyledTaskModal>
+               <ModalTabs />
+               <div className="subtasks">
+                  <NewItemBtn text="Add sub-task" />
+               </div>
+            </StyledTaskModal>
+         }
+         <Overlay show={true} hide={close} />
+      </>
    )
-}
-
-
-Modal.propTypes = {
-   id: PropTypes.string.isRequired,
-   content: PropTypes.string.isRequired,
-   priority: PropTypes.number.isRequired,
-   endDate: PropTypes.string,
-   completionDate: PropTypes.string,
-   subTasks: PropTypes.array,
-   close: PropTypes.func.isRequired
 }
 
 export default Modal
