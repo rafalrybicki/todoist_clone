@@ -9,7 +9,7 @@ import LabelPicker from './LabelPicker';
 import DatePicker from '../shared/DatePicker';
 import ProjectPicker from '../shared/ProjectPicker';
 
-const StyledTaskEditor = styled.form`
+const StyledAppEditor = styled.form`
    position: absolute;
    top: 80px;
    left: 50%;
@@ -61,14 +61,14 @@ const StyledTaskEditor = styled.form`
    }
 `
 
-function TaskEditor({ headerText }) {
+function AppEditor({ headerText }) {
    const onTaskSubmit = (e) => {
       e.preventDefault();
       console.log('add or edit');
    }
 
    return (
-      <StyledTaskEditor onSubmit={onTaskSubmit}>
+      <StyledAppEditor onSubmit={onTaskSubmit}>
          {headerText && <h1>{headerText}</h1>}
          <section>
             <input
@@ -84,8 +84,8 @@ function TaskEditor({ headerText }) {
          </section>
          <SubmitBtn text="Add task" />
          <CancelBtn />
-      </StyledTaskEditor>
+      </StyledAppEditor>
    )
 }
 
-export default TaskEditor
+export default AppEditor
