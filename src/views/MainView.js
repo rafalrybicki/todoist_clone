@@ -11,7 +11,7 @@ const StyledMainView = styled.main`
       position: relative;
       width: 100%;
       height: 100%;
-      padding: 36px 55px 0;
+      padding: 0 55px;
       overflow-y: auto;
 
       > * {
@@ -20,8 +20,10 @@ const StyledMainView = styled.main`
       }
 
       header {
+         padding-top: 36px;
          display: flex;
          position: sticky;
+         top: 0;
          background-color: white;
          z-index: 100;
 

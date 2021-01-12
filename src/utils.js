@@ -91,7 +91,8 @@ export function getWeek(miliseconds) {
 
 export function scrollToElement(elementId, viewId) {
    const view = document.querySelector(viewId);
-   const target = document.getElementById(elementId).offsetTop - 134;
+   const target = document.getElementById(elementId).offsetTop - 131;
+   console.log('target = ' + target)
 
    view.scrollTo({
       top: target,

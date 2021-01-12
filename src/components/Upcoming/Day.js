@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { getDisplayDate } from '../../helpers';
-import Task from '../Task';
+import { getDisplayDate } from '../../utils';
+import Task from '../Task'
 import NewItemBtn from '../shared/NewItemBtn';
 
 const StyledDay = styled.div`
@@ -18,21 +18,18 @@ const StyledDay = styled.div`
    }
 `
 
-function Day({ date }) {
+function Day({ miliseconds, tasks }) {
    return (
-      <StyledDay>
-         <h2>{getDisplayDate(date)}</h2>
-         <Task priority="1" />
-         <Task priority="2" />
-         <Task priority="3" />
-         <Task priority="4" />
+      <StyledDay id={miliseconds} className="day">
+         <h2>{getDisplayDate(miliseconds)}</h2>
          <NewItemBtn text="Add task" />
       </StyledDay>
    )
 }
 
 Day.propTypes = {
-   date: PropTypes.string.isRequired
+   miliseconds: PropTypes.number.isRequired,
+   tasks: PropTypes.arrayOf(PropTypes.element)
 }
 
 export default Day

@@ -4,11 +4,9 @@ import styled from 'styled-components/macro';
 import IconBtn from '../components/shared/IconBtn';
 import { ArrowDownUp } from 'react-bootstrap-icons';
 import Task from '../components/Task';
-import { getDisplayDate } from '../helpers';
+import { getDisplayDate } from '../utils';
 
 const StyledToday = styled.div`
-   position: relative;
-
    h1 {
       display: flex;
       align-items: center;
