@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import IconBtn from '../components/shared/IconBtn';
+import IconBtn from '../components/shared/buttons/IconBtn';
 import { ArrowDownUp } from 'react-bootstrap-icons';
 import Task from '../components/Task';
 import { getDisplayDate } from '../utils';

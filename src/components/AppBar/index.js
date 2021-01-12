@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import IconBtn from '../shared/IconBtn';
+import IconBtn from '../shared/buttons/IconBtn';
 import SearchInput from './SearchInput';
 
 import { Justify, HouseDoor, Plus, GraphUp, QuestionCircle, Bell } from 'react-bootstrap-icons';

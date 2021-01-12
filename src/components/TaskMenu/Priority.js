@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import IconBtn from '../shared/IconBtn';
+import IconBtn from '../shared/buttons/IconBtn';
 import PriorityIcon from '../shared/icons/PriorityIcon';
 
 function Priority({ id }) {

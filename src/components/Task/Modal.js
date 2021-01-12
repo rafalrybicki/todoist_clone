@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import Checkbox from '../shared/Checkbox';
 import DatePicker from '../shared/DatePicker';
 import CloseBtn from '../shared/buttons/CloseBtn';
-import NewItemBtn from '../shared/NewItemBtn';
+import NewItemBtn from '../shared/buttons/NewItemBtn';
 import ProjectLink from './ProjectLink';
 import Actions from './Actions';
 import ModalTabs from './ModalTabs';

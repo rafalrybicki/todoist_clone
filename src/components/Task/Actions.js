@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import IconBtn from '../shared/IconBtn';
+import IconBtn from '../shared/buttons/IconBtn';
 import { ListUl, Pen, ChatSquare, CalendarEvent, ThreeDots } from 'react-bootstrap-icons';
 import Popover from '../shared/Popover';
 import TaskMenu from '../TaskMenu';

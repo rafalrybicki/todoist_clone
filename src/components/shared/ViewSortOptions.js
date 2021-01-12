@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 import CloseBtn from './buttons/CloseBtn';
-import IconBtn from './IconBtn';
+import IconBtn from './buttons/IconBtn';
 import { ArrowDown, ArrowUp } from 'react-bootstrap-icons';
 
 const StyledViewSortOptions = styled.div`

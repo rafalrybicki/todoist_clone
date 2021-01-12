@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import IconBtn from '../shared/IconBtn';
+import IconBtn from '../shared/buttons/IconBtn';
 import { Alarm } from 'react-bootstrap-icons';
 
 const StyledReminderPicker = styled.div`

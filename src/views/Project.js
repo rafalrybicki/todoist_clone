@@ -3,15 +3,16 @@ import styled from 'styled-components/macro';
 
 import { ChatSquare, ArrowDownUp, ThreeDots, PersonPlus } from 'react-bootstrap-icons';
 
-import IconBtn from '../components/shared/IconBtn';
+import IconBtn from '../components/shared/buttons/IconBtn';
 import Task from '../components/Task'
 import TaskSection from '../components/shared/TaskSection';
-import NewItemBtn from '../components/shared/NewItemBtn';
-import NewSection from '../components/shared/NewSection';
+import NewItemBtn from '../components/shared/buttons/NewItemBtn';
+import NewSection from '../components/shared/buttons/NewSectionBtn';
 import Popover from '../components/shared/Popover';
 import SortList from '../components/shared/SortList';
 import ViewSortOptions from '../components/shared/ViewSortOptions';
 import { dynamicSort } from '../utils'
+import AppEditor from '../components/AppEditor'
 
 import { projects } from './data';
 
@@ -143,6 +144,7 @@ function Project({ match }) {
             />
             <NewItemBtn text="Add task" onClick={() => alert('new task')} />
          </TaskSection>
+         <AppEditor />
          <NewSection />
       </StyledProject>
    )

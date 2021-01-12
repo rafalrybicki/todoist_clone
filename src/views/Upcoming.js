@@ -122,8 +122,6 @@ function Upcoming() {
                initialMiliseconds={initialMiliseconds}
             />
          </header>
-
-         {days}
       </StyledUpcoming>
    )
 }

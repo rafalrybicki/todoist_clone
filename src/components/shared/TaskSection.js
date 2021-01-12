@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
 import Grip from './Grip';
-import IconBtn from './IconBtn';
+import IconBtn from './buttons/IconBtn';
 import ChevronIcon from './icons/ChevronIcon';
 import { ThreeDots } from 'react-bootstrap-icons';
 

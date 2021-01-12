@@ -1,27 +1,15 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import CancelBtn from '../shared/CancelBtn';
-import SubmitBtn from '../shared/SubmitBtn';
-import PriorityPicker from './PriorityPicker';
+import CancelBtn from '../shared/buttons/CancelBtn';
+import SubmitBtn from '../shared/buttons/SubmitBtn';
+// import PriorityPicker from '../PriorityPicker';
 import ReminderPicker from './ReminderPicker';
 import LabelPicker from './LabelPicker';
 import DatePicker from '../shared/DatePicker';
 import ProjectPicker from '../shared/ProjectPicker';
 
 const StyledAppEditor = styled.form`
-   position: absolute;
-   top: 80px;
-   left: 50%;
-   width: 550px;
-   min-height: 193px;
-   transform: translateX(-50%);
-   border-radius: 5px;
-   z-index: 1000;
-   border: 1px solid #ddd;
-   padding: 0 24px;
-   background-color: white;
-
    h1 {
       height: 50px;
       font-size: 13px;
@@ -79,7 +67,7 @@ function AppEditor({ headerText }) {
             <DatePicker />
             <ProjectPicker />
             <LabelPicker />
-            <PriorityPicker currentPriority={4} />
+            {/* <PriorityPicker currentPriority={4} /> */}
             <ReminderPicker />
          </section>
          <SubmitBtn text="Add task" />
