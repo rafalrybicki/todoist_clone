@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import Popover from '../shared/Popover';
-import { CalendarEvent } from 'react-bootstrap-icons';
 import DatePicker from '../shared/DatePicker';
 import InboxIcon from '../shared/icons/InboxIcon';
 import LabelPicker from './LabelPicker';
@@ -85,19 +84,7 @@ function AppEditor({ currentValue, isTask, onSubmit, onClose }) {
          />
          { isTask &&
          <section>
-            <Popover
-               activator={
-                  <button
-                     type="button"
-                     className="activator"
-                  >
-                     <CalendarEvent /> Today
-                  </button>
-               }
-               content={
-                  <DatePicker />
-               }
-            />
+            <DatePicker />
             <Popover
                activator={
                   <button

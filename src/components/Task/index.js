@@ -46,7 +46,7 @@ const StyledTask = styled.li`
 `
 
 function Task({ match, id, projectId, content, priority, endDate, completionDate, subTasks }) {
-   const pathname = `/project/${projectId}/${id}`;
+   const pathname = `${window.location.pathname}/${id}`;
    const state = {
       id,
       content,
