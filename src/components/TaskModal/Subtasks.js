@@ -1,18 +1,24 @@
 import React from 'react';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import styled from 'styled-components/macro';
 
 import NewItemBtn from '../shared/buttons/NewItemBtn';
 
 const StyledSubtasks = styled.div`
    padding: 15px 28px;
+   display: ${props => props.show ? 'block' : 'none'};
 `
 
-function Subtasks() {
+function Subtasks({ show }) {
    return (
-      <StyledSubtasks>
+      <StyledSubtasks show={show} >
          <NewItemBtn text="Add sub-task" />
       </StyledSubtasks>
    )
+}
+
+Subtasks.propTypes = {
+   show: PropTypes.bool.isRequired
 }
 
 export default Subtasks

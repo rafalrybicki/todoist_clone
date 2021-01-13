@@ -1,35 +1,45 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
+
+import Tab from './Tab';
 
 const StyledModalTabs = styled.div`
    margin-top: 10px;
    display: flex;
-   
-   button {
-      flex-grow: 1;
-      font-family: Arial, Helvetica, sans-serif;
-      height: 32px;
-      border: 0;
-      border-radius: 0;
-      color: grey;
-      border-bottom: 1px solid #e0e0e0;
-   }
-
-   button.active {
-      color: #202020;
-      border-bottom: 1px solid #202020;
-      font-weight: bold;
-   }
 `
 
-function Tabs() {
+function Tabs({ activeTab, setActiveTab }) {
    return (
       <StyledModalTabs>
-         <button className="active">Sub-tasks</button>
-         <button>Comments</button>
-         <button>Activity</button>
+         <Tab
+            value="subtasks"
+            isActive={activeTab === "subtasks"}
+            setActiveTab={setActiveTab}
+         >
+            Sub-tasks
+         </Tab>
+         <Tab
+            value="comments"
+            isActive={activeTab === "comments"}
+            setActiveTab={setActiveTab}
+         >
+            Comments
+         </Tab>
+         <Tab
+            value="activity"
+            isActive={activeTab === "activity"}
+            setActiveTab={setActiveTab}
+         >
+            Activity
+         </Tab>
       </StyledModalTabs>
    )
+}
+
+Tabs.propTypes = {
+   activeTab: PropTypes.string.isRequired, 
+   setActiveTab: PropTypes.func.isRequired
 }
 
 export default Tabs

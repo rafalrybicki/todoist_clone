@@ -9,6 +9,8 @@ import Actions from './Actions';
 import Tabs from './Tabs';
 import Overlay from '../shared/Overlay';
 import Subtasks from './Subtasks';
+import Comments from './Comments';
+import Activity from './Activity';
 
 const StyledTaskModal = styled.div`
    position: fixed;
@@ -90,8 +92,13 @@ function TaskModal({ location, history }) {
                <span className="content">{state.content}</span>
                <DatePicker />
                <Actions />
-               <Tabs />
+               <Tabs
+                  activeTab={activeTab}
+                  setActiveTab={setActiveTab}
+               />
                <Subtasks show={activeTab === 'subtasks'} />
+               <Comments show={activeTab === 'comments'} />
+               <Activity show={activeTab === 'activity'} />
             </StyledTaskModal>
          }
          <Overlay show={true} hide={close} />
