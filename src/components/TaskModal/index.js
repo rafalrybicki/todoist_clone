@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
 import Checkbox from '../shared/Checkbox';
 import DatePicker from '../shared/DatePicker';
 import CloseBtn from '../shared/buttons/CloseBtn';
-import NewItemBtn from '../shared/buttons/NewItemBtn';
 import ProjectLink from '../shared/ProjectLink';
 import Actions from './Actions';
 import Tabs from './Tabs';
 import Overlay from '../shared/Overlay';
+import Subtasks from './Subtasks';
 
 const StyledTaskModal = styled.div`
    position: fixed;
@@ -30,7 +30,7 @@ const StyledTaskModal = styled.div`
          margin: 2.5px 15px 0 4px;
 
          &.inbox-icon {
-            margin: 2px 11px 0 2px;
+            margin: 2px 12px 0 2px;
          }
       }
    }
@@ -56,11 +56,7 @@ const StyledTaskModal = styled.div`
       margin: 10px 0 0 28px;
    }
 
-   .subtasks {
-      padding: 10px 20px;
-   }
-
-   @media(min-width: 650px) {
+   @media (min-width: 650px) {
       height: calc(100% - 50px);
       top: 50%;
       left: 50%;
@@ -70,6 +66,7 @@ const StyledTaskModal = styled.div`
 `
 
 function TaskModal({ location, history }) {
+   const [activeTab, setActiveTab] = useState('subtasks')
    let state;
 
    if (location.state) {
@@ -79,8 +76,6 @@ function TaskModal({ location, history }) {
       history.push('/inbox');
    }
 
-   console.log(state)
-
    const close = () => {
       history.push(state.prevPath)
    }
@@ -89,17 +84,14 @@ function TaskModal({ location, history }) {
       <>
          {state &&
             <StyledTaskModal>
-               <ProjectLink />
+               <ProjectLink id='2' projectName="Project Name"/>
                <CloseBtn onClick={close} />
                <Checkbox priority={state.priority} />
                <span className="content">{state.content}</span>
                <DatePicker />
                <Actions />
-
                <Tabs />
-               <div className="subtasks">
-                  <NewItemBtn text="Add sub-task" />
-               </div>
+               <Subtasks show={activeTab === 'subtasks'} />
             </StyledTaskModal>
          }
          <Overlay show={true} hide={close} />

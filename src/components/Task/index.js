@@ -50,7 +50,8 @@ const StyledTask = styled.li`
       right: 10px;
 
       svg {
-         margin-right: 5px;
+         margin-right: 4px;
+         margin-top: .8px;
       }
    }
 `
