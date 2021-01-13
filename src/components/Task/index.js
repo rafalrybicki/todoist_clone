@@ -39,6 +39,10 @@ const StyledTask = styled.li`
       }
    }
 
+   .checkbox {
+      top: 9px;
+   }
+
    .arrow-icon {
       top: 5px;
       left: 6px;

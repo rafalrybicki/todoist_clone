@@ -1,10 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 const StyledCheckbox = styled.span`
    position: absolute;
-   top: 8px;
-   left: 0px;
    display: block;
    border-radius: 50%;
    border-width: ${props => props.color === 'grey' ? '1px' : '2px'};
@@ -14,9 +13,8 @@ const StyledCheckbox = styled.span`
    height: 18px;
    width: 18px;
    margin-right: 7px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+   padding-left: 3.5px;
+   cursor: pointer;
    font-size: 10px;
    color: transparent;
    transition: all .2s;
@@ -36,10 +34,17 @@ function Checkbox({ priority }) {
    }
    
    return (
-      <StyledCheckbox color={colors[priority]} className="checkbox">
+      <StyledCheckbox
+         color={colors[priority]}
+         className="checkbox"
+      >
          &#10004;
       </StyledCheckbox>
    )
+}
+
+Checkbox.propTypes = {
+   priority: PropTypes.number.isRequired
 }
 
 export default Checkbox

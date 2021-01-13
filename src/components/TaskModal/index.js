@@ -44,7 +44,7 @@ const StyledTaskModal = styled.div`
    }
 
    > .checkbox {
-      top: 57px;
+      top: 58px;
       left: 24px;
    }
 

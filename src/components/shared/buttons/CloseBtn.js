@@ -9,7 +9,7 @@ function CloseBtn({ onClick }) {
       <IconBtn 
          width="26px"
          onClick={onClick}
-         cssClass="close-btn"
+         className="close-btn"
       >
          <X size={26} color="grey" />
       </IconBtn>
