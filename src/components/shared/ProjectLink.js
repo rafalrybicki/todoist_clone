@@ -17,22 +17,26 @@ const StyledProjectLink = styled(Link)`
    }
 `
 
-function ProjectLink({ id, name }) {
+function ProjectLink({ id, projectName = 'Inbox' }) {
+   const pathname = id ? "/project/" + id : "/inbox";
+
+   const icon = id ? <CircleFill size={8} /> : <InboxIcon />;
+
    return (
       <StyledProjectLink
-         to={ id ? "/project/" + id : "/inbox"}
+         to={pathname}
          className="project-link"
       >
-         {name ? <CircleFill size={8} /> : <InboxIcon />}
-         {name ? name : 'Inbox'}
+         {icon}
+         {projectName}
       </StyledProjectLink>
    )
 }
 
 ProjectLink.propTypes = {
    id: PropTypes.string,
-   name: PropTypes.string,
-   modal: PropTypes.bool
+   projectName: PropTypes.string
 }
+
 
 export default ProjectLink
