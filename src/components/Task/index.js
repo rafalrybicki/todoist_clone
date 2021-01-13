@@ -7,7 +7,7 @@ import Checkbox from '../shared/Checkbox';
 import Date from './Date';
 import Grip from '../shared/Grip';
 import { Link } from 'react-router-dom';
-import ProjectLink from './ProjectLink';
+import ProjectLink from '../shared/ProjectLink';
 
 const StyledTask = styled.li`
    position: relative;
@@ -42,6 +42,16 @@ const StyledTask = styled.li`
    .arrow-icon {
       top: 5px;
       left: 6px;
+   }
+
+   .project-link {
+      font-size: 12px;
+      bottom:  5px;
+      right: 10px;
+
+      svg {
+         margin-right: 5px;
+      }
    }
 `
 

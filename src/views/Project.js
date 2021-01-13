@@ -13,7 +13,7 @@ import NewSection from '../components/shared/buttons/NewSectionBtn';
 import Popover from '../components/shared/Popover';
 import SortList from '../components/shared/SortList';
 import ViewSortOptions from '../components/shared/ViewSortOptions';
-import Modal from '../components/Task/Modal';
+import Modal from '../components/TaskModal';
 
 import { projects } from './data';
 

@@ -22,7 +22,7 @@ const StyledModalTabs = styled.div`
    }
 `
 
-function ModalTabs() {
+function Tabs() {
    return (
       <StyledModalTabs>
          <button className="active">Sub-tasks</button>
@@ -32,4 +32,4 @@ function ModalTabs() {
    )
 }
 
-export default ModalTabs
+export default Tabs

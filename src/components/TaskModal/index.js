@@ -1,14 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import Checkbox from '../shared/Checkbox';
 import DatePicker from '../shared/DatePicker';
 import CloseBtn from '../shared/buttons/CloseBtn';
 import NewItemBtn from '../shared/buttons/NewItemBtn';
-import ProjectLink from './ProjectLink';
+import ProjectLink from '../shared/ProjectLink';
 import Actions from './Actions';
-import ModalTabs from './ModalTabs';
+import Tabs from './Tabs';
 import Overlay from '../shared/Overlay';
 
 const StyledTaskModal = styled.div`
@@ -21,6 +20,20 @@ const StyledTaskModal = styled.div`
    max-width: 650px;
    max-height: 960px;
    padding: 56px 24px 20px;
+
+   .project-link {
+      font-size: 13px;
+      top:  25px;
+      left: 24px;
+
+      svg {
+         margin: 2.5px 15px 0 4px;
+
+         &.inbox-icon {
+            margin: 2px 11px 0 2px;
+         }
+      }
+   }
 
    .close-btn {
       position: absolute;
@@ -43,10 +56,6 @@ const StyledTaskModal = styled.div`
       margin: 10px 0 0 28px;
    }
 
-   .actions {
-      margin-top: 30px;
-   }
-
    .subtasks {
       padding: 10px 20px;
    }
@@ -60,7 +69,7 @@ const StyledTaskModal = styled.div`
    }
 `
 
-function Modal({ location, history }) {
+function TaskModal({ location, history }) {
    let state;
 
    if (location.state) {
@@ -70,6 +79,8 @@ function Modal({ location, history }) {
       history.push('/inbox');
    }
 
+   console.log(state)
+
    const close = () => {
       history.push(state.prevPath)
    }
@@ -78,14 +89,14 @@ function Modal({ location, history }) {
       <>
          {state &&
             <StyledTaskModal>
-               <ProjectLink modal />
+               <ProjectLink />
                <CloseBtn onClick={close} />
                <Checkbox priority={state.priority} />
                <span className="content">{state.content}</span>
                <DatePicker />
-               <Actions modal />
+               <Actions />
 
-               <ModalTabs />
+               <Tabs />
                <div className="subtasks">
                   <NewItemBtn text="Add sub-task" />
                </div>
@@ -96,4 +107,4 @@ function Modal({ location, history }) {
    )
 }
 
-export default Modal
+export default TaskModal

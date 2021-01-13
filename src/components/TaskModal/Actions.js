@@ -2,44 +2,43 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import IconBtn from '../shared/buttons/IconBtn';
-import { Pen, ChatSquare, CalendarEvent, ThreeDots } from 'react-bootstrap-icons';
+import { ListUl, Pen, ChatSquare, CalendarEvent, ThreeDots } from 'react-bootstrap-icons';
 import Popover from '../shared/Popover';
 import TaskMenu from '../TaskMenu';
 
 const StyledActions = styled.div`
-   position: ${props => props.modal ? 'static' : 'absolute'};
-   top: 0;
    padding-top: 5px;
-   right: -40px;
    width: auto;
    display: flex;
+   justify-content: flex-end;
 
    button {
-      margin-right: 7px;
+      margin-left: 5px;
 
       svg {
-         color: ${props => props.modal ? 'grey' : 'transparent'};
+         color: grey;
       }
 
       &.project-select-icon {
          display: none;
       }
-   }
 
-   &:hover {
-      button svg {
-         color: grey;
-      }
+      &:hover {
+         background-color: #eee;
 
-      button:hover svg {
-         color: #202020;
+         svg {
+            color: #202020;
+         }
       }
    }
 `
 
 function Actions() {
    return (
-      <StyledActions className="actions">
+      <StyledActions className="actions" >
+         <IconBtn width="26px" tooltip="Select a Project" tooltipWidth="94px">
+            <ListUl size={20} />
+         </IconBtn>
          <IconBtn width="28px" tooltip="Edit" tooltipWidth="33px">
             <Pen size="16"/>
          </IconBtn>
