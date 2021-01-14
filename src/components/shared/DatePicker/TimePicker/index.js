@@ -36,8 +36,9 @@ const StyledTimePicker = styled.div`
       display: flex;
       justify-content: center;
       width: 100%;
+      z-index: ${props => props.showPicker ? '1' : '-1'};
       opacity: ${props => props.showPicker ? '1' : '0'};
-      transition: opacity .2s;
+      transition: all .2s;
 
       .separator {
          display: flex;
