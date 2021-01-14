@@ -91,8 +91,7 @@ export function getWeek(miliseconds) {
 
 export function getMonth(month, year) {
    const firstWeek = getWeek(`${year} ${month} 1`);
-   const lastDay = new Date(year, month, 0);
-   const lastDayMiliseconds = Date.parse(lastDay);
+   const lastDayMiliseconds = getLastDayOfTheMonth(month, year);
    const monthArr = [firstWeek];
    
    let miliseconds = firstWeek[0].miliseconds + (7 * 86400000);
@@ -104,6 +103,16 @@ export function getMonth(month, year) {
    }
 
    return monthArr
+}
+
+export function getFirstDayOfTheMonth(month, year) {
+   const day = new Date(`${year}, ${month}, 1`);
+   return Date.parse(day)
+}
+
+export function getLastDayOfTheMonth(month, year) {
+   const day = new Date(year, month, 0);
+   return Date.parse(day)
 }
 
 export function scrollToElement(elementId, viewId) {
