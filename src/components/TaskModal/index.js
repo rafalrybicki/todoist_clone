@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
-import Checkbox from '../shared/Checkbox';
-import DatePicker from '../shared/DatePicker';
-import CloseBtn from '../shared/buttons/CloseBtn';
-import ProjectLink from '../shared/ProjectLink';
+import Checkbox from '../common/Checkbox';
+import DatePicker from '../common/DatePicker';
+import CloseBtn from '../common/buttons/CloseBtn';
+import ProjectLink from '../common/ProjectLink';
 import Actions from './Actions';
 import Tabs from './Tabs';
-import Overlay from '../shared/Overlay';
+import Overlay from '../common/Overlay';
 import Subtasks from './Subtasks';
 import Comments from './Comments';
 import Activity from './Activity';

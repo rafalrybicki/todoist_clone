@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Popover from '../shared/Popover';
-import IconBtn from '../shared/buttons/IconBtn';
-import MenuList from '../shared/MenuList';
-import PriorityIcon from '../shared/icons/PriorityIcon';
+import Popover from '../common/Popover';
+import IconBtn from '../common/buttons/IconBtn';
+import MenuList from '../common/MenuList';
+import PriorityIcon from '../common/icons/PriorityIcon';
 
 function PriorityPicker({ currentPriority }) {
    const [priority, setPriority] = useState(currentPriority);

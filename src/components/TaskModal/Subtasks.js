@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import NewItemBtn from '../shared/buttons/NewItemBtn';
+import NewItemBtn from '../common/buttons/NewItemBtn';
 
 const StyledSubtasks = styled.div`
    padding: 15px 28px;

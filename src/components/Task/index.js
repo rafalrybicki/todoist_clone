@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import Actions from './Actions';
-import Checkbox from '../shared/Checkbox';
+import Checkbox from '../common/Checkbox';
 import Date from './Date';
-import Grip from '../shared/Grip';
+import Grip from '../common/Grip';
 import { Link } from 'react-router-dom';
-import ProjectLink from '../shared/ProjectLink';
+import ProjectLink from '../common/ProjectLink';
 
 const StyledTask = styled.li`
    position: relative;

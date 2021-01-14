@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 
 import { getDisplayDate } from '../../utils';
 import Task from '../Task'
-import NewItemBtn from '../shared/buttons/NewItemBtn';
+import NewItemBtn from '../common/buttons/NewItemBtn';
 
 const StyledDay = styled.div`
    padding-top: 28px;

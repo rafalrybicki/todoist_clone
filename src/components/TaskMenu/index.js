@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MenuList from '../shared/MenuList';
+import MenuList from '../common/MenuList';
 import { Alarm, ArrowDownShort, ArrowRightCircle, ArrowUpShort, Link45deg, ListUl, Pen, Stickies, Trash } from 'react-bootstrap-icons';
 import Selector from './Selector';
 import Priority from './Priority';

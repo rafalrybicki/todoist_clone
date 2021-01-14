@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import { ChevronLeft, ChevronRight } from 'react-bootstrap-icons';
-import { getDate, scrollToElement } from '../../utils';
+import { scrollToElement } from '../../utils';
 
 const StyledWeekControls = styled.div`
    display: flex;

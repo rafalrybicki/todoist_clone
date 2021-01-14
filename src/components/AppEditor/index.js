@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import Popover from '../shared/Popover';
-import DatePicker from '../shared/DatePicker';
-import InboxIcon from '../shared/icons/InboxIcon';
+import Popover from '../common/Popover';
+import DatePicker from '../common/DatePicker';
+import InboxIcon from '../common/icons/InboxIcon';
 import LabelPicker from './LabelPicker';
 import PriorityPicker from './PriorityPicker';
 import ReminderPicker from './ReminderPicker';
-import SubmitBtn from '../shared/buttons/SubmitBtn';
-import CancelBtn from '../shared/buttons/CancelBtn';
+import SubmitBtn from '../common/buttons/SubmitBtn';
+import CancelBtn from '../common/buttons/CancelBtn';
 
 const StyledAppEditor = styled.form`
    position: relative;

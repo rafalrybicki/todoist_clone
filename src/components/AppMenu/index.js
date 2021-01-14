@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import Overlay from '../shared/Overlay'
+import Overlay from '../common/Overlay'
 
 import ViewList from './ViewList';
 import ProjectList from './ProjectList';

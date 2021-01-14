@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 import { ThreeDots } from 'react-bootstrap-icons';
-import Grip from '../shared/Grip';
+import Grip from '../common/Grip';
 
 const StyledListItem = styled.li`
    font-size: 14px;

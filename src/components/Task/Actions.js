@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import IconBtn from '../shared/buttons/IconBtn';
+import IconBtn from '../common/buttons/IconBtn';
 import { Pen, ChatSquare, CalendarEvent, ThreeDots } from 'react-bootstrap-icons';
-import Popover from '../shared/Popover';
+import Popover from '../common/Popover';
 import TaskMenu from '../TaskMenu';
 
 const StyledActions = styled.div`

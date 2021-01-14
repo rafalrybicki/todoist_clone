@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import TodayBtn from '../shared/buttons/TodayBtn';
-import TomorrowBtn from '../shared/buttons/TomorrowBtn';
-import ThisWeekendBtn from '../shared/buttons/ThisWeekendBtn';
-import NextWeekBtn from '../shared/buttons/NextWeekBtn';
-import NoDateBtn from '../shared/buttons/NoDateBtn';
-import MoreOptionsBtn from '../shared/buttons/MoreOptionsBtn';
+import TodayBtn from '../common/buttons/TodayBtn';
+import TomorrowBtn from '../common/buttons/TomorrowBtn';
+import ThisWeekendBtn from '../common/buttons/ThisWeekendBtn';
+import NextWeekBtn from '../common/buttons/NextWeekBtn';
+import NoDateBtn from '../common/buttons/NoDateBtn';
+import MoreOptionsBtn from '../common/buttons/MoreOptionsBtn';
 
 const StyledSchedule = styled.div`
    button {

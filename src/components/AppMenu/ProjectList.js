@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ExpandableList from './ExpandableList';
 import ListItem from './ListItem';
 import { CircleFill } from 'react-bootstrap-icons';
-import NewItemBtn from '../shared/buttons/NewItemBtn';
+import NewItemBtn from '../common/buttons/NewItemBtn';
 
 function ProjectList({ isMobile, closeMenu }) {
    return (

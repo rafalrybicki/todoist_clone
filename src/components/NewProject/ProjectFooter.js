@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import CancelBtn from '../shared/CancelBtn';
-import SubmitBtn from '../shared/SubmitBtn';
+
+import CancelBtn from '../common/CancelBtn';
+import SubmitBtn from '../common/SubmitBtn';
 
 const StyledProjectFooter = styled.footer`
    height: 57px;
