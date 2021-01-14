@@ -89,6 +89,23 @@ export function getWeek(miliseconds) {
    return week
 }
 
+export function getMonth(month, year) {
+   const firstWeek = getWeek(`${year} ${month} 1`);
+   const lastDay = new Date(year, month, 0);
+   const lastDayMiliseconds = Date.parse(lastDay);
+   const monthArr = [firstWeek];
+   
+   let miliseconds = firstWeek[0].miliseconds + (7 * 86400000);
+
+   while (miliseconds <= lastDayMiliseconds) {
+      const nextWeek = getWeek(miliseconds)
+      monthArr.push(nextWeek)
+      miliseconds += (7 * 86400000);
+   }
+
+   return monthArr
+}
+
 export function scrollToElement(elementId, viewId) {
    const view = document.querySelector(viewId);
    const target = document.getElementById(elementId).offsetTop - 131;
