@@ -38,16 +38,17 @@ const StyledIconBtn = styled.button`
    }
 `
 
-function IconBtn({ width='32px', height, hoverColor, onClick, tooltip, tooltipWidth, className, children }) {
+function IconBtn({ width='32px', height, hoverColor, onClick, tooltip, tooltipWidth, className, disabled, children }) {
    return (
       <StyledIconBtn
+         type="button"
          width={width}
          height={height || width}
          hoverColor={hoverColor}
          tooltipWidth={tooltipWidth}
          onClick={onClick ? onClick : undefined }
-         type="button"
          className={className ? "icon-btn " + className : "icon-btn"}
+         disabled={disabled}
       >
          {children}
          {tooltip && <span>{tooltip}</span>}
@@ -63,6 +64,7 @@ IconBtn.propTypes = {
    tooltip: PropTypes.string,
    tooltipWidth: PropTypes.string,
    className: PropTypes.string,
+   disabled: PropTypes.bool,
    children: PropTypes.node.isRequired,
 }
 
