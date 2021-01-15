@@ -9,6 +9,7 @@
 #root {
    width: 100vw;
    height: 100vh;
+   background-color: #fafafa;
 }
 
 button {
@@ -34,4 +35,8 @@ li {
 
 a {
    text-decoration: none;
+}
+
+a:hover {
+   text-decoration: underline;
 }

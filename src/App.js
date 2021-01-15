@@ -13,6 +13,7 @@ import MainView from './views/MainView';
 import Today from './views/Today';
 import Upcoming from './views/Upcoming';
 import Project from './views/Project';
+import Login from './views/Login';
 
 const StyledApp = styled.div`
   padding-top: 43px;
@@ -32,17 +33,23 @@ function App() {
   return (
     <Router>
       <StyledApp className="App">
-        <AppBar toggleMenu={toggleMenu} />
-        <AppMenu isOpen={menuOpen} closeMenu={toggleMenu}/>
-        <MainView>
-          <Switch>
-            <Route path="/inbox" component={Project} />
-            <Route path="/today" component={Today} />
-            <Route path="/upcoming" component={Upcoming} />
-            <Route path="/project/:projectId"  component={Project} />
-            <Route path='/' render={() => <Redirect to= "/inbox" />} />
-          </Switch>
-        </MainView>
+        <Switch>
+          <Route path="/login" render={(props) => <Login {...props} type="login" />}  />
+          <Route path="/signup" render={(props) => <Login {...props} type="signup" />}  />
+          <Route path='/'>
+            <AppBar toggleMenu={toggleMenu} />
+            <AppMenu isOpen={menuOpen} closeMenu={toggleMenu}/>
+            <MainView>
+              <Switch>
+                <Route path="/project/:projectId" component={Project} />
+                <Route path="/today" component={Today} />
+                <Route path="/upcoming" component={Upcoming} />
+                <Route path="/inbox" component={Project} />
+                <Route path='/' render={() => <Redirect to= "/inbox" />} />
+              </Switch>
+            </MainView>
+          </Route>
+        </Switch>
       </StyledApp>
     </Router>
   );
