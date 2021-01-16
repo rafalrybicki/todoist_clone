@@ -11,6 +11,7 @@ const StyledLogin = styled.div`
    padding: 10px;
    margin-top: -40px;
    font-size: 13px;
+   transition: height .05s;
 
    h1 {
       margin: 8px 0 27px;
