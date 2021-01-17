@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
+
+import { getFirebase } from 'react-redux-firebase';
+import { useHistory } from 'react-router-dom';
 import IconBtn from '../common/buttons/IconBtn';
 import SearchInput from './SearchInput';
 
@@ -54,6 +57,12 @@ const StyledAppBar = styled.div`
 `
 
 function AppBar({ toggleMenu }) {
+   const firebase = getFirebase();
+   const history = useHistory();
+   const logout = () => {
+      firebase.logout().then(() => history.push('/login'));
+   }
+
    return (
       <StyledAppBar>
          <IconBtn
@@ -113,7 +122,7 @@ function AppBar({ toggleMenu }) {
             />
          </IconBtn>
 
-         <span className="circle">R</span>
+         <span className="circle" onClick={logout}>R</span>
       </StyledAppBar>
    )
 }

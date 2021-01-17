@@ -14,6 +14,7 @@ import Today from './views/Today';
 import Upcoming from './views/Upcoming';
 import Project from './views/Project';
 import Login from './views/Login';
+import SignUp from './views/SignUp';
 
 const StyledApp = styled.div`
   padding-top: 43px;
@@ -34,8 +35,8 @@ function App() {
     <Router>
       <StyledApp className="App">
         <Switch>
-          <Route path="/login" render={(props) => <Login {...props} type="login" />}  />
-          <Route path="/signup" render={(props) => <Login {...props} type="signup" />}  />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
           <Route path='/'>
             <AppBar toggleMenu={toggleMenu} />
             <AppMenu isOpen={menuOpen} closeMenu={toggleMenu}/>

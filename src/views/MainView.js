@@ -6,6 +6,7 @@ const StyledMainView = styled.main`
    max-height: 100%;
    overflow: hidden;
    z-index: 10;
+   background-color: white;
    
    .view {
       position: relative;
