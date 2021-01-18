@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { getFirebase } from 'react-redux-firebase';
-import { Link, useHistory } from 'react-router-dom';
+import { auth, db } from '../firebase';
+
+import { Link } from 'react-router-dom';
 
 const StyledSignIn = styled.div`
    position: relative;
@@ -119,29 +120,28 @@ const StyledSignIn = styled.div`
    }
 `
 
-function Login() {
-   const firebase = getFirebase();
-   const history = useHistory();
-   firebase.logout();
-
+function Login({ history }) {
    function signupWithGoogle() {
-      firebase.login({ provider: 'google', type: 'popup' })
-         .then(() => history.push('/inbox'))
-         .catch(e => alert(e.message))
+      alert('coming soon')
    }
 
    const handleSubmit = (e) => {
       e.preventDefault();
+      const { name, email, password } = e.target;
 
-      firebase.createUser({
-         email: e.target.email.value,
-         password: e.target.password.value
-      })
-         .then((user) => {
-            firebase.update('users/' + user.id, {displayName: e.target.name.value})
+      auth.createUserWithEmailAndPassword(email.value, password.value)
+         .then((res) => {
+            const path = 'users/' + res.user.uid;
+            db.ref(path).set({
+               id: res.user.uid,
+               name: name.value,
+               email: email.value,
+            });
          })
          .then(() => history.push('/inbox'))
-         .catch(e => alert(e.message))
+         .catch((error) => {
+            alert(error.message)
+         })
    }
    return (
       <StyledSignIn>

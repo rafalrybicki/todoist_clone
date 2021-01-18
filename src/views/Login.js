@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { getFirebase } from 'react-redux-firebase';
-import { Link, useHistory } from 'react-router-dom';
+import { auth } from '../firebase';
+import { Link } from 'react-router-dom';
 
 const StyledLogin = styled.div`
    position: relative;
@@ -118,24 +118,20 @@ const StyledLogin = styled.div`
    }
 `
 
-function Login() {
-   const firebase = getFirebase();
-   const history = useHistory();
+function Login({ history }) {
 
    function loginWithGoogle() {
-      firebase.login({ provider: 'google', type: 'popup' })
-         .then(() => history.push('/inbox'))
-         .catch(e => console.log(e.message))
+      alert('coming soon')
    }
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      firebase.login({
-         password: e.target.password.value,
-         email: e.target.email.value
-      })
+
+      auth.signInWithEmailAndPassword(e.target.email.value, e.target.password.value)
          .then(() => history.push('/inbox'))
-         .catch(e => console.log(e.message))
+         .catch((error) => {
+            alert(error.message)
+         });
    }
 
    return (

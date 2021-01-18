@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-
-import { getFirebase } from 'react-redux-firebase';
+import { auth } from '../../firebase';
 import { useHistory } from 'react-router-dom';
 import IconBtn from '../common/buttons/IconBtn';
 import SearchInput from './SearchInput';
@@ -57,10 +56,15 @@ const StyledAppBar = styled.div`
 `
 
 function AppBar({ toggleMenu }) {
-   const firebase = getFirebase();
    const history = useHistory();
+   
    const logout = () => {
-      firebase.logout().then(() => history.push('/login'));
+      auth.signOut()
+         .then(() => {
+            history.push('/login')
+         }).catch((error) => {
+            alert(error.message)
+         });
    }
 
    return (

@@ -1,20 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { Provider } from "react-redux";
-import { ReactReduxFirebaseProvider } from "react-redux-firebase";
-import store from './redux/store';
-import rrfProps from './firebase'
-
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-	<Provider store={store}>
-		<ReactReduxFirebaseProvider {...rrfProps}>
-			<App />
-		</ReactReduxFirebaseProvider>
-	</Provider>,
+	<App />,
 	document.getElementById('root')
 );
 
