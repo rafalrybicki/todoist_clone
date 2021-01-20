@@ -10,7 +10,7 @@ import { Justify, HouseDoor, Plus, GraphUp, QuestionCircle, Bell } from 'react-b
 
 const StyledAppBar = styled.div`
    position: absolute;
-   z-index: 10;
+   z-index: 101;
    top: 0;
    left: 0;
    width: 100%;
@@ -44,10 +44,6 @@ const StyledAppBar = styled.div`
       color: white;
       font-weight: 500;
       margin-left: 3px;
-   }
-
-   @media (max-width: 749px) {
-      z-index: 1001;
    }
 
    @media (min-width: 750px) {

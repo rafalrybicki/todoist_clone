@@ -5,7 +5,7 @@ const StyledOverlay = styled.span`
    position: absolute;
    top: 0;
    left: 0;
-   z-index: 101;
+   z-index: 99;
    visibility: ${props => props.show ? 'visible' : 'hidden'};
    opacity: ${props => props.show ? '1' : '0'};
    width: 100vw;
