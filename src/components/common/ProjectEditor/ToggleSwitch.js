@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 const StyledToggleSwitch = styled.div`
@@ -8,7 +9,7 @@ const StyledToggleSwitch = styled.div`
    justify-content: flex-end;
    cursor: pointer;
    width: 160px;
-   margin-bottom: 20px;
+   margin-bottom: 17px;
 
    label {
       font-weight: 400 !important;
@@ -43,18 +44,27 @@ const StyledToggleSwitch = styled.div`
    }
 `
 
-function ToggleSwitch() {
-   const [checked, setChecked] = useState(false);
-
+function ToggleSwitch({ value, setValue }) {
    return (
-      <StyledToggleSwitch checked={checked}>
+      <StyledToggleSwitch checked={value}>
          <label htmlFor="toggleSwitch">
             Add to Favorites
          </label>
-         <input type="checkbox" name="toggleSwitch" id="toggleSwitch" checked={checked} onChange={(e) => setChecked(!checked)} />
+         <input
+            type="checkbox"
+            name="toggleSwitch"
+            id="toggleSwitch"
+            checked={value}
+            onChange={() => setValue()}
+         />
          <span className="switch" />
       </StyledToggleSwitch>
    )
+}
+
+ToggleSwitch.propTypes = {
+   value: PropTypes.bool.isRequired,
+   setValue: PropTypes.func.isRequired
 }
 
 export default ToggleSwitch

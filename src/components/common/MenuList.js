@@ -31,7 +31,7 @@ const StyledMenuList = styled.ul`
       }
 
       &.active, &:hover {
-         background-color: #ddd;
+         background-color: #f3f3f3;
       }
 
       &.active::after {

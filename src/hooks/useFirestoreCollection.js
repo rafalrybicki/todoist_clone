@@ -10,12 +10,13 @@ function useFirestoreCollection(collectionName, condition) {
          .onSnapshot(function(snapshot) {
             snapshot.docChanges().forEach(function(change) {
                if (change.type === "added") {
-                  console.log("ADD")
+                  console.log("ADD");
+                  console.log( change.doc.data());
                   addTask(change.doc.data());
                }
                if (change.type === "modified") {
                   console.log("MODIFIED")
-                  changeTask(change.doc.data().content)
+                  changeTask(change.doc.data())
                }
                if (change.type === "removed") {
                   console.log("REMOVED")
