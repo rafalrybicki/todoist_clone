@@ -5,19 +5,26 @@ import Grip from './Grip';
 import IconBtn from './buttons/IconBtn';
 import ChevronIcon from './icons/ChevronIcon';
 import { ThreeDots } from 'react-bootstrap-icons';
+import Task from '../Task';
+import NewItemBtn from './buttons/NewItemBtn';
+import AppEditor from '../AppEditor';
+
+import { db } from '../../firebase';
+import useFirestoreCollection from '../../hooks/useFirestoreCollection'
 
 const StyledTaskSection = styled.div`
    position: relative;
    padding: 20px 0 10px;
    width: 100%;
 
-   h2, .quantity {
+   h2{
       font-size: 14px;
-      margin-right: 5px;
-      display: inline;
+      margin: 0 5px 5px 0;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #f0f0f0;
    }
 
-   > ul {
+   /* > ul {
       margin-top: 5px;
       padding-top: 5px;
       border-top: 1px solid #f0f0f0;
@@ -25,11 +32,11 @@ const StyledTaskSection = styled.div`
       height: ${props => props.showList ? 'auto' : '0'};
       transition: height .2s;
       overflow: hidden;
-   }
+   } */
 
    > .grip {
       top: 18px;
-      left: -57px;
+      left: -60px;
    }
 
    > .chevron {
@@ -61,26 +68,83 @@ const StyledTaskSection = styled.div`
    }
 `
 
-function TaskSection({ name = 'section', children }) {
+function TaskSection({ name, sectionId, projectId, userId }) {
+   const tasks = useFirestoreCollection('tasks', ['sectionId', '==', sectionId]);
    const [showList, toggleSectionList] = useState(true);
+   const [editor, toggleEditor] = useState(false);
+
+   const addNewTask = (obj) => {
+      let newTask = {
+         projectId,
+         sectionId,
+         ownerId: userId,
+         priority: 4,
+         order: 0,
+         targetDate: '',
+         completionDate: '',
+         subTasks: [],
+         comments: [],
+         activity: []
+      }
+
+      const newTaskRef = db.collection('tasks').doc();
+      const id = newTaskRef.id
+
+      newTask = {
+         id,
+         ...newTask,
+         ...obj
+      }
+      
+      newTaskRef.set(newTask);
+   }
 
    return (
       <StyledTaskSection showList={showList}>
          <Grip />
-         <IconBtn hoverColor="#eee" width="28px" onClick={() => toggleSectionList(!showList)} cssClass="chevron">
+         <IconBtn
+            hoverColor="#eee"
+            width="28px"
+            onClick={() => toggleSectionList(!showList)}
+            className="chevron"
+         >
             <ChevronIcon rotate={showList.toString()} />
          </IconBtn>
-
          <h2>{name}</h2>
-         <span className="quantity">
-            {children.length > 0 && children.length}
-         </span>
-         <IconBtn hoverColor="#eee" width="28px" tooltip="More section actions" tooltipWidth="112px" cssClass="more">
+         <IconBtn
+            hoverColor="#eee"
+            width="28px"
+            tooltip="More section actions"
+            tooltipWidth="112px"
+            className="more"
+         >
             <ThreeDots size="20"/>
          </IconBtn>
-         <ul>
-            {children}
-         </ul>
+         {tasks.map( task => 
+            <Task
+               key={task.id}
+               id={task.id}
+               projectId={task.projectId}
+               content={task.content}
+               priority={task.priority}
+               targetDate={task.targetDate}
+               completionDate={task.completionDate}
+               subTasks={task.subTasks}
+            />
+         )}
+         {!editor && 
+            <NewItemBtn
+               text="Add task"
+               onClick={() => toggleEditor(true)}
+            />
+         }
+         {editor &&
+            <AppEditor
+               isTask
+               onSubmit={addNewTask}
+               onClose={() => toggleEditor(false)}
+            />
+         }
       </StyledTaskSection>
    )
 }
