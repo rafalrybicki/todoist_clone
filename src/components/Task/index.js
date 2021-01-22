@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
+import Editor from '../Editor';
 import Actions from './Actions';
 import Checkbox from '../common/Checkbox';
 import Date from './Date';
 import Grip from '../common/Grip';
 import { Link } from 'react-router-dom';
 import ProjectLink from '../common/ProjectLink';
+import { db } from '../../firebase';
 
 const StyledTask = styled.li`
    position: relative;
@@ -60,7 +62,8 @@ const StyledTask = styled.li`
    }
 `
 
-function Task({ match, id, projectId, content, priority, endDate, completionDate, subTasks }) {
+function Task({ match, id, content, priority, endDate, projectId, projectName, projectPath, projectColor, completionDate, subTasks }) {
+   const [editor, showEditor] = useState(false);
    const pathname = `${window.location.pathname}/${id}`;
    const state = {
       id,
@@ -71,22 +74,51 @@ function Task({ match, id, projectId, content, priority, endDate, completionDate
       subTasks,
       prevPath: window.location.pathname
    }
+
+   const toggleEditor = () => {
+      showEditor(editor => !editor)
+   }
+
+   const edit = (task) => {
+      showEditor(false);
+      
+      db.collection('tasks').doc(id).update(task)
+         .catch(function(error) {
+            alert(error.message);
+         });
+   }
+
+   if (editor) {
+      return (
+         <Editor
+            currentContent={content}
+            currentProjectId={projectId}
+            currentPriority={priority}
+            onSave={edit}
+            onClose={toggleEditor}
+            isTask
+         />
+      )
+   }
+
    return (
       <StyledTask>
          <Grip />
          <Checkbox priority={priority} />
          <Link 
-            to={{
-               pathname,
-               state
-            }}
+            to={{ pathname, state }}
             className="link"
          >
             {content}
          </Link>
-         <Actions />
+         <Actions id={id} openEditor={toggleEditor} />
          <Date />
-         <ProjectLink name="ProjectName" id={projectId} />
+         {projectPath && projectName &&
+            <ProjectLink
+               name={projectName}
+               path={projectPath}
+            />
+         }
       </StyledTask>
    )
 }
@@ -96,6 +128,9 @@ Task.propTypes = {
    content: PropTypes.string.isRequired,
    priority: PropTypes.number.isRequired,
    endDate: PropTypes.string,
+   projectName: PropTypes.string,
+   projectPath: PropTypes.string,
+   projectColor: PropTypes.string,
    completionDate: PropTypes.string,
    subTasks: PropTypes.array
 }

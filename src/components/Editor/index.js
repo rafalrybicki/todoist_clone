@@ -49,12 +49,12 @@ const StyledEditor = styled.form`
    }
 `
 
-function Editor({ currentContent, currentTargetDate, currentProjectId, currentSectionId, onSave, onClose, isTask }) {
+function Editor({ currentContent, currentTargetDate, currentProjectId, currentSectionId, currentPriority, onSave, onClose, isTask }) {
    const [content, setContent] = useState(currentContent || '');
    const [targetDate, setTargetDate] = useState(currentTargetDate || null);
    const [projectId, setProjectId] = useState(currentProjectId);
    const [sectionId, setSectionId] = useState(currentSectionId || null);
-   const [priority, setPriority] = useState(4);
+   const [priority, setPriority] = useState(currentPriority || 4);
 
    const handleSave = (e) => {
       e.preventDefault();

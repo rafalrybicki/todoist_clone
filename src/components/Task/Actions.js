@@ -37,10 +37,10 @@ const StyledActions = styled.div`
    }
 `
 
-function Actions() {
+function Actions({ id, openEditor }) {
    return (
       <StyledActions className="actions">
-         <IconBtn width="28px" tooltip="Edit" tooltipWidth="33px">
+         <IconBtn width="28px" tooltip="Edit" tooltipWidth="33px" onClick={openEditor}>
             <Pen size="16"/>
          </IconBtn>
          <IconBtn width="28px" tooltip="Schedule" tooltipWidth="64px">
@@ -56,7 +56,7 @@ function Actions() {
                </IconBtn>
             }
             content={
-               <TaskMenu />
+               <TaskMenu id={id} openEditor={openEditor} />
             }
          />
       </StyledActions>
