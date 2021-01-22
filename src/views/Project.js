@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Route } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 import { ChatSquare, ArrowDownUp, ThreeDots, PersonPlus } from 'react-bootstrap-icons';
@@ -9,11 +8,12 @@ import IconBtn from '../components/common/buttons/IconBtn';
 import Task from '../components/Task'
 import TaskSection from '../components/common/TaskSection';
 import NewItemBtn from '../components/common/buttons/NewItemBtn';
-import NewSection from '../components/common/buttons/NewSectionBtn';
+import NewSection from '../components/common/NewSection';
 import Popover from '../components/common/Popover';
 import SortList from '../components/common/SortList';
-import ViewSortOptions from '../components/common/ViewSortOptions';
+import SortWidget from './SortWidget';
 import Modal from '../components/TaskModal';
+import ProtectedRoute from './ProtectedRoute';
 
 import { projects } from './data';
 
@@ -91,7 +91,7 @@ function Project({ match }) {
                />
             </header>
             {state.sortBy !== 'order' && 
-               <ViewSortOptions
+               <SortWidget
                   sortBy={state.sortBy}
                   sortDirection={state.sortDirection}
                   reverseDirection={reverseDirection}
@@ -146,7 +146,7 @@ function Project({ match }) {
             </TaskSection>
             <NewSection />
          </StyledProject>
-         <Route path={match.url + '/:taskId'} component={Modal} />
+         <ProtectedRoute path={match.url + '/:taskId'} component={Modal} />
       </>
    )
 }
