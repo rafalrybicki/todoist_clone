@@ -20,11 +20,23 @@ function SignUp({ history }) {
 
       auth.createUserWithEmailAndPassword(email.value, password.value)
          .then(res => {
-            db.collection('users').doc(res.user.uid).set({
+            const userId = res.user.uid;
+            db.collection('users').doc(userId).set({
                id: res.user.uid,
                displayName: name.value,
-               email: email.value,
+               email: email.value
             });
+
+            db.collection('projects').doc(userId).set({
+               id: userId,
+               name: `${name.value}'s inbox`,
+               ownerId: userId,
+               view: 'list',
+               sortType: 'order',
+               sortDirection: 'down',
+               sections: {},
+               comments: []
+            })
          })
          .then(() => history.push("/index"))
          .catch(error => alert(error.message))
