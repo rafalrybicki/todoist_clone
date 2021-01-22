@@ -7,7 +7,7 @@ import ChevronIcon from './icons/ChevronIcon';
 import { ThreeDots } from 'react-bootstrap-icons';
 import Task from '../Task';
 import NewItemBtn from './buttons/NewItemBtn';
-import AppEditor from '../AppEditor';
+import Editor from '../Editor';
 
 import { db } from '../../firebase';
 import useFirestoreCollection from '../../hooks/useFirestoreCollection'
@@ -139,10 +139,12 @@ function TaskSection({ name, sectionId, projectId, userId }) {
             />
          }
          {editor &&
-            <AppEditor
-               isTask
-               onSubmit={addNewTask}
+            <Editor
+               currentProjectId={projectId}
+               currentSectionId={sectionId}
+               onSave={addNewTask}
                onClose={() => toggleEditor(false)}
+               isTask
             />
          }
       </StyledTaskSection>
