@@ -3,9 +3,9 @@ import styled from 'styled-components/macro';
 
 const StyledMainView = styled.main`
    flex-grow: 1;
-   max-height: 100%;
+   height: 100%;
    overflow: hidden;
-   z-index: 10;
+   z-index: 100;
    background-color: white;
    
    .view {
@@ -21,12 +21,12 @@ const StyledMainView = styled.main`
       }
 
       header {
-         padding-top: 36px;
+         padding-top: 30px;
          display: flex;
          position: sticky;
          top: 0;
          background-color: white;
-         z-index: 100;
+         z-index: 10;
 
          h1 {
             font-size: 20px;

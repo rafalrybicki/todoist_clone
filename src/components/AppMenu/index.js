@@ -10,7 +10,7 @@ import ProjectList from './ProjectList';
 
 const StyledMenu = styled.div`
    position: absolute;
-   z-index: 100;
+   z-index: 99;
    top: 0;
    padding: 63px 0 30px;
    background-color: #FAFAFA;
@@ -30,7 +30,7 @@ const StyledMenu = styled.div`
 
    @media (min-width: 750px) {
       position: static;
-      padding: 73px 0 30px;
+      padding: 30px 0 30px;
    }
 `
 

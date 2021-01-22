@@ -11,7 +11,7 @@ const StyledOverlay = styled.span`
    width: 100vw;
    height: 100vh;
    background-color: rgba(0,0,0,.5);
-   transition: all .3s;
+   transition: opacity .3s;
 `
 
 function Overlay({ show, hide }) {

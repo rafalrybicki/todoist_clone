@@ -8,18 +8,21 @@ const StyledAppModal = styled.div`
    position: fixed;
    height: 100vh;
    width: 100vw;
-   z-index: ${props => props.open ? '1000' : '-1'};
+   z-index: ${props => props.open ? '101' : '-1'};
 `
 
 function AppModal() {
    const [open, setOpen] = useState(true);
 
+   const closeModal = () => {
+      setOpen(false);
+   }
    return (
       <StyledAppModal open={open}>
-         <ProjectEditor />
+         <ProjectEditor close={closeModal} />
          <Overlay
             show={open}
-            hide={() => setOpen(false)}
+            hide={closeModal}
          />
       </StyledAppModal>
    )

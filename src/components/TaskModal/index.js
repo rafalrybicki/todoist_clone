@@ -16,10 +16,11 @@ const StyledTaskModal = styled.div`
    position: fixed;
    top: 0;
    left: 0;
-   z-index: 10000;
+   z-index: 101;
    background-color: white;
    width: 100%;
    max-width: 650px;
+   height: 100%;
    max-height: 960px;
    padding: 56px 24px 20px;
 
@@ -59,7 +60,7 @@ const StyledTaskModal = styled.div`
    }
 
    @media (min-width: 650px) {
-      height: calc(100% - 50px);
+      height: calc(100vh - 40px);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
