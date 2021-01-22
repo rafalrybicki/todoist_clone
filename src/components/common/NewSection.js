@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import { db } from '../../firebase';
 import { v4 as uuid } from 'uuid';
 
-import AppEditor from '../AppEditor';
+import Editor from '../Editor';
 
 const StyledNewSection = styled.div`
    position: relative;
@@ -61,14 +61,14 @@ const StyledNewSection = styled.div`
 function NewSection({ projectId }) {
    const [editor, showEditor] = useState(false);
 
-   const addNewSection = (obj) => {
+   const addNewSection = (name) => {
       const projectRef = db.collection('projects').doc(projectId)
       const usersUpdate = {};
       const id = uuid();
 
       usersUpdate[`sections.${id}`] = {
          id,
-         name: obj.text
+         name
       };
 
       projectRef.update(usersUpdate)
@@ -84,9 +84,9 @@ function NewSection({ projectId }) {
             </button>
          }
          {editor && 
-            <AppEditor
+            <Editor
+               onSave={addNewSection}
                onClose={() => showEditor(false)}
-               onSubmit={addNewSection}
             />
          }
       </StyledNewSection>
