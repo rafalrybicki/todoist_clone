@@ -17,18 +17,17 @@ const StyledProjectLink = styled(Link)`
    }
 `
 
-function ProjectLink({ id, projectName = 'Inbox' }) {
-   const pathname = id ? "/project/" + id : "/inbox";
-
-   const icon = id ? <CircleFill size={8} /> : <InboxIcon />;
+function ProjectLink({ path, name }) {
+   const icon = name === 'Inbox' ? <CircleFill size={8} /> : <InboxIcon />;
+   // id, color and name from redux because of Today view 
 
    return (
       <StyledProjectLink
-         to={pathname}
+         to={path}
          className="project-link"
       >
          {icon}
-         {projectName}
+         {name}
       </StyledProjectLink>
    )
 }
