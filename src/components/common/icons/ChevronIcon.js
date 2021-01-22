@@ -8,7 +8,7 @@ const StyledChevronIcon = styled(ChevronRight)`
    width: 16px;
    transition: transform 0.2s;
    transform: ${props => props.rotate === 'false' ? 'rotate(0)' : 'rotate(90deg)'};
-   z-index: 1000;
+   z-index: 10;
 `
 
 function ChevronIcon({ rotate }) {

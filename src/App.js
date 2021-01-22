@@ -5,19 +5,21 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import ProtectedRoute from './views/ProtectedRoute';
 import styled from 'styled-components/macro';
 
 import AppBar from './components/AppBar';
 import AppMenu from './components/AppMenu';
-import MainView from './views/MainView';
-import Today from './views/Today';
-import Upcoming from './views/Upcoming';
-import Project from './views/Project';
 import Login from './views/Login';
 import SignUp from './views/SignUp';
+import MainView from './views/MainView';
+import Inbox from './views/Inbox';
+import Project from './views/Project';
+import Today from './views/Today';
+import Upcoming from './views/Upcoming';
+import AppModal from './components/AppModal';
 
 const StyledApp = styled.div`
-  padding-top: 43px;
   display: flex;
   width: 100%;
   height: 100%;
@@ -42,13 +44,14 @@ function App() {
             <AppMenu isOpen={menuOpen} closeMenu={toggleMenu}/>
             <MainView>
               <Switch>
-                <Route path="/project/:projectId" component={Project} />
-                <Route path="/today" component={Today} />
-                <Route path="/upcoming" component={Upcoming} />
-                <Route path="/inbox" component={Project} />
+                <ProtectedRoute path="/inbox" component={Inbox} />
+                <ProtectedRoute path="/project/:projectId" component={Project} />
+                <ProtectedRoute path="/today" component={Today} />
+                <ProtectedRoute path="/upcoming" component={Upcoming} />
                 <Route path='/' render={() => <Redirect to= "/inbox" />} />
               </Switch>
             </MainView>
+            <AppModal />
           </Route>
         </Switch>
       </StyledApp>

@@ -6,6 +6,7 @@ import Overlay from '../common/Overlay';
 
 const StyledAppModal = styled.div`
    position: fixed;
+   top: 0;
    height: 100vh;
    width: 100vw;
    z-index: ${props => props.open ? '101' : '-1'};

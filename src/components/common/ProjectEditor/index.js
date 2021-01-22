@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import { auth, db } from '../../../firebase';
@@ -23,7 +24,7 @@ const StyledProjectEditor = styled.form`
    overflow: hidden;
    border: 1px solid #ddd;
    background-color: white;
-   padding: 0 24px 75px;
+   padding: 0 24px 85px;
 
    h1 {
       font-size: 16px;
@@ -78,7 +79,7 @@ const StyledProjectEditor = styled.form`
    }
 `
 
-function ProjectEditor() {
+function ProjectEditor({ close }) {
    const [name, setName] = useState('');
    const [color, setColor] = useState('#808080');
    const [favorite, setFavorite] = useState(false);
@@ -97,8 +98,9 @@ function ProjectEditor() {
          color: color.val ? color.val : color,
          favorite,
          view,
-         sort: ['order', 'up'],
-         sections: [],
+         sortType: 'order',
+         sortDirection: 'up',
+         sections: {},
          comments: [],
       })
    }
@@ -126,13 +128,17 @@ function ProjectEditor() {
             view={view}
             setView={(view) => setView(view)}
          />
-         <CancelBtn />
+         <CancelBtn onClick={close} />
          <SubmitBtn
             text="Add"
             disabled={name === ''}
          />
       </StyledProjectEditor>
    )
+}
+
+ProjectEditor.propTypes = {
+   close: PropTypes.func.isRequired
 }
 
 export default ProjectEditor
