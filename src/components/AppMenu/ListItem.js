@@ -36,8 +36,7 @@ const StyledListItem = styled.li`
       }
 
       .project-icon {
-         margin-top: 2px;
-         margin-left: 0.5px;
+         margin: 2px 15px 0 2.5px;
          font-size: 12px;
       }
 

@@ -56,7 +56,7 @@ const StyledExpandableList = styled.div`
 `
 
 function ExpandableList({ text, children }) {
-   const [open, setOpen] = useState(false);
+   const [open, setOpen] = useState(true);
 
    return (
       <StyledExpandableList open={open}>

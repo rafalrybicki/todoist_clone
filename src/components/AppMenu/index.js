@@ -6,15 +6,15 @@ import Overlay from '../common/Overlay'
 
 import ViewList from './ViewList';
 import ProjectList from './ProjectList';
-import FilterList from './FilterList';
+// import FilterList from './FilterList';
 
 const StyledMenu = styled.div`
    position: absolute;
-   z-index: 111;
-   top: 43px;
-   padding: 30px 0;
+   z-index: 100;
+   top: 0;
+   padding: 63px 0 30px;
    background-color: #FAFAFA;
-   height: calc(100% - 43px);
+   height: 100%;
    width: ${props => props.isOpen ? '291px' : '0'};
    flex-shrink: 0;
    font-size: 14px;
@@ -29,10 +29,8 @@ const StyledMenu = styled.div`
    }
 
    @media (min-width: 750px) {
-      z-index: 10;
-      position: relative;
-      top: 0;
-      height: 100%;
+      position: static;
+      padding: 73px 0 30px;
    }
 `
 
@@ -59,11 +57,10 @@ function AppMenu({ isOpen, closeMenu }) {
                isMobile={isMobile}
                closeMenu={closeMenu}
             />
-
-            <FilterList
+            {/* <FilterList
                isMobile={isMobile}
                closeMenu={closeMenu}
-            />
+            /> */}
          </StyledMenu>
 
          <Overlay show={isOpen && isMobile} hide={closeMenu} />
