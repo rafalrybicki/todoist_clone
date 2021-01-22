@@ -1,12 +1,19 @@
 import React from 'react';
 
+import { db } from '../../firebase';
 import MenuList from '../common/MenuList';
 import { Alarm, ArrowDownShort, ArrowRightCircle, ArrowUpShort, Link45deg, ListUl, Pen, Stickies, Trash } from 'react-bootstrap-icons';
 import Selector from './Selector';
 import Priority from './Priority';
 import Schedule from './Schedule';
 
-function Menu() {
+function TaskMenu({ id, openEditor }) {
+   const deleteTask = () => {
+      db.collection('tasks').doc(id).delete()
+         .then(() => console.log('task deleted'))
+         .catch(e => alert(e.message))
+   }
+   
    return (
       <MenuList>
          <li>
@@ -17,7 +24,7 @@ function Menu() {
             <ArrowDownShort size={24} className="arrow-icon"/>
             Add task below
          </li>
-         <li>
+         <li onClick={openEditor}>
             <Pen size={18} />
             Edit task
          </li>
@@ -49,7 +56,7 @@ function Menu() {
             <Link45deg size={18} />
             Copy link to task
          </li>
-         <li>
+         <li onClick={deleteTask}>
             <Trash size={18} />
             Delete task
          </li>
@@ -57,4 +64,4 @@ function Menu() {
    )
 }
 
-export default Menu
+export default TaskMenu
