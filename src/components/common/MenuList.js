@@ -49,7 +49,7 @@ const StyledMenuList = styled.ul`
 
 function MenuList({ children }) {
    return (
-      <StyledMenuList>
+      <StyledMenuList className="menu-list">
          {children}
       </StyledMenuList>
    )

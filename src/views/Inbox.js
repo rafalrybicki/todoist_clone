@@ -35,14 +35,14 @@ function useFirestoreDocument(path) {
 function Inbox({ match }) {
    const userId = auth.currentUser.uid;
    const [editor, showEditor] = useState(false);
-   const tasks = useNotSectionedTasks(userId);
+   const defaultSection = useNotSectionedTasks(userId);
    const inbox = useFirestoreDocument('projects/' + userId);
-   const sections = inbox.sections ? Object.values(inbox.sections) : [];
+   const sections = inbox && inbox.sections ? Object.values(inbox.sections) : [];
 
    const addNewTask = (obj) => {
       let newTask = {
          projectId: userId,
-         sectionId: false,
+         sectionId: 'default',
          ownerId: userId,
          priority: 4,
          order: 0,
@@ -112,7 +112,7 @@ function Inbox({ match }) {
                sortType={inbox.sortType}
                sortDirection={inbox.sortDirection}
             />
-            {tasks.map( task => 
+            {defaultSection.map( task => 
                <Task
                   key={task.id}
                   id={task.id}

@@ -29,8 +29,9 @@ function SignUp({ history }) {
 
             db.collection('projects').doc(userId).set({
                id: userId,
-               name: `${name.value}'s inbox`,
+               name: 'Inbox',
                ownerId: userId,
+               order: 0,
                view: 'list',
                sortType: 'order',
                sortDirection: 'down',

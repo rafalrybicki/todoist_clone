@@ -12,9 +12,10 @@ import NewItemBtn from '../common/buttons/NewItemBtn';
 function ProjectList({ isMobile, closeMenu }) {
    const projects = useFirestoreCollection('projects', ['ownerId', '==', auth.currentUser.uid]);
 
+   projects.filter(project => project.order !== 0)
    return (
       <ExpandableList text="projects">
-         {projects.map(project => 
+         {projects.filter(project => project.order !== 0).map(project => 
             <ListItem
                key={project.id}
                text={project.name}

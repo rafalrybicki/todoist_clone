@@ -19,6 +19,7 @@ const StyledPopover = styled.div`
 
 function Popover({ activator, content }) {
    const [open, toggle] = useState(false);
+
    return (
       <StyledPopover isOpen={open} onClick={() => toggle(!open)}>
          {activator}

@@ -14,7 +14,7 @@ const StyledEditor = styled.form`
    position: relative;
    width: 100%;
 
-   input {
+   > input {
       display: block;
       width: 100%;
       height: ${props => props.isTask ? '81px' : '35px'};
@@ -64,6 +64,7 @@ function Editor({ currentContent, currentTargetDate, currentProjectId, currentSe
             content,
             targetDate,
             projectId,
+            sectionId,
             priority,
          })
       } else {

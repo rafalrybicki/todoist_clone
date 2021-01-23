@@ -7,7 +7,7 @@ function useNotSectionedTasks(projectId) {
    useEffect(() => {
       const collection = db.collection('tasks')
          .where('projectId', '==', projectId)
-         .where('sectionId', '==', false)
+         .where('sectionId', '==', null)
          .onSnapshot(function(snapshot) {
             snapshot.docChanges().forEach(function(change) {
                if (change.type === "added") {

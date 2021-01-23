@@ -95,6 +95,7 @@ function ProjectEditor({ close }) {
          id,
          ownerId: auth.currentUser.uid,
          name,
+         order: 1,
          color: color.val ? color.val : color,
          favorite,
          view,
