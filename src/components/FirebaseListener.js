@@ -10,10 +10,7 @@ function FirebaseListener() {
    const dispatch = useDispatch();
 
    useEffect(() => {
-      if (!userId) {
-         return
-      }
-      projectsCollection.where('ownerId', '==', userId)
+      const projectsListener = projectsCollection.where('ownerId', '==', userId)
          .onSnapshot(function(snapshot) {
             snapshot.docChanges().forEach(function(change) {
                if (change.type === "added") {
@@ -29,17 +26,14 @@ function FirebaseListener() {
                   console.log('delete project')
                }
             });
-      });
+         });
 
-      return () => projectsCollection();
+      return () => projectsListener();
 
-   }, [userId, dispatch])
+   }, [])
 
    useEffect(() => {
-      if (!userId) {
-         return
-      }
-      tasksCollection.where('ownerId', '==', userId)
+      const tasksListener = tasksCollection.where('ownerId', '==', userId)
          .onSnapshot(function(snapshot) {
             snapshot.docChanges().forEach(function(change) {
                if (change.type === "added") {
@@ -52,11 +46,11 @@ function FirebaseListener() {
                   dispatch(deleteTask(change.doc.data().id));
                }
             });
-      });
+         });
 
-      return () => projectsCollection();
+      return () => tasksListener();
 
-   }, [userId, dispatch])
+   }, [])
 
    return null
 }

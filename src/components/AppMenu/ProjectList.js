@@ -9,11 +9,11 @@ import { CircleFill } from 'react-bootstrap-icons';
 import NewItemBtn from '../common/buttons/NewItemBtn';
 
 function ProjectList({ isMobile, closeMenu }) {
-   const projects = useSelector(state => state.projects.filter(project => project.order !== 0) )
+   const projects = useSelector(state => state.projects.filter(project => (project.favorite === false && project.order > 0)).sort((a, b) => a.order - b.order))
 
    return (
       <ExpandableList text="projects">
-         {projects.filter(project => project.order !== 0).map(project => 
+         {projects.map(project => 
             <ListItem
                key={project.id}
                text={project.name}

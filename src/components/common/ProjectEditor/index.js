@@ -9,6 +9,7 @@ import ViewSelector from './ViewSelector';
 import CancelBtn from '../buttons/CancelBtn';
 import SubmitBtn from '../buttons/SubmitBtn';
 import ColorPicker from './ColorPicker';
+import { useSelector } from 'react-redux';
 
 const StyledProjectEditor = styled.form`
    position: fixed;
@@ -85,17 +86,19 @@ function ProjectEditor({ close }) {
    const [favorite, setFavorite] = useState(false);
    const [view, setView] = useState('list');
    
+   const order = useSelector(state => state.projects.length);
+
    const addProject = (e) => {
       e.preventDefault();
-
       const newprojectRef = db.collection('projects').doc();
       const id = newprojectRef.id
-
+      console.log('project editor')
+      
       newprojectRef.set({
          id,
          ownerId: auth.currentUser.uid,
          name,
-         order: 1,
+         order,
          color: color.val ? color.val : color,
          favorite,
          view,

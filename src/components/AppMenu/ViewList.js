@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
+import { useSelector } from 'react-redux';
+
 import ListItem from './ListItem';
 import InboxIcon from '../common/icons/InboxIcon';
 import TodayIcon from '../common/icons/TodayIcon';
-import { Calendar3 } from 'react-bootstrap-icons';
+import { Calendar3, CircleFill } from 'react-bootstrap-icons';
 
 const StyledViewList = styled.ul`
    .inbox-icon {
@@ -18,6 +20,8 @@ const StyledViewList = styled.ul`
 `
 
 function ViewList({ isMobile, closeMenu}) {
+   const favorites = useSelector(state => state.projects.filter(project => project.favorite));
+   console.log(favorites)
    return (
       <StyledViewList>
          <ListItem
@@ -44,6 +48,20 @@ function ViewList({ isMobile, closeMenu}) {
                size={16}
             />
          </ListItem>
+         {favorites.map(favorite => 
+            <ListItem
+               key={favorite.id}
+               text={favorite.name}
+               path={'/project/' + favorite.id}
+               onClick={isMobile ? closeMenu : undefined}
+            >
+               <CircleFill
+                  size={12}
+                  color={favorite.color}
+                  className="project-icon"
+               />
+            </ListItem>
+         )}
       </StyledViewList>
    )
 }

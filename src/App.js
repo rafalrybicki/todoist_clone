@@ -37,11 +37,11 @@ function App() {
   return (
     <Router>
       <StyledApp className="App">
-        <FirebaseListener />
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
           <Route path='/'>
+            <FirebaseListener />
             <AppBar toggleMenu={toggleMenu} />
             <AppMenu isOpen={menuOpen} closeMenu={toggleMenu}/>
             <MainView>
