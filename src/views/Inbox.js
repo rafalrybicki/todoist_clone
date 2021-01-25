@@ -42,12 +42,11 @@ function Inbox({ match }) {
    const addNewTask = (obj) => {
       let newTask = {
          projectId: userId,
-         sectionId: 'default',
+         sectionId: null,
          ownerId: userId,
          priority: 4,
-         order: 0,
-         targetDate: '',
-         completionDate: '',
+         targetDate: null,
+         completionDate: null,
          subTasks: [],
          comments: [],
          activity: []
@@ -117,9 +116,11 @@ function Inbox({ match }) {
                   key={task.id}
                   id={task.id}
                   projectId={task.projectId}
+                  sectionId={task.sectionId}
                   content={task.content}
                   priority={task.priority}
                   targetDate={task.targetDate}
+                  targetDateTime={task.targetDateTime}
                   completionDate={task.completionDate}
                   subTasks={task.subTasks}
                />

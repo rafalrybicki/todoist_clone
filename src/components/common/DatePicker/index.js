@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
+import { getTaskDate } from '../../../utils';
 import { CalendarEvent } from 'react-bootstrap-icons';
 import Suggestions from './Suggestions';
 import Calendar from './Calendar';
 import TimePicker from './TimePicker';
+
 
 const StyledDatePicker = styled.div`
    position: relative;
@@ -29,6 +31,7 @@ const StyledDatePicker = styled.div`
    }
 
    .picker {
+      z-index: 10;
       position: absolute;
       top: 28px;
       left: 0;
@@ -40,7 +43,7 @@ const StyledDatePicker = styled.div`
    }
 `
 
-function DatePicker({ date }) {
+function DatePicker({ date, setDate, dateTime, setDateTime }) {
    const [isOpen, setIsopen] = useState(false);
 
    const toggle = () => {
@@ -54,13 +57,18 @@ function DatePicker({ date }) {
             onClick={toggle}
          >
             <CalendarEvent />
-            Schedule
+            {date ? getTaskDate(date) : 'Schedule'}
          </button>
          {isOpen &&
             <div className="picker">
-               <Suggestions />
-               <Calendar />
-               <TimePicker />
+               <Suggestions currentDate={date} setDate={setDate} />
+               <Calendar currentDate={date} setDate={setDate} />
+               <TimePicker
+                  date={date}
+                  setDate={setDate}
+                  dateTime={dateTime}
+                  setDateTime={setDateTime}
+               />
             </div>
          }
       </StyledDatePicker>
@@ -69,7 +77,10 @@ function DatePicker({ date }) {
 }
 
 DatePicker.propTypes = {
-   date: PropTypes.string
+   date: PropTypes.string,
+   setDate: PropTypes.func.isRequired,
+   dateTime: PropTypes.string,
+   setDateTime: PropTypes.func.isRequired
 }
 
 export default DatePicker

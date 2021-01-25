@@ -35,18 +35,17 @@ const StyledNumberPicker = styled.div`
 `
 
 
-function NumberPicker({ max, onChange }) {
-   const [inputValue, setInputValue] = useState(max === 12 ? getHours() : getMinutes());
+function NumberPicker({ max, val, onChange }) {
 
-   useEffect(() => {
-      onChange(inputValue)
-   }, [inputValue, onChange])
+   // useEffect(() => {
+   //    onChange(val)
+   // }, [inputValue, onChange])
 
    const changeNumber = (e) => { 
       if (e.currentTarget.dataset.value === '+') {
-         +inputValue >= 9 ? setInputValue(+inputValue + 1) : setInputValue('0' + (+inputValue + 1));
+         +val >= 9 ? onChange(+val + 1) : onChange('0' + (+val + 1));
       } else {
-         +inputValue > 10 ? setInputValue(+inputValue - 1) : setInputValue('0' + (+inputValue - 1));
+         +val > 10 ? onChange(+val - 1) : onChange('0' + (+val - 1));
       }
    }
 
@@ -54,43 +53,45 @@ function NumberPicker({ max, onChange }) {
       const target = e.target.value
 
       if (target && target > max) {
-         setInputValue(max);
+         onChange(max);
          return
       } else if (target && target < 0) {
-         setInputValue();
+         onChange();
          return
       }
 
-      setInputValue(target);
+      onChange(target);
    }
 
    const handleInputBlur = () => {
-      if (+inputValue === 0) {
-         setInputValue('00')
-      } else if (+inputValue < 10 && inputValue.length === 1) {
-         setInputValue('0' + inputValue)
+      if (+val === 0) {
+         onChange('00')
+      } else if (+val < 10 && val.length === 1) {
+         onChange('0' + val)
       }
    }
 
    return (
       <StyledNumberPicker>
          <button
+            type="button"
             onClick={changeNumber}
             data-value="+"
-            disabled={+inputValue >= max}
+            disabled={+val >= max}
          >
             <ChevronUp />
          </button>
          <input
             type="number"
-            value={inputValue}
+            value={val}
             onChange={handleInputChange}
             onBlur={handleInputBlur}
          />
          <button
+            type="button"
             onClick={changeNumber}
             data-value="-"
-            disabled={+inputValue <= 0}
+            disabled={+val <= 0}
          >
             <ChevronDown />
          </button>

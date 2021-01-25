@@ -10,6 +10,8 @@ export function dynamicSort(property, direction) {
    }
 }
 
+export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 export function getHours() {
    let hours = new Date().getHours();
    
@@ -32,7 +34,13 @@ export function getDisplayDate(date) {
    return `${arr[0]} ${+arr[2]} ${arr[1]}`
 }
 
-export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+export function getTaskDate(miliseconds) {
+   const date = new Date(miliseconds);
+   const month = months[date.getMonth()].slice(0,3);
+   const day = date.getDate();
+   
+   return `${day} ${month.slice(0,3)}`;
+}
 
 export function getMiliseconds(dateString) {
    if (!dateString) {

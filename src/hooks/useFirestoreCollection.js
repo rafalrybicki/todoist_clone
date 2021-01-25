@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
 
-function useFirestoreCollection(collectionName, condition) {
+function useFirestoreCollection(collectionName, condition0, condition1, condition2) {
    const [tasks, setTasks] = useState([]);
 
    useEffect(() => {
+      console.log('useFirestoreCollection wywołanie')
       const collection = db.collection(collectionName)
-         .where(condition[0], condition[1], condition[2])
+         .where(condition0, condition1, condition2)
          .onSnapshot(function(snapshot) {
             snapshot.docChanges().forEach(function(change) {
                if (change.type === "added") {
@@ -26,7 +27,7 @@ function useFirestoreCollection(collectionName, condition) {
       });
 
       return () => collection();
-   }, [])
+   }, [collectionName, condition0, condition1, condition2])
 
    const addTask = (newTask) => {
       setTasks(tasks => [...tasks, newTask])

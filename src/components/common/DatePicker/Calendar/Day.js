@@ -13,7 +13,7 @@ const StyledCalendarDay = styled.td`
       padding-right: ${props => props.number > 9 ? '1px' : '0'};
 
       &:disabled {
-         opacity: .1
+         opacity: .2
       }
 
       &:hover {

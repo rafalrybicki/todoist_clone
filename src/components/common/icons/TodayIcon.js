@@ -30,7 +30,7 @@ function TodayIcon({ size }) {
    const day = new Date().getDate();
 
    return (
-      <StyledTodayIcon size={size}>
+      <StyledTodayIcon size={size} className="today-icon">
          <Calendar size={size} />
          <span className="day">
             {day}

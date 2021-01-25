@@ -9,6 +9,7 @@ import PriorityPicker from './PriorityPicker';
 import ReminderPicker from './ReminderPicker';
 import SubmitBtn from '../common/buttons/SubmitBtn';
 import CancelBtn from '../common/buttons/CancelBtn';
+import { getHours } from '../../utils';
 
 const StyledEditor = styled.form`
    position: relative;
@@ -49,10 +50,11 @@ const StyledEditor = styled.form`
    }
 `
 
-function Editor({ currentContent, currentTargetDate, currentProjectId, currentSectionId, currentPriority, onSave, onClose, isTask }) {
+function Editor({ currentContent, currentTargetDate, currentTargetDateTime, currentProjectId, currentSectionId, currentPriority, onSave, onClose, isTask }) {
    const [content, setContent] = useState(currentContent || '');
    const [targetDate, setTargetDate] = useState(currentTargetDate || null);
-   const [projectId, setProjectId] = useState(currentProjectId);
+   const [targetDateTime, setTargetDateTime] = useState(currentTargetDateTime || null);
+   const [projectId, setProjectId] = useState(currentProjectId || null);
    const [sectionId, setSectionId] = useState(currentSectionId || null);
    const [priority, setPriority] = useState(currentPriority || 4);
 
@@ -63,6 +65,7 @@ function Editor({ currentContent, currentTargetDate, currentProjectId, currentSe
          onSave({
             content,
             targetDate,
+            targetDateTime,
             projectId,
             sectionId,
             priority,
@@ -79,7 +82,7 @@ function Editor({ currentContent, currentTargetDate, currentProjectId, currentSe
          onClose();
       }
    }
-
+   
    return (
       <StyledEditor
          onSubmit={handleSave}
@@ -99,6 +102,8 @@ function Editor({ currentContent, currentTargetDate, currentProjectId, currentSe
                <DatePicker
                   date={targetDate}
                   setDate={setTargetDate}
+                  dateTime={targetDateTime}
+                  setDateTime={setTargetDateTime}
                />
                <ProjectPicker
                   projectId={projectId}

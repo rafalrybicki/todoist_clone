@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
+
+import { getHours, getMinutes } from '../../../../utils';
+
 import NumberPicker from './NumberPicker';
 import TimePeriodPicker from './TimePeriodPicker';
 
@@ -60,15 +63,32 @@ const StyledTimePicker = styled.div`
    }
 `
 
-function TimePicker() {
+
+function getTimeArr(miliseconds) {
+   const date = miliseconds ? Date.parse(miliseconds) : new Date();
+   let hours = date.getHours();
+   const minutes = date.getMinutes();
+   const timePeriod = hours > 12 ? 'PM' : 'AM';
+
+   if (hours > 12) {
+      hours -= 12;
+   }
+
+   return [hours, minutes, timePeriod]
+}
+
+function TimePicker({ date, setDate, dateTime, setDateTime }) {
    const [showPicker, togglePicker] = useState(false);
-   const [timePeriod, setTimePeriod] = useState(new Date().getHours() > 12 ? 'PM' : 'AM');
-   const [hours, setHours] = useState(null);
-   const [minutes, setMinutes] = useState(null);
+   const [hours, setHours] = useState(date ? date[0] : getHours());
+   const [minutes, setMinutes] = useState(date ? date[1] : getMinutes());
+   const [timePeriod, setTimePeriod] = useState((date && date > 12) || (new Date().getHours() > 12) ? 'PM' : 'AM');
+
+   console.log(hours, minutes, timePeriod)
 
    return (
       <StyledTimePicker showPicker={showPicker}>
          <button
+            type="button"
             className="addtime-btn"
             onClick={() => togglePicker(true)}
          >
@@ -77,21 +97,27 @@ function TimePicker() {
          <div className="pickers">
             <NumberPicker
                max={12}
+               val={hours}
                onChange={setHours}
             />
             <span className="separator">:</span>
             <NumberPicker
                max={59}
+               val={minutes}
                onChange={setMinutes}
             />
             <TimePeriodPicker
                timePeriod={timePeriod}
                onChange={setTimePeriod}
             />
-            <button className="save-btn">Save</button>
+            <button
+               type="button"
+               className="save-btn"
+            >Save</button>
          </div>
          {showPicker &&
             <button
+               type="button"
                className="cancel-btn"
                onClick={() => togglePicker(false)}
             >

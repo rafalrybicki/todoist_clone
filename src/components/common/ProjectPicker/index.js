@@ -27,7 +27,7 @@ const StyledProjectPicker = styled.div`
       }
 
       svg.inbox-icon {
-         margin-bottom: -1.5px;
+         margin-bottom: -2px;
       }
    }
 
@@ -48,7 +48,7 @@ const StyledProjectPicker = styled.div`
       overflow-x: hidden;
 
       .project svg.inbox-icon {
-         top: 8px;
+         top: 9px;
       }
 
       .project svg {
@@ -67,7 +67,7 @@ const StyledProjectPicker = styled.div`
 `
 
 function ProjectPicker({ projectId, setProjectId, sectionId, setSectionId }) {
-   const projects = useFirestoreCollection('projects', ['ownerId', '==', auth.currentUser.uid]);
+   const projects = useFirestoreCollection('projects', 'ownerId', '==', auth.currentUser.uid);
    const sortedProjects = projects.sort((a, b) => a.order - b.order);
    const options = [];
 
@@ -92,7 +92,7 @@ function ProjectPicker({ projectId, setProjectId, sectionId, setSectionId }) {
             onClick={() => setProject(project.id)}
             className={project.id === projectId ? "active project" : "project"}
          >
-            {project.name === 'Inbox' ? <InboxIcon  size={14} /> : <CircleFill size={10} color={project.color} />}
+            {project.name === 'Inbox' ? <InboxIcon  size={16} /> : <CircleFill size={10} color={project.color} />}
             {project.name}
          </li>
       )

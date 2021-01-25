@@ -15,22 +15,21 @@ const StyledSuggestionsItem = styled.button`
       background-color: #eee;
    }
 
-   svg {
+   > svg {
       position: absolute;
       top: 9px;
       left: 12px;
-      margin-right: 12px;
    }
 
-   .day {
+   > .day {
       margin-left: auto;
       color: #808080;
    }
 `
 
-function SuggestionsItem({ text, children }) {
+function SuggestionsItem({ text, children, onClick }) {
    return (
-      <StyledSuggestionsItem>
+      <StyledSuggestionsItem type="button" onClick={onClick}>
          {children}
          {text}
          <span className="day">Mon</span>

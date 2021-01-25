@@ -62,7 +62,7 @@ const StyledTask = styled.li`
    }
 `
 
-function Task({ match, id, content, priority, endDate, projectId, projectName, projectPath, sectionId, projectColor, completionDate, subTasks }) {
+function Task({ id, content, priority, endDate, projectId, projectName, projectPath, sectionId, projectColor, targetDate, targetDateTime, completionDate, subTasks }) {
    const [editor, showEditor] = useState(false);
    const pathname = `${window.location.pathname}/${id}`;
    const state = {
@@ -94,6 +94,8 @@ function Task({ match, id, content, priority, endDate, projectId, projectName, p
             currentContent={content}
             currentProjectId={projectId}
             currentSectionId={sectionId}
+            currentTargetDate={targetDate}
+            currentTargetDateTime={targetDateTime}
             currentProjectColor={projectColor}
             currentPriority={priority}
             onSave={edit}
@@ -114,7 +116,7 @@ function Task({ match, id, content, priority, endDate, projectId, projectName, p
             {content}
          </Link>
          <Actions id={id} openEditor={toggleEditor} />
-         <Date />
+         {targetDate && <Date date={targetDate} />}
          {projectPath && projectName &&
             <ProjectLink
                name={projectName}
@@ -133,6 +135,7 @@ Task.propTypes = {
    projectName: PropTypes.string,
    projectPath: PropTypes.string,
    projectColor: PropTypes.string,
+   targetDate: PropTypes.string,
    completionDate: PropTypes.string,
    subTasks: PropTypes.array
 }

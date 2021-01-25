@@ -37,6 +37,7 @@ function TimePeriodPicker({ timePeriod, onChange }) {
    return (
       <StyledTimePeriodpicker>
          <button
+            type="button"
             className={timePeriod === 'AM' ? "active" : ""}
             onClick={() => onChange('AM')}
          >
@@ -44,6 +45,7 @@ function TimePeriodPicker({ timePeriod, onChange }) {
          </button>
          
          <button
+            type="button"
             className={timePeriod === 'PM' ? "active" : ""}
             onClick={() => onChange('PM')}
          >

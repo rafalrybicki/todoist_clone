@@ -69,7 +69,7 @@ const StyledTaskSection = styled.div`
 `
 
 function TaskSection({ name, sectionId, projectId, userId }) {
-   const tasks = useFirestoreCollection('tasks', ['sectionId', '==', sectionId]);
+   const tasks = useFirestoreCollection('tasks', 'sectionId', '==', sectionId);
    const [showList, toggleSectionList] = useState(true);
    const [editor, toggleEditor] = useState(false);
 
@@ -79,9 +79,8 @@ function TaskSection({ name, sectionId, projectId, userId }) {
          sectionId,
          ownerId: userId,
          priority: 4,
-         order: 0,
-         targetDate: '',
-         completionDate: '',
+         targetDate: null,
+         completionDate: null,
          subTasks: [],
          comments: [],
          activity: []
@@ -125,6 +124,7 @@ function TaskSection({ name, sectionId, projectId, userId }) {
                key={task.id}
                id={task.id}
                projectId={task.projectId}
+               sectionId={task.sectionId}
                content={task.content}
                priority={task.priority}
                targetDate={task.targetDate}

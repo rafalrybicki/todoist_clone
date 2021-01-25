@@ -11,20 +11,23 @@ const StyledCalendar = styled.div`
    border-bottom: 1px solid #ddd;
 `
 
-function Calendar() {
+function Calendar({ currentDate, setDate }) {
+   const date = currentDate ? getDate(currentDate) : getDate();
    const today = getDate();
-   const [year, setYear] = useState(today.year);
-   const [month, setMonth] = useState(today.month);
-   const [miliseconds, setMiliseconds] = useState(0);
+   const miliseconds = date.miliseconds;
+   const [year, setYear] = useState(date.year);
+   const [month, setMonth] = useState(date.month);
+   // const [miliseconds, setMiliseconds] = useState(date.valueOf());
 
    const firstDay = getFirstDayOfTheMonth(month, year);
    const lastDay = getLastDayOfTheMonth(month, year);
    const monthArr = getMonth(month, year);
 
    const reset = () => {
-      setYear(today.year);
-      setMonth(today.month);
-      setMiliseconds(0);
+      setDate(null);
+      const today = getDate()
+      setYear(today.year)
+      setMonth(today.month)
    }
 
    return (
@@ -47,9 +50,9 @@ function Calendar() {
                      <Day
                         key={day.miliseconds}
                         number={day.day}
-                        active={day.miliseconds === miliseconds}
-                        onClick={() => setMiliseconds(day.miliseconds)}
-                        disabled={day.miliseconds < firstDay || day.miliseconds > lastDay}
+                        active={day.miliseconds === miliseconds && currentDate > 0}
+                        onClick={() => setDate(day.miliseconds)}
+                        disabled={day.miliseconds < firstDay || day.miliseconds > lastDay || day.miliseconds < today.miliseconds}
                      />
                   )}
                </tr>
