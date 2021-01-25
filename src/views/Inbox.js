@@ -15,6 +15,7 @@ import Editor from '../components/Editor';
 import { auth, db } from '../firebase';
 import useNotSectionedTasks from '../hooks/useNotSectionedTasks';
 import ProtectedRoute from './ProtectedRoute';
+import { useSelector } from 'react-redux';
 
 
 function useFirestoreDocument(path) {
@@ -33,7 +34,7 @@ function useFirestoreDocument(path) {
 }
 
 function Inbox({ match }) {
-   const userId = auth.currentUser.uid;
+   const userId = useSelector(state => state.user.id);
    const [editor, showEditor] = useState(false);
    const defaultSection = useNotSectionedTasks(userId);
    const inbox = useFirestoreDocument('projects/' + userId);

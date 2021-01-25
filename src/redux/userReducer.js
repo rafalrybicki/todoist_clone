@@ -1,8 +1,10 @@
 import {
-   LOGIN, LOGOUT
+   LOGIN,
+   LOGOUT
 } from './actionTypes';
 
-const initialState = {}
+const initialState = JSON.parse(localStorage.getItem('user')) || {};
+console.log('INITIAL USER = ' + JSON.stringify(initialState))
 
 function userReducer(state = initialState, action) {
    switch (action.type) {
