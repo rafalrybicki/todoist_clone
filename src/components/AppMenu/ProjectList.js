@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import useFirestoreCollection from '../../hooks/useFirestoreCollection';
-import { auth } from '../../firebase';
+// import useFirestoreCollection from '../../hooks/useFirestoreCollection';
 
 import ExpandableList from './ExpandableList';
 import ListItem from './ListItem';
 import { CircleFill } from 'react-bootstrap-icons';
 import NewItemBtn from '../common/buttons/NewItemBtn';
+// import { useSelector } from 'react-redux';
 
 function ProjectList({ isMobile, closeMenu }) {
-   const projects = useFirestoreCollection('projects', 'ownerId', '==', auth.currentUser.uid);
+   // const userId = useSelector(state => state.user.id )
+   // const projects = useFirestoreCollection('projects', 'ownerId', '==', userId);
 
-   projects.filter(project => project.order !== 0)
+   // projects.filter(project => project.order !== 0)
+   const projects = []
+
    return (
       <ExpandableList text="projects">
          {projects.filter(project => project.order !== 0).map(project => 

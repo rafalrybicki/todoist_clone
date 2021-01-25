@@ -1,14 +1,19 @@
 import React from 'react';
 
-import { auth } from '../firebase';
+import { auth, usersCollection } from '../firebase';
 import { Redirect } from 'react-router-dom';
 import EntranceView from './EntranceView';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../redux/actions';
 
 function Login({ history }) {
-   if (auth.currentUser && auth.currentUser.uid) {
-      return <Redirect to="/index" />
-   }
+   const dispatch = useDispatch()
+   const userId = useSelector(state => state.user.id);
+
+   if (userId) {
+      return <Redirect to="/inbox" />
+   } 
 
    function loginWithGoogle() {
       alert('coming soon')
@@ -16,9 +21,15 @@ function Login({ history }) {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-
+ 
       auth.signInWithEmailAndPassword(e.target.email.value, e.target.password.value)
-         .then(() => history.push("/index"))
+         .then((resp) => {
+            usersCollection.doc(resp.user.uid).get().then(doc => {
+               const user = doc.data();
+
+               dispatch(login(user))
+            })
+         })
          .catch(error => alert(error.message));
    }
 

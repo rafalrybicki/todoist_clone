@@ -1,11 +1,15 @@
 import React from 'react';
-import { auth } from '../firebase'; 
 import { Redirect, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function ProtectedRoute({ path, component }) {
-   if (!auth.currentUser) {
+   const userId = useSelector(state => state.user.id);
+
+   if (!userId) {
+      console.log(" NOT LOGGED IN")
       return <Redirect to="/login" />
-   }
+   } 
+
    return (
       <Route path={path} component={component} />
    )

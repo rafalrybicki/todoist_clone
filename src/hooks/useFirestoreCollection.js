@@ -5,27 +5,27 @@ function useFirestoreCollection(collectionName, condition0, condition1, conditio
    const [tasks, setTasks] = useState([]);
 
    useEffect(() => {
-      console.log('useFirestoreCollection wywołanie')
       const collection = db.collection(collectionName)
-         .where(condition0, condition1, condition2)
-         .onSnapshot(function(snapshot) {
-            snapshot.docChanges().forEach(function(change) {
-               if (change.type === "added") {
-                  console.log("ADD");
-                  console.log( change.doc.data());
-                  addTask(change.doc.data());
-               }
-               if (change.type === "modified") {
-                  console.log("MODIFIED")
-                  changeTask(change.doc.data())
-               }
-               if (change.type === "removed") {
-                  console.log("REMOVED")
-                  removeTask(change.doc.data().id);
-               }
-            });
-      });
-
+      if(condition2) {
+         collection.where(condition0, condition1, condition2)
+            .onSnapshot(function(snapshot) {
+               snapshot.docChanges().forEach(function(change) {
+                  if (change.type === "added") {
+                     console.log("ADD");
+                     console.log( change.doc.data());
+                     addTask(change.doc.data());
+                  }
+                  if (change.type === "modified") {
+                     console.log("MODIFIED")
+                     changeTask(change.doc.data())
+                  }
+                  if (change.type === "removed") {
+                     console.log("REMOVED")
+                     removeTask(change.doc.data().id);
+                  }
+               });
+         });
+      }
       return () => collection();
    }, [collectionName, condition0, condition1, condition2])
 

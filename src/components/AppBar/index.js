@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { auth } from '../../firebase';
-import { useHistory } from 'react-router-dom';
+import { logout } from '../../redux/actions';
+
 import IconBtn from '../common/buttons/IconBtn';
 import SearchInput from './SearchInput';
 
 import { Justify, HouseDoor, Plus, GraphUp, QuestionCircle, Bell } from 'react-bootstrap-icons';
+import { useDispatch } from 'react-redux';
+import { auth } from '../../firebase';
 
 const StyledAppBar = styled.div`
    position: absolute;
@@ -52,15 +54,10 @@ const StyledAppBar = styled.div`
 `
 
 function AppBar({ toggleMenu }) {
-   const history = useHistory();
-   
-   const logout = () => {
-      auth.signOut()
-         .then(() => {
-            history.push('/login')
-         }).catch((error) => {
-            alert(error.message)
-         });
+   const dispatch = useDispatch();
+
+   const onLogout = () => {
+      auth.signOut().then(() => dispatch(logout()))
    }
 
    return (
@@ -122,7 +119,10 @@ function AppBar({ toggleMenu }) {
             />
          </IconBtn>
 
-         <span className="circle" onClick={logout}>R</span>
+         <span
+            className="circle"
+            onClick={onLogout}
+         >R</span>
       </StyledAppBar>
    )
 }
