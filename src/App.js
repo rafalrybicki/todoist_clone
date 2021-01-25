@@ -18,6 +18,7 @@ import Project from './views/Project';
 import Today from './views/Today';
 import Upcoming from './views/Upcoming';
 import AppModal from './components/AppModal';
+import FirebaseListener from './components/FirebaseListener';
 
 const StyledApp = styled.div`
   display: flex;
@@ -36,6 +37,7 @@ function App() {
   return (
     <Router>
       <StyledApp className="App">
+        <FirebaseListener />
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />

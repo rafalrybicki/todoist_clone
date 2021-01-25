@@ -18,26 +18,27 @@ import ProtectedRoute from './ProtectedRoute';
 import { useSelector } from 'react-redux';
 
 
-function useFirestoreDocument(path) {
-   const [document, setDocument] = useState({});
+// function useFirestoreDocument(path) {
+//    const [document, setDocument] = useState({});
 
-   useEffect(() => {
-      const collection = db.doc(path)
-         .onSnapshot(function(snapshot) {
-            setDocument(snapshot.data())
-         });
+//    useEffect(() => {
+//       const collection = db.doc(path)
+//          .onSnapshot(function(snapshot) {
+//             setDocument(snapshot.data())
+//          });
 
-      return () => collection();
-   }, [])
+//       return () => collection();
+//    }, [])
 
-   return document
-}
+//    return document
+// }
 
 function Inbox({ match }) {
    const userId = useSelector(state => state.user.id);
    const [editor, showEditor] = useState(false);
-   const defaultSection = useNotSectionedTasks(userId);
-   const inbox = useFirestoreDocument('projects/' + userId);
+   // const defaultSection = useNotSectionedTasks(userId);
+   // const inbox = useFirestoreDocument('projects/' + userId);
+   const inbox = [];
    const sections = inbox && inbox.sections ? Object.values(inbox.sections) : [];
 
    const addNewTask = (obj) => {
@@ -112,7 +113,7 @@ function Inbox({ match }) {
                sortType={inbox.sortType}
                sortDirection={inbox.sortDirection}
             />
-            {defaultSection.map( task => 
+            {/* {defaultSection.map( task => 
                <Task
                   key={task.id}
                   id={task.id}
@@ -125,7 +126,7 @@ function Inbox({ match }) {
                   completionDate={task.completionDate}
                   subTasks={task.subTasks}
                />
-            )}
+            )} */}
             {!editor && <NewItemBtn text="Add task" onClick={toggleEditor} />}
             {editor && 
                <Editor
@@ -136,7 +137,7 @@ function Inbox({ match }) {
                />
             }
             <NewSection projectId={userId} />
-            {sections.map(section => 
+            {/* {sections.map(section => 
                <TaskSection
                   key={section.id}
                   sectionId={section.id}
@@ -144,7 +145,7 @@ function Inbox({ match }) {
                   userId={userId}
                   name={section.name}
                />
-            )}
+            )} */}
          </div>
          <ProtectedRoute path={match.url + '/:taskId'} component={Modal} />
       </>
