@@ -12,7 +12,7 @@ function projectsReducer(state = initialState, action) {
          return [
             ...state,
             action.project
-         ];
+         ].sort((a,b) => a.order - b.order);
       case EDIT_PROJECT:
          return state.map(project => project.id !== action.project.id ? project : action.project);
       case DELETE_PROJECT:

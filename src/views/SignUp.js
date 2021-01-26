@@ -35,7 +35,11 @@ function SignUp({ history }) {
                view: 'list',
                sortType: 'order',
                sortDirection: 'down',
-               sections: {},
+               sections: [{
+                  id: 'default',
+                  name: 'default',
+                  order: 0
+               }],
                comments: []
             })
          })

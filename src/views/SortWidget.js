@@ -61,7 +61,7 @@ function getSortDescription(sortType) {
 }
 
 function SortWidget({ projectId, sortType, sortDirection }) {
-   if (sortType === 'order') {
+   if (sortType === 'order' || !sortType) {
       return null
    }
 
@@ -102,10 +102,10 @@ function SortWidget({ projectId, sortType, sortDirection }) {
 SortWidget.propTypes = {
    sortType: PropTypes.oneOf([
       'order', 'date', 'priority', 'alphabetically', 'assignee', 'custom'
-   ]).isRequired,
+   ]),
    sortDirection: PropTypes.oneOf([
       'up', 'down'
-   ]).isRequired
+   ])
 }
 
 export default SortWidget
