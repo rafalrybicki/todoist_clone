@@ -1,23 +1,26 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { GripVertical } from 'react-bootstrap-icons';
+import { Grid3x2GapFill } from 'react-bootstrap-icons';
 
 const StyledGrip = styled.button`
    display: flex;
    justify-content: center;
    align-items: center;
    height: 28px;
-   width: 35px;
-   padding-left: 7px;
+   width: 28px;
    cursor: move;
    position: absolute;
    color: transparent;
    border-radius: 3px;
 
+   svg {
+      transform: rotate(90deg)
+   }
+
    &:hover {
       svg {
-         color: #202020 !important;
+         color: #202020;
       }
    } 
 `
@@ -25,7 +28,7 @@ const StyledGrip = styled.button`
 function Grip() {
    return (
       <StyledGrip className="grip">
-         <GripVertical size="20"/>
+         <Grid3x2GapFill size="16"/>
       </StyledGrip>
    )
 }
