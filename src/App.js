@@ -5,6 +5,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import ProtectedRoute from './views/ProtectedRoute';
 import styled from 'styled-components/macro';
 
@@ -29,6 +30,7 @@ const StyledApp = styled.div`
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(true);
+  const userId = useSelector(state => state.user.id);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -41,7 +43,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
           <Route path='/'>
-            <FirebaseListener />
+            {userId && <FirebaseListener userId={userId} />}
             <AppBar toggleMenu={toggleMenu} />
             <AppMenu isOpen={menuOpen} closeMenu={toggleMenu}/>
             <MainView>

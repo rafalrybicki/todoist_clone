@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { projectsCollection, tasksCollection } from '../firebase';
 
 import { addProject, editProject, deleteProject, addTask, editTask, deleteTask } from '../redux/actions';
 
-function FirebaseListener() {
-   const userId = useSelector(state => state.user.id);
+function FirebaseListener({ userId }) {
    const dispatch = useDispatch();
 
    useEffect(() => {
