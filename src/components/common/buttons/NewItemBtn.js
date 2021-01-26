@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 const StyledNewitemBtn = styled.button`
@@ -15,9 +16,10 @@ const StyledNewitemBtn = styled.button`
       width: 18px;
       font-size: 24px;
       font-weight: 300;
-      margin-right: 9px;
-      vertical-align: middle;
-      line-height: 17px;
+      margin-right: 8px;
+      margin-top: -1px;
+      line-height: 12px;
+      padding-left: 0.8px;
       border-radius: 50%;
       transition: background-color .1s;
    }
@@ -34,10 +36,20 @@ const StyledNewitemBtn = styled.button`
 
 function NewItemBtn({ text, onClick, width = "100%" }) {
    return (
-      <StyledNewitemBtn width={width} onClick={onClick}>
-         <span>+</span> {text}
+      <StyledNewitemBtn
+         width={width}
+         onClick={onClick}
+      >
+         <span>+</span> 
+         {text}
       </StyledNewitemBtn>
    )
+}
+
+NewItemBtn.propTypes = {
+   text: PropTypes.string.isRequired,
+   onClick: PropTypes.func.isRequired,
+   width: PropTypes.string
 }
 
 export default NewItemBtn
