@@ -64,10 +64,10 @@ function Inbox({ match }) {
             {inbox.sections.map(section => 
                <ProjectSection
                   key={section.id}
+                  name={section.name}
                   sectionId={section.id}
                   projectId={userId}
-                  userId={userId}
-                  name={section.name}
+                  isOpen={section.isOpen}
                />
             )}
          </div>

@@ -104,7 +104,12 @@ function ProjectEditor({ close }) {
          view,
          sortType: 'order',
          sortDirection: 'up',
-         sections: {},
+         sections: [{
+            id: 'default',
+            name: 'default',
+            order: 0,
+            isOpen: true,
+         }],
          comments: [],
       })
    }

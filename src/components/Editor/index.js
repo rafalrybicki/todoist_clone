@@ -9,7 +9,6 @@ import PriorityPicker from './PriorityPicker';
 import ReminderPicker from './ReminderPicker';
 import SubmitBtn from '../common/buttons/SubmitBtn';
 import CancelBtn from '../common/buttons/CancelBtn';
-import { getHours } from '../../utils';
 
 const StyledEditor = styled.form`
    position: relative;
@@ -121,7 +120,7 @@ function Editor({ currentContent, currentTargetDate, currentTargetDateTime, curr
          }
          <SubmitBtn
             text="Add task"
-            disabled={content === ''}
+            disabled={content === currentContent || content === ''}
          />
          <CancelBtn onClick={onClose} />
       </StyledEditor>

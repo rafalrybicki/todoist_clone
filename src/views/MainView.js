@@ -20,7 +20,7 @@ const StyledMainView = styled.main`
          margin: 0 auto;
       }
 
-      header {
+      > header {
          padding-top: 30px;
          display: flex;
          position: sticky;

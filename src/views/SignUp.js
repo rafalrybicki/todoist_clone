@@ -38,7 +38,8 @@ function SignUp({ history }) {
                sections: [{
                   id: 'default',
                   name: 'default',
-                  order: 0
+                  order: 0,
+                  isOpen: true
                }],
                comments: []
             })

@@ -62,7 +62,22 @@ const StyledTask = styled.li`
    }
 `
 
-function Task({ id, content, priority, endDate, projectId, projectName, projectPath, sectionId, projectColor, targetDate, targetDateTime, completionDate, subTasks }) {
+function Task(props) {
+   const { 
+      id,
+      content,
+      priority,
+      endDate,
+      projectId,
+      projectName,
+      projectPath,
+      sectionId, projectColor,
+      targetDate,
+      targetDateTime,
+      completionDate,
+      subTasks
+   } = props;
+
    const [editor, showEditor] = useState(false);
    const pathname = `${window.location.pathname}/${id}`;
    const state = {
