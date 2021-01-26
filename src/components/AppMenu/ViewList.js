@@ -21,7 +21,6 @@ const StyledViewList = styled.ul`
 
 function ViewList({ isMobile, closeMenu}) {
    const favorites = useSelector(state => state.projects.filter(project => project.favorite));
-   console.log(favorites)
    return (
       <StyledViewList>
          <ListItem
@@ -38,7 +37,7 @@ function ViewList({ isMobile, closeMenu}) {
          >
             <TodayIcon size={16} />
          </ListItem>
-         <ListItem
+         {/* <ListItem
             text="Upcoming"
             path="/upcoming"
             onClick={isMobile ? closeMenu : undefined}
@@ -47,7 +46,7 @@ function ViewList({ isMobile, closeMenu}) {
                color="#692fc2"
                size={16}
             />
-         </ListItem>
+         </ListItem> */}
          {favorites.map(favorite => 
             <ListItem
                key={favorite.id}
