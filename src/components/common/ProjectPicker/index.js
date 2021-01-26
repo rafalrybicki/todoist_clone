@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
-import useFirestoreCollection from '../../../hooks/useFirestoreCollection';
-
-import { auth } from '../../../firebase';
-
 import Popover from '../Popover';
-import InboxIcon from '../icons/InboxIcon';
 import MenuList from '../MenuList';
-import { ViewList, CircleFill } from 'react-bootstrap-icons';
+import InboxIcon from '../icons/InboxIcon';
+import { CircleFill } from 'react-bootstrap-icons';
+import SectionListItem from './SectionListItem';
 
 const StyledProjectPicker = styled.div`
    margin-right: auto;
@@ -46,68 +44,53 @@ const StyledProjectPicker = styled.div`
       max-height: 288px;
       overflow-y: auto;
       overflow-x: hidden;
-
-      .project svg.inbox-icon {
-         top: 9px;
-      }
-
-      .project svg {
-         top: 12px;
-      }
-
-      .section {
-         padding-left: 45px;
-
-         svg {
-            left: 20px;
-            top: 10px;
-         }
-      }
    }
 `
 
+function mapProjectsToSections(projects) {
+   const sections = [];
+
+   for (let i = 0; i < projects.length; i++) {
+      const defaultSection = projects[i];
+
+      sections.push({
+         name: defaultSection.name,
+         projectId: defaultSection.id,
+         sectionId: 'default',
+         color: defaultSection.color,
+         icon: defaultSection.name !== 'Inbox' ? 'project' : 'inbox'
+      })
+
+      for(let j = 1; j < projects[i].sections.length; j++) {
+         const section = projects[i].sections[j];
+         
+         sections.push({
+            name: section.name,
+            projectId: projects[i].id,
+            sectionId: section.id,
+            icon: 'section'
+         })
+      }
+   }
+   
+   return sections
+}
+
 function ProjectPicker({ projectId, setProjectId, sectionId, setSectionId }) {
-   const projects = useFirestoreCollection('projects', 'ownerId', '==', auth.currentUser.uid);
-   const sortedProjects = projects.sort((a, b) => a.order - b.order);
-   const options = [];
+   const projects = useSelector(state => state.projects);
+   const sectionListItems = mapProjectsToSections(projects);
 
    const activeProject = projects.find(project => project.id === projectId);
-   const projectName = activeProject ? activeProject.name : '';
-   const projectColor = activeProject ? activeProject.color : '';
-   const sectionName = (activeProject  && sectionId) ? activeProject.sections[sectionId].name : '';
+   const activeSection = activeProject.sections.find(section => section.id === sectionId);
 
-   const setProject = (projectId) => {
-      setProjectId(projectId);
-      setSectionId(null)
-   }
+   const activeProjectName = activeProject.name || '';
+   const activeProjectColor = activeProject.color || '';
+   const activeSectionName = activeSection.name || '';
 
    const setSection = (projectId, sectionId) => {
       setProjectId(projectId);
       setSectionId(sectionId)
    }
-
-   sortedProjects.map(project => {
-      options.push(
-         <li
-            onClick={() => setProject(project.id)}
-            className={project.id === projectId ? "active project" : "project"}
-         >
-            {project.name === 'Inbox' ? <InboxIcon  size={16} /> : <CircleFill size={10} color={project.color} />}
-            {project.name}
-         </li>
-      )
-      Object.values(project.sections).map(section => {
-         options.push(
-            <li
-               onClick={() => setSection(project.id, section.id)}
-               className={section.id === sectionId ? "active section" : "section"}
-            >
-               <ViewList size={16} />
-               {section.name}
-            </li>
-         )
-      })
-   })
 
    return (
       <StyledProjectPicker>
@@ -117,15 +100,31 @@ function ProjectPicker({ projectId, setProjectId, sectionId, setSectionId }) {
                   type="button"
                   className="activator"
                >
-                  {projectName === 'Inbox' ? <InboxIcon  size={14} /> : <CircleFill size={10} color={projectColor} />}
-                  {projectName} {sectionName &&  ' / ' + sectionName }
+                  {activeProjectName === 'Inbox' &&
+                     <InboxIcon size={14} />
+                  }
+                  {activeProjectName !== 'Inbox' &&
+                     <CircleFill
+                        size={10}
+                        color={activeProjectColor}
+                     />
+                  }
+                  {activeProjectName} {activeSectionName !== 'default' &&  ' / ' + activeSectionName}
                </button>
             }
             content={
                <div>
                   <input type="text"/>
                   <MenuList>
-                     {options}
+                     {sectionListItems.map(item =>
+                        <SectionListItem
+                           name={item.name}
+                           icon={item.icon}
+                           color={item.color}
+                           active={sectionId === item.sectionId && projectId === item.projectId}
+                           onClick={() => setSection(item.projectId, item.sectionId)}
+                        />
+                     )}
                   </MenuList>
                </div>
             }
