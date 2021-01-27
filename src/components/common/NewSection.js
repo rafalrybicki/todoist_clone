@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import { firebase, projectsCollection } from '../../firebase';
@@ -58,40 +59,52 @@ const StyledNewSection = styled.div`
    }
 `
 
-function NewSection({ projectId, nextOrder }) {
-   const [editor, showEditor] = useState(false);
+function NewSection({ projectId, order }) {
+   const [openEditor, setOpenEditor] = useState(false);
+
+   const toggleEditor = () => {
+      setOpenEditor(openEditor => !openEditor)
+   }
 
    const addNewSection = (name) => {
-      const projectRef = projectsCollection.doc(projectId)
+      const projectRef = projectsCollection.doc(projectId);
+
       const newSection = {
          name,
          id: uuid(),
-         order: nextOrder,
+         order: order,
          isOpen: true
       }
    
       projectRef.update({
          sections: firebase.firestore.FieldValue.arrayUnion(newSection)
       })
+
+      toggleEditor()
    }
 
    return (
       <StyledNewSection>
-         {!editor &&
+         {!openEditor &&
             <button
-               onClick={() => showEditor(true)}
+               onClick={toggleEditor}
             >
                <span>Add Section</span>
             </button>
          }
-         {editor && 
+         {openEditor && 
             <Editor
                onSave={addNewSection}
-               onClose={() => showEditor(false)}
+               onClose={toggleEditor}
             />
          }
       </StyledNewSection>
    )
+}
+
+NewSection.propTypes = {
+   projectId: PropTypes.string.isRequired,
+   order: PropTypes.number.isRequired
 }
 
 export default NewSection

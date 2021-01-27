@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
+import { firebase, projectsCollection } from '../../firebase';
+
 import Editor from '../Editor';
 import Grip from './Grip';
 import IconBtn from './buttons/IconBtn';
@@ -10,6 +12,7 @@ import ChevronIcon from './icons/ChevronIcon';
 import { ThreeDots } from 'react-bootstrap-icons';
 import Task from '../Task';
 import NewTask from './NewTask';
+import NewSection from './NewSection';
 
 const StyledProjectSection = styled.section`
    position: relative;
@@ -59,11 +62,36 @@ const StyledProjectSection = styled.section`
    }
 `
 
-function ProjectSection({ name, sectionId, projectId, isOpen }) {
+function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSiblingOrder }) {
    const tasks = useSelector(state => state.tasks.filter(task => task.projectId === projectId && task.sectionId === sectionId));
    const [openEditor, setOpenEditor] = useState(false);
 
-   const editSection = (newName) => alert('change name from ' + name + ' to ' + newName) 
+   const toggleEditor = () => {
+      setOpenEditor(openEditor => !openEditor)
+   }
+
+   const editSection = (newName) => {
+      const projectRef = projectsCollection.doc(projectId)
+
+      projectRef.update({
+         sections: firebase.firestore.FieldValue.arrayRemove({
+            id: sectionId,
+            name,
+            isOpen,
+            order
+         })
+      });
+
+      projectRef.update({
+         sections: firebase.firestore.FieldValue.arrayUnion({
+            id: sectionId,
+            name: newName,
+            isOpen,
+            order,
+         })
+      });
+
+   } 
 
    const toggleSectionOpening = () => alert('open section')
 
@@ -73,7 +101,7 @@ function ProjectSection({ name, sectionId, projectId, isOpen }) {
             <Editor
                currentContent={name}
                onSave={editSection}
-               onClose={() => setOpenEditor(false)}
+               onClose={toggleEditor}
             />
          }
 
@@ -94,7 +122,7 @@ function ProjectSection({ name, sectionId, projectId, isOpen }) {
                   width="28px"
                   tooltip="More section actions"
                   tooltipWidth="112px"
-                  onClick={() => setOpenEditor(true)}
+                  onClick={toggleEditor}
                   className="more"
                >
                   <ThreeDots size="20"/>
@@ -121,6 +149,11 @@ function ProjectSection({ name, sectionId, projectId, isOpen }) {
             sectionId={sectionId}
             projectId={projectId}
          />
+
+         <NewSection
+            projectId={projectId}
+            order={nextSiblingOrder === 0 ? order + 1 : (order + nextSiblingOrder) / 2}
+         />
       </StyledProjectSection>
    )
 }
@@ -129,7 +162,8 @@ ProjectSection.propTypes = {
    name: PropTypes.string.isRequired,
    sectionId: PropTypes.string.isRequired,
    projectId: PropTypes.string.isRequired,
-   isOpen: PropTypes.bool.isRequired
+   isOpen: PropTypes.bool.isRequired,
+   order: PropTypes.number.isRequired
 }
 
 export default ProjectSection

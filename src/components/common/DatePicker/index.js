@@ -77,9 +77,9 @@ function DatePicker({ date, setDate, dateTime, setDateTime }) {
 }
 
 DatePicker.propTypes = {
-   date: PropTypes.string,
+   date: PropTypes.number,
    setDate: PropTypes.func.isRequired,
-   dateTime: PropTypes.string,
+   dateTime: PropTypes.number,
    setDateTime: PropTypes.func.isRequired
 }
 

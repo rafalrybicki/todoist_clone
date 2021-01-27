@@ -1,8 +1,9 @@
-import firebase from "firebase/app";
+import fb from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import firebaseConfig  from './firebaseConfig';
 
+const firebase = fb;
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
@@ -22,6 +23,7 @@ auth.onAuthStateChanged((user) => {
 console.log('----------------------')
 
 export {
+   firebase,
    auth,
    db,
    usersCollection,

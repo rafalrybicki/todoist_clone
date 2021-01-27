@@ -61,13 +61,15 @@ function Inbox({ match }) {
                sortType={inbox.sortType}
                sortDirection={inbox.sortDirection}
             />
-            {inbox.sections.map(section => 
+            {inbox.sections.sort((a, b) => a.order - b.order).map((section, index) => 
                <ProjectSection
                   key={section.id}
                   name={section.name}
                   sectionId={section.id}
                   projectId={userId}
                   isOpen={section.isOpen}
+                  order={section.order}
+                  nextSiblingOrder={inbox.sections[index + 1] ? inbox.sections[index + 1].order : 0 }
                />
             )}
          </div>

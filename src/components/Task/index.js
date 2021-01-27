@@ -150,7 +150,8 @@ Task.propTypes = {
    projectName: PropTypes.string,
    projectPath: PropTypes.string,
    projectColor: PropTypes.string,
-   targetDate: PropTypes.string,
+   targetDate: PropTypes.number,
+   targetDateTime: PropTypes.number,
    completionDate: PropTypes.string,
    subTasks: PropTypes.array
 }

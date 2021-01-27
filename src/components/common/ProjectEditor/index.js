@@ -86,7 +86,7 @@ function ProjectEditor({ close }) {
    const [favorite, setFavorite] = useState(false);
    const [view, setView] = useState('list');
    
-   const order = useSelector(state => state.projects.length);
+   const nextOrder = useSelector(state => state.projects.length);
 
    const addProject = (e) => {
       e.preventDefault();
@@ -98,7 +98,7 @@ function ProjectEditor({ close }) {
          id,
          ownerId: auth.currentUser.uid,
          name,
-         order,
+         order: nextOrder,
          color: color.val ? color.val : color,
          favorite,
          view,
