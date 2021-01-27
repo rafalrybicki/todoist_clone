@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
-import { firebase, projectsCollection } from '../../firebase';
+import { projectsCollection } from '../../firebase';
 
 import Editor from '../Editor';
 import Grip from './Grip';
@@ -24,7 +24,7 @@ const StyledProjectSection = styled.section`
       border-bottom: 1px solid #f0f0f0;
 
       .grip {
-         top: -2px;
+         top: -4px;
          left: -60px;
 
          &:hover {
@@ -34,7 +34,7 @@ const StyledProjectSection = styled.section`
       
       .chevron {
          position: absolute;
-         top: -2px;
+         top: -4px;
          left: -32px;
 
          svg {
@@ -70,37 +70,37 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
       setOpenEditor(openEditor => !openEditor)
    }
 
-   const editSection = (newName) => {
-      const projectRef = projectsCollection.doc(projectId)
+   const updateSection = (obj) => {
+      const projectRef = projectsCollection.doc(projectId);
+      const sectionsUpdate = {};
 
-      projectRef.update({
-         sections: firebase.firestore.FieldValue.arrayRemove({
-            id: sectionId,
-            name,
-            isOpen,
-            order
-         })
-      });
+      sectionsUpdate[`sections.${sectionId}`] = {
+         id: sectionId,
+         name,
+         order,
+         isOpen,
+         ...obj
+      };
 
-      projectRef.update({
-         sections: firebase.firestore.FieldValue.arrayUnion({
-            id: sectionId,
-            name: newName,
-            isOpen,
-            order,
-         })
-      });
+      projectRef.update(sectionsUpdate);
 
+      setOpenEditor(false);
    } 
 
-   const toggleSectionOpening = () => alert('open section')
+   const editSectionName = (name) => {
+      updateSection({ name })
+   }
+
+   const toggleSectionOpening = () => {
+      updateSection({ isOpen: !isOpen })
+   }
 
    return (
       <StyledProjectSection isOpen={isOpen}>
          {openEditor &&
             <Editor
                currentContent={name}
-               onSave={editSection}
+               onSave={editSectionName}
                onClose={toggleEditor}
             />
          }
@@ -130,7 +130,7 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
             </header>
          }
 
-         {tasks.map( task => 
+         {isOpen && tasks.map( task => 
             <Task
                key={task.id}
                id={task.id}
@@ -145,10 +145,12 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
             />
          )}
 
-         <NewTask
-            sectionId={sectionId}
-            projectId={projectId}
-         />
+         {isOpen &&
+            <NewTask
+               sectionId={sectionId}
+               projectId={projectId}
+            />
+         }
 
          <NewSection
             projectId={projectId}

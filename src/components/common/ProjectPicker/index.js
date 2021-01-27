@@ -51,18 +51,20 @@ function mapProjectsToSections(projects) {
    const sections = [];
 
    for (let i = 0; i < projects.length; i++) {
-      const defaultSection = projects[i];
+      const projectAsDefaultSection = projects[i];
 
       sections.push({
-         name: defaultSection.name,
-         projectId: defaultSection.id,
+         name: projectAsDefaultSection.name,
+         projectId: projectAsDefaultSection.id,
          sectionId: 'default',
-         color: defaultSection.color,
-         icon: defaultSection.name !== 'Inbox' ? 'project' : 'inbox'
+         color: projectAsDefaultSection.color,
+         icon: projectAsDefaultSection.name !== 'Inbox' ? 'project' : 'inbox'
       })
 
-      for(let j = 1; j < projects[i].sections.length; j++) {
-         const section = projects[i].sections[j];
+      const projectSections = Object.values(projects[i].sections).sort((a, b) => a.order - b.order);
+
+      for(let j = 1; j < projectSections.length; j++) {
+         const section = projectSections[j];
          
          sections.push({
             name: section.name,
@@ -81,7 +83,7 @@ function ProjectPicker({ projectId, setProjectId, sectionId, setSectionId }) {
    const sectionListItems = mapProjectsToSections(projects);
 
    const activeProject = projects.find(project => project.id === projectId);
-   const activeSection = activeProject.sections.find(section => section.id === sectionId);
+   const activeSection = activeProject.sections[sectionId];
 
    const activeProjectName = activeProject.name || '';
    const activeProjectColor = activeProject.color || '';

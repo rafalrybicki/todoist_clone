@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { auth, db } from '../firebase';
+import { auth, usersCollection, projectsCollection } from '../firebase';
 import { Redirect } from 'react-router-dom';
 import EntranceView from './EntranceView';
 import { Link } from 'react-router-dom';
@@ -21,13 +21,13 @@ function SignUp({ history }) {
       auth.createUserWithEmailAndPassword(email.value, password.value)
          .then(res => {
             const userId = res.user.uid;
-            db.collection('users').doc(userId).set({
+            usersCollection.doc(userId).set({
                id: res.user.uid,
                displayName: name.value,
                email: email.value
             });
 
-            db.collection('projects').doc(userId).set({
+            projectsCollection.doc(userId).set({
                id: userId,
                name: 'Inbox',
                ownerId: userId,
@@ -35,12 +35,14 @@ function SignUp({ history }) {
                view: 'list',
                sortType: 'order',
                sortDirection: 'down',
-               sections: [{
-                  id: 'default',
-                  name: 'default',
-                  order: 0,
-                  isOpen: true
-               }],
+               sections: {
+                  default: {
+                     id: 'default',
+                     name: 'default',
+                     order: 0,
+                     isOpen: true
+                  }
+               },
                comments: []
             })
          })

@@ -13,6 +13,7 @@ import ProjectSection from '../components/common/ProjectSection';
 function Inbox({ match }) {
    const userId = useSelector(state => state.user.id);
    const inbox = useSelector(state => state.projects.find(project => project.id === userId)) || [];
+   const sections = inbox.sections ? Object.values(inbox.sections).sort((a, b) => a.order - b.order) : [];
 
    return (
       <>
@@ -56,12 +57,14 @@ function Inbox({ match }) {
                   }
                />
             </header>
-            <SortWidget
-               projectId={inbox.id}
-               sortType={inbox.sortType}
-               sortDirection={inbox.sortDirection}
-            />
-            {inbox.sections.sort((a, b) => a.order - b.order).map((section, index) => 
+            {inbox && inbox.sortType !== 'order' && 
+               <SortWidget
+                  projectId={inbox.id}
+                  sortType={inbox.sortType}
+                  sortDirection={inbox.sortDirection}
+               />
+            }
+            {sections.map((section, index) => 
                <ProjectSection
                   key={section.id}
                   name={section.name}
@@ -69,7 +72,7 @@ function Inbox({ match }) {
                   projectId={userId}
                   isOpen={section.isOpen}
                   order={section.order}
-                  nextSiblingOrder={inbox.sections[index + 1] ? inbox.sections[index + 1].order : 0 }
+                  nextSiblingOrder={sections[index + 1] ? sections[index + 1].order : 0 }
                />
             )}
          </div>

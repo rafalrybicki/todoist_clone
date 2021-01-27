@@ -68,17 +68,17 @@ function NewSection({ projectId, order }) {
 
    const addNewSection = (name) => {
       const projectRef = projectsCollection.doc(projectId);
+      const sectionsUpdate = {};
+      const id = uuid();
 
-      const newSection = {
+      sectionsUpdate[`sections.${id}`] = {
+         id,
          name,
-         id: uuid(),
-         order: order,
+         order,
          isOpen: true
-      }
-   
-      projectRef.update({
-         sections: firebase.firestore.FieldValue.arrayUnion(newSection)
-      })
+      };
+
+      projectRef.update(sectionsUpdate)
 
       toggleEditor()
    }
