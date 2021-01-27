@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
-import { db } from '../../firebase';
+import { firebase, projectsCollection } from '../../firebase';
 import { v4 as uuid } from 'uuid';
 
 import Editor from '../Editor';
@@ -58,20 +58,21 @@ const StyledNewSection = styled.div`
    }
 `
 
-function NewSection({ projectId }) {
+function NewSection({ projectId, nextOrder }) {
    const [editor, showEditor] = useState(false);
 
    const addNewSection = (name) => {
-      const projectRef = db.collection('projects').doc(projectId)
-      const usersUpdate = {};
-      const id = uuid();
-
-      usersUpdate[`sections.${id}`] = {
-         id,
-         name
-      };
-
-      projectRef.update(usersUpdate)
+      const projectRef = projectsCollection.doc(projectId)
+      const newSection = {
+         name,
+         id: uuid(),
+         order: nextOrder,
+         isOpen: true
+      }
+   
+      projectRef.update({
+         sections: firebase.firestore.FieldValue.arrayUnion(newSection)
+      })
    }
 
    return (
