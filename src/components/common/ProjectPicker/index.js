@@ -116,8 +116,9 @@ function ProjectPicker({ projectId, setProjectId, sectionId, setSectionId }) {
                <div>
                   <input type="text"/>
                   <MenuList>
-                     {sectionListItems.map(item =>
+                     {sectionListItems.map(item=>
                         <SectionListItem
+                           key={item.sectionId + item.projectId}
                            name={item.name}
                            icon={item.icon}
                            color={item.color}

@@ -1,38 +1,33 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { tasksCollection } from '../../firebase';
 
 import Editor from '../Editor';
 import NewItemBtn from './buttons/NewItemBtn';
 
 function NewTask({ sectionId, projectId}) {
    const [openEditor, setOpenEditor] = useState(false);
-   const toggleEditor = () => setOpenEditor(openEditor => !openEditor)
+   const userId = useSelector(state => state.user.id);
+
+   const toggleEditor = () => {
+      setOpenEditor(openEditor => !openEditor)
+   }
+
    const addTask = (task) => {
-      alert('task in console')
-      console.log(task);
-         // let newTask = {
-      //    projectId,
-      //    sectionId,
-      //    ownerId: userId,
-      //    priority: 4,
-      //    targetDate: null,
-      //    targetDateTime: null,
-      //    completionDate: null,
-      //    subTasks: [],
-      //    comments: [],
-      //    activity: []
-      // }
-
-      // const newTaskRef = db.collection('tasks').doc();
-      // const id = newTaskRef.id
-
-      // newTask = {
-      //    id,
-      //    ...newTask,
-      //    ...obj
-      // }
-      
-      // newTaskRef.set(newTask);
+      const newTaskRef = tasksCollection.doc();
+      const id = newTaskRef.id;
+   
+      newTaskRef.set({
+         id,
+         ...task,
+         ownerId: userId,
+         completionDate: null,
+         subTasks: [],
+         comments: [],
+         activity: []
+      })
    }
 
    if (openEditor) {

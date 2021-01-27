@@ -31,8 +31,8 @@ const StyledTask = styled.li`
    }
 
    .grip {
-      top: 2px;
-      left: -36px;
+      top: 4px;
+      left: -32px;
    }
 
    &:hover {

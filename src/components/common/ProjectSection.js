@@ -32,7 +32,7 @@ const StyledProjectSection = styled.section`
       .chevron {
          position: absolute;
          top: -2px;
-         left: -30px;
+         left: -32px;
 
          svg {
             color: grey;
@@ -60,7 +60,7 @@ const StyledProjectSection = styled.section`
 `
 
 function ProjectSection({ name, sectionId, projectId, isOpen }) {
-   const tasks = useSelector(state => state.tasks.filter(task => task.projectId === projectId && task.section.id === sectionId));
+   const tasks = useSelector(state => state.tasks.filter(task => task.projectId === projectId && task.sectionId === sectionId));
    const [openEditor, setOpenEditor] = useState(false);
 
    const editSection = (newName) => alert('change name from ' + name + ' to ' + newName) 

@@ -17,7 +17,7 @@ import MainView from './views/MainView';
 import Inbox from './views/Inbox';
 import Project from './views/Project';
 import Today from './views/Today';
-import Upcoming from './views/Upcoming';
+// import Upcoming from './views/Upcoming';
 import AppModal from './components/AppModal';
 import FirebaseListener from './components/FirebaseListener';
 
@@ -51,7 +51,7 @@ function App() {
                 <ProtectedRoute path="/inbox" component={Inbox} />
                 <ProtectedRoute path="/project/:projectId" component={Project} />
                 <ProtectedRoute path="/today" component={Today} />
-                <ProtectedRoute path="/upcoming" component={Upcoming} />
+                {/* <ProtectedRoute path="/upcoming" component={Upcoming} /> */}
                 <ProtectedRoute path='/' render={() => <Redirect to= "/inbox" />} />
               </Switch>
             </MainView>
