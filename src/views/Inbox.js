@@ -8,7 +8,7 @@ import { ChatSquare, ArrowDownUp, ThreeDots } from 'react-bootstrap-icons';
 import Popover from '../components/common/Popover';
 import SortList from '../components/common/SortList';
 import SortWidget from './SortWidget';
-import ProjectSection from '../components/common/ProjectSection';
+import ProjectSection from '../components/ProjectSection';
 
 function Inbox({ match }) {
    const userId = useSelector(state => state.user.id);

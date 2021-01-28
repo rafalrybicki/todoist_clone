@@ -6,12 +6,12 @@ import styled from 'styled-components/macro';
 import { projectsCollection } from '../../firebase';
 
 import Editor from '../Editor';
-import Grip from './Grip';
-import IconBtn from './buttons/IconBtn';
-import ChevronIcon from './icons/ChevronIcon';
-import { ThreeDots } from 'react-bootstrap-icons';
+import Grip from '../common/Grip';
+import IconBtn from '../common/buttons/IconBtn';
+import ChevronIcon from '../common/icons/ChevronIcon';
+import SectionMenu from './SectionMenu';
 import Task from '../Task';
-import NewTask from './NewTask';
+import NewTask from '../common/NewTask';
 import NewSection from './NewSection';
 
 const StyledProjectSection = styled.section`
@@ -117,16 +117,11 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
                   <ChevronIcon rotate={isOpen} />
                </IconBtn>
                <h2>{name}</h2>
-               <IconBtn
-                  hoverColor="#eee"
-                  width="28px"
-                  tooltip="More section actions"
-                  tooltipWidth="112px"
-                  onClick={toggleEditor}
-                  className="more"
-               >
-                  <ThreeDots size="20"/>
-               </IconBtn>
+               <SectionMenu
+                  projectId={projectId}
+                  sectionId={sectionId}
+                  edit={toggleEditor}
+               />
             </header>
          }
 

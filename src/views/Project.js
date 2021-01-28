@@ -6,9 +6,7 @@ import { ChatSquare, ArrowDownUp, ThreeDots, PersonPlus } from 'react-bootstrap-
 import { dynamicSort } from '../utils';
 import IconBtn from '../components/common/buttons/IconBtn';
 import Task from '../components/Task'
-import ProjectSection from '../components/common/ProjectSection';
-import NewItemBtn from '../components/common/buttons/NewItemBtn';
-import NewSection from '../components/common/NewSection';
+import ProjectSection from '../components/ProjectSection';
 import Popover from '../components/common/Popover';
 import SortList from '../components/common/SortList';
 import SortWidget from './SortWidget';
@@ -110,9 +108,6 @@ function Project({ match }) {
                   subTasks={task.subTasks}
                />
             ))}
-
-            <NewItemBtn text="Add task" onClick={() => alert('new task')} />
-            <NewSection />
             <ProjectSection name="ToDo section">
                <Task
                   id="1das123234"
@@ -142,9 +137,7 @@ function Project({ match }) {
                   endDate=""
                   completionDate=""
                />
-               <NewItemBtn text="Add task" onClick={() => alert('new task')} />
             </ProjectSection>
-            <NewSection />
          </StyledProject>
          <ProtectedRoute path={match.url + '/:taskId'} component={Modal} />
       </>
