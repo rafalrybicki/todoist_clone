@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { db } from '../firebase';
+import { projectsCollection } from '../../firebase';
 
-import IconBtn from '../components/common/buttons/IconBtn';
+import IconBtn from './buttons/IconBtn';
 import { ArrowDown, ArrowUp } from 'react-bootstrap-icons';
-import CloseBtn from '../components/common/buttons/CloseBtn';
+import CloseBtn from './buttons/CloseBtn';
 
 const StyledSortWidget = styled.div`
    padding: 10px 3px 10px 0;
@@ -47,7 +47,7 @@ function getSortDescription(sortType) {
       case 'priority':
          description = 'Sorted by priority';
          break;
-      case 'content':
+      case 'alphabetically':
          description = 'Sorted alphabetically';
          break; 
       case 'assignee':
@@ -60,41 +60,44 @@ function getSortDescription(sortType) {
    return description
 }
 
-function SortWidget({ projectId, sortType, sortDirection }) {
+function SortWidget({ projectId, sortType, sortOrder }) {
    if (sortType === 'order' || !sortType) {
       return null
    }
 
-   const projectRef = db.collection('projects').doc(projectId);
+   const projectRef = projectsCollection.doc(projectId);
 
-   const changeDirection = () => {
-      const direction = sortDirection === 'down' ? 'up' : 'down';
+   const changeOrder = () => {
+      const direction = sortOrder === 'desc' ? 'asc' : 'desc';
 
       projectRef.update({
-         sortDirection: direction
+         sortOrder: direction
       })
    }
 
-   const sortByOrder = () => {
+   const resetSorting = () => {
       projectRef.update({
-         sortType: 'order'
+         sortType: 'order',
+         sortOrder: 'asc'
       })
    }
 
    return (
       <StyledSortWidget>
-         <IconBtn onClick={changeDirection}>
-            {sortDirection === 'down' && 
+         <IconBtn onClick={changeOrder}>
+            {sortOrder === 'desc' && 
                <ArrowDown size={16} />
             }
-            {sortDirection === 'up' && 
+            {sortOrder === 'asc' && 
                <ArrowUp size={16} />
             }
          </IconBtn>
-         <button onClick={() => console.log('custom sorting is coming soon')}>
+         <button
+            onClick={() => console.log('custom sorting is coming soon')}
+         >
             {getSortDescription(sortType)}
          </button>
-         <CloseBtn onClick={sortByOrder} />
+         <CloseBtn onClick={resetSorting} />
       </StyledSortWidget>
    )
 }
@@ -102,10 +105,10 @@ function SortWidget({ projectId, sortType, sortDirection }) {
 SortWidget.propTypes = {
    sortType: PropTypes.oneOf([
       'order', 'date', 'priority', 'alphabetically', 'assignee', 'custom'
-   ]),
-   sortDirection: PropTypes.oneOf([
-      'up', 'down'
-   ])
+   ]).isRequired,
+   sortOrder: PropTypes.oneOf([
+      'asc', 'desc'
+   ]).isRequired
 }
 
 export default SortWidget

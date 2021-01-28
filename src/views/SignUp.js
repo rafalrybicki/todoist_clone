@@ -34,7 +34,7 @@ function SignUp({ history }) {
                order: 0,
                view: 'list',
                sortType: 'order',
-               sortDirection: 'down',
+               sortOrder: 'asc',
                sections: {
                   default: {
                      id: 'default',

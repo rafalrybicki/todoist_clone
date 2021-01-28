@@ -103,7 +103,7 @@ function ProjectEditor({ close }) {
          favorite,
          view,
          sortType: 'order',
-         sortDirection: 'up',
+         sortOrder: 'asc',
          sections: [{
             id: 'default',
             name: 'default',
