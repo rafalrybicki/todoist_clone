@@ -1,145 +1,70 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components/macro';
-
-import { ChatSquare, ArrowDownUp, ThreeDots, PersonPlus } from 'react-bootstrap-icons';
-
-import { dynamicSort } from '../utils';
-import IconBtn from '../components/common/buttons/IconBtn';
-import Task from '../components/Task'
-import ProjectSection from '../components/ProjectSection';
-import Popover from '../components/common/Popover';
-import SortList from '../components/common/selectors/SortSelector/SortList';
-import SortWidget from '../components/common/SortWidget';
-import Modal from '../components/TaskModal';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import ProtectedRoute from './ProtectedRoute';
 
-import { projects } from './data';
-
-const StyledProject = styled.div`
-   header button {
-      margin-left: 10px;
-   }
-
-   .chat-icon {
-      margin-top: 2px;
-   }
-`
+import TaskModal from '../components/TaskModal';
+import IconBtn from '../components/common/buttons/IconBtn';
+import { ChatSquare, PersonPlus } from 'react-bootstrap-icons';
+import SortSelector from '../components/common/selectors/SortSelector';
+import OptionsBtn from '../components/common/buttons/OptionsBtn';
+import SortWidget from '../components/common/SortWidget';
+import ProjectSection from '../components/ProjectSection';
 
 function Project({ match }) {
-   const projectId = match.params.projectId;
-
-   const [state, setState] = useState(projectId ? projects[projectId] : projects[0]);
-
-   useEffect(() => {
-      setState(projectId ? projects[projectId] : projects[0])
-   }, [projectId])
-
-   const changeSorting = (val) => {
-      setState({ ...state, sortBy: val });
-   }
-
-   const reverseDirection = () => {
-      const newDirection = state.sortDirection === 'up' ? 'down' : 'up';
-      setState({ ...state, sortDirection: newDirection });
-   }
-
+   const userId = useSelector(state => state.user.id);
+   const projectId = match.params.projectId || userId;
+   const project = useSelector(state => state.projects.find(project => project.id === projectId)) || [];
+   const sections = project.sections ? Object.values(project.sections).sort((a, b) => a.order - b.order) : [];
+   console.log(sections)
    return (
       <>
-         <StyledProject className="view">
+         <ProtectedRoute
+            path={match.url + '/:taskId'}
+            component={TaskModal}
+         />
+         <div className="view">
             <header>
-               <h1>{state.name}</h1>
-               <IconBtn tooltip="Comment" tooltipWidth="68px">
+               <h1>{project.name}</h1>
+               <IconBtn tooltip="Comments" tooltipWidth="68px">
                   <ChatSquare className="chat-icon" size="18"/>
                </IconBtn>
 
-               {projectId && 
+               {projectId !== userId && 
                   <IconBtn tooltip="Share" tooltipWidth="44px">
-                     <PersonPlus size="21"/>
+                     <PersonPlus size="19"/>
                   </IconBtn>
                } 
 
-               <Popover 
-                  activator={
-                     <IconBtn tooltip="Sort" tooltipWidth="36px">
-                        <ArrowDownUp size="16"/>
-                     </IconBtn>
-                  }
-                  content={
-                     <SortList
-                        sortBy={state.sortBy}
-                        changeSorting={changeSorting}
-                     />
-                  }
+               <SortSelector
+                  sortType={project.sortType || 'order'}
+                  projectId={project.id}
                />
 
-               <Popover 
-                  activator={
-                     <IconBtn tooltip="More project actions" tooltipWidth="125px">
-                        <ThreeDots size="20"/>
-                     </IconBtn>
-                  }
-                  content={
-                     <ul>
-                        <li>option</li>
-                        <li>option 2</li>
-                        <li>option 3</li>
-                        {projectId && <li>project item</li>}
-                     </ul>
-                  }
-               />
+               <OptionsBtn width="32px" />
             </header>
-            {state.sortBy !== 'order' && 
+
+            {project && project.sortType !== 'order' && 
                <SortWidget
-                  sortBy={state.sortBy}
-                  sortDirection={state.sortDirection}
-                  reverseDirection={reverseDirection}
-                  resetSorting={() => changeSorting('order')}
+                  projectId={project.id}
+                  sortType={project.sortType}
+                  sortOrder={project.sortOrder}
                />
             }
-            {state.tasks.sort(dynamicSort(state.sortBy, state.sortDirection)).map(task => (
-               <Task
-                  key={task.id}
-                  id={task.id}
-                  projectId={task.projectId}
-                  content={task.content}
-                  priority={task.priority}
-                  endDate={task.endDate}
-                  completionDate={task.completionDate}
-                  subTasks={task.subTasks}
+
+            {sections.map((section, index, array) => 
+               <ProjectSection
+                  key={section.id}
+                  name={section.name}
+                  sectionId={section.id}
+                  projectId={projectId}
+                  isOpen={section.isOpen}
+                  order={section.order}
+                  nextSiblingOrder={array[index + 1] ? array[index + 1].order : 0 }
+                  sortType={project.sortType}
+                  sortOrder={project.sortOrder}
                />
-            ))}
-            <ProjectSection name="ToDo section">
-               <Task
-                  id="1das123234"
-                  content="hardcoded 2"
-                  priority={2}
-                  endDate=""
-                  completionDate=""
-               />
-               <Task
-                  id="1das1adsr234"
-                  content="hardcoded 4"
-                  priority={4}
-                  endDate=""
-                  completionDate=""
-               />
-               <Task
-                  id="1das12adq334"
-                  content="hardcoded 1"
-                  priority={1}
-                  endDate=""
-                  completionDate=""
-               />
-               <Task
-                  id="1das122w434"
-                  content="hardcoded 3"
-                  priority={3}
-                  endDate=""
-                  completionDate=""
-               />
-            </ProjectSection>
-         </StyledProject>
-         <ProtectedRoute path={match.url + '/:taskId'} component={Modal} />
+            )}
+         </div>
       </>
    )
 }

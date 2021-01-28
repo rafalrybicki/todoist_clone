@@ -3,10 +3,10 @@ import React from 'react'
 import IconBtn from './IconBtn';
 import { ThreeDots } from 'react-bootstrap-icons';
 
-function OptionsBtn() {
+function OptionsBtn({ width = '28px'}) {
    return (
       <IconBtn
-         width="28px"
+         width={width}
          tooltip="Options"
          tooltipWidth="60px"
       >

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import { auth, db } from '../../../firebase';
+import { v4 as uuid } from 'uuid';
 
 import ToggleSwitch from './ToggleSwitch';
 import ViewSelector from './ViewSelector';
@@ -92,7 +93,6 @@ function ProjectEditor({ close }) {
       e.preventDefault();
       const newprojectRef = db.collection('projects').doc();
       const id = newprojectRef.id
-      console.log('project editor')
       
       newprojectRef.set({
          id,
@@ -104,12 +104,14 @@ function ProjectEditor({ close }) {
          view,
          sortType: 'order',
          sortOrder: 'asc',
-         sections: [{
-            id: 'default',
-            name: 'default',
-            order: 0,
-            isOpen: true,
-         }],
+         sections: {
+            default: {
+               id: 'default',
+               name: 'default',
+               order: 0,
+               isOpen: true
+            }
+         },
          comments: [],
       })
    }

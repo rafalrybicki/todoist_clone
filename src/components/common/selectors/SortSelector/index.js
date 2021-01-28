@@ -11,7 +11,7 @@ function SortSelector({ sortType, projectId }) {
       <Popover 
          activator={
             <IconBtn tooltip="Sort" tooltipWidth="36px">
-               <ArrowDownUp size="16"/>
+               <ArrowDownUp size="15"/>
             </IconBtn>
          }
          content={

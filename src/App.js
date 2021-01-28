@@ -14,7 +14,6 @@ import AppMenu from './components/AppMenu';
 import Login from './views/Login';
 import SignUp from './views/SignUp';
 import MainView from './views/MainView';
-import Inbox from './views/Inbox';
 import Project from './views/Project';
 import Today from './views/Today';
 // import Upcoming from './views/Upcoming';
@@ -48,7 +47,7 @@ function App() {
             <AppMenu isOpen={menuOpen} closeMenu={toggleMenu}/>
             <MainView>
               <Switch>
-                <ProtectedRoute path="/inbox" component={Inbox} />
+                <ProtectedRoute path="/inbox" component={Project} />
                 <ProtectedRoute path="/project/:projectId" component={Project} />
                 <ProtectedRoute path="/today" component={Today} />
                 {/* <ProtectedRoute path="/upcoming" component={Upcoming} /> */}
