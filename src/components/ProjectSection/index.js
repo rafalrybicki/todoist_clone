@@ -13,6 +13,7 @@ import SectionMenu from './SectionMenu';
 import Task from '../Task';
 import NewTask from '../common/NewTask';
 import NewSection from './NewSection';
+import { dynamicSort } from '../../utils';
 
 const StyledProjectSection = styled.section`
    position: relative;
@@ -62,7 +63,7 @@ const StyledProjectSection = styled.section`
    }
 `
 
-function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSiblingOrder }) {
+function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSiblingOrder, sortType, sortOrder }) {
    const tasks = useSelector(state => state.tasks.filter(task => task.projectId === projectId && task.sectionId === sectionId));
    const [openEditor, setOpenEditor] = useState(false);
 
@@ -125,7 +126,7 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
             </header>
          }
 
-         {isOpen && tasks.map( task => 
+         {isOpen && tasks.sort(dynamicSort(sortType, sortOrder)).map( task => 
             <Task
                key={task.id}
                id={task.id}
@@ -160,7 +161,14 @@ ProjectSection.propTypes = {
    sectionId: PropTypes.string.isRequired,
    projectId: PropTypes.string.isRequired,
    isOpen: PropTypes.bool.isRequired,
-   order: PropTypes.number.isRequired
+   order: PropTypes.number.isRequired,
+   nextSiblingOrder: PropTypes.number.isRequired,
+   sortType: PropTypes.oneOf([
+      'order', 'date', 'priority', 'content', 'assignee', 'custom'
+   ]).isRequired,
+   sortOrder: PropTypes.oneOf([
+      'asc', 'desc'
+   ]).isRequired
 }
 
 export default ProjectSection

@@ -1,10 +1,10 @@
-export function dynamicSort(property, direction) {
+export function dynamicSort(property, order) {
    return function(a, b) {
       if (a[property] < b[property]) {
-         return direction === 'up' ? -1 : 1;
+         return order === 'asc' ? -1 : 1;
       }
       if (a[property] > b[property]) {
-         return direction === 'up' ? 1 : -1;
+         return order === 'asc' ? 1 : -1;
       }
       return 0
    }

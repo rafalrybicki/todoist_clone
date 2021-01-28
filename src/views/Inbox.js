@@ -64,6 +64,8 @@ function Inbox({ match }) {
                   isOpen={section.isOpen}
                   order={section.order}
                   nextSiblingOrder={sections[index + 1] ? sections[index + 1].order : 0 }
+                  sortType={inbox.sortType}
+                  sortOrder={inbox.sortOrder}
                />
             )}
          </div>

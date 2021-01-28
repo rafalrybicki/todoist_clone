@@ -15,7 +15,7 @@ function SortListItem({ text, isActive, onClick, children }) {
 SortListItem.propTypes = {
    text: PropTypes.string.isRequired,
    isActive: PropTypes.bool.isRequired,
-   changeSorting: PropTypes.func.isRequired,
+   onClick: PropTypes.func.isRequired,
    children: PropTypes.element.isRequired
 }
 

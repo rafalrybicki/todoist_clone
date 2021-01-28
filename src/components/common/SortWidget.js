@@ -47,7 +47,7 @@ function getSortDescription(sortType) {
       case 'priority':
          description = 'Sorted by priority';
          break;
-      case 'alphabetically':
+      case 'content':
          description = 'Sorted alphabetically';
          break; 
       case 'assignee':
@@ -85,15 +85,15 @@ function SortWidget({ projectId, sortType, sortOrder }) {
    return (
       <StyledSortWidget>
          <IconBtn onClick={changeOrder}>
-            {sortOrder === 'desc' && 
+            {sortOrder === 'asc' && 
                <ArrowDown size={16} />
             }
-            {sortOrder === 'asc' && 
+            {sortOrder === 'desc' && 
                <ArrowUp size={16} />
             }
          </IconBtn>
          <button
-            onClick={() => console.log('custom sorting is coming soon')}
+            onClick={() => alert('custom sorting is coming soon')}
          >
             {getSortDescription(sortType)}
          </button>
@@ -104,7 +104,7 @@ function SortWidget({ projectId, sortType, sortOrder }) {
 
 SortWidget.propTypes = {
    sortType: PropTypes.oneOf([
-      'order', 'date', 'priority', 'alphabetically', 'assignee', 'custom'
+      'order', 'date', 'priority', 'content', 'assignee', 'custom'
    ]).isRequired,
    sortOrder: PropTypes.oneOf([
       'asc', 'desc'
