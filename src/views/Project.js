@@ -8,8 +8,8 @@ import IconBtn from '../components/common/buttons/IconBtn';
 import Task from '../components/Task'
 import ProjectSection from '../components/ProjectSection';
 import Popover from '../components/common/Popover';
-import SortList from '../components/common/SortList';
-import SortWidget from './SortWidget';
+import SortList from '../components/common/selectors/SortSelector/SortList';
+import SortWidget from '../components/common/SortWidget';
 import Modal from '../components/TaskModal';
 import ProtectedRoute from './ProtectedRoute';
 

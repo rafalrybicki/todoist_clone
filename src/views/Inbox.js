@@ -4,10 +4,10 @@ import ProtectedRoute from './ProtectedRoute';
 
 import TaskModal from '../components/TaskModal';
 import IconBtn from '../components/common/buttons/IconBtn';
-import { ChatSquare, ArrowDownUp, ThreeDots } from 'react-bootstrap-icons';
+import { ChatSquare, ThreeDots } from 'react-bootstrap-icons';
+import SortSelector from '../components/common/selectors/SortSelector';
 import Popover from '../components/common/Popover';
-import SortList from '../components/common/SortList';
-import SortWidget from './SortWidget';
+import SortWidget from '../components/common/SortWidget';
 import ProjectSection from '../components/ProjectSection';
 
 function Inbox({ match }) {
@@ -28,18 +28,9 @@ function Inbox({ match }) {
                   <ChatSquare className="chat-icon" size="18"/>
                </IconBtn>
 
-               <Popover 
-                  activator={
-                     <IconBtn tooltip="Sort" tooltipWidth="36px">
-                        <ArrowDownUp size="16"/>
-                     </IconBtn>
-                  }
-                  content={
-                     <SortList
-                        sortBy={'priority'}
-                        changeSorting={() => console.log('change sorting')}
-                     />
-                  }
+               <SortSelector
+                  sortType={inbox.sortType}
+                  projectId={inbox.id}
                />
 
                <Popover 
@@ -61,7 +52,7 @@ function Inbox({ match }) {
                <SortWidget
                   projectId={inbox.id}
                   sortType={inbox.sortType}
-                  sortDirection={inbox.sortDirection}
+                  sortOrder={inbox.sortOrder}
                />
             }
             {sections.map((section, index) => 
