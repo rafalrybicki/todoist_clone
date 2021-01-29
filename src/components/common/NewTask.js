@@ -7,7 +7,7 @@ import { tasksCollection } from '../../firebase';
 import Editor from '../Editor';
 import NewItemBtn from './buttons/NewItemBtn';
 
-function NewTask({ sectionId, projectId}) {
+function NewTask({ sectionId, projectId, date }) {
    const [openEditor, setOpenEditor] = useState(false);
    const userId = useSelector(state => state.user.id);
 
@@ -35,6 +35,7 @@ function NewTask({ sectionId, projectId}) {
          <Editor
             currentSectionId={sectionId}
             currentProjectId={projectId}
+            currentTargetDate={date}
             onSave={addTask}
             onClose={toggleEditor}
             isTask
@@ -52,7 +53,8 @@ function NewTask({ sectionId, projectId}) {
 
 NewTask.propTypes = {
    sectionId: PropTypes.string.isRequired,
-   projectId: PropTypes.string.isRequired
+   projectId: PropTypes.string.isRequired,
+   date: PropTypes.number
 }
 
 export default NewTask

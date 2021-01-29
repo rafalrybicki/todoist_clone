@@ -33,6 +33,7 @@ const StyledMainView = styled.main`
             flex-grow: 1;
             display: flex;
             align-items: center;
+            margin-bottom: 10px;
          }
       }
 

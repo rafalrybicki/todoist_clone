@@ -1,46 +1,104 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
-import IconBtn from '../components/common/buttons/IconBtn';
-import { ArrowDownUp } from 'react-bootstrap-icons';
+import { getDisplayDate, getBeginingOfTheDay, getEndOfTheDay } from '../utils';
+
+import ProtectedRoute from './ProtectedRoute';
+import TaskModal from '../components/TaskModal';
 import Task from '../components/Task';
-import { getDisplayDate } from '../utils';
+import NewTask from '../components/common/NewTask';
 
 const StyledToday = styled.div`
-   h1 {
-      display: flex;
-      align-items: center;
-   }
-
    .date {
       margin-left: 8px;
-      padding-top: 3px;
+      padding-top: 5px;
       font-size: 11px;
       font-weight: 400;
       color: grey;
    }
+
+   section {
+      h2 {
+         border-bottom: 1px solid #f0f0f0;
+         padding-top: 10px;
+         font-size: 14px;
+      }
+
+      .grip {
+         display: none
+      }
+   }
 `
 
-function Today() {
+function Today({ match }) {
    const date = getDisplayDate();
-   
+   const beginingOfTheDay = getBeginingOfTheDay();
+   const endOfTheDay = getEndOfTheDay();
+   const overdueTasks = useSelector(state => state.tasks.filter(task => task.targetDate && task.targetDate < beginingOfTheDay));
+   const todayTasks = useSelector(state => state.tasks.filter(task => task.targetDate >= beginingOfTheDay && task.targetDate <= endOfTheDay));
+
+   const userId = useSelector(state => state.user.id);
+
    return (
-      <StyledToday className="view">
-         <header>
-            <h1>Today
-               <span className="date">{date}</span>
-            </h1>
-            <IconBtn tooltip="Sort" tooltipWidth="36px">
-               <ArrowDownUp size="16"/>
-            </IconBtn>
-         </header>
-         
-         <h2>Overude</h2>
-         <Task priority="1" />
-         <Task priority="2" />
-         <Task priority="3" />
-         <Task priority="4" />
-      </StyledToday>
+      <>
+         <ProtectedRoute
+               path={match.url + '/:taskId'}
+               component={TaskModal}
+            />
+         <StyledToday className="view">
+            <header>
+               <h1>Today
+                  <span className="date">{date}</span>
+               </h1>
+            </header>
+            
+            {overdueTasks.length > 0 &&
+               <section>
+                  <h2>Overude</h2>
+                  {overdueTasks.map(task =>
+                     <Task
+                        key={task.id}
+                        id={task.id}
+                        projectId={task.projectId}
+                        sectionId={task.sectionId}
+                        content={task.content}
+                        priority={task.priority}
+                        targetDate={task.targetDate}
+                        targetDateTime={task.targetDateTime}
+                        completionDate={task.completionDate}
+                        subTasks={task.subTasks}
+                     />
+                  )}
+               </section>
+            }
+
+            <section>
+               {overdueTasks.length > 0 && <h2>Today</h2>}
+               {todayTasks.map(task =>
+                  <Task
+                     key={task.id}
+                     id={task.id}
+                     projectId={task.projectId}
+                     sectionId={task.sectionId}
+                     content={task.content}
+                     priority={task.priority}
+                     targetDate={task.targetDate}
+                     targetDateTime={task.targetDateTime}
+                     completionDate={task.completionDate}
+                     subTasks={task.subTasks}
+                     pathname={"today/" + task.id}
+                  />
+               )}
+            </section>
+
+            <NewTask
+               sectionId="default"
+               projectId={userId}
+               date={beginingOfTheDay}
+            />
+         </StyledToday>
+      </>
    )
 }
 

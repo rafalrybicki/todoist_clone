@@ -113,6 +113,18 @@ export function getMonth(month, year) {
    return monthArr
 }
 
+export function getBeginingOfTheDay() {
+   const date = getDate();
+
+   return Date.parse(`${date.year}, ${date.month}, ${date.day}, 00:00`)
+}
+
+export function getEndOfTheDay() {
+   const date = getDate();
+
+   return Date.parse(`${date.year}, ${date.month}, ${date.day}, 23:59:59`)
+}
+
 export function getFirstDayOfTheMonth(month, year) {
    const day = new Date(`${year}, ${month}, 1`);
    return Date.parse(day)

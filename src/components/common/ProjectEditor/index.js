@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { auth, db } from '../../../firebase';
-import { v4 as uuid } from 'uuid';
+import { auth, projectsCollection } from '../../../firebase';
 
 import ToggleSwitch from './ToggleSwitch';
 import ViewSelector from './ViewSelector';
@@ -91,7 +90,7 @@ function ProjectEditor({ close }) {
 
    const addProject = (e) => {
       e.preventDefault();
-      const newprojectRef = db.collection('projects').doc();
+      const newprojectRef = projectsCollection.doc();
       const id = newprojectRef.id
       
       newprojectRef.set({

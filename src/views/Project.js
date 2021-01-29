@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import ProtectedRoute from './ProtectedRoute';
 
+import ProtectedRoute from './ProtectedRoute';
 import TaskModal from '../components/TaskModal';
 import IconBtn from '../components/common/buttons/IconBtn';
 import { ChatSquare, PersonPlus } from 'react-bootstrap-icons';
@@ -15,7 +15,7 @@ function Project({ match }) {
    const projectId = match.params.projectId || userId;
    const project = useSelector(state => state.projects.find(project => project.id === projectId)) || [];
    const sections = project.sections ? Object.values(project.sections).sort((a, b) => a.order - b.order) : [];
-   console.log(sections)
+
    return (
       <>
          <ProtectedRoute
