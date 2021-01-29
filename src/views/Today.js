@@ -43,9 +43,9 @@ function Today({ match }) {
    return (
       <>
          <ProtectedRoute
-               path={match.url + '/:taskId'}
-               component={TaskModal}
-            />
+            path={match.url + '/:taskId'}
+            component={TaskModal}
+         />
          <StyledToday className="view">
             <header>
                <h1>Today
@@ -65,7 +65,7 @@ function Today({ match }) {
                         content={task.content}
                         priority={task.priority}
                         targetDate={task.targetDate}
-                        targetDateTime={task.targetDateTime}
+                        isDateTime={task.isDateTime}
                         completionDate={task.completionDate}
                         subTasks={task.subTasks}
                      />
@@ -84,7 +84,7 @@ function Today({ match }) {
                      content={task.content}
                      priority={task.priority}
                      targetDate={task.targetDate}
-                     targetDateTime={task.targetDateTime}
+                     isDateTime={task.isDateTime}
                      completionDate={task.completionDate}
                      subTasks={task.subTasks}
                      pathname={"today/" + task.id}

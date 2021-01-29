@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { getTaskDate } from '../../../utils';
+import { getTaskDate } from '../../../../utils';
 import { CalendarEvent } from 'react-bootstrap-icons';
 import Suggestions from './Suggestions';
-import Calendar from './Calendar';
+import Calendar from '../Calendar';
 import TimePicker from './TimePicker';
 
-
-const StyledDatePicker = styled.div`
+const StyledDateTimeSelector = styled.div`
    position: relative;
    z-index: 100;
 
@@ -30,7 +29,7 @@ const StyledDatePicker = styled.div`
       }
    }
 
-   .picker {
+   > .selector {
       z-index: 10;
       position: absolute;
       top: 28px;
@@ -43,44 +42,48 @@ const StyledDatePicker = styled.div`
    }
 `
 
-function DatePicker({ date, setDate, dateTime, setDateTime }) {
-   const [isOpen, setIsopen] = useState(false);
+function DateTimeSelector({ date, setDate, isDateTime }) {
+   const [isOpen, setIsOpen] = useState(false);
 
-   const toggle = () => {
-      setIsopen(!isOpen)
+   const toggleSelector = () => {
+      setIsOpen(!isOpen)
    }
 
    return (
-      <StyledDatePicker className="date-picker">
+      <StyledDateTimeSelector className="date-time-selector">
          <button
             type="button"
-            onClick={toggle}
+            onClick={toggleSelector}
          >
             <CalendarEvent />
-            {date ? getTaskDate(date) : 'Schedule'}
+            {getTaskDate(date, isDateTime)}
          </button>
          {isOpen &&
-            <div className="picker">
-               <Suggestions currentDate={date} setDate={setDate} />
-               <Calendar currentDate={date} setDate={setDate} />
+            <div className="selector">
+               <Suggestions
+                  currentDate={date}
+                  setDate={setDate}
+               />
+               <Calendar
+                  currentDate={date}
+                  setDate={setDate}
+               />
                <TimePicker
                   date={date}
-                  setDate={setDate}
-                  dateTime={dateTime}
-                  setDateTime={setDateTime}
+                  setDateTime={setDate}
+                  isDateTime={isDateTime}
                />
             </div>
          }
-      </StyledDatePicker>
+      </StyledDateTimeSelector>
 
    )
 }
 
-DatePicker.propTypes = {
+DateTimeSelector.propTypes = {
    date: PropTypes.number,
    setDate: PropTypes.func.isRequired,
-   dateTime: PropTypes.number,
-   setDateTime: PropTypes.func.isRequired
+   isDateTime: PropTypes.bool.isRequired
 }
 
-export default DatePicker
+export default DateTimeSelector

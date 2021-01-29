@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import SuggestionsItem from './SuggestionsItem';
-import TodayIcon from '../icons/TodayIcon';
+import TodayIcon from '../../icons/TodayIcon';
 import { BrightnessHigh, CalendarEvent, SkipForwardFill, SlashCircle, Laptop  } from 'react-bootstrap-icons';
-import { getDate } from '../../../utils';
+import { getDate } from '../../../../utils';
 
 const StyledSuggestions = styled.div`
    height: 170px;

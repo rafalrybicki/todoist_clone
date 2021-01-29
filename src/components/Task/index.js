@@ -71,9 +71,10 @@ function Task(props) {
       projectId,
       projectName,
       projectPath,
-      sectionId, projectColor,
+      sectionId, 
+      projectColor,
       targetDate,
-      targetDateTime,
+      isDateTime,
       completionDate,
       subTasks
    } = props;
@@ -110,7 +111,7 @@ function Task(props) {
             currentProjectId={projectId}
             currentSectionId={sectionId}
             currentTargetDate={targetDate}
-            currentTargetDateTime={targetDateTime}
+            currentIsDateTime={isDateTime}
             currentProjectColor={projectColor}
             currentPriority={priority}
             onSave={edit}
@@ -151,7 +152,7 @@ Task.propTypes = {
    projectPath: PropTypes.string,
    projectColor: PropTypes.string,
    targetDate: PropTypes.number,
-   targetDateTime: PropTypes.number,
+   isDateTime: PropTypes.bool.isRequired,
    completionDate: PropTypes.string,
    subTasks: PropTypes.array
 }

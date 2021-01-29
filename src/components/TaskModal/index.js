@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
 import Checkbox from '../common/Checkbox';
-import DatePicker from '../common/DatePicker';
+import DateTimeSelector from '../common/selectors/DateTimeSelector';
 import CloseBtn from '../common/buttons/CloseBtn';
 import ProjectLink from '../common/ProjectLink';
 import Actions from './Actions';
@@ -91,7 +91,7 @@ function TaskModal({ location, history }) {
                <CloseBtn onClick={close} />
                <Checkbox priority={state.priority} />
                <span className="content">{state.content}</span>
-               <DatePicker />
+               <DateTimeSelector />
                <Actions />
                <Tabs
                   activeTab={activeTab}

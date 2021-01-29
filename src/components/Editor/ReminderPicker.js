@@ -10,7 +10,7 @@ const StyledReminderPicker = styled.div`
 
 function ReminderPicker() {
    return (
-      <StyledReminderPicker>
+      <StyledReminderPicker onClick={() => console.log('coming soon')}>
          <IconBtn
             hoverColor="#eee"
             width="28px"

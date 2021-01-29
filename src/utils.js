@@ -34,11 +34,30 @@ export function getDisplayDate(date) {
    return `${arr[0]} ${+arr[2]} ${arr[1]}`
 }
 
-export function getTaskDate(miliseconds) {
+export function getTaskDate(miliseconds, isDateTime) {
+   if (!miliseconds) {
+      return 'Schedule';
+   }
+
    const date = new Date(miliseconds);
    const month = months[date.getMonth()].slice(0,3);
    const day = date.getDate();
    
+   if (isDateTime) {
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let timePeriod = hours > 12 ? 'PM' : 'AM';
+      if (hours > 12) {
+         hours = hours / 2
+      }
+
+      if (minutes < 10) {
+         minutes = '0' + minutes
+      }
+      
+      return `${day} ${month.slice(0,3)} ${hours}:${minutes} ${timePeriod}`;
+   }
+
    return `${day} ${month.slice(0,3)}`;
 }
 

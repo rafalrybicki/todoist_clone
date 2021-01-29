@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { getHours, getMinutes } from '../../../../utils';
+import { getHours, getMinutes } from '../../../../../utils';
 import { ChevronUp, ChevronDown } from 'react-bootstrap-icons';
 
 const StyledNumberPicker = styled.div`

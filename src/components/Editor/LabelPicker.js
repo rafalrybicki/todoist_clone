@@ -10,7 +10,10 @@ const StyledlabelPicker = styled.div`
 
 function LabelPicker() {
    return (
-      <StyledlabelPicker className="label-picker">
+      <StyledlabelPicker
+         onClick={() => console.log('coming soon')}
+         className="label-picker"
+      >
          <IconBtn
             hoverColor="#eee"
             width="28px"

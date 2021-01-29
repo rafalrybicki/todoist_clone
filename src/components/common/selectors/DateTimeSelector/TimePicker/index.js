@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
-import { getHours, getMinutes } from '../../../../utils';
+import { getHours, getMinutes } from '../../../../../utils';
 
 import NumberPicker from './NumberPicker';
 import TimePeriodPicker from './TimePeriodPicker';
@@ -64,18 +64,18 @@ const StyledTimePicker = styled.div`
 `
 
 
-function getTimeArr(miliseconds) {
-   const date = miliseconds ? Date.parse(miliseconds) : new Date();
-   let hours = date.getHours();
-   const minutes = date.getMinutes();
-   const timePeriod = hours > 12 ? 'PM' : 'AM';
+// function getTimeArr(miliseconds) {
+//    const date = miliseconds ? Date.parse(miliseconds) : new Date();
+//    let hours = date.getHours();
+//    const minutes = date.getMinutes();
+//    const timePeriod = hours > 12 ? 'PM' : 'AM';
 
-   if (hours > 12) {
-      hours -= 12;
-   }
+//    if (hours > 12) {
+//       hours -= 12;
+//    }
 
-   return [hours, minutes, timePeriod]
-}
+//    return [hours, minutes, timePeriod]
+// }
 
 function TimePicker({ date, setDate, dateTime, setDateTime }) {
    const [showPicker, togglePicker] = useState(false);

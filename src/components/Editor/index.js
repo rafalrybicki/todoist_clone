@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import DatePicker from '../common/DatePicker';
+import DateTimeSelector from '../common/selectors/DateTimeSelector';
 import ProjectPicker from '../common/ProjectPicker';
 import LabelPicker from './LabelPicker';
 import PriorityPicker from './PriorityPicker';
@@ -49,10 +49,10 @@ const StyledEditor = styled.form`
    }
 `
 
-function Editor({ currentContent, currentTargetDate, currentTargetDateTime, currentProjectId, currentSectionId, currentPriority, onSave, onClose, isTask }) {
+function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentProjectId, currentSectionId, currentPriority, onSave, onClose, isTask }) {
    const [content, setContent] = useState(currentContent || '');
    const [targetDate, setTargetDate] = useState(currentTargetDate || null);
-   const [targetDateTime, setTargetDateTime] = useState(currentTargetDateTime || null);
+   const [isDateTime, setIsDateTime] = useState(currentIsDateTime || false);
    const [projectId, setProjectId] = useState(currentProjectId || null);
    const [sectionId, setSectionId] = useState(currentSectionId || null);
    const [priority, setPriority] = useState(currentPriority || 4);
@@ -64,7 +64,7 @@ function Editor({ currentContent, currentTargetDate, currentTargetDateTime, curr
          onSave({
             content,
             targetDate,
-            targetDateTime,
+            isDateTime,
             projectId,
             sectionId,
             priority,
@@ -98,11 +98,11 @@ function Editor({ currentContent, currentTargetDate, currentTargetDateTime, curr
          />
          {isTask &&
             <section>
-               <DatePicker
+               <DateTimeSelector
                   date={targetDate}
                   setDate={setTargetDate}
-                  dateTime={targetDateTime}
-                  setDateTime={setTargetDateTime}
+                  isDateTime={isDateTime}
+                  setIsDateTime={setIsDateTime}
                />
                <ProjectPicker
                   projectId={projectId}

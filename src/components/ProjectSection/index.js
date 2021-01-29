@@ -135,7 +135,7 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
                content={task.content}
                priority={task.priority}
                targetDate={task.targetDate}
-               targetDateTime={task.targetDateTime}
+               isDateTime={task.isDateTime}
                completionDate={task.completionDate}
                subTasks={task.subTasks}
             />
