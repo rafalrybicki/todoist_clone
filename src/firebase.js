@@ -32,7 +32,11 @@ const addToCollection = (collectionName, newDocument) => {
    })
 }
 
-
+const deleteFromCollection = (collectionName, collectionName) => {
+   db.collection(collectionName).doc(collectionName).delete()
+      .then(() => true)
+      .catch(e => e.message)
+}
 
 export {
    firebase,
@@ -41,5 +45,6 @@ export {
    usersCollection,
    projectsCollection,
    tasksCollection,
-   addToCollection
+   addToCollection,
+   deleteFromCollection
 }

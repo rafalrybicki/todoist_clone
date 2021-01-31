@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { db } from '../../firebase';
+import { deleteFromCollection } from '../../firebase';
+
 import MenuList from '../common/MenuList';
 import { Alarm, ArrowDownShort, ArrowRightCircle, ArrowUpShort, Link45deg, ListUl, Pen, Stickies, Trash } from 'react-bootstrap-icons';
 import Selector from './Selector';
@@ -9,19 +10,23 @@ import Schedule from './Schedule';
 
 function TaskMenu({ id, openEditor }) {
    const deleteTask = () => {
-      db.collection('tasks').doc(id).delete()
-         .then(() => console.log('task deleted'))
-         .catch(e => alert(e.message))
+      deleteFromCollection('tasks', id)
    }
    
    return (
       <MenuList>
          <li>
-            <ArrowUpShort size={24} className="arrow-icon" />
+            <ArrowUpShort
+               size={24}
+               className="arrow-icon"
+            />
             Add task above
          </li>
          <li>
-            <ArrowDownShort size={24} className="arrow-icon"/>
+            <ArrowDownShort
+               size={24}
+               className="arrow-icon"
+            />
             Add task below
          </li>
          <li onClick={openEditor}>
