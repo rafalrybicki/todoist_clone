@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { getTimeArr, getBeginingOfTheDay, getTaskDate } from '../../../../utils';
+import { getTimeArr, getBeginingOfTheDay, getMilisecondsFromTimeArr, getTaskDate } from '../../../../utils';
 
 import { CalendarEvent } from 'react-bootstrap-icons';
 import Suggestions from './Suggestions';
@@ -52,11 +52,8 @@ function DateTimeSelector({ miliseconds, setMiliseconds, isDateTime, setIsDateTi
    }
    
    const addTime = (timeArr) => {
-      const hours = timeArr[2] === 'AM' ? timeArr[0] : timeArr[0] + 12;
-
       let newMiliseconds = getBeginingOfTheDay(miliseconds);  
-      newMiliseconds += (hours * 3600000)
-      newMiliseconds += (timeArr[1] * 60000);
+      newMiliseconds += getMilisecondsFromTimeArr(timeArr)
 
       setMiliseconds(newMiliseconds);
       setTimeArr(timeArr);
@@ -71,6 +68,14 @@ function DateTimeSelector({ miliseconds, setMiliseconds, isDateTime, setIsDateTi
       setIsDateTime(false)
    }
 
+   const setDate = (miliseconds) => {
+      if (isDateTime) {
+         const newMiliseconds = getMilisecondsFromTimeArr(timeArr) + miliseconds
+         setMiliseconds(newMiliseconds)
+      } else {
+         setMiliseconds(miliseconds)
+      }
+   }
 
    return (
       <StyledDateTimeSelector>
@@ -86,12 +91,11 @@ function DateTimeSelector({ miliseconds, setMiliseconds, isDateTime, setIsDateTi
             <div className="date-time-selector">
                <Suggestions
                   currentDate={miliseconds}
-                  setDate={setMiliseconds}
+                  setDate={setDate}
                />
                <Calendar
-                  currentDate={miliseconds}
-                  setDate={setMiliseconds}
-
+                  currentDate={getBeginingOfTheDay(miliseconds)}
+                  setDate={setDate}
                />
                <TimeSelector
                   timeArr={timeArr}

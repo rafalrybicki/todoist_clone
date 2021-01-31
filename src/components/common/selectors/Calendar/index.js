@@ -50,7 +50,7 @@ function Calendar({ currentDate, setDate }) {
                      <Day
                         key={day.miliseconds}
                         number={day.day}
-                        active={day.miliseconds === miliseconds && currentDate > 0}
+                        active={day.miliseconds === miliseconds && currentDate > today.miliseconds}
                         disabled={day.miliseconds < firstDay || day.miliseconds > lastDay || day.miliseconds < today.miliseconds}
                         onClick={() => setDate(day.miliseconds)}
                      />

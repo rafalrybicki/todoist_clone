@@ -47,6 +47,17 @@ export function getTimeArr(miliseconds) {
    return [hours, minutes, timePeriod]
 }
 
+export function getMilisecondsFromTimeArr(timeArr) {
+   const hours = timeArr[2] === 'AM' ? timeArr[0] : timeArr[0] + 12;
+   const minutes = timeArr[1];
+   let miliseconds = 0;
+
+   miliseconds += (hours * 3600000)
+   miliseconds += (minutes * 60000);
+
+   return miliseconds
+}
+
 export function getTaskDate(miliseconds, isDateTime) {
    if (!miliseconds) {
       return 'Schedule';
