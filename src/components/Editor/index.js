@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
+import { getTimeArr, getBeginingOfTheDay } from '../../utils';
+
 import DateTimeSelector from '../common/selectors/DateTimeSelector';
 import ProjectPicker from '../common/ProjectPicker';
 import LabelPicker from './LabelPicker';
@@ -44,7 +46,7 @@ const StyledEditor = styled.form`
       }
    }
 
-   .cancel-btn, .submit-btn {
+   > .cancel-btn, > .submit-btn {
       margin: 10px 10px 0 0;
    }
 `
@@ -56,6 +58,30 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
    const [projectId, setProjectId] = useState(currentProjectId || null);
    const [sectionId, setSectionId] = useState(currentSectionId || null);
    const [priority, setPriority] = useState(currentPriority || 4);
+
+   const [timeArr, setTimeArr] = useState(isDateTime ? getTimeArr(currentTargetDate) : []);
+
+   const addTime = (timeArr) => {
+      let newMiliseconds = timeArr[1] * 60000;
+
+      if (timeArr[2] === 'AM') {
+         newMiliseconds += timeArr[0] * 3600000;
+      } else {
+         newMiliseconds += (timeArr[0] + 12) * 3600000;
+      }
+
+      newMiliseconds += getBeginingOfTheDay();
+
+      setTargetDate(newMiliseconds);
+      setTimeArr(timeArr);
+      setIsDateTime(true)
+   }
+
+   const removeTime = () => {
+      setTargetDate(getBeginingOfTheDay(targetDate))
+      setTimeArr([]);
+      setIsDateTime(false)
+   }
 
    const handleSave = (e) => {
       e.preventDefault();
@@ -99,10 +125,12 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
          {isTask &&
             <section>
                <DateTimeSelector
-                  date={targetDate}
+                  miliseconds={targetDate}
                   setDate={setTargetDate}
                   isDateTime={isDateTime}
-                  setIsDateTime={setIsDateTime}
+                  timeArr={timeArr}
+                  addTime={addTime}
+                  removeTime={removeTime}
                />
                <ProjectPicker
                   projectId={projectId}
@@ -129,8 +157,11 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
 
 Editor.propTypes = {
    currentContent: PropTypes.string,
+   currentTargetDate: PropTypes.number,
+   currentIsDateTime: PropTypes.bool,
    currentProjectId: PropTypes.string,
    currentSectionId: PropTypes.string,
+   currentPriority: PropTypes.number,
    onSave: PropTypes.func.isRequired,
    onClose: PropTypes.func.isRequired,
    isTask: PropTypes.bool

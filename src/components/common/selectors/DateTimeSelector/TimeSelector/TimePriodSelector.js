@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-const StyledTimePeriodpicker = styled.div`
+const StledTimePeriodSelector = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -33,9 +33,9 @@ const StyledTimePeriodpicker = styled.div`
    }
 `
 
-function TimePeriodPicker({ timePeriod, onChange }) {
+function TimePeriodSelector({ timePeriod, onChange }) {
    return (
-      <StyledTimePeriodpicker>
+      <StledTimePeriodSelector>
          <button
             type="button"
             className={timePeriod === 'AM' ? "active" : ""}
@@ -51,13 +51,13 @@ function TimePeriodPicker({ timePeriod, onChange }) {
          >
             PM
          </button>
-      </StyledTimePeriodpicker>
+      </StledTimePeriodSelector>
    )
 }
 
-TimePeriodPicker.propTypes = {
+TimePeriodSelector.propTypes = {
    timePeriod: PropTypes.oneOf(['AM', 'PM']),
    onChange: PropTypes.func.isRequired
 }
 
-export default TimePeriodPicker
+export default TimePeriodSelector

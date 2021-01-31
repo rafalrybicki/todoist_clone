@@ -34,6 +34,19 @@ export function getDisplayDate(date) {
    return `${arr[0]} ${+arr[2]} ${arr[1]}`
 }
 
+export function getTimeArr(miliseconds) {
+   const date = miliseconds ? new Date(miliseconds) : new Date();
+   let hours = date.getHours();
+   const minutes = date.getMinutes();
+   const timePeriod = hours > 12 ? 'PM' : 'AM';
+
+   if (hours > 12) {
+      hours -= 12;
+   }
+
+   return [hours, minutes, timePeriod]
+}
+
 export function getTaskDate(miliseconds, isDateTime) {
    if (!miliseconds) {
       return 'Schedule';
@@ -48,13 +61,13 @@ export function getTaskDate(miliseconds, isDateTime) {
       let minutes = date.getMinutes();
       let timePeriod = hours > 12 ? 'PM' : 'AM';
       if (hours > 12) {
-         hours = hours / 2
+         hours = hours - 12
       }
 
       if (minutes < 10) {
          minutes = '0' + minutes
       }
-      
+
       return `${day} ${month.slice(0,3)} ${hours}:${minutes} ${timePeriod}`;
    }
 
@@ -132,8 +145,8 @@ export function getMonth(month, year) {
    return monthArr
 }
 
-export function getBeginingOfTheDay() {
-   const date = getDate();
+export function getBeginingOfTheDay(miliseconds) {
+   const date = getDate(miliseconds);
 
    return Date.parse(`${date.year}, ${date.month}, ${date.day}, 00:00`)
 }

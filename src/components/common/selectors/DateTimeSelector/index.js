@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import { getTaskDate } from '../../../../utils';
+
 import { CalendarEvent } from 'react-bootstrap-icons';
 import Suggestions from './Suggestions';
 import Calendar from '../Calendar';
-import TimePicker from './TimePicker';
+import TimeSelector from './TimeSelector';
 
 const StyledDateTimeSelector = styled.div`
    position: relative;
@@ -42,7 +43,7 @@ const StyledDateTimeSelector = styled.div`
    }
 `
 
-function DateTimeSelector({ date, setDate, isDateTime }) {
+function DateTimeSelector({ miliseconds, setDate, isDateTime, timeArr, addTime, removeTime }) {
    const [isOpen, setIsOpen] = useState(false);
 
    const toggleSelector = () => {
@@ -50,28 +51,28 @@ function DateTimeSelector({ date, setDate, isDateTime }) {
    }
 
    return (
-      <StyledDateTimeSelector className="date-time-selector">
+      <StyledDateTimeSelector className="miliseconds-time-selector">
          <button
             type="button"
             onClick={toggleSelector}
          >
             <CalendarEvent />
-            {getTaskDate(date, isDateTime)}
+            {getTaskDate(miliseconds, isDateTime)}
          </button>
          {isOpen &&
             <div className="selector">
                <Suggestions
-                  currentDate={date}
+                  currentDate={miliseconds}
                   setDate={setDate}
                />
                <Calendar
-                  currentDate={date}
+                  currentDate={miliseconds}
                   setDate={setDate}
                />
-               <TimePicker
-                  date={date}
-                  setDateTime={setDate}
-                  isDateTime={isDateTime}
+               <TimeSelector
+                  timeArr={timeArr}
+                  addTime={addTime}
+                  removeTime={removeTime}
                />
             </div>
          }
@@ -81,9 +82,12 @@ function DateTimeSelector({ date, setDate, isDateTime }) {
 }
 
 DateTimeSelector.propTypes = {
-   date: PropTypes.number,
+   miliseconds: PropTypes.number,
    setDate: PropTypes.func.isRequired,
-   isDateTime: PropTypes.bool.isRequired
+   isDateTime: PropTypes.bool.isRequired,
+   timeArr: PropTypes.array.isRequired,
+   addTime: PropTypes.func.isRequired,
+   removeTime: PropTypes.func.isRequired,
 }
 
 export default DateTimeSelector
