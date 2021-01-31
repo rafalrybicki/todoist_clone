@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
-import { projectsCollection } from '../../firebase';
+import { updateDocument } from '../../firebase';
 
 import Editor from '../Editor';
 import Grip from '../common/Grip';
@@ -72,7 +72,6 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
    }
 
    const updateSection = (obj) => {
-      const projectRef = projectsCollection.doc(projectId);
       const sectionsUpdate = {};
 
       sectionsUpdate[`sections.${sectionId}`] = {
@@ -83,7 +82,7 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
          ...obj
       };
 
-      projectRef.update(sectionsUpdate);
+      updateDocument('projects', projectId, sectionsUpdate);
 
       setOpenEditor(false);
    } 

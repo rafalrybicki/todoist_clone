@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
+import { updateDocument } from '../../firebase';
+
 import Editor from '../Editor';
 import Actions from './Actions';
 import Checkbox from '../common/Checkbox';
@@ -9,7 +11,6 @@ import Date from './Date';
 import Grip from '../common/Grip';
 import { Link } from 'react-router-dom';
 import ProjectLink from '../common/ProjectLink';
-import { db } from '../../firebase';
 
 const StyledTask = styled.li`
    position: relative;
@@ -96,12 +97,8 @@ function Task(props) {
    }
 
    const edit = (task) => {
-      showEditor(false);
-      
-      db.collection('tasks').doc(id).update(task)
-         .catch(function(error) {
-            alert(error.message);
-         });
+      toggleEditor()
+      updateDocument('tasks', id, task)
    }
 
    if (editor) {

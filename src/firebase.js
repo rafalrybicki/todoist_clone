@@ -32,8 +32,14 @@ const addToCollection = (collectionName, newDocument) => {
    })
 }
 
-const deleteFromCollection = (collectionName, collectionName) => {
-   db.collection(collectionName).doc(collectionName).delete()
+const deleteFromCollection = (collectionName, documentId) => {
+   db.collection(collectionName).doc(documentId).delete()
+      .then(() => true)
+      .catch(e => e.message)
+}
+
+const updateDocument = (collectionName, documentId, obj) => {
+   db.collection(collectionName).doc(documentId).update(obj)
       .then(() => true)
       .catch(e => e.message)
 }
@@ -46,5 +52,6 @@ export {
    projectsCollection,
    tasksCollection,
    addToCollection,
-   deleteFromCollection
+   deleteFromCollection,
+   updateDocument
 }
