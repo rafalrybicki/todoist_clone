@@ -1,21 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { firebase, projectsCollection } from '../../firebase';
-
 import Popover from '../common/Popover';
 import OptionsBtn from '../common/buttons/OptionsBtn';
 import MenuList from '../common/MenuList';
 import { Pen, ArrowRightCircle, Stickies, Trash } from 'react-bootstrap-icons';
 
-function SectionMenu({ projectId, sectionId, edit }) {
-
-   const deleteSection = () => {
-      projectsCollection.doc(projectId).update({
-         [`sections.${sectionId}`]: firebase.firestore.FieldValue.delete()
-      })
-   }
-
+function SectionMenu({ openEditor, remove, duplicate }) {
    return (
       <Popover
          activator={
@@ -23,7 +14,7 @@ function SectionMenu({ projectId, sectionId, edit }) {
          }
          content={
             <MenuList>
-               <li onClick={edit}>
+               <li onClick={openEditor}>
                   <Pen size={16} />
                   Edit section
                </li>
@@ -31,11 +22,11 @@ function SectionMenu({ projectId, sectionId, edit }) {
                   <ArrowRightCircle size={16} />
                   Move section
                </li>
-               <li onClick={() => alert('coming soon')}>
+               <li onClick={duplicate}>
                   <Stickies size={16} />
                   Duplicate section
                </li>
-               <li onClick={deleteSection}>
+               <li onClick={remove}>
                   <Trash size={16} />
                   Delete section
                </li>
@@ -46,9 +37,9 @@ function SectionMenu({ projectId, sectionId, edit }) {
 }
 
 SectionMenu.propTypes = {
-   projectId: PropTypes.string.isRequired,
-   sectionId: PropTypes.string.isRequired,
-   edit: PropTypes.func.isRequired
+   openEditor: PropTypes.func.isRequired,
+   remove: PropTypes.func.isRequired,
+   duplicate: PropTypes.func.isRequired 
 }
 
 export default SectionMenu

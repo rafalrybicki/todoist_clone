@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
-import { updateDocument } from '../../firebase';
+import { addToCollection, firebase, updateDocument } from '../../firebase';
+import { v4 as uuid } from 'uuid';
 
 import Editor from '../Editor';
 import Grip from '../common/Grip';
@@ -87,12 +88,38 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
       setOpenEditor(false);
    } 
 
-   const editSectionName = (name) => {
+   const edit = (name) => {
       updateSection({ name })
+   }
+
+   const remove = () => {
+      updateDocument('projects', projectId, {
+         [`sections.${sectionId}`]: firebase.firestore.FieldValue.delete()
+      })
    }
 
    const toggleSectionOpening = () => {
       updateSection({ isOpen: !isOpen })
+   }
+
+   const duplicate = () => {
+      const id = uuid();
+
+      tasks.forEach(task => {
+         addToCollection('tasks', {
+            ...task,
+            sectionId: id
+         })
+      })
+
+      updateDocument('projects', projectId, {
+         [`sections.${id}`]: {
+            id,
+            name,
+            isOpen,
+            order: (order + nextSiblingOrder) / 2
+         }
+      })
    }
 
    return (
@@ -100,7 +127,7 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
          {openEditor &&
             <Editor
                currentContent={name}
-               onSave={editSectionName}
+               onSave={edit}
                onClose={toggleEditor}
             />
          }
@@ -118,9 +145,9 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
                </IconBtn>
                <h2>{name}</h2>
                <SectionMenu
-                  projectId={projectId}
-                  sectionId={sectionId}
-                  edit={toggleEditor}
+                  openEditor={toggleEditor}
+                  remove={remove}
+                  duplicate={duplicate}
                />
             </header>
          }

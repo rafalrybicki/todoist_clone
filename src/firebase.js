@@ -27,8 +27,8 @@ const addToCollection = (collectionName, newDocument) => {
    const id = ref.id;
 
    ref.set({
+      ...newDocument,
       id,
-      ...newDocument
    })
 }
 
