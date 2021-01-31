@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { auth, projectsCollection } from '../../../firebase';
+import { useSelector } from 'react-redux';
+import { auth, addToCollection } from '../../../firebase';
 
 import ToggleSwitch from './ToggleSwitch';
 import ViewSelector from './ViewSelector';
 import CancelBtn from '../buttons/CancelBtn';
 import SubmitBtn from '../buttons/SubmitBtn';
 import ColorPicker from './ColorPicker';
-import { useSelector } from 'react-redux';
 
 const StyledProjectEditor = styled.form`
    position: fixed;
@@ -90,11 +90,8 @@ function ProjectEditor({ close }) {
 
    const addProject = (e) => {
       e.preventDefault();
-      const projectRef = projectsCollection.doc();
-      const id = projectRef.id
-      
-      projectRef.set({
-         id,
+
+      addToCollection('projects', {
          ownerId: auth.currentUser.uid,
          name,
          order: nextOrder,
@@ -111,7 +108,7 @@ function ProjectEditor({ close }) {
                isOpen: true
             }
          },
-         comments: [],
+         comments: []
       })
 
       close()

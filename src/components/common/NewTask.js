@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { tasksCollection } from '../../firebase';
+import { addToCollection } from '../../firebase';
 
 import Editor from '../Editor';
 import NewItemBtn from './buttons/NewItemBtn';
@@ -16,18 +16,14 @@ function NewTask({ sectionId, projectId, date }) {
    }
 
    const addTask = (task) => {
-      const newTaskRef = tasksCollection.doc();
-      const id = newTaskRef.id;
-   
-      newTaskRef.set({
-         id,
+      addToCollection('tasks', {
          ...task,
          ownerId: userId,
          completionDate: null,
          subTasks: [],
          comments: [],
          activity: []
-      })
+      });
    }
 
    if (openEditor) {
