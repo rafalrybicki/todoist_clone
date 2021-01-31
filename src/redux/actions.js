@@ -6,7 +6,9 @@ import {
    DELETE_PROJECT,
    ADD_TASK,
    EDIT_TASK,
-   DELETE_TASK
+   DELETE_TASK,
+   SHOW_MODAL,
+   HIDE_MODAL
 } from './actionTypes';
 
 export const login = (user) => {
@@ -61,5 +63,18 @@ export const deleteTask = (id) => {
    return {
       type: DELETE_TASK,
       id
+   }
+}
+
+export const showModal = (componentName) => {
+   return {
+      type: SHOW_MODAL,
+      componentName
+   }
+}
+
+export const hideModal = () => {
+   return {
+      type: HIDE_MODAL
    }
 }
