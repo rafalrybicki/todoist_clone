@@ -7,7 +7,7 @@ import {
    ADD_TASK,
    EDIT_TASK,
    DELETE_TASK,
-   SHOW_MODAL,
+   OPEN_MODAL,
    HIDE_MODAL
 } from './actionTypes';
 
@@ -66,9 +66,9 @@ export const deleteTask = (id) => {
    }
 }
 
-export const showModal = (componentName) => {
+export const openModal = (componentName) => {
    return {
-      type: SHOW_MODAL,
+      type: OPEN_MODAL,
       componentName
    }
 }

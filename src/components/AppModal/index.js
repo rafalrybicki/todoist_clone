@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { hideModal } from '../../redux/actions';
 
 import ProjectEditor from '../common/ProjectEditor';
 import Overlay from '../common/Overlay';
@@ -9,21 +12,25 @@ const StyledAppModal = styled.div`
    top: 0;
    height: 100vh;
    width: 100vw;
-   z-index: ${props => props.open ? '101' : '-1'};
+   z-index: ${props => props.show ? '101' : '-1'};
 `
 
 function AppModal() {
-   const [open, setOpen] = useState(true);
+   const dispatch = useDispatch();
+   const componentName = useSelector(state => state.modal);
 
    const closeModal = () => {
-      setOpen(false);
+      dispatch(hideModal())
    }
+
    return (
-      <StyledAppModal open={open}>
-         <ProjectEditor close={closeModal} />
+      <StyledAppModal show={componentName}>
+         {componentName === 'project' &&
+            <ProjectEditor close={closeModal} />
+         }
          <Overlay
-            show={open}
-            hide={closeModal}
+            show={componentName}
+            hide={(closeModal)}
          />
       </StyledAppModal>
    )

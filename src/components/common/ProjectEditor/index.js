@@ -90,10 +90,10 @@ function ProjectEditor({ close }) {
 
    const addProject = (e) => {
       e.preventDefault();
-      const newprojectRef = projectsCollection.doc();
-      const id = newprojectRef.id
+      const projectRef = projectsCollection.doc();
+      const id = projectRef.id
       
-      newprojectRef.set({
+      projectRef.set({
          id,
          ownerId: auth.currentUser.uid,
          name,
@@ -113,6 +113,8 @@ function ProjectEditor({ close }) {
          },
          comments: [],
       })
+
+      close()
    }
 
    return (
