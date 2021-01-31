@@ -1,10 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
+import { getDisplayDay } from '../../../../utils';
 
 const StyledSuggestionsItem = styled.button`
    position: relative;
    display: flex;
    align-items: center;
+   height: 32px;
    border: none;
    padding: 0 10px 0 38px;
    border: none;
@@ -27,14 +30,25 @@ const StyledSuggestionsItem = styled.button`
    }
 `
 
-function SuggestionsItem({ text, children, onClick }) {
+function SuggestionsItem({ text, miliseconds, onClick, children }) {
+   const day = getDisplayDay(miliseconds);
+
    return (
       <StyledSuggestionsItem type="button" onClick={onClick}>
          {children}
          {text}
-         <span className="day">Mon</span>
+         <span className="day">
+            {miliseconds && day}
+         </span>
       </StyledSuggestionsItem>
    )
+}
+
+SuggestionsItem.propTypes = {
+   text: PropTypes.string.isRequired,
+   miliseconds: PropTypes.number,
+   onClick: PropTypes.func.isRequired,
+   children: PropTypes.node.isRequired,
 }
 
 export default SuggestionsItem

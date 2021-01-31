@@ -25,7 +25,7 @@ function SortSelector({ sortType, projectId }) {
 }
 
 SortSelector.propTypes = {
-   sorttype: PropTypes.string.isRequired,
+   sortType: PropTypes.string.isRequired,
    projectId: PropTypes.string.isRequired
 }
 

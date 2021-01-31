@@ -48,33 +48,39 @@ function DateTimeSelector({ miliseconds, setMiliseconds, isDateTime, setIsDateTi
    const [timeArr, setTimeArr] = useState(isDateTime ? getTimeArr(miliseconds) : []);
 
    const toggleSelector = () => {
-      setOpenSelector(!openSelector)
+      setOpenSelector(!openSelector);
    }
    
    const addTime = (timeArr) => {
       let newMiliseconds = getBeginingOfTheDay(miliseconds);  
-      newMiliseconds += getMilisecondsFromTimeArr(timeArr)
+      newMiliseconds += getMilisecondsFromTimeArr(timeArr);
 
       setMiliseconds(newMiliseconds);
       setTimeArr(timeArr);
-      setIsDateTime(true)
+      setIsDateTime(true);
    }
 
    const removeTime = () => {
       const newMiliseconds = getBeginingOfTheDay(miliseconds);
 
-      setMiliseconds(newMiliseconds)
+      setMiliseconds(newMiliseconds);
       setTimeArr([]);
-      setIsDateTime(false)
+      setIsDateTime(false);
    }
 
    const setDate = (miliseconds) => {
       if (isDateTime) {
-         const newMiliseconds = getMilisecondsFromTimeArr(timeArr) + miliseconds
-         setMiliseconds(newMiliseconds)
+         const newMiliseconds = getMilisecondsFromTimeArr(timeArr) + miliseconds;
+         setMiliseconds(newMiliseconds);
       } else {
-         setMiliseconds(miliseconds)
+         setMiliseconds(miliseconds);
       }
+   }
+
+   const resetDate = () => {
+      setMiliseconds(null);
+      setIsDateTime(false);
+      setTimeArr([]);
    }
 
    return (
@@ -91,7 +97,8 @@ function DateTimeSelector({ miliseconds, setMiliseconds, isDateTime, setIsDateTi
             <div className="date-time-selector">
                <Suggestions
                   currentDate={miliseconds}
-                  setDate={setDate}
+                  setMiliseconds={setDate}
+                  resetDate={resetDate}
                />
                <Calendar
                   currentDate={getBeginingOfTheDay(miliseconds)}

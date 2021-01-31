@@ -156,6 +156,17 @@ export function getMonth(month, year) {
    return monthArr
 }
 
+export function getNextWeek(miliseconds) {
+   const date = new Date(miliseconds);
+   const dayOfTheWeek = date.getDay() === 0 ? 7 : date.getDay();
+   const diff = 7 - dayOfTheWeek;
+
+   let newMiliseconds = miliseconds + 86400000;
+   newMiliseconds += (diff * 86400000)
+
+   return getWeek(newMiliseconds)
+}
+
 export function getBeginingOfTheDay(miliseconds) {
    const date = getDate(miliseconds);
 
@@ -176,6 +187,15 @@ export function getFirstDayOfTheMonth(month, year) {
 export function getLastDayOfTheMonth(month, year) {
    const day = new Date(year, month, 0);
    return Date.parse(day)
+}
+
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday ', 'Friday', 'Saturday', 'Sunday']
+
+export function getDisplayDay(miliseconds) {
+   let day = new Date(miliseconds).getDay();
+   day = day === 0 ? 6 : (day - 1);
+
+   return days[day].slice(0, 3);
 }
 
 export function scrollToElement(elementId, viewId) {

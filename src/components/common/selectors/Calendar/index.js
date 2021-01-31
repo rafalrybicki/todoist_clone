@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import { getDate, getMonth, getFirstDayOfTheMonth, getLastDayOfTheMonth } from '../../../../utils'
@@ -57,6 +58,11 @@ function Calendar({ currentDate, setDate }) {
          </Month>
       </StyledCalendar>
    )
+}
+
+Calendar.propTypes = {
+   currentDate: PropTypes.number,
+   setDate: PropTypes.func.isRequired
 }
 
 export default Calendar
