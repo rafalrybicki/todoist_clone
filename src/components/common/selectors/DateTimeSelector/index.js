@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { getTaskDate } from '../../../../utils';
+import { getTimeArr, getBeginingOfTheDay, getTaskDate } from '../../../../utils';
 
 import { CalendarEvent } from 'react-bootstrap-icons';
 import Suggestions from './Suggestions';
@@ -30,7 +30,7 @@ const StyledDateTimeSelector = styled.div`
       }
    }
 
-   > .selector {
+   > .date-time-selector {
       z-index: 10;
       position: absolute;
       top: 28px;
@@ -43,15 +43,37 @@ const StyledDateTimeSelector = styled.div`
    }
 `
 
-function DateTimeSelector({ miliseconds, setDate, isDateTime, timeArr, addTime, removeTime }) {
-   const [isOpen, setIsOpen] = useState(false);
+function DateTimeSelector({ miliseconds, setMiliseconds, isDateTime, setIsDateTime }) {
+   const [openSelector, setOpenSelector] = useState(false);
+   const [timeArr, setTimeArr] = useState(isDateTime ? getTimeArr(miliseconds) : []);
 
    const toggleSelector = () => {
-      setIsOpen(!isOpen)
+      setOpenSelector(!openSelector)
+   }
+   
+   const addTime = (timeArr) => {
+      const hours = timeArr[2] === 'AM' ? timeArr[0] : timeArr[0] + 12;
+
+      let newMiliseconds = getBeginingOfTheDay(miliseconds);  
+      newMiliseconds += (hours * 3600000)
+      newMiliseconds += (timeArr[1] * 60000);
+
+      setMiliseconds(newMiliseconds);
+      setTimeArr(timeArr);
+      setIsDateTime(true)
    }
 
+   const removeTime = () => {
+      const newMiliseconds = getBeginingOfTheDay(miliseconds);
+
+      setMiliseconds(newMiliseconds)
+      setTimeArr([]);
+      setIsDateTime(false)
+   }
+
+
    return (
-      <StyledDateTimeSelector className="miliseconds-time-selector">
+      <StyledDateTimeSelector>
          <button
             type="button"
             onClick={toggleSelector}
@@ -59,15 +81,17 @@ function DateTimeSelector({ miliseconds, setDate, isDateTime, timeArr, addTime, 
             <CalendarEvent />
             {getTaskDate(miliseconds, isDateTime)}
          </button>
-         {isOpen &&
-            <div className="selector">
+
+         {openSelector &&
+            <div className="date-time-selector">
                <Suggestions
                   currentDate={miliseconds}
-                  setDate={setDate}
+                  setDate={setMiliseconds}
                />
                <Calendar
                   currentDate={miliseconds}
-                  setDate={setDate}
+                  setDate={setMiliseconds}
+
                />
                <TimeSelector
                   timeArr={timeArr}
@@ -83,11 +107,9 @@ function DateTimeSelector({ miliseconds, setDate, isDateTime, timeArr, addTime, 
 
 DateTimeSelector.propTypes = {
    miliseconds: PropTypes.number,
-   setDate: PropTypes.func.isRequired,
+   setMiliseconds: PropTypes.func.isRequired,
    isDateTime: PropTypes.bool.isRequired,
-   timeArr: PropTypes.array.isRequired,
-   addTime: PropTypes.func.isRequired,
-   removeTime: PropTypes.func.isRequired,
+   setIsDateTime: PropTypes.func.isRequired
 }
 
 export default DateTimeSelector

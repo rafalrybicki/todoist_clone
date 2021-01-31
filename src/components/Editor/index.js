@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { getTimeArr, getBeginingOfTheDay } from '../../utils';
-
 import DateTimeSelector from '../common/selectors/DateTimeSelector';
 import ProjectPicker from '../common/ProjectPicker';
 import LabelPicker from './LabelPicker';
@@ -59,30 +57,6 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
    const [sectionId, setSectionId] = useState(currentSectionId || null);
    const [priority, setPriority] = useState(currentPriority || 4);
 
-   const [timeArr, setTimeArr] = useState(isDateTime ? getTimeArr(currentTargetDate) : []);
-
-   const addTime = (timeArr) => {
-      let newMiliseconds = timeArr[1] * 60000;
-
-      if (timeArr[2] === 'AM') {
-         newMiliseconds += timeArr[0] * 3600000;
-      } else {
-         newMiliseconds += (timeArr[0] + 12) * 3600000;
-      }
-
-      newMiliseconds += getBeginingOfTheDay();
-
-      setTargetDate(newMiliseconds);
-      setTimeArr(timeArr);
-      setIsDateTime(true)
-   }
-
-   const removeTime = () => {
-      setTargetDate(getBeginingOfTheDay(targetDate))
-      setTimeArr([]);
-      setIsDateTime(false)
-   }
-
    const handleSave = (e) => {
       e.preventDefault();
 
@@ -126,11 +100,9 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
             <section>
                <DateTimeSelector
                   miliseconds={targetDate}
-                  setDate={setTargetDate}
+                  setMiliseconds={setTargetDate}
                   isDateTime={isDateTime}
-                  timeArr={timeArr}
-                  addTime={addTime}
-                  removeTime={removeTime}
+                  setIsDateTime={setIsDateTime}
                />
                <ProjectPicker
                   projectId={projectId}

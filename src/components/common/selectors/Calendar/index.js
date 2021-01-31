@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
-import { getDate, getMonth, getFirstDayOfTheMonth, getLastDayOfTheMonth } from '../../../../utils'
+import { getDate, getMonth, getFirstDayOfTheMonth, getLastDayOfTheMonth, getBeginingOfTheDay } from '../../../../utils'
 import Header from './Header';
 import Month from './Month';
 import Day from './Day'
@@ -12,12 +12,12 @@ const StyledCalendar = styled.div`
 `
 
 function Calendar({ currentDate, setDate }) {
-   const date = currentDate ? getDate(currentDate) : getDate();
+   const currentDateStart = getBeginingOfTheDay(currentDate);
+   const date = currentDate ? getDate(currentDateStart) : getDate();
    const today = getDate();
    const miliseconds = date.miliseconds;
    const [year, setYear] = useState(date.year);
    const [month, setMonth] = useState(date.month);
-   // const [miliseconds, setMiliseconds] = useState(date.valueOf());
 
    const firstDay = getFirstDayOfTheMonth(month, year);
    const lastDay = getLastDayOfTheMonth(month, year);
@@ -51,8 +51,8 @@ function Calendar({ currentDate, setDate }) {
                         key={day.miliseconds}
                         number={day.day}
                         active={day.miliseconds === miliseconds && currentDate > 0}
-                        onClick={() => setDate(day.miliseconds)}
                         disabled={day.miliseconds < firstDay || day.miliseconds > lastDay || day.miliseconds < today.miliseconds}
+                        onClick={() => setDate(day.miliseconds)}
                      />
                   )}
                </tr>
