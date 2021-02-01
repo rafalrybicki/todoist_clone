@@ -68,6 +68,7 @@ function Today({ match }) {
                         isDateTime={task.isDateTime}
                         completionDate={task.completionDate}
                         subTasks={task.subTasks}
+                        showProjectLink={true}
                      />
                   )}
                </section>
@@ -87,7 +88,7 @@ function Today({ match }) {
                      isDateTime={task.isDateTime}
                      completionDate={task.completionDate}
                      subTasks={task.subTasks}
-                     pathname={"today/" + task.id}
+                     showProjectLink={true}
                   />
                )}
             </section>

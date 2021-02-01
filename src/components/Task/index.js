@@ -5,7 +5,9 @@ import styled from 'styled-components/macro';
 import { updateDocument } from '../../firebase';
 
 import Editor from '../Editor';
-import Actions from './Actions';
+import Popover from '../common/Popover';
+import OptionsBtn from '../common/buttons/OptionsBtn';
+import TaskMenu from './TaskMenu';
 import Checkbox from '../common/Checkbox';
 import Date from './Date';
 import Grip from '../common/Grip';
@@ -46,9 +48,19 @@ const StyledTask = styled.li`
       top: 9px;
    }
 
-   .arrow-icon {
-      top: 5px;
-      left: 6px;
+   .popover {
+      position: absolute;
+      top: 10px;
+      right: 0;
+
+      > .options-btn {
+         color: transparent;
+      }
+
+      .arrow-icon {
+         top: 4px;
+         left: 8px;
+      }
    }
 
    .project-link {
@@ -61,6 +73,12 @@ const StyledTask = styled.li`
          margin-top: .8px;
       }
    }
+
+   &:hover {
+      .popover >.options-btn {
+         color: grey
+      }
+   }
 `
 
 function Task(props) {
@@ -68,16 +86,15 @@ function Task(props) {
       id,
       content,
       priority,
-      endDate,
-      projectId,
-      projectName,
-      projectPath,
-      sectionId, 
-      projectColor,
+      order,
       targetDate,
       isDateTime,
       completionDate,
-      subTasks
+      projectId,
+      sectionId,
+      ownerId,
+      subTasks,
+      showProjectLink
    } = props;
 
    const [editor, showEditor] = useState(false);
@@ -86,11 +103,18 @@ function Task(props) {
       id,
       content,
       priority,
-      endDate,
+      order,
+      targetDate,
+      isDateTime,
       completionDate,
+      projectId,
+      sectionId,
+      ownerId,
       subTasks,
       prevPath: window.location.pathname
    }
+
+   console.log(showProjectLink)
 
    const toggleEditor = () => {
       showEditor(editor => !editor)
@@ -109,7 +133,6 @@ function Task(props) {
             currentSectionId={sectionId}
             currentTargetDate={targetDate}
             currentIsDateTime={isDateTime}
-            currentProjectColor={projectColor}
             currentPriority={priority}
             onSave={edit}
             onClose={toggleEditor}
@@ -128,12 +151,25 @@ function Task(props) {
          >
             {content}
          </Link>
-         <Actions id={id} openEditor={toggleEditor} />
+         
+         <Popover 
+            activator={
+               <OptionsBtn />
+            }
+            content={
+               <TaskMenu
+                  {...props}
+                  edit={toggleEditor}
+               />
+            }
+         />
+         
          {targetDate && <Date date={targetDate} />}
-         {projectPath && projectName &&
+         
+         {showProjectLink &&
             <ProjectLink
-               name={projectName}
-               path={projectPath}
+               name="project name"
+               path="/inbox"
             />
          }
       </StyledTask>
@@ -144,14 +180,15 @@ Task.propTypes = {
    id: PropTypes.string.isRequired,
    content: PropTypes.string.isRequired,
    priority: PropTypes.number.isRequired,
-   endDate: PropTypes.string,
-   projectName: PropTypes.string,
-   projectPath: PropTypes.string,
-   projectColor: PropTypes.string,
+   order: PropTypes.number.isRequired,
    targetDate: PropTypes.number,
    isDateTime: PropTypes.bool.isRequired,
    completionDate: PropTypes.string,
-   subTasks: PropTypes.array
+   projectId: PropTypes.string.isRequired,
+   sectionId: PropTypes.string.isRequired,
+   ownerId: PropTypes.string.isRequired,
+   subTasks: PropTypes.array.isRequired,
+   showProjectLink: PropTypes.bool
 }
 
 export default Task

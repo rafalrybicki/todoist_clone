@@ -21,7 +21,11 @@ function Popover({ activator, content }) {
    const [open, toggle] = useState(false);
 
    return (
-      <StyledPopover isOpen={open} onClick={() => toggle(!open)}>
+      <StyledPopover
+         isOpen={open}
+         onClick={() => toggle(!open)}
+         className="popover"
+      >
          {activator}
          {content}
       </StyledPopover>

@@ -4,7 +4,6 @@ import styled from 'styled-components/macro';
 import IconBtn from '../common/buttons/IconBtn';
 import { ListUl, Pen, ChatSquare, CalendarEvent, ThreeDots } from 'react-bootstrap-icons';
 import Popover from '../common/Popover';
-import TaskMenu from '../TaskMenu';
 
 const StyledActions = styled.div`
    padding-top: 5px;
@@ -55,7 +54,7 @@ function Actions() {
                </IconBtn>
             }
             content={
-               <TaskMenu />
+               <div />
             }
          />
       </StyledActions>

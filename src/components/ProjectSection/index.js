@@ -156,13 +156,15 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
             <Task
                key={task.id}
                id={task.id}
-               projectId={task.projectId}
-               sectionId={task.sectionId}
                content={task.content}
                priority={task.priority}
+               order={task.order}
                targetDate={task.targetDate}
                isDateTime={task.isDateTime}
                completionDate={task.completionDate}
+               projectId={task.projectId}
+               sectionId={task.sectionId}
+               ownerId={task.ownerId}
                subTasks={task.subTasks}
             />
          )}
