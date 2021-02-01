@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import IconBtn from '../common/buttons/IconBtn';
-import PriorityIcon from '../common/icons/PriorityIcon';
+import IconBtn from '../appButtons/IconBtn';
+import PriorityIcon from '../appIcons/PriorityIcon';
 
 function Priority({ priority, setPriority }) {
    return (

@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import { projectsCollection } from '../../firebase';
 import { v4 as uuid } from 'uuid';
 
-import Editor from '../Editor';
+import Editor from '../Editor/Editor';
 
 const StyledNewSection = styled.div`
    position: relative;

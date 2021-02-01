@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Popover from '../common/Popover';
-import OptionsBtn from '../common/buttons/OptionsBtn';
-import MenuList from '../common/MenuList';
+import Popover from '../Popover';
+import OptionsBtn from '../appButtons/OptionsBtn';
+import MenuList from '../MenuList';
 import { Pen, ArrowRightCircle, Stickies, Trash } from 'react-bootstrap-icons';
 
 function SectionMenu({ openEditor, remove, duplicate }) {

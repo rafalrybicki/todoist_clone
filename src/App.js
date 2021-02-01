@@ -5,20 +5,17 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import ProtectedRoute from './views/ProtectedRoute';
+import ProtectedRoute from './pages/ProtectedRoute';
 import styled from 'styled-components/macro';
 
-import AppBar from './components/AppBar';
-import AppMenu from './components/AppMenu';
-import Login from './views/Login';
-import SignUp from './views/SignUp';
-import MainView from './views/MainView';
-import Project from './views/Project';
-import Today from './views/Today';
-// import Upcoming from './views/Upcoming';
-import AppModal from './components/AppModal';
-import FirebaseListener from './components/FirebaseListener';
+import AppBar from './components/AppBar/AppBar';
+import AppMenu from './components/AppMenu/AppMenu';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import MainView from './pages/MainView';
+import Project from './pages/Project';
+import Today from './pages/Today';
+// import Upcoming from './pages/Upcoming';
 
 const StyledApp = styled.div`
   display: flex;
@@ -29,7 +26,6 @@ const StyledApp = styled.div`
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(true);
-  const userId = useSelector(state => state.user.id);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -42,7 +38,6 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
           <Route path='/'>
-            {userId && <FirebaseListener userId={userId} />}
             <AppBar toggleMenu={toggleMenu} />
             <AppMenu isOpen={menuOpen} closeMenu={toggleMenu}/>
             <MainView>
@@ -54,7 +49,6 @@ function App() {
                 <ProtectedRoute path='/' render={() => <Redirect to= "/inbox" />} />
               </Switch>
             </MainView>
-            <AppModal />
           </Route>
         </Switch>
       </StyledApp>

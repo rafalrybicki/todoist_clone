@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import IconBtn from '../common/buttons/IconBtn';
+import IconBtn from '../appButtons/IconBtn';
 import { Tag } from 'react-bootstrap-icons';
 
 const StyledlabelPicker = styled.div`

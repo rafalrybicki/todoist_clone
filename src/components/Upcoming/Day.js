@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import { getDisplayDate } from '../../utils';
-import Task from '../Task'
-import NewItemBtn from '../common/buttons/NewItemBtn';
+import NewItemBtn from '../appButtons/NewItemBtn';
 
 const StyledDay = styled.div`
    padding-top: 28px;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { addToCollection, deleteFromCollection, updateDocument } from '../../firebase';
 
-import MenuList from '../common/MenuList';
+import MenuList from '../MenuList';
 import { ArrowDownShort, ArrowRightCircle, ArrowUpShort, Pen, Stickies, Trash } from 'react-bootstrap-icons';
 import Selector from './Selector';
 import Priority from './Priority';

@@ -7,7 +7,7 @@ import { openModal } from '../../redux/actions';
 import ExpandableList from './ExpandableList';
 import ListItem from './ListItem';
 import { CircleFill } from 'react-bootstrap-icons';
-import NewItemBtn from '../common/buttons/NewItemBtn';
+import NewItemBtn from '../appButtons/NewItemBtn';
 
 function ProjectList({ isMobile, closeMenu }) {
    const projects = useSelector(state => state.projects.filter(project => (project.favorite === false && project.order > 0)).sort((a, b) => a.order - b.order))

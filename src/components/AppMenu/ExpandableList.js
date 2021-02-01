@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import { Plus } from 'react-bootstrap-icons';
-import ChevronIcon from '../common/icons/ChevronIcon';
+import ChevronIcon from '../appIcons/ChevronIcon';
 
 const StyledExpandableList = styled.div`
    display: flex;
