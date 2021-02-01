@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import { Calendar } from 'react-bootstrap-icons';
@@ -37,6 +38,11 @@ function TodayIcon({ size }) {
          </span>
       </StyledTodayIcon> 
    )
+}
+
+
+TodayIcon.propTypes = {
+   size: PropTypes.number.isRequired
 }
 
 export default TodayIcon

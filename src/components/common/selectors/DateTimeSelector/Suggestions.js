@@ -6,7 +6,10 @@ import { getDate, getNextWeek, getWeek } from '../../../../utils';
 
 import SuggestionsItem from './SuggestionsItem';
 import TodayIcon from '../../icons/TodayIcon';
-import { BrightnessHigh, SkipForwardFill, SlashCircle, HouseDoorFill  } from 'react-bootstrap-icons';
+import TommorowIcon from '../../icons/TomorrowIcon';
+import ThisWeekendIcon from '../../icons/ThisWeekendIcon';
+import NextWeekIcon from '../../icons/NextWeekIcon';
+import NoDateIcon from '../../icons/NoDateIcon';
 
 const StyledSuggestions = styled.div`
    height: auto;
@@ -18,19 +21,15 @@ const StyledSuggestions = styled.div`
    .today-icon {
       position: absolute;
       top: 9px;
-      left: 11px;
+      left: 12px;
    }
 
-   .tommorow-icon {
-      margin-left: -1px;
-   }
-
-   .nextweek-icon {
+   .next-week-icon {
       margin-top: 1px;
       margin-left: 1px;
    }
 
-   .weekend-icon {
+   .this-weekend-icon {
       margin-top: -1px;
    }
 `
@@ -55,53 +54,41 @@ function Suggestions({ currentDate, setMiliseconds, resetDate }) {
                <TodayIcon size={16} />
             </SuggestionsItem>
          }
+
          {currentDate !== tommorow &&
             <SuggestionsItem
                text="Tommorow"
                miliseconds={tommorow}
                onClick={() => setMiliseconds(tommorow)}
             >
-               <BrightnessHigh
-                  size={16}
-                  color="#ad6200"
-                  className="tommorow-icon"
-               />
+               <TommorowIcon size={17} />
             </SuggestionsItem>
-         }       
+         }  
+
          <SuggestionsItem
             text={today > thisWeekend ? "Next weekend" : "This weekend"}
             miliseconds={today > thisWeekend ? nextWeekend : thisWeekend}
             onClick={today > thisWeekend ?  () => setMiliseconds(nextWeekend) : () => setMiliseconds(thisWeekend) }
          >
-            <HouseDoorFill
-               size={15}
-               color="#246fe0"
-               className="weekend-icon"
-            />
+            <ThisWeekendIcon size={16} />
          </SuggestionsItem>
+
          {nextMonday !== tommorow &&
             <SuggestionsItem
                text="Next week"
                miliseconds={nextWeek[0].miliseconds}
             >
-               <SkipForwardFill
-                  size={14}
-                  color="darkgreen"
-                  className="nextweek-icon"
-               />
+               <NextWeekIcon size={14} />
             </SuggestionsItem>
          }
+
          {currentDate && 
             <SuggestionsItem
                text="No date"
                miliseconds={null}
                onClick={resetDate}
             >
-               <SlashCircle
-                  size={15}
-                  color="grey"
-                  className="nodate-icon"
-               />
+               <NoDateIcon size={15} />
             </SuggestionsItem>
          }
       </StyledSuggestions>
