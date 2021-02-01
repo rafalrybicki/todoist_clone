@@ -9,6 +9,7 @@ function OptionsBtn({ width = '28px'}) {
          width={width}
          tooltip="Options"
          tooltipWidth="60px"
+         className="options-btn"
       >
          <ThreeDots size="20"/>
       </IconBtn>
