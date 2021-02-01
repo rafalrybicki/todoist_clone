@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import IconBtn from '../common/buttons/IconBtn';
-import { Pen, ChatSquare, CalendarEvent, ThreeDots } from 'react-bootstrap-icons';
+import OptionsBtn from '../common/buttons/OptionsBtn';
+import { Pen, ChatSquare, CalendarEvent } from 'react-bootstrap-icons';
 import Popover from '../common/Popover';
 import TaskMenu from '../TaskMenu';
 
@@ -40,20 +41,35 @@ const StyledActions = styled.div`
 function Actions({ id, openEditor }) {
    return (
       <StyledActions className="actions">
-         <IconBtn width="28px" tooltip="Edit" tooltipWidth="33px" onClick={openEditor}>
+         <IconBtn
+            width="28px"
+            tooltip="Edit"
+            tooltipWidth="33px"
+            onClick={openEditor}
+         >
             <Pen size="16"/>
          </IconBtn>
-         <IconBtn width="28px" tooltip="Schedule" tooltipWidth="64px">
+         <IconBtn
+            width="28px"
+            tooltip="Schedule"
+            tooltipWidth="64px"
+         >
             <CalendarEvent size="16"/>
          </IconBtn>
-         <IconBtn width="28px" tooltip="Comment" tooltipWidth="68px">
-            <ChatSquare className="chat-icon" size="18"/>
+         <IconBtn
+            width="28px"
+            tooltip="Comment"
+            tooltipWidth="68px"
+         >
+            <ChatSquare
+               size="18"
+               className="chat-icon"
+               onClick={() => alert('coming soon')}
+            />
          </IconBtn>
          <Popover
             activator={
-               <IconBtn width="28px" tooltip="More task actions" tooltipWidth="112px">
-                  <ThreeDots size="20"/>
-               </IconBtn>
+               <OptionsBtn />
             }
             content={
                <TaskMenu id={id} openEditor={openEditor} />

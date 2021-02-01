@@ -7,7 +7,7 @@ import TomorrowBtn from '../common/buttons/TomorrowBtn';
 import ThisWeekendBtn from '../common/buttons/ThisWeekendBtn';
 import NextWeekBtn from '../common/buttons/NextWeekBtn';
 import NoDateBtn from '../common/buttons/NoDateBtn';
-import MoreOptionsBtn from '../common/buttons/MoreOptionsBtn';
+import OptionsBtn from '../common/buttons/OptionsBtn';
 
 const StyledSchedule = styled.div`
    button {
@@ -24,7 +24,7 @@ function Schedule({ id }) {
          <ThisWeekendBtn />
          <NextWeekBtn />
          <NoDateBtn />
-         <MoreOptionsBtn />
+         <OptionsBtn />
       </StyledSchedule>
    )
 }
