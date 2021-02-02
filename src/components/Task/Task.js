@@ -8,7 +8,7 @@ import Editor from '../Editor/Editor';
 import Popover from '../Popover';
 import OptionsBtn from '../appButtons/OptionsBtn';
 import TaskMenu from './TaskMenu';
-import Checkbox from '../Checkbox';
+import Checkbox from 'components/Checkbox';
 import Date from './Date';
 import Grip from '../Grip';
 import { Link } from 'react-router-dom';
