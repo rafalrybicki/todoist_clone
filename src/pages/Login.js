@@ -1,11 +1,11 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { Redirect, Link } from 'react-router-dom';
 
 import { auth, usersCollection } from '../firebase';
-import { Redirect } from 'react-router-dom';
-import EntranceView from './EntranceView';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../redux/actions';
+
+import EntrancePage from 'styled/EntrancePage';
 
 function Login({ history }) {
    const dispatch = useDispatch()
@@ -34,7 +34,7 @@ function Login({ history }) {
    }
 
    return (
-      <EntranceView>
+      <EntrancePage>
          <a href="/">
             <img src="https://d3ptyyxy2at9ui.cloudfront.net/logo-e7e40b.svg" alt="Todoist logo"/>
          </a>
@@ -56,7 +56,7 @@ function Login({ history }) {
                <label htmlFor="permanent_login" className="checkbox-label">Keep me logged in</label>
          </form>
          <p> Don't have an account? <Link to="/signup">Sign up</Link></p>
-      </EntranceView>
+      </EntrancePage>
    )
 }
 

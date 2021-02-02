@@ -1,9 +1,9 @@
 import React from 'react';
+import { Redirect, Link } from 'react-router-dom';
 
 import { auth, usersCollection, projectsCollection } from '../firebase';
-import { Redirect } from 'react-router-dom';
-import EntranceView from './EntranceView';
-import { Link } from 'react-router-dom';
+
+import EntrancePage from 'styled/EntrancePage';
 
 function SignUp({ history }) {
    if (auth.currentUser && auth.currentUser.uid) {
@@ -51,7 +51,7 @@ function SignUp({ history }) {
    }
 
    return (
-      <EntranceView>
+      <EntrancePage>
          <a href="/">
             <img src="https://d3ptyyxy2at9ui.cloudfront.net/logo-e7e40b.svg" alt="Todoist logo"/>
          </a>
@@ -76,7 +76,7 @@ function SignUp({ history }) {
             <label htmlFor="permanent_login" className="checkbox-label">Keep me logged in</label>
          </form>
          <p>Already signed up? <Link to="/login">Go to login</Link></p>
-      </EntranceView>
+      </EntrancePage>
    )
 }
 

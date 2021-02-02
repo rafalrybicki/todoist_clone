@@ -1,8 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const StyledEntranceView = styled.div`
+const EntrancePage = styled.div`
    position: relative;
    width: 100vw;
    height: 100vh;
@@ -119,18 +117,6 @@ const StyledEntranceView = styled.div`
          width: 402px;
       }
    }
-`
+`;
 
-function EntranceView({ children }) {
-   return (
-      <StyledEntranceView>
-         {children}
-      </StyledEntranceView>
-   )
-}
-
-EntranceView.propTypes = {
-   children: PropTypes.node.isRequired
-}
-
-export default EntranceView
+export default EntrancePage
