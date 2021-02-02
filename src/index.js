@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import { Provider } from 'react-redux';
 import store from './redux/store'
+
+import GlobalStyle from 'styled/GlobalStyle';
 import App from './App';
 import FirebaseListener from './firebase/FirebaseListener';
 import reportWebVitals from './reportWebVitals';
@@ -10,6 +11,7 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
+			<GlobalStyle />
 			<App />
 			<FirebaseListener />
 		</Provider>
