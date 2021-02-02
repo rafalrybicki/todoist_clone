@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import DateTimeSelector from '../appSelectors/DateTimeSelector/DateTimeSelector';
-import ProjectPicker from '../appSelectors/ProjectPicker/ProjectPicker';
+import DateTimeSelector from 'components/appSelectors/DateTimeSelector/DateTimeSelector';
+import ProjectPicker from 'components/appSelectors/ProjectPicker/ProjectPicker';
 import LabelPicker from './LabelPicker';
 import PriorityPicker from './PriorityPicker';
 import ReminderPicker from './ReminderPicker';
-import SubmitBtn from '../appButtons/SubmitBtn';
-import CancelBtn from '../appButtons/CancelBtn';
+import SubmitBtn from 'components/appButtons/SubmitBtn';
+import CancelBtn from 'components/appButtons/CancelBtn';
 
 const StyledEditor = styled.form`
    position: relative;
@@ -17,8 +17,8 @@ const StyledEditor = styled.form`
    > input {
       display: block;
       width: 100%;
-      height: ${props => props.isTask ? '81px' : '35px'};
-      padding: ${props => props.isTask ? '0 10px 40px' : '0 10px'};
+      height: 81px;
+      padding: 0 10px 40px;
       border: 1px solid #ddd;
       border-radius: 5px;
       outline: none;
@@ -49,7 +49,7 @@ const StyledEditor = styled.form`
    }
 `
 
-function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentProjectId, currentSectionId, currentPriority, onSave, onClose, isTask }) {
+function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentProjectId, currentSectionId, currentPriority, onSave, onClose }) {
    const [content, setContent] = useState(currentContent || '');
    const [targetDate, setTargetDate] = useState(currentTargetDate || null);
    const [isDateTime, setIsDateTime] = useState(currentIsDateTime || false);
@@ -60,20 +60,16 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
    const handleSave = (e) => {
       e.preventDefault();
 
-      if (isTask) {
-         onSave({
-            content,
-            targetDate,
-            isDateTime,
-            projectId,
-            sectionId,
-            priority,
-         })
-      } else {
-         onSave(content)
-      }
-      
-      setContent('');
+      onSave({
+         content,
+         targetDate,
+         isDateTime,
+         projectId,
+         sectionId,
+         priority,
+      })
+
+      setContent('')
    }
 
    const handleKeyDown = (e) => {
@@ -87,7 +83,6 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
          onSubmit={handleSave}
          onKeyDown={handleKeyDown}
          className="editor"
-         isTask={isTask}
       >
          <input
             type="text"
@@ -97,28 +92,28 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
             value={content}
             onChange={(e) => setContent(e.target.value)}
          />
-         {isTask &&
-            <section>
-               <DateTimeSelector
-                  miliseconds={targetDate}
-                  setMiliseconds={setTargetDate}
-                  isDateTime={isDateTime}
-                  setIsDateTime={setIsDateTime}
-               />
-               <ProjectPicker
-                  projectId={projectId}
-                  setProjectId={setProjectId}
-                  sectionId={sectionId}
-                  setSectionId={setSectionId}
-               />
-               <LabelPicker />
-               <PriorityPicker 
-                  priority={priority}
-                  setPriority={setPriority}
-               />
-               <ReminderPicker />
-            </section>
-         }
+         
+         <section>
+            <DateTimeSelector
+               miliseconds={targetDate}
+               setMiliseconds={setTargetDate}
+               isDateTime={isDateTime}
+               setIsDateTime={setIsDateTime}
+            />
+            <ProjectPicker
+               projectId={projectId}
+               setProjectId={setProjectId}
+               sectionId={sectionId}
+               setSectionId={setSectionId}
+            />
+            <LabelPicker />
+            <PriorityPicker 
+               priority={priority}
+               setPriority={setPriority}
+            />
+            <ReminderPicker />
+         </section>
+
          <SubmitBtn
             text="Add task"
             disabled={content === currentContent || content === ''}
