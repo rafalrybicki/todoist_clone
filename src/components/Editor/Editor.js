@@ -87,8 +87,8 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
          <input
             type="text"
             name="text"
-            autoComplete="off"
             autoFocus
+            autoComplete="off"
             value={content}
             onChange={(e) => setContent(e.target.value)}
          />

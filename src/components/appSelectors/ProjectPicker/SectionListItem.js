@@ -6,14 +6,14 @@ import InboxIcon from '../../appIcons/InboxIcon';
 import { ViewList, CircleFill } from 'react-bootstrap-icons';
 
 const StyledSectionListItem = styled.li`
-   &.project svg.inbox-icon {
-      top: 9px;
-      left: 10px;
-   }
-
    &.project svg {
       top: 12px;
       left: 12px;
+   }
+
+   &.project svg.inbox-icon {
+      top: 9px;
+      left: 10px;
    }
 
    &.section {

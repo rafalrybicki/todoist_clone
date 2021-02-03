@@ -52,20 +52,20 @@ function TaskMenu(props) {
       <MenuList>
          <li>
             <ArrowUpShort
-               size={26}
+               size={24}
                className="arrow-icon"
             />
             Add task above
          </li>
          <li>
             <ArrowDownShort
-               size={26}
+               size={24}
                className="arrow-icon"
             />
             Add task below
          </li>
          <li onClick={edit}>
-            <Pen size={17} />
+            <Pen size={16} />
             Edit task
          </li>
          <Selector>
@@ -80,15 +80,15 @@ function TaskMenu(props) {
             />
          </Selector>
          <li>
-            <ArrowRightCircle size={17} />
+            <ArrowRightCircle size={16} />
             Move to project
          </li>
          <li onClick={duplicate}>
-            <Stickies size={17} />
+            <Stickies size={15} />
             Duplicate
          </li>
          <li onClick={deleteTask}>
-            <Trash size={17} />
+            <Trash size={16} />
             Delete task
          </li>
       </MenuList>

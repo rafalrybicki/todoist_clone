@@ -1,72 +1,23 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components/macro';
 
-import { addToCollection, firebase, updateDocument } from '../../firebase';
-import { v4 as uuid } from 'uuid';
+import { updateDocument } from '../../firebase';
+import { dynamicSort } from 'utils';
 
-import Editor from '../Editor/Editor';
-import Grip from '../Grip';
-import IconBtn from '../appButtons/IconBtn';
-import ChevronIcon from '../appIcons/ChevronIcon';
-import SectionMenu from './SectionMenu';
-import Task from '../Task/Task';
-import NewTask from '../NewTask';
-import NewSection from './NewSection';
-import { dynamicSort } from '../../utils';
-
-const StyledProjectSection = styled.section`
-   position: relative;
-   width: 100%;
-   padding-bottom: 20px;
-
-   header {
-      display: flex;
-      border-bottom: 1px solid #f0f0f0;
-
-      .grip {
-         top: -4px;
-         left: -60px;
-
-         &:hover {
-            background-color: #eee;
-         }
-      }
-      
-      .chevron {
-         position: absolute;
-         top: -4px;
-         left: -32px;
-
-         svg {
-            color: grey;
-         }
-
-         &:hover {
-            svg {
-               color: #202020
-            }
-         }
-      }
-
-      h2{
-         font-size: 14px;
-         margin: 0 5px 5px 0;
-         flex-grow: 1;
-      }
-
-      &:hover {
-         .grip {
-            color: grey;
-         }
-      }
-   }
-`
+import StyledProjectSection from './styled/ProjectSection';
+import ProjectSectionEditor from './ProjectSectionEditor';
+import Grip from 'components/Grip';
+import IconBtn from 'components/appButtons/IconBtn';
+import ChevronIcon from 'components/appIcons/ChevronIcon';
+import ProjectSectionMenu from './ProjectSectionMenu';
+import Task from 'components/Task/Task';
+import NewTask from 'components/NewTask';
+import NewProjectSection from './NewProjectSection';
 
 function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSiblingOrder, sortType, sortOrder }) {
    const tasks = useSelector(state => state.tasks.filter(task => task.projectId === projectId && task.sectionId === sectionId));
-   const lastTaskOrder = tasks.length > 0 && tasks[tasks.length -1].order + 1;
+   const lastTaskOrder = tasks.length > 0 ? tasks[tasks.length - 1].order + 1 : 1;
    const [openEditor, setOpenEditor] = useState(false);
 
    const toggleEditor = () => {
@@ -74,61 +25,29 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
    }
 
    const updateSection = (obj) => {
-      const sectionsUpdate = {};
-
-      sectionsUpdate[`sections.${sectionId}`] = {
-         id: sectionId,
-         name,
-         order,
-         isOpen,
-         ...obj
-      };
-
-      updateDocument('projects', projectId, sectionsUpdate);
+      updateDocument('projects', projectId, {
+         [`sections.${sectionId}`]: {
+            id: sectionId,
+            name,
+            order,
+            isOpen,
+            ...obj
+         }
+      });
 
       setOpenEditor(false);
    } 
 
-   const edit = (name) => {
-      updateSection({ name })
-   }
-
-   const remove = () => {
-      updateDocument('projects', projectId, {
-         [`sections.${sectionId}`]: firebase.firestore.FieldValue.delete()
-      })
-   }
-
-   const toggleSectionOpening = () => {
+   const toggleIsOpen = () => {
       updateSection({ isOpen: !isOpen })
    }
 
-   const duplicate = () => {
-      const id = uuid();
-
-      tasks.forEach(task => {
-         addToCollection('tasks', {
-            ...task,
-            sectionId: id
-         })
-      })
-
-      updateDocument('projects', projectId, {
-         [`sections.${id}`]: {
-            id,
-            name,
-            isOpen,
-            order: (order + nextSiblingOrder) / 2
-         }
-      })
-   }
-
    return (
-      <StyledProjectSection isOpen={isOpen}>
+      <StyledProjectSection>
          {openEditor &&
-            <Editor
-               currentContent={name}
-               onSave={edit}
+            <ProjectSectionEditor
+               currentName={name}
+               onSave={updateSection}
                onClose={toggleEditor}
             />
          }
@@ -139,46 +58,51 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
                <IconBtn
                   hoverColor="#eee"
                   width="28px"
-                  onClick={toggleSectionOpening}
+                  onClick={toggleIsOpen}
                   className="chevron"
                >
                   <ChevronIcon rotate={isOpen} />
                </IconBtn>
                <h2>{name}</h2>
-               <SectionMenu
-                  openEditor={toggleEditor}
-                  remove={remove}
-                  duplicate={duplicate}
+               <ProjectSectionMenu
+                  projectId={projectId}
+                  sectionId={sectionId}
+                  name={name}
+                  isOpen={isOpen}
+                  order={order}
+                  nextOrder={(order + nextSiblingOrder) / 2}
+                  edit={toggleEditor}
+                  tasks={tasks}
                />
             </header>
          }
 
-         {isOpen && tasks.sort(dynamicSort(sortType, sortOrder)).map( task => 
-            <Task
-               key={task.id}
-               id={task.id}
-               content={task.content}
-               priority={task.priority}
-               order={task.order}
-               targetDate={task.targetDate}
-               isDateTime={task.isDateTime}
-               completionDate={task.completionDate}
-               projectId={task.projectId}
-               sectionId={task.sectionId}
-               ownerId={task.ownerId}
-               subTasks={task.subTasks}
-            />
-         )}
+         {isOpen && <>
+            {tasks.sort(dynamicSort(sortType, sortOrder)).map( task => 
+               <Task
+                  key={task.id}
+                  id={task.id}
+                  content={task.content}
+                  priority={task.priority}
+                  order={task.order}
+                  targetDate={task.targetDate}
+                  isDateTime={task.isDateTime}
+                  completionDate={task.completionDate}
+                  projectId={task.projectId}
+                  sectionId={task.sectionId}
+                  ownerId={task.ownerId}
+                  subTasks={task.subTasks}
+               />
+            )}
 
-         {isOpen &&
             <NewTask
                sectionId={sectionId}
                projectId={projectId}
-               nextOrder={lastTaskOrder || 1}
+               nextOrder={lastTaskOrder}
             />
-         }
+         </>}
 
-         <NewSection
+         <NewProjectSection
             projectId={projectId}
             order={nextSiblingOrder === 0 ? order + 1 : (order + nextSiblingOrder) / 2}
          />

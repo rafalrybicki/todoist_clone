@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import StyledProjectSectionEditor from 'styled/ProjectSection/StyledProjectSectionEditor';
+import StyledProjectSectionEditor from './styled/ProjectSectionEditor';
 import SubmitBtn from 'components/appButtons/SubmitBtn';
 import CancelBtn from 'components/appButtons/CancelBtn';
 

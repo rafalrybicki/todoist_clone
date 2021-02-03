@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import StyledProjectSelector from 'styled/ProjectSection/StyledProjectSelector';
+import StyledProjectSelector from './styled/ProjectSelector';
 import Popover from 'components/Popover';
 import MenuList from 'components/MenuList';
 import { ArrowRightCircle, CircleFill } from 'react-bootstrap-icons';
