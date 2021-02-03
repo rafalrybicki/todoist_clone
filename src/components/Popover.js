@@ -17,7 +17,7 @@ const StyledPopover = styled.div`
    }
 `
 
-function Popover({ activator, content }) {
+function Popover({ activator, children }) {
    const [open, toggle] = useState(false);
 
    return (
@@ -27,14 +27,14 @@ function Popover({ activator, content }) {
          className="popover"
       >
          {activator}
-         {content}
+         {children}
       </StyledPopover>
    )
 }
 
 Popover.pooptypes = {
    activator: PropTypes.node.isRequired,
-   content: PropTypes.node.isRequired,
+   children: PropTypes.node.isRequired,
 }
 
 export default Popover

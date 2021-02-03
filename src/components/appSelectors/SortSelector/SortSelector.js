@@ -14,13 +14,12 @@ function SortSelector({ sortType, projectId }) {
                <ArrowDownUp size="15"/>
             </IconBtn>
          }
-         content={
-            <SortList
-               sortType={sortType}
-               projectId={projectId}
-            />
-         }
-      />
+      >
+         <SortList
+            sortType={sortType}
+            projectId={projectId}
+         />
+      </Popover>
    )
 }
 
