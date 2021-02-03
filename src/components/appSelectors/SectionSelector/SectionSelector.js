@@ -1,12 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import Popover from '../../Popover';
 import MenuList from '../../MenuList';
-import InboxIcon from '../../appIcons/InboxIcon';
-import { CircleFill } from 'react-bootstrap-icons';
 import SectionListItem from './SectionListItem';
 
 const StyledProjectPicker = styled.div`
@@ -21,7 +19,6 @@ const StyledProjectPicker = styled.div`
 
       svg {
          margin-right: 5px;
-
       }
 
       svg.inbox-icon {
@@ -31,12 +28,6 @@ const StyledProjectPicker = styled.div`
 
    button:hover, button:focus {
       background-color: #eee;
-   }
-
-   input {
-      width: 100%;
-      height: 35px;
-      padding: 4px 10px;
    }
 
    .menu-list {
@@ -78,16 +69,9 @@ function mapProjectsToSections(projects) {
    return sections
 }
 
-function ProjectPicker({ projectId, setProjectId, sectionId, setSectionId }) {
+function SectionSelector({ projectId, setProjectId, sectionId, setSectionId, children }) {
    const projects = useSelector(state => state.projects);
    const sectionListItems = mapProjectsToSections(projects);
-
-   const activeProject = projects.find(project => project.id === projectId);
-   const activeSection = activeProject.sections[sectionId];
-
-   const activeProjectName = activeProject.name || '';
-   const activeProjectColor = activeProject.color || '';
-   const activeSectionName = activeSection.name || '';
 
    const setSection = (projectId, sectionId) => {
       setProjectId(projectId);
@@ -97,50 +81,31 @@ function ProjectPicker({ projectId, setProjectId, sectionId, setSectionId }) {
    return (
       <StyledProjectPicker>
          <Popover
-            activator={
-               <button
-                  type="button"
-                  className="activator"
-               >
-                  {activeProjectName === 'Inbox' &&
-                     <InboxIcon size={14} />
-                  }
-                  {activeProjectName !== 'Inbox' &&
-                     <CircleFill
-                        size={10}
-                        color={activeProjectColor}
+            activator={children}
+         >
+            <MenuList>
+                  {sectionListItems.map(item=>
+                     <SectionListItem
+                        key={item.sectionId + item.projectId}
+                        name={item.name}
+                        icon={item.icon}
+                        color={item.color}
+                        active={sectionId === item.sectionId && projectId === item.projectId}
+                        onClick={() => setSection(item.projectId, item.sectionId)}
                      />
-                  }
-                  {activeProjectName} {activeSectionName !== 'default' &&  ' / ' + activeSectionName}
-               </button>
-            }
-            content={
-               <div>
-                  <input type="text"/>
-                  <MenuList>
-                     {sectionListItems.map(item=>
-                        <SectionListItem
-                           key={item.sectionId + item.projectId}
-                           name={item.name}
-                           icon={item.icon}
-                           color={item.color}
-                           active={sectionId === item.sectionId && projectId === item.projectId}
-                           onClick={() => setSection(item.projectId, item.sectionId)}
-                        />
-                     )}
-                  </MenuList>
-               </div>
-            }
-         />
+                  )}
+               </MenuList>
+         </Popover>
       </StyledProjectPicker>
    )
 }
 
-ProjectPicker.propTypes = {
+SectionSelector.propTypes = {
    projectId: PropTypes.string.isRequired,
    setProjectId: PropTypes.func.isRequired,
    sectionId: PropTypes.string.isRequired,
    setSectionId: PropTypes.func.isRequired,
+   children: PropTypes.node.isRequired
 }
 
-export default ProjectPicker
+export default SectionSelector
