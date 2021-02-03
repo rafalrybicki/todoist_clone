@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import DateTimeSelector from 'components/appSelectors/DateTimeSelector/DateTimeSelector';
-import ProjectPicker from 'components/appSelectors/ProjectPicker/ProjectPicker';
+import SectionSelector from 'components/appSelectors/SectionSelector/SectionSelector';
+import SectionSelectorActivator from './SectionSelectorActivator';
 import LabelPicker from './LabelPicker';
 import PriorityPicker from './PriorityPicker';
 import ReminderPicker from './ReminderPicker';
@@ -100,12 +101,17 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
                isDateTime={isDateTime}
                setIsDateTime={setIsDateTime}
             />
-            <ProjectPicker
+            <SectionSelector
                projectId={projectId}
                setProjectId={setProjectId}
                sectionId={sectionId}
                setSectionId={setSectionId}
-            />
+            >
+               <SectionSelectorActivator
+                  projectId={projectId}
+                  sectionId={sectionId}
+               />
+            </SectionSelector>
             <LabelPicker />
             <PriorityPicker 
                priority={priority}
