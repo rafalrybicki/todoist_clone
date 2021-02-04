@@ -78,6 +78,11 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
          onClose();
       }
    }
+
+   const setProjectAndSection = (projectId, sectionId) => {
+      setProjectId(projectId)
+      setSectionId(sectionId)
+   }
    
    return (
       <StyledEditor
@@ -103,9 +108,8 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
             />
             <SectionSelector
                projectId={projectId}
-               setProjectId={setProjectId}
                sectionId={sectionId}
-               setSectionId={setSectionId}
+               onChange={setProjectAndSection}
             >
                <SectionSelectorActivator
                   projectId={projectId}

@@ -12,8 +12,8 @@ const StyledSectionListItem = styled.li`
    }
 
    &.project svg.inbox-icon {
-      top: 9px;
-      left: 16px;
+      top: 10px;
+      left: 17px;
    }
 
    &.section {
@@ -34,7 +34,7 @@ function SectionListItem({ active, name, icon, color, onClick}) {
          return <CircleFill size={12} color={color} />
       } 
 
-      return <InboxIcon size={16} />
+      return <InboxIcon size={15} />
    }
 
    let className = icon === 'section' ? "section" : "project";

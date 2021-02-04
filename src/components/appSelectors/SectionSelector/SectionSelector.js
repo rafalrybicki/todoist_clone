@@ -31,7 +31,7 @@ const StyledProjectPicker = styled.div`
    }
 
    .menu-list {
-      width: 275px;
+      width: 250px;
       max-height: 288px;
       overflow-y: auto;
       overflow-x: hidden;
@@ -69,17 +69,12 @@ function mapProjectsToSections(projects) {
    return sections
 }
 
-function SectionSelector({ projectId, setProjectId, sectionId, setSectionId, children }) {
+function SectionSelector({ projectId, sectionId, onChange, children }) {
    const projects = useSelector(state => state.projects);
    const sectionListItems = mapProjectsToSections(projects);
 
-   const setSection = (projectId, sectionId) => {
-      setProjectId(projectId);
-      setSectionId(sectionId)
-   }
-
    return (
-      <StyledProjectPicker>
+      <StyledProjectPicker className="section-selector">
          <Popover
             activator={children}
          >
@@ -91,7 +86,7 @@ function SectionSelector({ projectId, setProjectId, sectionId, setSectionId, chi
                         icon={item.icon}
                         color={item.color}
                         active={sectionId === item.sectionId && projectId === item.projectId}
-                        onClick={() => setSection(item.projectId, item.sectionId)}
+                        onClick={() => onChange(item.projectId, item.sectionId)}
                      />
                   )}
                </MenuList>
@@ -102,9 +97,8 @@ function SectionSelector({ projectId, setProjectId, sectionId, setSectionId, chi
 
 SectionSelector.propTypes = {
    projectId: PropTypes.string.isRequired,
-   setProjectId: PropTypes.func.isRequired,
    sectionId: PropTypes.string.isRequired,
-   setSectionId: PropTypes.func.isRequired,
+   onChange: PropTypes.func.isRequired,
    children: PropTypes.node.isRequired
 }
 
