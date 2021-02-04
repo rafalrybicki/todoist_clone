@@ -40,7 +40,6 @@ function TodayIcon({ size }) {
    )
 }
 
-
 TodayIcon.propTypes = {
    size: PropTypes.number.isRequired
 }

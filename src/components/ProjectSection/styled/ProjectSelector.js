@@ -5,7 +5,8 @@ const ProjectSelector = styled.li`
 
    .popover {
       width: calc(100% + 39px + 12px);
-      margin-left: -39px;
+      min-height: 32px;
+      margin-left: -44px;
       margin-right: -12px;
 
       .activator {
@@ -18,7 +19,7 @@ const ProjectSelector = styled.li`
          svg {
             position: absolute;
             top: 8px;
-            left: 12px;
+            left: 13px;
             color: #808080;
          } 
       }

@@ -31,28 +31,27 @@ function ProjectSelector({ move }) {
                   Move section
                </span>
             }
-            content={
-               <MenuList>
-                  {projects.map(project => (
-                     <li
-                        key={project.id}
-                        onClick={() => move(project.id, getNextOrder(project.sections))}
-                     >
-                        {project.name !== 'Inbox' ? 
-                           <CircleFill
-                              size={10}
-                              color={project.color}
-                              className="project-icon"
-                           />
-                           :
-                           <InboxIcon size={14} />
-                        }
-                        {project.name}
-                     </li>
-                  ))}
-               </MenuList>
-            }
-         />
+         >
+            <MenuList>
+               {projects.map(project => (
+                  <li
+                     key={project.id}
+                     onClick={() => move(project.id, getNextOrder(project.sections))}
+                  >
+                     {project.name !== 'Inbox' ? 
+                        <CircleFill
+                           size={10}
+                           color={project.color}
+                           className="project-icon"
+                        />
+                        :
+                        <InboxIcon size={14} />
+                     }
+                     {project.name}
+                  </li>
+               ))}
+            </MenuList>
+         </Popover>
       </StyledProjectSelector>
    )
 }

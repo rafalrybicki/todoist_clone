@@ -195,7 +195,7 @@ export function getDisplayDay(miliseconds) {
    let day = new Date(miliseconds).getDay();
    day = day === 0 ? 6 : (day - 1);
 
-   return days[day].slice(0, 3);
+   return days[day];
 }
 
 export function scrollToElement(elementId, viewId) {

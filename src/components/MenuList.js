@@ -12,7 +12,7 @@ const StyledMenuList = styled.ul`
 
    li {
       position: relative;
-      padding: 0 12px 0 39px;
+      padding: 0 12px 0 44px;
       font-size: 13px;
       min-height: 32px;
       display: flex;
@@ -22,7 +22,7 @@ const StyledMenuList = styled.ul`
       > svg {
          position: absolute;
          top: 9px;
-         left: 12px;
+         left: 14px;
          color: #808080;
       }
 

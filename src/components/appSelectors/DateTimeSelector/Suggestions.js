@@ -66,9 +66,9 @@ function Suggestions({ currentDate, setMiliseconds, resetDate }) {
          }  
 
          <SuggestionsItem
-            text={today > thisWeekend ? "Next weekend" : "This weekend"}
-            miliseconds={today > thisWeekend ? nextWeekend : thisWeekend}
-            onClick={today > thisWeekend ?  () => setMiliseconds(nextWeekend) : () => setMiliseconds(thisWeekend) }
+            text={today >= thisWeekend ? "Next weekend" : "This weekend"}
+            miliseconds={today >= thisWeekend ? nextWeekend : thisWeekend}
+            onClick={() => setMiliseconds(today >= thisWeekend ? nextWeekend : thisWeekend)}
          >
             <ThisWeekendIcon size={16} />
          </SuggestionsItem>

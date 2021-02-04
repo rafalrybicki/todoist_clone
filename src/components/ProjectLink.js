@@ -5,21 +5,31 @@ import styled from 'styled-components/macro';
 
 import InboxIcon from './appIcons/InboxIcon';
 import { CircleFill } from 'react-bootstrap-icons';
+import { useSelector } from 'react-redux';
 
 const StyledProjectLink = styled(Link)`
-   position: absolute;
-   display: flex;
-   align-items: center;
-   color: #202020;
+   font-size: 12px;
+   color: navy;
+   height: 16px;
+   display: block;
+   z-index: 10;
    
+   svg {
+      margin-right: 4px;
+   }
+
    &:hover {
       color: blue;
    }
 `
 
-function ProjectLink({ path, name }) {
-   const icon = name === 'Inbox' ? <CircleFill size={8} /> : <InboxIcon />;
-   // id, color and name from redux because of Today view 
+function ProjectLink({ projectId }) {
+   const project = useSelector(state => state.projects.find(project => project.id === projectId));
+   const inobxId = useSelector(state => state.user.id);
+
+   const path = project.id === inobxId ? '/inbox' : '/project/' + project.id
+   const icon = project.id === inobxId ? <InboxIcon /> : <CircleFill size={9} color={project.color} />;
+   
 
    return (
       <StyledProjectLink
@@ -27,14 +37,13 @@ function ProjectLink({ path, name }) {
          className="project-link"
       >
          {icon}
-         {name}
+         {project.name}
       </StyledProjectLink>
    )
 }
 
 ProjectLink.propTypes = {
-   id: PropTypes.string,
-   projectName: PropTypes.string
+   projectId: PropTypes.string.isRequired
 }
 
 

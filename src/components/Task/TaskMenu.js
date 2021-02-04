@@ -1,112 +1,124 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { addToCollection, deleteFromCollection, updateDocument } from '../../firebase';
+import { getTimeArr, getMilisecondsFromTimeArr } from 'utils';
 
-import MenuList from '../MenuList';
-import { ArrowDownShort, ArrowRightCircle, ArrowUpShort, Pen, Stickies, Trash } from 'react-bootstrap-icons';
-import Selector from './Selector';
-import Priority from './Priority';
-import Schedule from './Schedule';
+import StyledTaskMenu from './styled/TaskMenu';
+import OptionsBtn from '../appButtons/OptionsBtn';
+import { ArrowRightCircle, Pen, Stickies, Trash } from 'react-bootstrap-icons';
+import PriorityOptions from './PriorityOptions';
+import ScheduleOptions from './ScheduleOptions';
+import SectionSelector from 'components/appSelectors/SectionSelector/SectionSelector';
 
-function TaskMenu(props) {
-   const {
-      id,
-      content,
-      priority,
-      order,
-      targetDate,
-      isDateTime,
-      completionDate,
-      projectId,
-      sectionId,
-      ownerId,
-      subTasks,
-      edit
-   } = props;
+function TaskMenu({ id, priority, currentDate, isDateTime, nextOrder, edit }) {
+   const [options, setOptions] = useState(false);
+
+   const task = useSelector(state => state.tasks.find(task => task.id === id));
+
+   const toggleOptions = () => {
+      setOptions(options => setOptions(!options))
+   }
+
+   const setTargetDate = (miliseconds) => {
+      if (isDateTime) {
+         const timeArr = getTimeArr(currentDate);
+         const newMiliseconds = getMilisecondsFromTimeArr(timeArr) + miliseconds;
+
+         updateDocument('tasks', id, { targetDate: newMiliseconds });
+      } else if (miliseconds === null) {
+         updateDocument('tasks', id, {
+            targetDate: miliseconds,
+            isDateTime: false
+         });
+      } else {
+         updateDocument('tasks', id, { targetDate: miliseconds });
+      }
+      toggleOptions();
+   }
+
+   const setPriority = (priority) => {
+      updateDocument('tasks', id, { priority });
+      toggleOptions();
+   }
+
+   const move = (projectId, sectionId) => {
+      updateDocument('tasks', id, {
+         projectId,
+         sectionId,
+         order: 0
+      });
+   }
+
+   const duplicate = () => {
+      addToCollection('tasks', {
+         content: task.content,
+         priority: task.priority,
+         order: nextOrder,
+         targetDate: task.targetDate,
+         isDateTime: task.isDateTime,
+         completionDate: task.completionDate,
+         projectId: task.projectId,
+         sectionId: task.sectionId,
+         ownerId: task.ownerId,
+         subTasks: []
+      });
+
+      toggleOptions();
+   }
 
    const deleteTask = () => {
       deleteFromCollection('tasks', id)
    }
 
-   const setPriority = (priority) => {
-      updateDocument('tasks', id, { priority })
-   }
-
-   const duplicate = () => {
-      addToCollection('tasks', {
-         content,
-         priority,
-         order: order + (Math.random * 0.1),
-         targetDate,
-         isDateTime,
-         completionDate,
-         projectId,
-         sectionId,
-         ownerId,
-         subTasks
-      })
-   }
-   
    return (
-      <MenuList>
-         <li>
-            <ArrowUpShort
-               size={24}
-               className="arrow-icon"
-            />
-            Add task above
-         </li>
-         <li>
-            <ArrowDownShort
-               size={24}
-               className="arrow-icon"
-            />
-            Add task below
-         </li>
-         <li onClick={edit}>
-            <Pen size={16} />
-            Edit task
-         </li>
-         <Selector>
-            <span>Schedule</span>
-            <Schedule />
-         </Selector>
-         <Selector>
-            <span>Priority</span>
-            <Priority
-               priority={priority}
-               setPriority={setPriority}
-            />
-         </Selector>
-         <li>
-            <ArrowRightCircle size={16} />
-            Move to project
-         </li>
-         <li onClick={duplicate}>
-            <Stickies size={15} />
-            Duplicate
-         </li>
-         <li onClick={deleteTask}>
-            <Trash size={16} />
-            Delete task
-         </li>
-      </MenuList>
+      <StyledTaskMenu>
+         <OptionsBtn onClick={toggleOptions} />
+         {options &&
+            <ul>
+               <li onClick={edit}>
+                  <Pen size={16} />
+                  Edit task
+               </li>
+               <li className="selector">
+                  <span>Schedule</span>
+                  <ScheduleOptions 
+                     setTargetDate={setTargetDate}
+                     currentDate={currentDate}
+                  />
+               </li>
+               <li className="selector">
+                  <span>Priority</span>
+                  <PriorityOptions
+                     priority={priority}
+                     setPriority={setPriority}
+                  />
+               </li>
+               <SectionSelector onChange={move}>
+                  <li className="selector-activator">
+                     <ArrowRightCircle size={16} />
+                     Move to project
+                  </li>
+               </SectionSelector>
+               <li onClick={duplicate}>
+                  <Stickies size={15} />
+                  Duplicate
+               </li>
+               <li onClick={deleteTask}>
+                  <Trash size={16} />
+                  Delete task
+               </li>
+            </ul>
+         }
+      </StyledTaskMenu>
    )
 }
 
 TaskMenu.propTypes = {
    id: PropTypes.string.isRequired,
-   content: PropTypes.string.isRequired,
    priority: PropTypes.number.isRequired,
-   order: PropTypes.number.isRequired,
-   targetDate: PropTypes.number,
-   isDateTime: PropTypes.bool.isRequired,
-   completionDate: PropTypes.string,
-   projectId: PropTypes.string.isRequired,
-   sectionId: PropTypes.string.isRequired,
-   ownerId: PropTypes.string.isRequired,
-   subTasks: PropTypes.array.isRequired,
+   nextOrder: PropTypes.number.isRequired,
    edit: PropTypes.func.isRequired,
 }
 

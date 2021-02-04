@@ -10,7 +10,7 @@ import Task from '../components/Task/Task';
 import NewTask from '../components/NewTask';
 
 const StyledToday = styled.div`
-   .date {
+   h1 .date {
       margin-left: 8px;
       padding-top: 5px;
       font-size: 11px;

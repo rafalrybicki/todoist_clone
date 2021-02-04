@@ -87,7 +87,7 @@ function TaskModal({ location, history }) {
       <>
          {state &&
             <StyledTaskModal>
-               <ProjectLink id='2' projectName="Project Name"/>
+               <ProjectLink projectId={location.state.projectId} />
                <CloseBtn onClick={close} />
                <Checkbox priority={state.priority} />
                <span className="content">{state.content}</span>

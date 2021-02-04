@@ -13,7 +13,6 @@ function NextWeekIcon({ size }) {
    )
 }
 
-
 NextWeekIcon.propTypes = {
    size: PropTypes.number.isRequired
 }

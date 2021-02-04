@@ -61,7 +61,8 @@ function Project({ match }) {
                   projectId={projectId}
                   isOpen={section.isOpen}
                   order={section.order}
-                  nextSiblingOrder={array[index + 1] ? array[index + 1].order : 0 }
+                  prevSiblingOrder={array[index - 1] ? array[index - 1].order : 0}
+                  nextSiblingOrder={array[index + 1] ? array[index + 1].order : array[index].order + 1}
                   sortType={project.sortType}
                   sortOrder={project.sortOrder}
                />

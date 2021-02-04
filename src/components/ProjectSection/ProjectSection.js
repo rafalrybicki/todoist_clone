@@ -78,22 +78,26 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
          }
 
          {isOpen && <>
-            {tasks.sort(dynamicSort(sortType, sortOrder)).map( task => 
-               <Task
-                  key={task.id}
-                  id={task.id}
-                  content={task.content}
-                  priority={task.priority}
-                  order={task.order}
-                  targetDate={task.targetDate}
-                  isDateTime={task.isDateTime}
-                  completionDate={task.completionDate}
-                  projectId={task.projectId}
-                  sectionId={task.sectionId}
-                  ownerId={task.ownerId}
-                  subTasks={task.subTasks}
-               />
-            )}
+            <ul>
+               {tasks.sort(dynamicSort(sortType, sortOrder)).map((task, index, array) => 
+                  <Task
+                     key={task.id}
+                     id={task.id}
+                     content={task.content}
+                     priority={task.priority}
+                     order={task.order}
+                     targetDate={task.targetDate}
+                     isDateTime={task.isDateTime}
+                     completionDate={task.completionDate}
+                     projectId={task.projectId}
+                     sectionId={task.sectionId}
+                     ownerId={task.ownerId}
+                     subTasks={task.subTasks}
+                     prevSiblingOrder={array[index - 1] ? array[index - 1].order : 0}
+                     nextSiblingOrder={array[index + 1] ? array[index + 1].order : array[index].order + 1}
+                  />
+               )}
+            </ul>
 
             <NewTask
                sectionId={sectionId}

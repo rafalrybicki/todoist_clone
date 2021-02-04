@@ -25,7 +25,7 @@ const StyledCheckbox = styled.span`
    }
 `
 
-function Checkbox({ priority }) {
+function Checkbox({ priority, onClick }) {
    const colors = {
       1: 'rgb(209, 69, 59)',
       2: 'rgb(235, 137, 9)',
@@ -37,6 +37,7 @@ function Checkbox({ priority }) {
       <StyledCheckbox
          color={colors[priority]}
          className="checkbox"
+         onClick={onClick}
       >
          &#10004;
       </StyledCheckbox>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import StyledSectionSelectorActivator from './styled/SectionSelectorActivator';
 import InboxIcon from 'components/appIcons/InboxIcon';
 import { CircleFill } from 'react-bootstrap-icons';
 
@@ -14,7 +15,7 @@ function SectionSelectorActivator({ projectId, sectionId}) {
    const activeSectionName = activeSection.name || '';
 
    return (
-      <button
+      <StyledSectionSelectorActivator
          type="button"
          className="activator"
       >
@@ -28,7 +29,7 @@ function SectionSelectorActivator({ projectId, sectionId}) {
          }
          
          {activeProjectName} {activeSectionName !== 'default' &&  ' / ' + activeSectionName}
-      </button>
+      </StyledSectionSelectorActivator>
    )
 }
 

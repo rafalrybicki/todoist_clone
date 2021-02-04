@@ -1,85 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
 
 import { updateDocument } from '../../firebase';
 
+import StyledTask from './styled/Task';
 import Editor from '../Editor/Editor';
-import Popover from '../Popover';
-import OptionsBtn from '../appButtons/OptionsBtn';
 import TaskMenu from './TaskMenu';
 import Checkbox from 'components/Checkbox';
-import Date from './Date';
+import TaskDate from './TaskDate';
 import Grip from '../Grip';
 import { Link } from 'react-router-dom';
 import ProjectLink from '../ProjectLink';
 
-const StyledTask = styled.li`
-   position: relative;
-   width: 100%;
-   min-height: 56px;
-   padding: 0;
-   display: flex;
-   flex-wrap: wrap;
-   align-items: center;
-   cursor: pointer;
-   border-bottom: 1px solid #f0f0f0;
-   font-size: 14px;
-
-   .link {
-      display: block;
-      width: 100%;
-      height: 100%;
-      padding: 4px 0 24px 27px;
-   }
-
-   .grip {
-      top: 4px;
-      left: -32px;
-   }
-
-   &:hover {
-      .grip svg,.actions svg {
-         color: grey;
-      }
-   }
-
-   .checkbox {
-      top: 9px;
-   }
-
-   .popover {
-      position: absolute;
-      top: 10px;
-      right: 0;
-
-      > .options-btn {
-         color: transparent;
-      }
-
-      .arrow-icon {
-         top: 4px;
-         left: 8px;
-      }
-   }
-
-   .project-link {
-      font-size: 12px;
-      bottom:  5px;
-      right: 10px;
-
-      svg {
-         margin-right: 4px;
-         margin-top: .8px;
-      }
-   }
-
-   &:hover {
-      .popover >.options-btn {
-         color: grey
-      }
-   }
-`
 
 function Task(props) {
    const { 
@@ -94,7 +26,9 @@ function Task(props) {
       sectionId,
       ownerId,
       subTasks,
-      showProjectLink
+      showProjectLink,
+      prevSiblingOrder,
+      nextSiblingOrder
    } = props;
 
    const [editor, showEditor] = useState(false);
@@ -123,6 +57,19 @@ function Task(props) {
       updateDocument('tasks', id, task)
    }
 
+   const toggleTaskcompletion = () => {
+      if (completionDate) {
+         updateDocument('tasks', id, {
+            completionDate: null
+         })
+      } else {
+         console.log('new date')
+         updateDocument('tasks', id, {
+            completionDate: new Date().valueOf()
+         })
+      }
+   }
+
    if (editor) {
       return (
          <Editor
@@ -142,7 +89,10 @@ function Task(props) {
    return (
       <StyledTask>
          <Grip />
-         <Checkbox priority={priority} />
+         <Checkbox
+            priority={priority}
+            onClick={toggleTaskcompletion}
+         />
          <Link 
             to={{ pathname, state }}
             className="link"
@@ -150,24 +100,23 @@ function Task(props) {
             {content}
          </Link>
          
-         <Popover 
-            activator={
-               <OptionsBtn />
-            }
-            content={
-               <TaskMenu
-                  {...props}
-                  edit={toggleEditor}
-               />
-            }
+         <TaskMenu
+            id={id}
+            priority={priority}
+            currentDate={targetDate}
+            isDateTime={isDateTime}
+            nextOrder={(order + nextSiblingOrder) / 2}
+            edit={toggleEditor}
          />
-         
-         {targetDate && <Date date={targetDate} />}
-         
+
          {showProjectLink &&
-            <ProjectLink
-               name="project name"
-               path="/inbox"
+            <ProjectLink projectId={projectId} />
+         }
+
+         {targetDate &&
+            <TaskDate
+               targetDate={targetDate}
+               isDateTime={isDateTime}
             />
          }
       </StyledTask>
@@ -181,12 +130,14 @@ Task.propTypes = {
    order: PropTypes.number.isRequired,
    targetDate: PropTypes.number,
    isDateTime: PropTypes.bool.isRequired,
-   completionDate: PropTypes.string,
+   completionDate: PropTypes.number,
    projectId: PropTypes.string.isRequired,
    sectionId: PropTypes.string.isRequired,
    ownerId: PropTypes.string.isRequired,
    subTasks: PropTypes.array.isRequired,
-   showProjectLink: PropTypes.bool
+   showProjectLink: PropTypes.bool,
+   prevSiblingOrder: PropTypes.number.isRequired,
+   nextSiblingOrder: PropTypes.number.isRequired
 }
 
 export default Task

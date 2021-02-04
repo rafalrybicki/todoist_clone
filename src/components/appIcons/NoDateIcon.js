@@ -13,7 +13,6 @@ function NoDateIcon({ size }) {
    )
 }
 
-
 NoDateIcon.propTypes = {
    size: PropTypes.number.isRequired
 }
