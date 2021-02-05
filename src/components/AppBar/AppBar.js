@@ -29,7 +29,6 @@ function AppBar({ toggleMenu }) {
             hoverColor="#e27065"
             onClick={toggleMenu}
             tooltip="Open menu"
-            tooltipWidth="74px"
          >
             <Justify
                color="white"
@@ -41,7 +40,6 @@ function AppBar({ toggleMenu }) {
             <IconBtn
                hoverColor="#e27065"
                tooltip="Go to start page"
-               tooltipWidth="97px"
                >
                <HouseDoor
                   color="white"
@@ -56,7 +54,6 @@ function AppBar({ toggleMenu }) {
             hoverColor="#e27065"
             onClick={onLogout}
             tooltip="Logout"
-            tooltipWidth="48px"
          >
             <DoorClosed
                size={19}

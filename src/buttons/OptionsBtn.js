@@ -9,7 +9,6 @@ function OptionsBtn({ width = '28px', onClick }) {
       <IconBtn
          width={width}
          tooltip="Options"
-         tooltipWidth="60px"
          className="options-btn"
          onClick={onClick}
       >

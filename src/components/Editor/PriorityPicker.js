@@ -15,7 +15,6 @@ function PriorityPicker({ priority, setPriority }) {
                height="28px"
                width="28px"
                tooltip="Set the priority"
-               tooltipWidth="92px"
             >
                <PriorityIcon priority={priority} />
             </IconBtn>

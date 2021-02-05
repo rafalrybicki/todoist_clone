@@ -18,7 +18,6 @@ function LabelPicker() {
             hoverColor="#eee"
             width="28px"
             tooltip="Add label(s)"
-            tooltipWidth="80px"
          >
             <Tag
                color="grey"

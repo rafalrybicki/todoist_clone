@@ -15,7 +15,6 @@ function ReminderPicker() {
             hoverColor="#eee"
             width="28px"
             tooltip="Add reminder(s)"
-            tooltipWidth="104px"
          >
             <Alarm
                color="grey"
