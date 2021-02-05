@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { getDisplayDate } from '../../utils';
-import NewItemBtn from '../appButtons/NewItemBtn';
+import { getDisplayDate } from 'utils';
+import NewItemBtn from 'buttons/NewItemBtn';
 
 const StyledDay = styled.div`
    padding-top: 28px;

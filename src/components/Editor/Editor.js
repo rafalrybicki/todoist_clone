@@ -8,8 +8,8 @@ import SectionSelectorActivator from './SectionSelectorActivator';
 import LabelPicker from './LabelPicker';
 import PriorityPicker from './PriorityPicker';
 import ReminderPicker from './ReminderPicker';
-import SubmitBtn from 'components/appButtons/SubmitBtn';
-import CancelBtn from 'components/appButtons/CancelBtn';
+import SubmitBtn from 'buttons/SubmitBtn';
+import CancelBtn from 'buttons/CancelBtn';
 import DateTimeSelectorActivator from './DateTimeSelectorActivator';
 
 const StyledEditor = styled.form`

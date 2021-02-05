@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import { useSelector } from 'react-redux';
-import { auth, addToCollection } from '../../../firebase';
+import { auth, addToCollection } from 'firebase/index.js';
 
 import ToggleSwitch from './ToggleSwitch';
 import ViewSelector from './ViewSelector';
-import CancelBtn from '../appButtons/CancelBtn';
-import SubmitBtn from '../appButtons/SubmitBtn';
+import CancelBtn from 'buttons/CancelBtn';
+import SubmitBtn from 'buttons/SubmitBtn';
 import ColorPicker from './ColorPicker';
 
 const StyledProjectEditor = styled.form`

@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import IconBtn from '../../appButtons/IconBtn';
+import IconBtn from 'buttons/IconBtn';
 import { ChevronLeft, Circle, ChevronRight } from 'react-bootstrap-icons';
-import { months } from '../../../utils';
+import { months } from 'utils';
 
 const StyledCalendarHeader = styled.div`
    display: flex;

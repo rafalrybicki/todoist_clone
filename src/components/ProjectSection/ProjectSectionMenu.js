@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { addToCollection, deleteFromCollection, firebase, updateDocument } from '../../firebase';
+import { addToCollection, deleteFromCollection, firebase, updateDocument } from 'firebase/index.js';
 import { v4 as uuid } from 'uuid';
 
-import OptionsBtn from '../appButtons/OptionsBtn';
+import OptionsBtn from 'buttons/OptionsBtn';
 import MenuList from 'components/MenuList';
 import { Pen, Stickies, Trash } from 'react-bootstrap-icons';
 import ProjectSelector from './ProjectSelector';

@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import { getDate, getNextWeek, getWeek, getTimeArr, getMilisecondsFromTimeArr } from 'utils';
 import { updateDocument } from 'firebase/index.js';
 
-import IconBtn from 'components/appButtons/IconBtn';
+import IconBtn from 'buttons/IconBtn';
 import TodayIcon from 'components/appIcons/TodayIcon';
 import TomorrowIcon from 'components/appIcons/TomorrowIcon';
 import ThisWeekendIcon from 'components/appIcons/ThisWeekendIcon';
 import NextWeekIcon from 'components/appIcons/NextWeekIcon';
 import NoDateIcon from 'components/appIcons/NoDateIcon';
-import OptionsBtn from 'components/appButtons/OptionsBtn';
+import OptionsBtn from 'buttons/OptionsBtn';
 import DateTimeSelector from 'components/appSelectors/DateTimeSelector/DateTimeSelector';
 
 function ScheduleOptions({ id, currentDate, isDateTime }) {

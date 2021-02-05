@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { projectsCollection } from '../firebase';
+import { projectsCollection } from 'firebase/index.js';
 
-import IconBtn from './appButtons/IconBtn';
+import IconBtn from 'buttons/IconBtn';
 import { ArrowDown, ArrowUp } from 'react-bootstrap-icons';
-import CloseBtn from './appButtons/CloseBtn';
+import CloseBtn from 'buttons/CloseBtn';
 
 const StyledSortWidget = styled.div`
    padding: 10px 3px 10px 0;

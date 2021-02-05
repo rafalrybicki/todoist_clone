@@ -2,13 +2,13 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import ProtectedRoute from './ProtectedRoute';
-import TaskModal from '../components/TaskModal/TaskModal';
-import IconBtn from '../components/appButtons/IconBtn';
+import TaskModal from 'components/TaskModal/TaskModal';
+import IconBtn from 'buttons/IconBtn';
 import { ChatSquare, PersonPlus } from 'react-bootstrap-icons';
-import SortSelector from '../components/appSelectors/SortSelector/SortSelector';
-import OptionsBtn from '../components/appButtons/OptionsBtn';
-import SortWidget from '../components/SortWidget';
-import ProjectSection from '../components/ProjectSection/ProjectSection';
+import SortSelector from 'components/appSelectors/SortSelector/SortSelector';
+import OptionsBtn from 'buttons/OptionsBtn';
+import SortWidget from 'components/SortWidget';
+import ProjectSection from 'components/ProjectSection/ProjectSection';
 
 function Project({ match }) {
    const userId = useSelector(state => state.user.id);

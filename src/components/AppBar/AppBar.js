@@ -5,7 +5,7 @@ import { auth } from 'firebase/index.js';
 import { logout } from 'redux/actions';
 
 import StyledAppBar from './styled/AppBar';
-import IconBtn from 'components/appButtons/IconBtn';
+import IconBtn from 'buttons/IconBtn';
 import { Justify, HouseDoor, DoorClosed } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import SearchInput from './SearchInput';
@@ -46,7 +46,7 @@ function AppBar({ toggleMenu }) {
                <HouseDoor
                   color="white"
                   size={18}
-                  />
+               />
             </IconBtn>
          </Link>
 

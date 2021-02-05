@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { addToCollection } from '../firebase';
+import { addToCollection } from 'firebase/index.js';
 
 import Editor from './Editor/Editor';
-import NewItemBtn from './appButtons/NewItemBtn';
+import NewItemBtn from 'buttons/NewItemBtn';
 
 function NewTask({ sectionId, projectId, date, nextOrder }) {
    const [openEditor, setOpenEditor] = useState(false);

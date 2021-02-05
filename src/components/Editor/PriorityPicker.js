@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Popover from '../Popover';
-import IconBtn from '../appButtons/IconBtn';
-import MenuList from '../MenuList';
-import PriorityIcon from '../appIcons/PriorityIcon';
+import Popover from 'components/Popover';
+import IconBtn from 'buttons/IconBtn';
+import MenuList from 'components/MenuList';
+import PriorityIcon from 'components/appIcons/PriorityIcon';
 
 function PriorityPicker({ priority, setPriority }) {
    return (

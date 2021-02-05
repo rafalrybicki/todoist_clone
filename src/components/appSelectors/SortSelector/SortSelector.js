@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Popover from '../../Popover';
-import IconBtn from '../../appButtons/IconBtn';
+import Popover from 'components/Popover';
+import IconBtn from 'buttons/IconBtn';
 import { ArrowDownUp } from 'react-bootstrap-icons';
 import SortList from './SortList';
 

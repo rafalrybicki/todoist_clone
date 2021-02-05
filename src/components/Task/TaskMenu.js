@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { addToCollection, deleteFromCollection, updateDocument } from 'firebase/index.js';
 
 import StyledTaskMenu from './styled/TaskMenu';
-import OptionsBtn from 'components/appButtons/OptionsBtn';
+import OptionsBtn from 'buttons/OptionsBtn';
 import { ArrowRightCircle, Pen, Stickies, Trash } from 'react-bootstrap-icons';
 import PriorityOptions from './PriorityOptions';
 import ScheduleOptions from './ScheduleOptions';

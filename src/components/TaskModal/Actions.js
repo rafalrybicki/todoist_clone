@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import IconBtn from '../appButtons/IconBtn';
+import IconBtn from 'buttons/IconBtn';
 import { ListUl, Pen, ChatSquare, CalendarEvent, ThreeDots } from 'react-bootstrap-icons';
-import Popover from '../Popover';
+import Popover from 'components/Popover';
 
 const StyledActions = styled.div`
    padding-top: 5px;

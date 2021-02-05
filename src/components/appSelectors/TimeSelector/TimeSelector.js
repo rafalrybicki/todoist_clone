@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { getTimeArr } from '../../../utils';
+import { getTimeArr } from 'utils';
 
-import CloseBtn from '../../appButtons/CloseBtn';
+import CloseBtn from 'buttons/CloseBtn';
 import NumberSelector from './NumberSelector';
 import TimePeriodSelector from './TimePriodSelector';
 

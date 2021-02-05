@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
-import { updateDocument } from '../../firebase';
+import { updateDocument } from 'firebase/index.js';
 import { dynamicSort } from 'utils';
 
 import StyledProjectSection from './styled/ProjectSection';
 import ProjectSectionEditor from './ProjectSectionEditor';
 import Grip from 'components/Grip';
-import IconBtn from 'components/appButtons/IconBtn';
+import IconBtn from 'buttons/IconBtn';
 import ChevronIcon from 'components/appIcons/ChevronIcon';
 import ProjectSectionMenu from './ProjectSectionMenu';
 import Task from 'components/Task/Task';
