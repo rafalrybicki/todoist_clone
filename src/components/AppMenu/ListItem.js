@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
-import { ThreeDots } from 'react-bootstrap-icons';
 import Grip from '../Grip';
+import OptionsBtn from 'buttons/OptionsBtn';
 
 const StyledListItem = styled.li`
    font-size: 14px;
@@ -45,7 +45,7 @@ const StyledListItem = styled.li`
       }
    }
 
-   .more {
+   .options-btn {
       position: absolute;
       top: 10px;
       right: 0;
@@ -73,21 +73,23 @@ const StyledListItem = styled.li`
    }
 `
 
-function ListItem({ text, path, onClick, children }) {
+function ListItem({ name, path, onClick, children }) {
    return (
       <StyledListItem>
          <Grip />
          <NavLink to={path} onClick={onClick}>
             {children}
-            <span>{text}</span>
+            <span>
+               {name}
+            </span>
          </NavLink>
-         <ThreeDots className="more" />
+         <OptionsBtn />
       </StyledListItem>
    )
 }
 
 ListItem.propTypes = {
-   text: PropTypes.string.isRequired,
+   name: PropTypes.string.isRequired,
    path: PropTypes.string.isRequired,
    onClick: PropTypes.func,
    children: PropTypes.node.isRequired,

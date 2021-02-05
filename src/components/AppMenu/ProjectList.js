@@ -5,28 +5,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { openModal } from 'redux/actions';
 
 import ExpandableList from './ExpandableList';
-import ListItem from './ListItem';
-import { CircleFill } from 'react-bootstrap-icons';
+import ProjectListItem from './ProjectListItem';
 import NewItemBtn from 'buttons/NewItemBtn';
 
 function ProjectList({ isMobile, closeMenu }) {
-   const projects = useSelector(state => state.projects.filter(project => (project.favorite === false && project.order > 0)).sort((a, b) => a.order - b.order))
+   const projects = useSelector(state => state.projects.filter(project => (project.favorite === false && project.order > 0)))
    const dispatch = useDispatch();
 
    return (
       <ExpandableList text="projects">
          {projects.map(project => 
-            <ListItem
+            <ProjectListItem
                key={project.id}
-               text={project.name}
-               path={'/project/' + project.id}
-               onClick={isMobile ? closeMenu : undefined}
-            >
-               <CircleFill
-                  color={project.color}
-                  className="project-icon"
-               />
-            </ListItem>
+               projectId={project.id}
+               name={project.name}
+               color={project.color}
+               onClick={isMobile ? closeMenu : null}
+            />
          )}
          <NewItemBtn
             text="Add project"

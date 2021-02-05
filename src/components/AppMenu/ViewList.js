@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import { useSelector } from 'react-redux';
+import useActiveTasksQuantity from 'hooks/useActiveTasksQuantity';
+import useTodayTasksQuantity from 'hooks/useTodayTasksQuantity';
 
 import ListItem from './ListItem';
+import ProjectListItem from './ProjectListItem';
 import InboxIcon from 'icons/InboxIcon';
 import TodayIcon from 'icons/TodayIcon';
-import { Calendar3, CircleFill } from 'react-bootstrap-icons';
-import useActiveTasksQuantity from 'hooks/useActiveTasksQuantity';
 
 const StyledViewList = styled.ul`
    .inbox-icon {
@@ -23,28 +24,29 @@ const StyledViewList = styled.ul`
 function ViewList({ isMobile, closeMenu}) {
    const favorites = useSelector(state => state.projects.filter(project => project.favorite));
    const inboxId = useSelector(state => state.user.id);
-   const inboxQuantity = useActiveTasksQuantity(inboxId)
+   const inboxQuantity = useActiveTasksQuantity(inboxId);
+   const todayQuantity = useTodayTasksQuantity();
 
    return (
       <StyledViewList>
          <ListItem
-            text={"Inbox " + inboxQuantity}
+            name={"Inbox " + inboxQuantity}
             path="/inbox"
-            onClick={isMobile ? closeMenu : undefined}
+            onClick={isMobile ? closeMenu : null}
          >
             <InboxIcon size={18} />
          </ListItem>
          <ListItem
-            text="Today 2"
+            name={"Today " + todayQuantity}
             path="/today"
-            onClick={isMobile ? closeMenu : undefined}
+            onClick={isMobile ? closeMenu : null}
          >
             <TodayIcon size={16} />
          </ListItem>
          {/* <ListItem
-            text="Upcoming"
+            name="Upcoming"
             path="/upcoming"
-            onClick={isMobile ? closeMenu : undefined}
+            onClick={isMobile ? closeMenu : null}
          >
             <Calendar3
                color="#692fc2"
@@ -52,18 +54,13 @@ function ViewList({ isMobile, closeMenu}) {
             />
          </ListItem> */}
          {favorites.map(favorite => 
-            <ListItem
+            <ProjectListItem
                key={favorite.id}
-               text={favorite.name}
-               path={'/project/' + favorite.id}
-               onClick={isMobile ? closeMenu : undefined}
-            >
-               <CircleFill
-                  size={12}
-                  color={favorite.color}
-                  className="project-icon"
-               />
-            </ListItem>
+               projectId={favorite.id}
+               name={favorite.name}
+               color={favorite.color}
+               onClick={isMobile ? closeMenu : null}
+            />
          )}
       </StyledViewList>
    )

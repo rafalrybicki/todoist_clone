@@ -2,12 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
-import { getDisplayDate, getBeginingOfTheDay, getEndOfTheDay } from '../utils';
+import { getDisplayDate, getBeginingOfTheDay, getEndOfTheDay } from 'utils';
 
 import ProtectedRoute from './ProtectedRoute';
-import TaskModal from '../components/TaskModal/TaskModal';
-import Task from '../components/Task/Task';
-import NewTask from '../components/NewTask';
+import TaskModal from 'components/TaskModal/TaskModal';
+import Task from 'components/Task/Task';
+import NewTask from 'components/NewTask';
 
 const StyledToday = styled.div`
    h1 .date {
