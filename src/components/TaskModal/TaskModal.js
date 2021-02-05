@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
 import Checkbox from 'components/Checkbox';
-import DateTimeSelector from 'components/appSelectors/DateTimeSelector/DateTimeSelector';
+import DateTimeSelector from 'selectors/DateTimeSelector/DateTimeSelector';
 import CloseBtn from 'buttons/CloseBtn';
 import ProjectLink from 'components/ProjectLink';
 import Actions from './Actions';

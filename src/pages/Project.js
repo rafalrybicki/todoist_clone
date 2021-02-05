@@ -5,7 +5,7 @@ import ProtectedRoute from './ProtectedRoute';
 import TaskModal from 'components/TaskModal/TaskModal';
 import IconBtn from 'buttons/IconBtn';
 import { ChatSquare, PersonPlus } from 'react-bootstrap-icons';
-import SortSelector from 'components/appSelectors/SortSelector/SortSelector';
+import SortSelector from 'selectors/SortSelector/SortSelector';
 import OptionsBtn from 'buttons/OptionsBtn';
 import SortWidget from 'components/SortWidget';
 import ProjectSection from 'components/ProjectSection/ProjectSection';

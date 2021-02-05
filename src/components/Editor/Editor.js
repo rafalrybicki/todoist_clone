@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import DateTimeSelector from 'components/appSelectors/DateTimeSelector/DateTimeSelector';
-import SectionSelector from 'components/appSelectors/SectionSelector/SectionSelector';
+import DateTimeSelector from 'selectors/DateTimeSelector/DateTimeSelector';
+import SectionSelector from 'selectors/SectionSelector/SectionSelector';
 import SectionSelectorActivator from './SectionSelectorActivator';
 import LabelPicker from './LabelPicker';
 import PriorityPicker from './PriorityPicker';

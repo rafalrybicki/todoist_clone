@@ -59,7 +59,7 @@ function AppBar({ toggleMenu }) {
             tooltipWidth="48px"
          >
             <DoorClosed
-               size={18}
+               size={19}
                color="white"
             />
          </IconBtn>

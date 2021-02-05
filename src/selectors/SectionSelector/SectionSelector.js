@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Popover from '../../Popover';
-import MenuList from '../../MenuList';
+import Popover from 'components/Popover';
+import MenuList from 'components/MenuList';
 import SectionListItem from './SectionListItem';
 
 function mapProjectsToSections(projects) {

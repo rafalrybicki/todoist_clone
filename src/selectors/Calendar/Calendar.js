@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { getDate, getMonth, getFirstDayOfTheMonth, getLastDayOfTheMonth } from '../../../utils'
+import { getDate, getMonth, getFirstDayOfTheMonth, getLastDayOfTheMonth } from 'utils'
 import Header from './Header';
 import Month from './Month';
 import Day from './Day'

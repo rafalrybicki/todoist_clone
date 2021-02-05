@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { projectsCollection } from '../../../firebase';
+import { projectsCollection } from 'firebase/index.js';
 
-import MenuList from '../../MenuList';
+import MenuList from 'components/MenuList';
 import SortListitem from './SortListItem';
 import { CalendarEvent, Flag, Gear, Person, SortAlphaDown } from 'react-bootstrap-icons';
 

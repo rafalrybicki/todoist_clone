@@ -11,7 +11,7 @@ import ThisWeekendIcon from 'icons/ThisWeekendIcon';
 import NextWeekIcon from 'icons/NextWeekIcon';
 import NoDateIcon from 'icons/NoDateIcon';
 import OptionsBtn from 'buttons/OptionsBtn';
-import DateTimeSelector from 'components/appSelectors/DateTimeSelector/DateTimeSelector';
+import DateTimeSelector from 'selectors/DateTimeSelector/DateTimeSelector';
 
 function ScheduleOptions({ id, currentDate, isDateTime }) {
    const today = getDate().miliseconds;

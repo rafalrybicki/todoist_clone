@@ -9,7 +9,7 @@ import OptionsBtn from 'buttons/OptionsBtn';
 import { ArrowRightCircle, Pen, Stickies, Trash } from 'react-bootstrap-icons';
 import PriorityOptions from './PriorityOptions';
 import ScheduleOptions from './ScheduleOptions';
-import SectionSelector from 'components/appSelectors/SectionSelector/SectionSelector';
+import SectionSelector from 'selectors/SectionSelector/SectionSelector';
 
 function TaskMenu({ id, priority, currentDate, isDateTime, nextOrder, edit }) {
    const [options, setOptions] = useState(false);
