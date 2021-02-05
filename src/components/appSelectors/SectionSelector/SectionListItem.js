@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import InboxIcon from 'components/appIcons/InboxIcon';
+import InboxIcon from 'icons/InboxIcon';
 import { ViewList, CircleFill } from 'react-bootstrap-icons';
 
 const StyledSectionListItem = styled.li`

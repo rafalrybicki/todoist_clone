@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
-import InboxIcon from './appIcons/InboxIcon';
+import InboxIcon from 'icons/InboxIcon';
 import { CircleFill } from 'react-bootstrap-icons';
 import { useSelector } from 'react-redux';
 

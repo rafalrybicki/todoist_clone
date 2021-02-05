@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import SelectorActivator from './styled/SelectorActivator';
-import InboxIcon from 'components/appIcons/InboxIcon';
+import InboxIcon from 'icons/InboxIcon';
 import { CircleFill } from 'react-bootstrap-icons';
 
 function SectionSelectorActivator({ projectId, sectionId}) {

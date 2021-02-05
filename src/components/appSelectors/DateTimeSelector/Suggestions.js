@@ -5,11 +5,11 @@ import styled from 'styled-components/macro';
 import { getDate, getNextWeek, getWeek } from 'utils';
 
 import SuggestionsItem from './SuggestionsItem';
-import TodayIcon from 'components/appIcons/TodayIcon';
-import TommorowIcon from 'components/appIcons/TomorrowIcon';
-import ThisWeekendIcon from 'components/appIcons/ThisWeekendIcon';
-import NextWeekIcon from 'components/appIcons/NextWeekIcon';
-import NoDateIcon from 'components/appIcons/NoDateIcon';
+import TodayIcon from 'icons/TodayIcon';
+import TommorowIcon from 'icons/TomorrowIcon';
+import ThisWeekendIcon from 'icons/ThisWeekendIcon';
+import NextWeekIcon from 'icons/NextWeekIcon';
+import NoDateIcon from 'icons/NoDateIcon';
 
 const StyledSuggestions = styled.div`
    height: auto;

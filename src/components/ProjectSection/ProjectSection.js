@@ -9,7 +9,7 @@ import StyledProjectSection from './styled/ProjectSection';
 import ProjectSectionEditor from './ProjectSectionEditor';
 import Grip from 'components/Grip';
 import IconBtn from 'buttons/IconBtn';
-import ChevronIcon from 'components/appIcons/ChevronIcon';
+import ChevronIcon from 'icons/ChevronIcon';
 import ProjectSectionMenu from './ProjectSectionMenu';
 import Task from 'components/Task/Task';
 import NewTask from 'components/NewTask';

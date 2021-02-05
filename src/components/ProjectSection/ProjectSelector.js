@@ -6,7 +6,7 @@ import StyledProjectSelector from './styled/ProjectSelector';
 import Popover from 'components/Popover';
 import MenuList from 'components/MenuList';
 import { ArrowRightCircle, CircleFill } from 'react-bootstrap-icons';
-import InboxIcon from 'components/appIcons/InboxIcon';
+import InboxIcon from 'icons/InboxIcon';
 
 function getNextOrder(sections) {
    let lastOrder = 0

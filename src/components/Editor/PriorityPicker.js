@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Popover from 'components/Popover';
 import IconBtn from 'buttons/IconBtn';
 import MenuList from 'components/MenuList';
-import PriorityIcon from 'components/appIcons/PriorityIcon';
+import PriorityIcon from 'icons/PriorityIcon';
 
 function PriorityPicker({ priority, setPriority }) {
    return (

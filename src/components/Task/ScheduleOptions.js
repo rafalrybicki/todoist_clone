@@ -5,11 +5,11 @@ import { getDate, getNextWeek, getWeek, getTimeArr, getMilisecondsFromTimeArr } 
 import { updateDocument } from 'firebase/index.js';
 
 import IconBtn from 'buttons/IconBtn';
-import TodayIcon from 'components/appIcons/TodayIcon';
-import TomorrowIcon from 'components/appIcons/TomorrowIcon';
-import ThisWeekendIcon from 'components/appIcons/ThisWeekendIcon';
-import NextWeekIcon from 'components/appIcons/NextWeekIcon';
-import NoDateIcon from 'components/appIcons/NoDateIcon';
+import TodayIcon from 'icons/TodayIcon';
+import TomorrowIcon from 'icons/TomorrowIcon';
+import ThisWeekendIcon from 'icons/ThisWeekendIcon';
+import NextWeekIcon from 'icons/NextWeekIcon';
+import NoDateIcon from 'icons/NoDateIcon';
 import OptionsBtn from 'buttons/OptionsBtn';
 import DateTimeSelector from 'components/appSelectors/DateTimeSelector/DateTimeSelector';
 

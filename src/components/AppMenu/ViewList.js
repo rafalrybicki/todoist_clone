@@ -5,8 +5,8 @@ import styled from 'styled-components/macro';
 import { useSelector } from 'react-redux';
 
 import ListItem from './ListItem';
-import InboxIcon from '../appIcons/InboxIcon';
-import TodayIcon from '../appIcons/TodayIcon';
+import InboxIcon from 'icons/InboxIcon';
+import TodayIcon from 'icons/TodayIcon';
 import { Calendar3, CircleFill } from 'react-bootstrap-icons';
 
 const StyledViewList = styled.ul`
