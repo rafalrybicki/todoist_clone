@@ -10,7 +10,7 @@ import ProjectList from './ProjectList';
 
 const StyledMenu = styled.div`
    position: absolute;
-   z-index: 99;
+   z-index: 100;
    top: 0;
    padding: 63px 0 30px;
    background-color: #FAFAFA;

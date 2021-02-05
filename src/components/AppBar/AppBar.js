@@ -1,59 +1,18 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { logout } from '../../redux/actions';
+import { auth } from 'firebase/index.js';
+import { logout } from 'redux/actions';
 
-import IconBtn from '../appButtons/IconBtn';
+import StyledAppBar from './styled/AppBar';
+import IconBtn from 'components/appButtons/IconBtn';
+import { Justify, HouseDoor, DoorClosed } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 import SearchInput from './SearchInput';
 
-import { Justify, HouseDoor, Plus, GraphUp, QuestionCircle, Bell } from 'react-bootstrap-icons';
-import { useDispatch } from 'react-redux';
-import { auth } from '../../firebase';
-
-const StyledAppBar = styled.div`
-   position: absolute;
-   z-index: 100;
-   top: 0;
-   left: 0;
-   width: 100%;
-   padding: 0 15px 0 7px;
-   height: 43px;
-   background-color: #DB4C3F;
-   display: flex;
-   align-items: center;
-
-   button {
-      height: 32px;
-      min-width: 32px;
-   }
-
-   button:nth-of-type(3) {
-      margin-left: auto
-   }
-
-   button:nth-of-type(n+3) {
-      margin-right: 7px
-   }
-
-   .circle {
-      background-color: #0197A6;
-      border-radius: 50%;
-      height: 30px;
-      width: 30px;
-      display: flex;
-      justify-content:center;
-      align-items: center;
-      color: white;
-      font-weight: 500;
-      margin-left: 3px;
-   }
-
-   @media (min-width: 750px) {
-      padding: 0 40px;
-   }
-`
 
 function AppBar({ toggleMenu }) {
+   const [zIndex, setZindex] = useState(1);
    const dispatch = useDispatch();
 
    const onLogout = () => {
@@ -61,12 +20,16 @@ function AppBar({ toggleMenu }) {
    }
 
    return (
-      <StyledAppBar>
+      <StyledAppBar
+         zIndex={zIndex}
+         onMouseEnter={() => setZindex (1000)}
+         onMouseLeave={() => setZindex (1)}
+      >
          <IconBtn
             hoverColor="#e27065"
             onClick={toggleMenu}
             tooltip="Open menu"
-            tooltipWidth="78px"
+            tooltipWidth="74px"
          >
             <Justify
                color="white"
@@ -74,55 +37,32 @@ function AppBar({ toggleMenu }) {
             />
          </IconBtn>
 
-         <IconBtn
-            hoverColor="#e27065"
-            tooltip="Go to start page"
-            tooltipWidth="102px"
-         >
-            <HouseDoor
-               color="white"
-               size={18}
-            />
-         </IconBtn>
+         <Link to="/today">
+            <IconBtn
+               hoverColor="#e27065"
+               tooltip="Go to start page"
+               tooltipWidth="97px"
+               >
+               <HouseDoor
+                  color="white"
+                  size={18}
+                  />
+            </IconBtn>
+         </Link>
 
          <SearchInput />
 
          <IconBtn
             hoverColor="#e27065"
-            tooltip="Quick Add Task"
-            tooltipWidth="98px"
-         >
-            <Plus
-               color="white"
-               size={32}
-            />
-         </IconBtn>
-
-         <IconBtn hoverColor="#e27065">
-            <GraphUp
-               color="white"
-               size={18}
-            />
-         </IconBtn>
-
-         <IconBtn hoverColor="#e27065">
-            <QuestionCircle
-               color="white"
-               size={18}
-            />
-         </IconBtn>
-
-         <IconBtn hoverColor="#e27065">
-            <Bell
-               color="white"
-               size={18}
-            />
-         </IconBtn>
-
-         <span
-            className="circle"
             onClick={onLogout}
-         >R</span>
+            tooltip="Logout"
+            tooltipWidth="48px"
+         >
+            <DoorClosed
+               size={18}
+               color="white"
+            />
+         </IconBtn>
       </StyledAppBar>
    )
 }
