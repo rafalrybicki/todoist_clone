@@ -36,7 +36,8 @@ function Today({ match }) {
    const beginingOfTheDay = getBeginingOfTheDay();
    const endOfTheDay = getEndOfTheDay();
    const overdueTasks = useSelector(state => state.tasks.filter(task => task.targetDate && task.targetDate < beginingOfTheDay));
-   const todayTasks = useSelector(state => state.tasks.filter(task => task.targetDate >= beginingOfTheDay && task.targetDate <= endOfTheDay));
+   const tasks = useSelector(state => state.tasks.filter(task => task.targetDate >= beginingOfTheDay && task.targetDate <= endOfTheDay));
+   const lastTaskOrder = tasks.length > 0 ? tasks[tasks.length - 1].order + 1 : 1;
 
    const userId = useSelector(state => state.user.id);
 
@@ -76,7 +77,7 @@ function Today({ match }) {
 
             <section>
                {overdueTasks.length > 0 && <h2>Today</h2>}
-               {todayTasks.map(task =>
+               {tasks.map((task, index, array) =>
                   <Task
                      key={task.id}
                      id={task.id}
@@ -89,6 +90,8 @@ function Today({ match }) {
                      completionDate={task.completionDate}
                      subTasks={task.subTasks}
                      showProjectLink={true}
+                     prevSiblingOrder={array[index - 1] ? array[index - 1].order : 0}
+                     nextSiblingOrder={array[index + 1] ? array[index + 1].order : array[index].order + 1}
                   />
                )}
             </section>
@@ -97,6 +100,7 @@ function Today({ match }) {
                sectionId="default"
                projectId={userId}
                date={beginingOfTheDay}
+               nextOrder={lastTaskOrder}
             />
          </StyledToday>
       </>

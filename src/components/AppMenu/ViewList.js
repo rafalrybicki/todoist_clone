@@ -8,6 +8,7 @@ import ListItem from './ListItem';
 import InboxIcon from 'icons/InboxIcon';
 import TodayIcon from 'icons/TodayIcon';
 import { Calendar3, CircleFill } from 'react-bootstrap-icons';
+import useActiveTasksQuantity from 'hooks/useActiveTasksQuantity';
 
 const StyledViewList = styled.ul`
    .inbox-icon {
@@ -21,10 +22,13 @@ const StyledViewList = styled.ul`
 
 function ViewList({ isMobile, closeMenu}) {
    const favorites = useSelector(state => state.projects.filter(project => project.favorite));
+   const inboxId = useSelector(state => state.user.id);
+   const inboxQuantity = useActiveTasksQuantity(inboxId)
+
    return (
       <StyledViewList>
          <ListItem
-            text="Inbox 6"
+            text={"Inbox " + inboxQuantity}
             path="/inbox"
             onClick={isMobile ? closeMenu : undefined}
          >

@@ -16,6 +16,10 @@ const StyledProjectLink = styled(Link)`
    
    svg {
       margin-right: 4px;
+
+      &.inbox-icon {
+         margin-bottom: -1px;
+      }
    }
 
    &:hover {
@@ -28,7 +32,7 @@ function ProjectLink({ projectId }) {
    const inobxId = useSelector(state => state.user.id);
 
    const path = project.id === inobxId ? '/inbox' : '/project/' + project.id
-   const icon = project.id === inobxId ? <InboxIcon /> : <CircleFill size={9} color={project.color} />;
+   const icon = project.id === inobxId ? <InboxIcon size={12} /> : <CircleFill size={9} color={project.color} />;
    
 
    return (
