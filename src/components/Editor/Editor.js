@@ -10,6 +10,7 @@ import PriorityPicker from './PriorityPicker';
 import ReminderPicker from './ReminderPicker';
 import SubmitBtn from 'components/appButtons/SubmitBtn';
 import CancelBtn from 'components/appButtons/CancelBtn';
+import DateTimeSelectorActivator from './DateTimeSelectorActivator';
 
 const StyledEditor = styled.form`
    position: relative;
@@ -105,7 +106,12 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
                setMiliseconds={setTargetDate}
                isDateTime={isDateTime}
                setIsDateTime={setIsDateTime}
-            />
+            >
+               <DateTimeSelectorActivator
+                  miliseconds={targetDate}
+                  isDateTime={isDateTime}
+               />
+            </DateTimeSelector>
             <SectionSelector
                projectId={projectId}
                sectionId={sectionId}

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const SectionSelectorActivator = styled.button`
+const SelectorActivator = styled.button`
    margin-right: auto;
    height: 28px;
    padding: 0 8px;
@@ -9,11 +9,15 @@ const SectionSelectorActivator = styled.button`
    color: #555;
 
    svg {
-      margin-right: 5px;
-   }
+      margin-right: 6px;
 
-   svg.inbox-icon {
-      margin-bottom: -2px;
+      &.calendar-icon {
+         margin-bottom: -1.5px;
+      }
+
+      &.inbox-icon {
+         margin-bottom: -2px;
+      }
    }
 
    &:hover, &:focus {
@@ -21,4 +25,4 @@ const SectionSelectorActivator = styled.button`
    }
 `
 
-export default SectionSelectorActivator
+export default SelectorActivator

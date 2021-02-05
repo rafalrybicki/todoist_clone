@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { getDate, getNextWeek, getWeek } from '../../../utils';
+import { getDate, getNextWeek, getWeek } from 'utils';
 
 import SuggestionsItem from './SuggestionsItem';
-import TodayIcon from '../../appIcons/TodayIcon';
-import TommorowIcon from '../../appIcons/TomorrowIcon';
-import ThisWeekendIcon from '../../appIcons/ThisWeekendIcon';
-import NextWeekIcon from '../../appIcons/NextWeekIcon';
-import NoDateIcon from '../../appIcons/NoDateIcon';
+import TodayIcon from 'components/appIcons/TodayIcon';
+import TommorowIcon from 'components/appIcons/TomorrowIcon';
+import ThisWeekendIcon from 'components/appIcons/ThisWeekendIcon';
+import NextWeekIcon from 'components/appIcons/NextWeekIcon';
+import NoDateIcon from 'components/appIcons/NoDateIcon';
 
 const StyledSuggestions = styled.div`
    height: auto;
