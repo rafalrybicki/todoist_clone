@@ -16,59 +16,58 @@ const StyledDateTimeSelector = styled.div`
    width: 250px;
    height: max-content;
    background-color: white;
+   border: 1px solid #ddd;
    border-radius: 3px;
    box-shadow: 0 1px 8px 0 rgba(0,0,0,.08), 0 0 1px 0 rgba(0,0,0,.3);
    font-family: Arial, Helvetica, sans-serif;
 `
 
-function DateTimeSelector({ miliseconds, setMiliseconds, isDateTime, setIsDateTime, children }) {
+function DateTimeSelector({ miliseconds, isDateTime, onChange, children }) {
    const [timeArr, setTimeArr] = useState(isDateTime ? getTimeArr(miliseconds) : []);
 
    const addTime = (timeArr) => {
       let newMiliseconds = getBeginingOfTheDay(miliseconds);  
       newMiliseconds += getMilisecondsFromTimeArr(timeArr);
 
-      setMiliseconds(newMiliseconds);
+      onChange(newMiliseconds, true)
       setTimeArr(timeArr);
-      setIsDateTime(true);
    }
 
    const removeTime = () => {
       const newMiliseconds = getBeginingOfTheDay(miliseconds);
 
-      setMiliseconds(newMiliseconds);
+      onChange(newMiliseconds, false)
       setTimeArr([]);
-      setIsDateTime(false);
    }
 
-   const setDate = (miliseconds) => {
+   const setMiliseconds = (miliseconds) => {
       if (isDateTime) {
          const newMiliseconds = getMilisecondsFromTimeArr(timeArr) + miliseconds;
-         setMiliseconds(newMiliseconds);
+         onChange(newMiliseconds, true);
       } else {
-         setMiliseconds(miliseconds);
+         onChange(miliseconds, false);
       }
    }
 
    const resetDate = () => {
-      setMiliseconds(null);
-      setIsDateTime(false);
+      onChange(null, false);
       setTimeArr([]);
    }
 
    return (
       <Popover
          activator={children}
+         className="date-time-selector"
       >
          <StyledDateTimeSelector>
             <Suggestions
                currentDate={miliseconds}
-               setMiliseconds={setDate}
+               setMiliseconds={setMiliseconds}
                resetDate={resetDate}
             />
             <Calendar
                currentDate={getBeginingOfTheDay(miliseconds)}
-               setDate={setDate}
+               setDate={setMiliseconds}
             />
             <TimeSelector
                timeArr={timeArr}
@@ -82,9 +81,8 @@ function DateTimeSelector({ miliseconds, setMiliseconds, isDateTime, setIsDateTi
 
 DateTimeSelector.propTypes = {
    miliseconds: PropTypes.number,
-   setMiliseconds: PropTypes.func.isRequired,
    isDateTime: PropTypes.bool.isRequired,
-   setIsDateTime: PropTypes.func.isRequired,
+   onChange: PropTypes.func.isRequired,
    children: PropTypes.node.isRequired
 }
 

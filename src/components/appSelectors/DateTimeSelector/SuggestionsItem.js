@@ -48,7 +48,7 @@ function SuggestionsItem({ text, miliseconds, onClick, children }) {
 SuggestionsItem.propTypes = {
    text: PropTypes.string.isRequired,
    miliseconds: PropTypes.number,
-   onClick: PropTypes.func.isRequired,
+   onClick: PropTypes.func,
    children: PropTypes.node.isRequired,
 }
 

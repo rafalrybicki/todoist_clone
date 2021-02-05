@@ -75,8 +75,16 @@ const TaskMenu = styled.div`
          }
       }
 
-      .popover ul {
+      .section-selector ul {
          margin-right: -1px;
+      }
+
+      .date-time-selector {
+         position: static;
+
+         > div {
+            margin-left: -1px;
+         }
       }
    }
 `;

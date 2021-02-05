@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { addToCollection, deleteFromCollection, updateDocument } from '../../firebase';
-import { getTimeArr, getMilisecondsFromTimeArr } from 'utils';
+import { addToCollection, deleteFromCollection, updateDocument } from 'firebase/index.js';
 
 import StyledTaskMenu from './styled/TaskMenu';
-import OptionsBtn from '../appButtons/OptionsBtn';
+import OptionsBtn from 'components/appButtons/OptionsBtn';
 import { ArrowRightCircle, Pen, Stickies, Trash } from 'react-bootstrap-icons';
 import PriorityOptions from './PriorityOptions';
 import ScheduleOptions from './ScheduleOptions';
@@ -19,23 +18,6 @@ function TaskMenu({ id, priority, currentDate, isDateTime, nextOrder, edit }) {
 
    const toggleOptions = () => {
       setOptions(options => setOptions(!options))
-   }
-
-   const setTargetDate = (miliseconds) => {
-      if (isDateTime) {
-         const timeArr = getTimeArr(currentDate);
-         const newMiliseconds = getMilisecondsFromTimeArr(timeArr) + miliseconds;
-
-         updateDocument('tasks', id, { targetDate: newMiliseconds });
-      } else if (miliseconds === null) {
-         updateDocument('tasks', id, {
-            targetDate: miliseconds,
-            isDateTime: false
-         });
-      } else {
-         updateDocument('tasks', id, { targetDate: miliseconds });
-      }
-      toggleOptions();
    }
 
    const setPriority = (priority) => {
@@ -84,8 +66,9 @@ function TaskMenu({ id, priority, currentDate, isDateTime, nextOrder, edit }) {
                <li className="selector">
                   <span>Schedule</span>
                   <ScheduleOptions 
-                     setTargetDate={setTargetDate}
+                     id={id}
                      currentDate={currentDate}
+                     isDateTime={isDateTime}
                   />
                </li>
                <li className="selector">

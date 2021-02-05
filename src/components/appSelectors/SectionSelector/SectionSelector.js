@@ -44,6 +44,7 @@ function SectionSelector({ projectId, sectionId, onChange, children }) {
    return (
       <Popover
          activator={children}
+         className="section-selector"
       >
          <MenuList>
             {sectionListItems.map(item=>

@@ -84,6 +84,11 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
       setProjectId(projectId)
       setSectionId(sectionId)
    }
+
+   const setDate = (miliseconds, isDateTime) => {
+      setTargetDate(miliseconds);
+      setIsDateTime(isDateTime);
+   }
    
    return (
       <StyledEditor
@@ -103,9 +108,8 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
          <section>
             <DateTimeSelector
                miliseconds={targetDate}
-               setMiliseconds={setTargetDate}
                isDateTime={isDateTime}
-               setIsDateTime={setIsDateTime}
+               onChange={setDate}
             >
                <DateTimeSelectorActivator
                   miliseconds={targetDate}
