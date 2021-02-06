@@ -1,40 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { openModal } from 'redux/actions';
+import useProjects from 'hooks/useProjects';
 
 import ExpandableList from './ExpandableList';
 import ProjectListItem from './ProjectListItem';
 import NewItemBtn from 'buttons/NewItemBtn';
 
-function ProjectList({ isMobile, closeMenu }) {
-   const projects = useSelector(state => state.projects.filter(project => (project.favorite === false && project.order > 0)))
-   const dispatch = useDispatch();
+function ProjectList({ closeMenu, openProjectEditor }) {
+   const projects = useProjects()
 
    return (
-      <ExpandableList text="projects">
+      <ExpandableList text="Projects">
          {projects.map(project => 
             <ProjectListItem
                key={project.id}
                projectId={project.id}
                name={project.name}
                color={project.color}
-               onClick={isMobile ? closeMenu : null}
+               onClick={closeMenu}
             />
          )}
          <NewItemBtn
             text="Add project"
             width="110px"
-            onClick={() => dispatch(openModal('project'))}
+            onClick={openProjectEditor}
          />
       </ExpandableList>
    )
 }
 
 ProjectList.propTypes = {
-   isMobile: PropTypes.bool.isRequired,
-   closeMenu: PropTypes.func.isRequired
+   closeMenu: PropTypes.func,
+   openProjectEditor: PropTypes.func.isRequired,
 }
 
 export default ProjectList

@@ -1,41 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
 
+import StyledMenu from './styled/AppMenu';
 import Overlay from '../Overlay'
-
 import ViewList from './ViewList';
 import ProjectList from './ProjectList';
-// import FilterList from './FilterList';
-
-const StyledMenu = styled.div`
-   position: absolute;
-   z-index: 100;
-   top: 0;
-   padding: 63px 0 30px;
-   background-color: #FAFAFA;
-   height: 100%;
-   width: ${props => props.isOpen ? '291px' : '0'};
-   flex-shrink: 0;
-   font-size: 14px;
-   overflow-y: auto;
-   overflow-x: hidden;
-   transition: 0.2s width;
-
-   > * {
-      width: 291px;
-      padding-left: 37px;
-      padding-right: 10px;
-   }
-
-   @media (min-width: 750px) {
-      position: static;
-      padding: 30px 0 30px;
-   }
-`
+import ProjectEditor from 'components/ProjectEditor/ProjectEditor';
 
 function AppMenu({ isOpen, closeMenu }) {
    const [isMobile, setIsMobile] = useState(window.innerWidth < 750);
+   const [isEditorOpen, setisEditorOpen] = useState(false);
+
+   const toggleProjectEditor = () => {
+      setisEditorOpen(isEditorOpen => !isEditorOpen);
+   }
 
    useEffect(() => {
       function handleResize() {
@@ -43,6 +21,7 @@ function AppMenu({ isOpen, closeMenu }) {
       }
   
       window.addEventListener('resize', handleResize);
+
       return () => window.removeEventListener('resize', handleResize);
    }, []);
 
@@ -50,20 +29,21 @@ function AppMenu({ isOpen, closeMenu }) {
       <>
          <StyledMenu isOpen={isOpen}>
             <ViewList
-               isMobile={isMobile}
-               closeMenu={closeMenu}
+               closeMenu={isMobile ? closeMenu : null}
             />
             <ProjectList
-               isMobile={isMobile}
-               closeMenu={closeMenu}
+               closeMenu={isMobile ? closeMenu : null}
+               openProjectEditor={toggleProjectEditor}
             />
-            {/* <FilterList
-               isMobile={isMobile}
-               closeMenu={closeMenu}
-            /> */}
+            {isEditorOpen &&
+               <ProjectEditor close={toggleProjectEditor}/>
+            }
          </StyledMenu>
 
-         <Overlay show={isOpen && isMobile} hide={closeMenu} />
+         <Overlay
+            show={isOpen && isMobile}
+            hide={closeMenu}
+         />
       </>
    )
 }

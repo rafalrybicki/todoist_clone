@@ -16,6 +16,13 @@ const GlobalStyle = createGlobalStyle`
       background-color: #fafafa;
    }
 
+   .app {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+   }
+
    button {
       background-color: transparent;
       border: none;

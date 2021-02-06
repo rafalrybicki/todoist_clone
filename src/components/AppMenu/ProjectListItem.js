@@ -1,12 +1,12 @@
 import React from 'react'
 
-import useActiveTasksQuantity from 'hooks/useActiveTasksQuantity';
+import useProjectTasksQuantity from 'hooks/useProjectTasksQuantity';
 
 import ListItem from './ListItem';
 import { CircleFill } from 'react-bootstrap-icons';
 
 function ProjectListItem({ projectId, name, color, onClick}) {
-   const quantity = useActiveTasksQuantity(projectId);
+   const quantity = useProjectTasksQuantity(projectId);
 
    return (
       <ListItem

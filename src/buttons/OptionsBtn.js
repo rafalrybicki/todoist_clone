@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import IconBtn from './IconBtn';
 import { ThreeDots } from 'react-bootstrap-icons';
 
-function OptionsBtn({ width = '28px', onClick }) {
+function OptionsBtn({ width = '28px', tooltip="Options", onClick }) {
    return (
       <IconBtn
          width={width}
-         tooltip="Options"
+         tooltip={tooltip}
          className="options-btn"
          onClick={onClick}
       >
@@ -19,7 +19,8 @@ function OptionsBtn({ width = '28px', onClick }) {
 
 OptionsBtn.propTypes = {
    width: PropTypes.string,
-   onClick: PropTypes.func
+   tooltip: PropTypes.string,
+   onClick: PropTypes.func.isRequired
 }
 
 export default OptionsBtn

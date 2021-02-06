@@ -22,7 +22,7 @@ function AppBar({ toggleMenu }) {
    return (
       <StyledAppBar
          zIndex={zIndex}
-         onMouseEnter={() => setZindex (1000)}
+         onMouseEnter={() => setZindex (100)}
          onMouseLeave={() => setZindex (1)}
       >
          <IconBtn

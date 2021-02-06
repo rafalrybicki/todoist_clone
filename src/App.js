@@ -6,7 +6,6 @@ import {
   Redirect
 } from "react-router-dom";
 import ProtectedRoute from './pages/ProtectedRoute';
-import styled from 'styled-components/macro';
 
 import AppBar from './components/AppBar/AppBar';
 import AppMenu from './components/AppMenu/AppMenu';
@@ -17,13 +16,6 @@ import Project from './pages/Project';
 import Today from './pages/Today';
 // import Upcoming from './pages/Upcoming';
 
-const StyledApp = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-`
-
 function App() {
   const [menuOpen, setMenuOpen] = useState(true);
 
@@ -33,7 +25,7 @@ function App() {
 
   return (
     <Router>
-      <StyledApp className="App">
+      <div className="app">
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
@@ -51,7 +43,7 @@ function App() {
             </MainView>
           </Route>
         </Switch>
-      </StyledApp>
+      </div>
     </Router>
   );
 }

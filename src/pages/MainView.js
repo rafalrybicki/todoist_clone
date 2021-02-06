@@ -5,7 +5,6 @@ const StyledMainView = styled.main`
    flex-grow: 1;
    height: 100%;
    overflow: hidden;
-   z-index: 100;
    background-color: white;
    
    .view {

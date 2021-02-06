@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
-import { useSelector } from 'react-redux';
-import useActiveTasksQuantity from 'hooks/useActiveTasksQuantity';
+import useFavoriteProjects from 'hooks/useFavoriteProjects';
+import useUserId from 'hooks/useUserId';
+import useProjectTasksQuantity from 'hooks/useProjectTasksQuantity';
 import useTodayTasksQuantity from 'hooks/useTodayTasksQuantity';
 
 import ListItem from './ListItem';
@@ -21,10 +22,10 @@ const StyledViewList = styled.ul`
    }
 `
 
-function ViewList({ isMobile, closeMenu}) {
-   const favorites = useSelector(state => state.projects.filter(project => project.favorite));
-   const inboxId = useSelector(state => state.user.id);
-   const inboxQuantity = useActiveTasksQuantity(inboxId);
+function ViewList({ closeMenu}) {
+   const favorites = useFavoriteProjects();
+   const inboxId = useUserId();
+   const inboxQuantity = useProjectTasksQuantity(inboxId);
    const todayQuantity = useTodayTasksQuantity();
 
    return (
@@ -32,21 +33,21 @@ function ViewList({ isMobile, closeMenu}) {
          <ListItem
             name={"Inbox " + inboxQuantity}
             path="/inbox"
-            onClick={isMobile ? closeMenu : null}
+            onClick={closeMenu}
          >
             <InboxIcon size={18} />
          </ListItem>
          <ListItem
             name={"Today " + todayQuantity}
             path="/today"
-            onClick={isMobile ? closeMenu : null}
+            onClick={closeMenu}
          >
             <TodayIcon size={16} />
          </ListItem>
          {/* <ListItem
             name="Upcoming"
             path="/upcoming"
-            onClick={isMobile ? closeMenu : null}
+            onClick={closeMenu}
          >
             <Calendar3
                color="#692fc2"
@@ -59,7 +60,7 @@ function ViewList({ isMobile, closeMenu}) {
                projectId={favorite.id}
                name={favorite.name}
                color={favorite.color}
-               onClick={isMobile ? closeMenu : null}
+               onClick={closeMenu}
             />
          )}
       </StyledViewList>
@@ -67,8 +68,7 @@ function ViewList({ isMobile, closeMenu}) {
 }
 
 ViewList.propTypes = {
-   isMobile: PropTypes.bool.isRequired,
-   closeMenu: PropTypes.func.isRequired
+   closeMenu: PropTypes.func
 }
 
 export default ViewList
