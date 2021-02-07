@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ExpantableList = styled.div`
+const ExpandableList = styled.div`
    display: flex;
    align-items: center;
    flex-direction: row;
@@ -20,8 +20,8 @@ const ExpantableList = styled.div`
       margin-left: 5px;
 
       .chevron-icon {
-         margin-left: 7.5px;
-         margin-right: 12.5px;
+         margin-left: 6px;
+         margin-right: 13.5px;
       }
    }
 
@@ -38,4 +38,4 @@ const ExpantableList = styled.div`
    }
 `
 
-export default ExpantableList
+export default ExpandableList

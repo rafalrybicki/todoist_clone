@@ -29,7 +29,7 @@ function ViewList({ closeMenu}) {
    const todayQuantity = useTodayTasksQuantity();
 
    return (
-      <StyledViewList>
+      <StyledViewList className="view-list">
          <ListItem
             name={"Inbox " + inboxQuantity}
             path="/inbox"

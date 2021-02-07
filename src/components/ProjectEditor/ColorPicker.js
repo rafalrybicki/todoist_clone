@@ -85,21 +85,20 @@ function ColorPicker({ currentColor, setColor }) {
                   readOnly
                />
             }
-            content={
-               <MenuList>
-                  {colors.map(item => 
-                     <li
-                        key={item.val}
-                        className={item.val === color.val ? "active" : ""}
-                        onClick={() => setColor(item)}
-                     >
-                        <CircleFill color={item.val} />
-                        {item.name}
-                     </li>
-                  )}
-               </MenuList>
-            }
-         />
+         >
+            <MenuList>
+               {colors.map(item => 
+                  <li
+                     key={item.val}
+                     className={item.val === color.val ? "active" : ""}
+                     onClick={() => setColor(item)}
+                  >
+                     <CircleFill color={item.val} />
+                     {item.name}
+                  </li>
+               )}
+            </MenuList>
+         </Popover>
       </StyledColorPicker>
    )
 }

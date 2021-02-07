@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 const AppMenu = styled.div`
+   z-index: 100;
    position: absolute;
    top: 0;
-   padding: 63px 0 30px;
+   padding: 10px 0 30px;
+   margin-top: 43px;
    background-color: #FAFAFA;
-   height: 100%;
+   height: calc(100% - 43px);
    width: ${props => props.isOpen ? '291px' : '0'};
    flex-shrink: 0;
    font-size: 14px;
@@ -13,7 +15,7 @@ const AppMenu = styled.div`
    overflow-x: hidden;
    transition: 0.2s width;
 
-   > * {
+   .view-list, .expandable-list {
       width: 291px;
       padding-left: 37px;
       padding-right: 10px;
@@ -21,7 +23,9 @@ const AppMenu = styled.div`
 
    @media (min-width: 750px) {
       position: static;
-      padding: 30px 0 30px;
+      height: 100%;
+      margin-top: 0;
+      padding-top: 30px;
    }
 `
 

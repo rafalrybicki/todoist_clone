@@ -9,10 +9,10 @@ import ProjectEditor from 'components/ProjectEditor/ProjectEditor';
 
 function AppMenu({ isOpen, closeMenu }) {
    const [isMobile, setIsMobile] = useState(window.innerWidth < 750);
-   const [isEditorOpen, setisEditorOpen] = useState(false);
+   const [isEditorOpen, setIsEditorOpen] = useState(false);
 
    const toggleProjectEditor = () => {
-      setisEditorOpen(isEditorOpen => !isEditorOpen);
+      setIsEditorOpen(isEditorOpen => !isEditorOpen);
    }
 
    useEffect(() => {
@@ -35,9 +35,10 @@ function AppMenu({ isOpen, closeMenu }) {
                closeMenu={isMobile ? closeMenu : null}
                openProjectEditor={toggleProjectEditor}
             />
-            {isEditorOpen &&
-               <ProjectEditor close={toggleProjectEditor}/>
-            }
+            <ProjectEditor
+               isOpen={isEditorOpen}
+               close={toggleProjectEditor}
+            />
          </StyledMenu>
 
          <Overlay
