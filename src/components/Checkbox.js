@@ -13,7 +13,8 @@ const StyledCheckbox = styled.span`
    height: 18px;
    width: 18px;
    margin-right: 7px;
-   padding-left: 3.5px;
+   padding-top: 1px;
+   padding-left: 4px;
    cursor: pointer;
    font-size: 10px;
    color: transparent;
@@ -23,20 +24,25 @@ const StyledCheckbox = styled.span`
       background-color: rgba(209,69,59,.2);
       color: grey;
    }
+
+   &.completed {
+      background-color: #808080;
+      color: white;
+   }
 `
 
-function Checkbox({ priority, onClick }) {
+function Checkbox({ isCompleted, priority, onClick }) {
    const colors = {
       1: 'rgb(209, 69, 59)',
       2: 'rgb(235, 137, 9)',
       3: 'rgb(36, 111, 224)',
       4: 'grey',
    }
-   
+
    return (
       <StyledCheckbox
          color={colors[priority]}
-         className="checkbox"
+         className={isCompleted ? "checkbox completed" : "checkbox"}
          onClick={onClick}
       >
          &#10004;
@@ -45,7 +51,9 @@ function Checkbox({ priority, onClick }) {
 }
 
 Checkbox.propTypes = {
-   priority: PropTypes.number.isRequired
+   isCompleted: PropTypes.bool,
+   priority: PropTypes.number.isRequired,
+   onClick: PropTypes.func.isRequired
 }
 
 export default Checkbox

@@ -5,11 +5,6 @@ import { CalendarEvent } from 'react-bootstrap-icons';
 import { getTaskDate } from '../../utils';
 
 const StyledTaskDate = styled.span`
-   display: block;
-   font-size: 12px;
-   color: navy;
-   height: 16px;
-
    svg {
       margin-right: 3px;
    }

@@ -11,7 +11,7 @@ import PriorityOptions from './PriorityOptions';
 import ScheduleOptions from './ScheduleOptions';
 import SectionSelector from 'selectors/SectionSelector/SectionSelector';
 
-function TaskMenu({ id, priority, currentDate, isDateTime, nextOrder, edit }) {
+function TaskMenu({ id, priority, currentDate, isDateTime, completionDate, nextOrder, edit }) {
    const [options, setOptions] = useState(false);
 
    const task = useSelector(state => state.tasks.find(task => task.id === id));
@@ -54,40 +54,44 @@ function TaskMenu({ id, priority, currentDate, isDateTime, nextOrder, edit }) {
       deleteFromCollection('tasks', id)
    }
 
+
+
    return (
       <StyledTaskMenu>
          <OptionsBtn onClick={toggleOptions} />
          {options &&
             <ul>
-               <li onClick={edit}>
-                  <Pen size={16} />
-                  Edit task
-               </li>
-               <li className="selector">
-                  <span>Schedule</span>
-                  <ScheduleOptions 
-                     id={id}
-                     currentDate={currentDate}
-                     isDateTime={isDateTime}
-                  />
-               </li>
-               <li className="selector">
-                  <span>Priority</span>
-                  <PriorityOptions
-                     priority={priority}
-                     setPriority={setPriority}
-                  />
-               </li>
-               <SectionSelector onChange={move}>
-                  <li className="selector-activator">
-                     <ArrowRightCircle size={16} />
-                     Move to project
+               {completionDate === null && <>
+                  <li onClick={edit}>
+                     <Pen size={16} />
+                     Edit task
                   </li>
-               </SectionSelector>
-               <li onClick={duplicate}>
-                  <Stickies size={15} />
-                  Duplicate
-               </li>
+                  <li className="selector">
+                     <span>Schedule</span>
+                     <ScheduleOptions 
+                        id={id}
+                        currentDate={currentDate}
+                        isDateTime={isDateTime}
+                     />
+                  </li>
+                  <li className="selector">
+                     <span>Priority</span>
+                     <PriorityOptions
+                        priority={priority}
+                        setPriority={setPriority}
+                     />
+                  </li>
+                  <SectionSelector onChange={move}>
+                     <li className="selector-activator">
+                        <ArrowRightCircle size={16} />
+                        Move to project
+                     </li>
+                  </SectionSelector>
+                  <li onClick={duplicate}>
+                     <Stickies size={15} />
+                     Duplicate
+                  </li>
+               </>}
                <li onClick={deleteTask}>
                   <Trash size={16} />
                   Delete task
@@ -101,6 +105,8 @@ function TaskMenu({ id, priority, currentDate, isDateTime, nextOrder, edit }) {
 TaskMenu.propTypes = {
    id: PropTypes.string.isRequired,
    priority: PropTypes.number.isRequired,
+   currentDate: PropTypes.number,
+   completionDate: PropTypes.number,
    nextOrder: PropTypes.number.isRequired,
    edit: PropTypes.func.isRequired,
 }

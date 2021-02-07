@@ -63,7 +63,6 @@ function Task(props) {
             completionDate: null
          })
       } else {
-         console.log('new date')
          updateDocument('tasks', id, {
             completionDate: new Date().valueOf()
          })
@@ -87,9 +86,10 @@ function Task(props) {
    }
 
    return (
-      <StyledTask>
+      <StyledTask isCompleted={completionDate > 0}>
          <Grip />
          <Checkbox
+            isCompleted={completionDate > 0}
             priority={priority}
             onClick={toggleTaskcompletion}
          />
@@ -105,6 +105,7 @@ function Task(props) {
             priority={priority}
             currentDate={targetDate}
             isDateTime={isDateTime}
+            completionDate={completionDate}
             nextOrder={(order + nextSiblingOrder) / 2}
             edit={toggleEditor}
          />

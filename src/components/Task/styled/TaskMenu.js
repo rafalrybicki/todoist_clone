@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const TaskMenu = styled.div`
-   z-index: 101;
+   z-index: 1;
    position: absolute;
    top: 6.5px;
    right: 0;
@@ -11,11 +11,12 @@ const TaskMenu = styled.div`
    background-color: white;
 
    > .options-btn{
-      color: transparent
+      color: transparent;
+      z-index: 10
    }
 
    > ul {
-      z-index: 111;
+      z-index: 11;
       position: absolute;
       bottom: 0;
       right: 0;

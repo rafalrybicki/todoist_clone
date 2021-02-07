@@ -8,10 +8,6 @@ import { CircleFill } from 'react-bootstrap-icons';
 import { useSelector } from 'react-redux';
 
 const StyledProjectLink = styled(Link)`
-   font-size: 12px;
-   color: navy;
-   height: 16px;
-   display: block;
    z-index: 10;
    
    svg {

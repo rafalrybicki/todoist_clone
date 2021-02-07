@@ -18,10 +18,12 @@ const Task = styled.div`
       top: 0;
       left: 25px;
       display: block;
-      padding-top: 8px;
+      padding-top: 11px;
       padding-right: 30px;
       width: calc(100% - 30px);
-      height: 100%
+      height: 100%;
+      line-height: 1;
+      color: ${props => props.isCompleted ? 'grey' : 'black'};
    }
 
    .grip {
@@ -42,6 +44,14 @@ const Task = styled.div`
 
    .task-date, .project-link {
       margin: 14px 8px 4px 0;
+      display: block;
+      font-size: 12px;
+      height: 16px;
+      color: ${props => props.isCompleted ? 'grey' : 'navy'};
+
+      &:hover {
+         color: blue;
+      }
    }
 
    &:hover {
