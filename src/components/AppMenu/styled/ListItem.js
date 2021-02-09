@@ -41,7 +41,7 @@ const ListItem = styled.li`
 
    .options-btn {
       position: absolute;
-      top: 10px;
+      top: 5px;
       right: 0;
       visibility: hidden;
       cursor: pointer;
@@ -61,7 +61,7 @@ const ListItem = styled.li`
          color: grey;
       }
 
-      .more {
+      .options-btn {
          visibility: visible;
       }
    }

@@ -6,7 +6,7 @@ const ExpandableList = styled.div`
    flex-direction: row;
    flex-wrap: wrap;
    height: ${props => props.open ? 'auto' : '34px'};
-   overflow-y: hidden;
+   overflow: hidden;
    
    > button {
       font-size: 14px;
@@ -28,7 +28,7 @@ const ExpandableList = styled.div`
    ul {
       width: 100%;
 
-      button {
+      > button {
          margin: 10px 0 20px 10px;
 
          span {

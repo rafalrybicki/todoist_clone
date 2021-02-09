@@ -13,6 +13,7 @@ function ProjectListItem({ projectId, name, color, onClick}) {
          name={`${name} ${quantity}`}
          path={'/project/' + projectId}
          onClick={onClick}
+         options
       >
          <CircleFill
             color={color}
