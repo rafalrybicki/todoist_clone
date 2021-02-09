@@ -1,43 +1,44 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import StyledProjectSectionEditor from './styled/ProjectSectionEditor';
+import StyledEditor from 'styled/Editor';
 import SubmitBtn from 'buttons/SubmitBtn';
 import CancelBtn from 'buttons/CancelBtn';
 
-function ProjectSectionEditor({ currentName = '', onSave, submitBtnText = 'Save', onClose }) {
-   const [name, setName] = useState(currentName);
+
+function Editor({ currentContent = '', onSave, submitBtnText = 'Save', onClose }) {
+   const [content, setContent] = useState(currentContent);
 
    const handleSubmit = () => {
-      onSave({ name })
+      onSave(content)
    }
 
    return (
-      <StyledProjectSectionEditor
+      <StyledEditor
          onSubmit={handleSubmit}
       >
          <input
             type="text"
             autoFocus
             autoComplete="off"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
          />
 
          <SubmitBtn
             text={submitBtnText}
-            disabled={name === currentName || name === ''}
+            disabled={content === currentContent || content === ''}
          />
          <CancelBtn onClick={onClose} />
-      </StyledProjectSectionEditor>
+      </StyledEditor>
    )
 }
 
-ProjectSectionEditor.propTypes = {
-   currentName: PropTypes.string,
+Editor.propTypes = {
+   currentContent: PropTypes.string,
    onSave: PropTypes.func.isRequired,
    submitBtnText: PropTypes.string,
    onClose: PropTypes.func.isRequired
 }
 
-export default ProjectSectionEditor
+export default Editor

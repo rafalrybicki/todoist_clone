@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ProjectSectionEditor = styled.form`
+const Editor = styled.form`
    width: 100%;
 
    > input {
@@ -22,4 +22,4 @@ const ProjectSectionEditor = styled.form`
    }
 `;
 
-export default ProjectSectionEditor
+export default Editor

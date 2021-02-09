@@ -6,7 +6,7 @@ import { updateDocument } from 'firebase/index.js';
 import { dynamicSort } from 'utils';
 
 import StyledProjectSection from './styled/ProjectSection';
-import ProjectSectionEditor from './ProjectSectionEditor';
+import Editor from 'components/Editor';
 import Grip from 'components/Grip';
 import IconBtn from 'buttons/IconBtn';
 import ChevronIcon from 'icons/ChevronIcon';
@@ -36,7 +36,11 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
       });
 
       setOpenEditor(false);
-   } 
+   }
+
+   const updateName = (name) => {
+      updateSection({ name })
+   }
 
    const toggleIsOpen = () => {
       updateSection({ isOpen: !isOpen })
@@ -45,9 +49,9 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
    return (
       <StyledProjectSection>
          {openEditor &&
-            <ProjectSectionEditor
-               currentName={name}
-               onSave={updateSection}
+            <Editor
+               currentContent={name}
+               onSave={updateName}
                onClose={toggleEditor}
             />
          }

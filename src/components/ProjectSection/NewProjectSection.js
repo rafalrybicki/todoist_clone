@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { updateDocument } from '../../firebase';
+import { updateDocument } from 'firebase/index.js';
 import { v4 as uuid } from 'uuid';
 
 import StyledNewProjectSection from './styled/NewProjectSection';
-import ProjectSectionEditor from './ProjectSectionEditor';
+import Editor from 'components/Editor';
 
 function NewProjectSection({ projectId, order }) {
    const [openEditor, setOpenEditor] = useState(false);
@@ -14,7 +14,7 @@ function NewProjectSection({ projectId, order }) {
       setOpenEditor(openEditor => !openEditor)
    }
 
-   const addNewSection = (obj) => {
+   const addNewSection = (name) => {
       const id = uuid();
 
       updateDocument('projects', projectId, {
@@ -22,7 +22,7 @@ function NewProjectSection({ projectId, order }) {
             id,
             order,
             isOpen: true,
-            ...obj
+            name
          }
       });
 
@@ -39,7 +39,7 @@ function NewProjectSection({ projectId, order }) {
             </button>
          }
          {openEditor && 
-            <ProjectSectionEditor
+            <Editor
                onSave={addNewSection}
                onClose={toggleEditor}
                submitBtnText="Add section"
