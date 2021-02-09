@@ -9,7 +9,7 @@ const StyledComments = styled.div`
 function Comments({ show }) {
    return (
       <StyledComments show={show} >
-         comments
+         coming soon
       </StyledComments>
    )
 }

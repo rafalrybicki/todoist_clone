@@ -13,12 +13,11 @@ const StyledCheckbox = styled.span`
    height: 18px;
    width: 18px;
    margin-right: 7px;
-   padding-top: 1px;
    padding-left: 4px;
    cursor: pointer;
    font-size: 10px;
    color: transparent;
-   transition: all .2s;
+   transition: all .1s;
 
    &:hover {
       background-color: rgba(209,69,59,.2);
@@ -28,6 +27,7 @@ const StyledCheckbox = styled.span`
    &.completed {
       background-color: #808080;
       color: white;
+      border-color: transparent
    }
 `
 

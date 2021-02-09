@@ -5,7 +5,7 @@ const Task = styled.div`
    width: 100%;
    min-height: 42px;
    padding-top: 20px;
-   padding-left: 25px;
+   padding-left: 28px;
    display: flex;
    flex-wrap: wrap;
    align-items: center;
@@ -16,7 +16,7 @@ const Task = styled.div`
    .link {
       position: absolute;
       top: 0;
-      left: 25px;
+      left: 28px;
       display: block;
       padding-top: 11px;
       padding-right: 30px;
@@ -24,6 +24,10 @@ const Task = styled.div`
       height: 100%;
       line-height: 1;
       color: ${props => props.isCompleted ? 'grey' : 'black'};
+   }
+
+   span.link {
+      cursor: default
    }
 
    .grip {
@@ -58,6 +62,10 @@ const Task = styled.div`
       .options-btn {
          color: grey
       }
+   }
+
+   .task-date svg {
+      margin-bottom: -0.9px;
    }
 `;
 

@@ -35,15 +35,15 @@ const StyledMainView = styled.main`
             margin-bottom: 10px;
          }
       }
+   }
 
-      .icon-btn {
-         color: grey;
-      }
+   .icon-btn {
+      color: grey;
+   }
 
-      .icon-btn:hover {
-         color: #202020;
-         background-color: #eee;
-      }
+   .icon-btn:hover {
+      color: #202020;
+      background-color: #eee;
    }
 `
 

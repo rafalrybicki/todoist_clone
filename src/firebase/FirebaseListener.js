@@ -16,15 +16,12 @@ function FirebaseListener() {
                snapshot.docChanges().forEach(function(change) {
                   if (change.type === "added") {
                      dispatch(addProject(change.doc.data()));
-                     console.log('add project')
                   }
                   if (change.type === "modified") {
                      dispatch(editProject(change.doc.data()));
-                     console.log('edit project')
                   }
                   if (change.type === "removed") {
                      dispatch(deleteProject(change.doc.data().id));
-                     console.log('delete project')
                   }
                });
             });

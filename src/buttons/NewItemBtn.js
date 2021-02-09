@@ -12,14 +12,15 @@ const StyledNewitemBtn = styled.button`
    transition: all .2s;
 
    span {
+      display: block;
       height: 18px;
       width: 18px;
       font-size: 24px;
       font-weight: 300;
       margin-right: 8px;
-      margin-top: -1px;
       line-height: 12px;
       padding-left: 0.8px;
+      padding-bottom: 1px;
       border-radius: 50%;
       transition: background-color .1s;
    }

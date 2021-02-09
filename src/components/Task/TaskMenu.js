@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { addToCollection, deleteFromCollection, updateDocument } from 'firebase/index.js';
@@ -11,8 +12,9 @@ import PriorityOptions from './PriorityOptions';
 import ScheduleOptions from './ScheduleOptions';
 import SectionSelector from 'selectors/SectionSelector/SectionSelector';
 
-function TaskMenu({ id, priority, currentDate, isDateTime, completionDate, nextOrder, edit }) {
+function TaskMenu({ id, priority, currentDate, isDateTime, completionDate, nextOrder, projectId, edit }) {
    const [options, setOptions] = useState(false);
+   const history = useHistory();
 
    const task = useSelector(state => state.tasks.find(task => task.id === id));
 
@@ -51,7 +53,8 @@ function TaskMenu({ id, priority, currentDate, isDateTime, completionDate, nextO
    }
 
    const deleteTask = () => {
-      deleteFromCollection('tasks', id)
+      deleteFromCollection('tasks', id);
+      history.replace('/project/' + projectId)
    }
 
 
@@ -91,7 +94,8 @@ function TaskMenu({ id, priority, currentDate, isDateTime, completionDate, nextO
                      <Stickies size={15} />
                      Duplicate
                   </li>
-               </>}
+               </>
+               }
                <li onClick={deleteTask}>
                   <Trash size={16} />
                   Delete task

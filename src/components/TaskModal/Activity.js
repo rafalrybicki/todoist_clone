@@ -9,7 +9,7 @@ const StyledActivity = styled.div`
 function Activity({ show }) {
    return (
       <StyledActivity show={show} >
-         activity
+         coming soon
       </StyledActivity>
    )
 }

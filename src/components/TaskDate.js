@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
+import { getTaskDate } from 'utils';
+
 import { CalendarEvent } from 'react-bootstrap-icons';
-import { getTaskDate } from '../../utils';
 
 const StyledTaskDate = styled.span`
    svg {

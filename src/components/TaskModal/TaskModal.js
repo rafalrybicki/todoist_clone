@@ -1,98 +1,48 @@
 import React, { useState } from 'react';
-import styled from 'styled-components/macro';
 
-import Checkbox from 'components/Checkbox';
-import DateTimeSelector from 'selectors/DateTimeSelector/DateTimeSelector';
-import CloseBtn from 'buttons/CloseBtn';
+import StyledTaskModal from './styled/TaskModal'; 
 import ProjectLink from 'components/ProjectLink';
-import Actions from './Actions';
+import Task from 'components/Task/Task';
+import CloseBtn from 'buttons/CloseBtn';
 import Tabs from './Tabs';
 import Overlay from 'components/Overlay';
 import Subtasks from './Subtasks';
 import Comments from './Comments';
 import Activity from './Activity';
+import { useSelector } from 'react-redux';
 
-const StyledTaskModal = styled.div`
-   position: fixed;
-   top: 0;
-   left: 0;
-   z-index: 101;
-   background-color: white;
-   width: 100%;
-   max-width: 650px;
-   height: 100%;
-   max-height: 960px;
-   padding: 56px 24px 20px;
+function TaskModal({ location, match, history }) {
+   const [activeTab, setActiveTab] = useState('subtasks');
 
-   .project-link {
-      font-size: 13px;
-      top:  25px;
-      left: 24px;
-
-      svg {
-         margin: 2.5px 15px 0 4px;
-
-         &.inbox-icon {
-            margin: 2px 12px 0 2px;
-         }
-      }
-   }
-
-   .close-btn {
-      position: absolute;
-      top: 25px;
-      right: 26px;
-   }
-
-   > .checkbox {
-      top: 58px;
-      left: 24px;
-   }
-
-   > .content {
-      margin-left: 28px;
-      display: block;
-      flex-grow: 1;
-   }
-
-   .date-picker {
-      margin: 10px 0 0 28px;
-   }
-
-   @media (min-width: 650px) {
-      height: calc(100vh - 40px);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 10px;
-   }
-`
-
-function TaskModal({ location, history }) {
-   const [activeTab, setActiveTab] = useState('subtasks')
-   let state;
-
-   if (location.state) {
-      state = location.state
-   } else {
-      alert('implement firebase!');
-      history.push('/inbox');
-   }
+   const task = useSelector(state => state.tasks.find(task => task.id === match.params.taskId));
 
    const close = () => {
-      history.push(state.prevPath)
+      history.push(location.state.prevPath);
    }
 
    return (
       <>
-         {state &&
+         {task &&
             <StyledTaskModal>
-               <ProjectLink projectId={location.state.projectId} />
+               <ProjectLink
+                  projectId={task.projectId}
+               />
                <CloseBtn onClick={close} />
-               <Checkbox priority={state.priority} />
-               <span className="content">{state.content}</span>
-               <DateTimeSelector />
-               <Actions />
+               <Task 
+                  key={task.id}
+                  id={task.id}
+                  content={task.content}
+                  priority={task.priority}
+                  order={task.order}
+                  targetDate={task.targetDate}
+                  isDateTime={task.isDateTime}
+                  completionDate={task.completionDate}
+                  projectId={task.projectId}
+                  sectionId={task.sectionId}
+                  ownerId={task.ownerId}
+                  subTasks={task.subTasks}
+                  modal
+               />
                <Tabs
                   activeTab={activeTab}
                   setActiveTab={setActiveTab}

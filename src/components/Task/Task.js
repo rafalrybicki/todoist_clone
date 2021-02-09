@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import { updateDocument } from '../../firebase';
 
 import StyledTask from './styled/Task';
-import Editor from '../Editor/Editor';
+import Editor from 'components/Editor/Editor';
 import TaskMenu from './TaskMenu';
 import Checkbox from 'components/Checkbox';
-import TaskDate from './TaskDate';
-import Grip from '../Grip';
+import TaskDate from 'components/TaskDate';
+// import Grip from 'components/Grip';
 import { Link } from 'react-router-dom';
-import ProjectLink from '../ProjectLink';
+import ProjectLink from 'components/ProjectLink';
 
 
 function Task(props) {
@@ -28,7 +28,8 @@ function Task(props) {
       subTasks,
       showProjectLink,
       prevSiblingOrder,
-      nextSiblingOrder
+      nextSiblingOrder,
+      modal
    } = props;
 
    const [editor, showEditor] = useState(false);
@@ -86,19 +87,28 @@ function Task(props) {
    }
 
    return (
-      <StyledTask isCompleted={completionDate > 0}>
-         <Grip />
+      <StyledTask
+         isCompleted={completionDate > 0}
+         className="task"
+      >
+         {/* <Grip /> */}
          <Checkbox
             isCompleted={completionDate > 0}
             priority={priority}
             onClick={toggleTaskcompletion}
          />
-         <Link 
-            to={{ pathname, state }}
-            className="link"
-         >
-            {content}
-         </Link>
+         {modal ? 
+            <span className="link">
+               {content}
+            </span>
+            :
+            <Link 
+               to={{ pathname, state }}
+               className="link"
+            >
+               {content}
+            </Link>
+         }
          
          <TaskMenu
             id={id}
@@ -108,6 +118,7 @@ function Task(props) {
             completionDate={completionDate}
             nextOrder={(order + nextSiblingOrder) / 2}
             edit={toggleEditor}
+            projectId={projectId}
          />
 
          {showProjectLink &&
@@ -137,8 +148,9 @@ Task.propTypes = {
    ownerId: PropTypes.string.isRequired,
    subTasks: PropTypes.array.isRequired,
    showProjectLink: PropTypes.bool,
-   prevSiblingOrder: PropTypes.number.isRequired,
-   nextSiblingOrder: PropTypes.number.isRequired
+   prevSiblingOrder: PropTypes.number,
+   nextSiblingOrder: PropTypes.number,
+   modal: PropTypes.bool
 }
 
 export default Task
