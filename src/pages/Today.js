@@ -68,7 +68,9 @@ function Today({ match }) {
                         targetDate={task.targetDate}
                         isDateTime={task.isDateTime}
                         completionDate={task.completionDate}
-                        subTasks={task.subTasks}
+                        subtasks={task.subtasks}
+                        subtasksQuantity={task.subtasksQuantity}
+                        completedSubtasksQuantity={task.completedSubtasksQuantity}
                         showProjectLink={true}
                      />
                   )}
@@ -88,7 +90,9 @@ function Today({ match }) {
                      targetDate={task.targetDate}
                      isDateTime={task.isDateTime}
                      completionDate={task.completionDate}
-                     subTasks={task.subTasks}
+                     subtasks={task.subtasks}
+                     subtasksQuantity={task.subtasksQuantity}
+                     completedSubtasksQuantity={task.completedSubtasksQuantity}
                      showProjectLink={true}
                      prevSiblingOrder={array[index - 1] ? array[index - 1].order : 0}
                      nextSiblingOrder={array[index + 1] ? array[index + 1].order : array[index].order + 1}

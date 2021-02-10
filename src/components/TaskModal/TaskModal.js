@@ -40,14 +40,20 @@ function TaskModal({ location, match, history }) {
                   projectId={task.projectId}
                   sectionId={task.sectionId}
                   ownerId={task.ownerId}
-                  subTasks={task.subTasks}
+                  subtasks={task.subtasks}
+                  subtasksQuantity={task.subtasksQuantity}
+                  completedSubtasksQuantity={task.completedSubtasksQuantity}
                   modal
                />
                <Tabs
                   activeTab={activeTab}
                   setActiveTab={setActiveTab}
                />
-               <Subtasks show={activeTab === 'subtasks'} />
+               <Subtasks
+                  show={activeTab === 'subtasks'}
+                  subtasksObj={task.subtasks}
+                  taskId={task.id}
+               />
                <Comments show={activeTab === 'comments'} />
                <Activity show={activeTab === 'activity'} />
             </StyledTaskModal>

@@ -35,7 +35,7 @@ function ViewList({ closeMenu}) {
             path="/inbox"
             onClick={closeMenu}
          >
-            <InboxIcon size={18} />
+            <InboxIcon size={17} />
          </ListItem>
          <ListItem
             name={"Today " + todayQuantity}

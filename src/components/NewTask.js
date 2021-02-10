@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { addToCollection } from 'firebase/index.js';
 
-import Editor from './Editor/Editor';
+import TaskEditor from './TaskEditor/TaskEditor';
 import NewItemBtn from 'buttons/NewItemBtn';
 
 function NewTask({ sectionId, projectId, date, nextOrder }) {
@@ -21,15 +21,15 @@ function NewTask({ sectionId, projectId, date, nextOrder }) {
          ownerId: userId,
          order: nextOrder,
          completionDate: null,
-         subTasks: [],
-         comments: [],
-         activity: []
+         subtasks: {},
+         subtasksQuantity: 0,
+         completedSubtasksQuantity: 0
       });
    }
 
    if (openEditor) {
       return (
-         <Editor
+         <TaskEditor
             currentSectionId={sectionId}
             currentProjectId={projectId}
             currentTargetDate={date}

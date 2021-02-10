@@ -46,7 +46,7 @@ const Task = styled.div`
       left: 0;
    }
 
-   .task-date, .project-link {
+   .task-date, .project-link, .subtasks-indicator {
       margin: 14px 8px 4px 0;
       display: block;
       font-size: 12px;

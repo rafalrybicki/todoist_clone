@@ -12,7 +12,7 @@ import SubmitBtn from 'buttons/SubmitBtn';
 import CancelBtn from 'buttons/CancelBtn';
 import DateTimeSelectorActivator from './DateTimeSelectorActivator';
 
-const StyledEditor = styled.form`
+const StyledTaskEditor = styled.form`
    position: relative;
    width: 100%;
 
@@ -51,7 +51,7 @@ const StyledEditor = styled.form`
    }
 `
 
-function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentProjectId, currentSectionId, currentPriority, onSave, onClose }) {
+function TaskEditor({ currentContent, currentTargetDate, currentIsDateTime, currentProjectId, currentSectionId, currentPriority, onSave, onClose }) {
    const [content, setContent] = useState(currentContent || '');
    const [targetDate, setTargetDate] = useState(currentTargetDate || null);
    const [isDateTime, setIsDateTime] = useState(currentIsDateTime || false);
@@ -68,7 +68,7 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
          isDateTime,
          projectId,
          sectionId,
-         priority,
+         priority
       })
 
       setContent('')
@@ -91,7 +91,7 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
    }
    
    return (
-      <StyledEditor
+      <StyledTaskEditor
          onSubmit={handleSave}
          onKeyDown={handleKeyDown}
          className="editor"
@@ -139,11 +139,11 @@ function Editor({ currentContent, currentTargetDate, currentIsDateTime, currentP
             disabled={content === currentContent || content === ''}
          />
          <CancelBtn onClick={onClose} />
-      </StyledEditor>
+      </StyledTaskEditor>
    )
 }
 
-Editor.propTypes = {
+TaskEditor.propTypes = {
    currentContent: PropTypes.string,
    currentTargetDate: PropTypes.number,
    currentIsDateTime: PropTypes.bool,
@@ -155,4 +155,4 @@ Editor.propTypes = {
    isTask: PropTypes.bool
 }
 
-export default Editor
+export default TaskEditor

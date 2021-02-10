@@ -10,8 +10,9 @@ function FirebaseListener() {
    const dispatch = useDispatch();
 
    useEffect(() => {
-      if (userId) {
-         const projectsListener = projectsCollection.where('ownerId', '==', userId)
+      let projectsListener = false;
+      if (userId && projectsListener === false) {
+         projectsListener = projectsCollection.where('ownerId', '==', userId)
             .onSnapshot(function(snapshot) {
                snapshot.docChanges().forEach(function(change) {
                   if (change.type === "added") {
@@ -29,11 +30,12 @@ function FirebaseListener() {
          return () => projectsListener();
       }
 
-   }, [userId])
+   }, [userId, dispatch])
 
    useEffect(() => {
-      if (userId) {
-         const tasksListener = tasksCollection.where('ownerId', '==', userId)
+      let tasksListener = false;
+      if (userId && tasksListener === false) {
+         tasksListener = tasksCollection.where('ownerId', '==', userId)
             .onSnapshot(function(snapshot) {
                snapshot.docChanges().forEach(function(change) {
                   if (change.type === "added") {
@@ -50,7 +52,7 @@ function FirebaseListener() {
 
          return () => tasksListener();
       }
-   }, [userId])
+   }, [userId, dispatch])
 
    return null
 }

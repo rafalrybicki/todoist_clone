@@ -96,7 +96,9 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
                      projectId={task.projectId}
                      sectionId={task.sectionId}
                      ownerId={task.ownerId}
-                     subTasks={task.subTasks}
+                     subtasks={task.subtasks}
+                     subtasksQuantity={task.subtasksQuantity}
+                     completedSubtasksQuantity={task.completedSubtasksQuantity}
                      prevSiblingOrder={array[index - 1] ? array[index - 1].order : 0}
                      nextSiblingOrder={array[index + 1] ? array[index + 1].order : array[index].order + 1}
                   />

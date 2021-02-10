@@ -46,6 +46,9 @@ const TaskModal = styled.div`
       right: 26px;
    }
 
+   .new-subtask {
+      margin-top: 15px;
+   }
 
    @media (min-width: 650px) {
       height: calc(100vh - 40px);

@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import { updateDocument } from '../../firebase';
 
 import StyledTask from './styled/Task';
-import Editor from 'components/Editor/Editor';
+import TaskEditor from 'components/TaskEditor/TaskEditor';
 import TaskMenu from './TaskMenu';
 import Checkbox from 'components/Checkbox';
 import TaskDate from 'components/TaskDate';
 // import Grip from 'components/Grip';
 import { Link } from 'react-router-dom';
 import ProjectLink from 'components/ProjectLink';
-
+import SubtasksIndicator from './SubtasksIndicator';
 
 function Task(props) {
    const { 
@@ -25,7 +25,9 @@ function Task(props) {
       projectId,
       sectionId,
       ownerId,
-      subTasks,
+      subtasks,
+      subtasksQuantity,
+      completedSubtasksQuantity,
       showProjectLink,
       prevSiblingOrder,
       nextSiblingOrder,
@@ -45,7 +47,7 @@ function Task(props) {
       projectId,
       sectionId,
       ownerId,
-      subTasks,
+      subtasks,
       prevPath: window.location.pathname
    }
 
@@ -72,7 +74,7 @@ function Task(props) {
 
    if (editor) {
       return (
-         <Editor
+         <TaskEditor
             currentContent={content}
             currentProjectId={projectId}
             currentSectionId={sectionId}
@@ -121,6 +123,13 @@ function Task(props) {
             projectId={projectId}
          />
 
+         {!modal && subtasksQuantity > 0 &&
+            <SubtasksIndicator
+               quantity={subtasksQuantity}
+               completedQuantity={completedSubtasksQuantity}
+            />
+         }
+
          {showProjectLink &&
             <ProjectLink projectId={projectId} />
          }
@@ -146,7 +155,9 @@ Task.propTypes = {
    projectId: PropTypes.string.isRequired,
    sectionId: PropTypes.string.isRequired,
    ownerId: PropTypes.string.isRequired,
-   subTasks: PropTypes.array.isRequired,
+   subtasks: PropTypes.object.isRequired,
+   subtasksQuantity: PropTypes.number.isRequired,
+   completedSubtasksQuantity: PropTypes.number.isRequired,
    showProjectLink: PropTypes.bool,
    prevSiblingOrder: PropTypes.number,
    nextSiblingOrder: PropTypes.number,
