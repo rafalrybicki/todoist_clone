@@ -1,26 +1,39 @@
 import React from 'react'
-
+import PropTypes from 'prop-types';
 import useProjectTasksQuantity from 'hooks/useProjectTasksQuantity';
 
 import ListItem from './ListItem';
 import { CircleFill } from 'react-bootstrap-icons';
+import ProjectListItemMenu from './ProjectListItemMenu';
 
-function ProjectListItem({ projectId, name, color, onClick}) {
+function ProjectListItem({ projectId, name, color, favorite, closeMenu}) {
    const quantity = useProjectTasksQuantity(projectId);
 
    return (
       <ListItem
          name={`${name} ${quantity}`}
          path={'/project/' + projectId}
-         onClick={onClick}
-         options
-      >
-         <CircleFill
-            color={color}
-            className="project-icon"
-         />
-      </ListItem>
+         closeMenu={closeMenu}
+         icon={
+            <CircleFill
+               color={color}
+               className="project-icon"
+            />
+         }
+         menu={
+            <ProjectListItemMenu
+               projectId={projectId}
+               name={name}
+               color={color}
+               favorite={favorite}
+            />
+         }
+      />
    )
+}
+
+ProjectListItem.propTypes = {
+   closeMenu: PropTypes.func.isRequired
 }
 
 export default ProjectListItem

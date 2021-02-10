@@ -13,6 +13,7 @@ const StyledCheckbox = styled.span`
    height: 18px;
    width: 18px;
    margin-right: 7px;
+   padding-top: 1px;
    padding-left: 4px;
    cursor: pointer;
    font-size: 10px;

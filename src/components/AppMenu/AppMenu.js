@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import StyledMenu from './styled/AppMenu';
@@ -9,11 +10,7 @@ import ProjectEditor from 'components/ProjectEditor/ProjectEditor';
 
 function AppMenu({ isOpen, closeMenu }) {
    const [isMobile, setIsMobile] = useState(window.innerWidth < 750);
-   const [isEditorOpen, setIsEditorOpen] = useState(false);
-
-   const toggleProjectEditor = () => {
-      setIsEditorOpen(isEditorOpen => !isEditorOpen);
-   }
+   const projectEditor = useSelector(state => state.projectEditor.isOpen);
 
    useEffect(() => {
       function handleResize() {
@@ -33,12 +30,8 @@ function AppMenu({ isOpen, closeMenu }) {
             />
             <ProjectList
                closeMenu={isMobile ? closeMenu : null}
-               openProjectEditor={toggleProjectEditor}
             />
-            <ProjectEditor
-               isOpen={isEditorOpen}
-               close={toggleProjectEditor}
-            />
+            {projectEditor && <ProjectEditor />}
          </StyledMenu>
 
          <Overlay

@@ -17,6 +17,8 @@ const AppMenu = styled.div`
 
    .view-list, .expandable-list {
       width: 291px;
+      height: auto;
+      overflow: visible;
       padding-left: 37px;
       padding-right: 10px;
    }

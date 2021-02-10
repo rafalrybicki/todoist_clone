@@ -7,8 +7,8 @@ import {
    ADD_TASK,
    EDIT_TASK,
    DELETE_TASK,
-   OPEN_MODAL,
-   HIDE_MODAL
+   OPEN_PROJECT_EDITOR,
+   CLOSE_PROJECT_EDITOR
 } from './actionTypes';
 
 export const login = (user) => {
@@ -66,15 +66,15 @@ export const deleteTask = (id) => {
    }
 }
 
-export const openModal = (componentName) => {
+export const openProjectEditor = (project = {}) => {
    return {
-      type: OPEN_MODAL,
-      componentName
+      type: OPEN_PROJECT_EDITOR,
+      project
    }
 }
 
-export const hideModal = () => {
+export const closeProjectEditor = () => {
    return {
-      type: HIDE_MODAL
+      type: CLOSE_PROJECT_EDITOR
    }
 }

@@ -22,7 +22,7 @@ const StyledViewList = styled.ul`
    }
 `
 
-function ViewList({ closeMenu}) {
+function ViewList({ closeMenu }) {
    const favorites = useFavoriteProjects();
    const inboxId = useUserId();
    const inboxQuantity = useProjectTasksQuantity(inboxId);
@@ -33,34 +33,33 @@ function ViewList({ closeMenu}) {
          <ListItem
             name={"Inbox " + inboxQuantity}
             path="/inbox"
+            icon={<InboxIcon size={17} />}
             onClick={closeMenu}
-         >
-            <InboxIcon size={17} />
-         </ListItem>
+         />
          <ListItem
             name={"Today " + todayQuantity}
             path="/today"
+            icon={<TodayIcon size={16} />}
             onClick={closeMenu}
-         >
-            <TodayIcon size={16} />
-         </ListItem>
+         />
          {/* <ListItem
             name="Upcoming"
             path="/upcoming"
+            icon={
+               <Calendar3
+                  color="#692fc2"
+                  size={16}
+               />
+            }
             onClick={closeMenu}
-         >
-            <Calendar3
-               color="#692fc2"
-               size={16}
-            />
-         </ListItem> */}
+         />*/}
          {favorites.map(favorite => 
             <ProjectListItem
                key={favorite.id}
                projectId={favorite.id}
                name={favorite.name}
                color={favorite.color}
-               onClick={closeMenu}
+               favorite={favorite.favorite}
             />
          )}
       </StyledViewList>
@@ -68,7 +67,7 @@ function ViewList({ closeMenu}) {
 }
 
 ViewList.propTypes = {
-   closeMenu: PropTypes.func
+   closeMenu: PropTypes.func.isRequired
 }
 
 export default ViewList

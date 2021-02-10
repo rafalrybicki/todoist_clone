@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import useUserId from 'hooks/useUserId';
-import { addToCollection } from 'firebase/index.js';
+import { updateDocument, addToCollection } from 'firebase/index.js';
+import { closeProjectEditor } from 'redux/actions';
 
 import StyledProjectEditor from './styled/ProjectEditor';
 import ToggleSwitch from './ToggleSwitch';
@@ -13,16 +13,31 @@ import SubmitBtn from 'buttons/SubmitBtn';
 import ColorPicker from './ColorPicker';
 import Overlay from 'components/Overlay';
 
-function ProjectEditor({ isOpen, close }) {
+function ProjectEditor() {
+   const dispatch = useDispatch();
+   const project = useSelector(state => state.projectEditor.project);
    const userId = useUserId();
-   const [name, setName] = useState('');
-   const [color, setColor] = useState('#808080');
-   const [favorite, setFavorite] = useState(false);
-   const [view, setView] = useState('list');
+   const [name, setName] = useState(project.name || '');
+   const [color, setColor] = useState(project.color || '#808080');
+   const [favorite, setFavorite] = useState(project.favorite || false);
+   const [view, setView] = useState(project.view || 'list');
    
-   const nextOrder = useSelector(state => state.projects.length);
+   // const nextOrder = useSelector(state => state.projects[state.projects.length - 1].order);
+   const nextOrder = 0
+
+   const editProject = () => {
+      console.log('edit project');
+      updateDocument('projects', project.projectId, {
+         name,
+         color: color.val || color,
+         favorite,
+         view
+      });
+      close();
+   }
 
    const addProject = (e) => {
+      console.log('add project');
       e.preventDefault();
 
       if (name.trim() === '') {
@@ -52,9 +67,13 @@ function ProjectEditor({ isOpen, close }) {
       close()
    }
 
+   const close = () => {
+      dispatch(closeProjectEditor())
+   }
+
    return (
-      <StyledProjectEditor isOpen={isOpen}>
-         <form onSubmit={addProject}>
+      <StyledProjectEditor>
+         <form onSubmit={project.projectId ? editProject : addProject}>
             <h1>Add project</h1>
             <label htmlFor="name">Name</label>
             <input
@@ -88,11 +107,6 @@ function ProjectEditor({ isOpen, close }) {
          />
       </StyledProjectEditor>
    )
-}
-
-ProjectEditor.propTypes = {
-   isOpen: PropTypes.bool.isRequired,
-   close: PropTypes.func.isRequired
 }
 
 export default ProjectEditor

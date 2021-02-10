@@ -20,7 +20,7 @@ function OptionsBtn({ width = '28px', tooltip="Options", onClick }) {
 OptionsBtn.propTypes = {
    width: PropTypes.string,
    tooltip: PropTypes.string,
-   onClick: PropTypes.func.isRequired
+   onClick: PropTypes.func
 }
 
 export default OptionsBtn

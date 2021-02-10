@@ -4,19 +4,21 @@ import { NavLink } from 'react-router-dom';
 
 import StyledListItem from './styled/ListItem';
 // import Grip from '../Grip';
-import OptionsBtn from 'buttons/OptionsBtn';
 
-function ListItem({ name, path, onClick, options, children }) {
+function ListItem({ name, path, icon, menu, closeMenu }) {
    return (
       <StyledListItem>
          {/* <Grip /> */}
-         <NavLink to={path} onClick={onClick}>
-            {children}
+         <NavLink
+            to={path}
+            onClick={closeMenu}
+         >
+            {icon}
             <span>
                {name}
             </span>
          </NavLink>
-         {options && <OptionsBtn />}
+         {menu}
       </StyledListItem>
    )
 }
@@ -24,9 +26,9 @@ function ListItem({ name, path, onClick, options, children }) {
 ListItem.propTypes = {
    name: PropTypes.string.isRequired,
    path: PropTypes.string.isRequired,
-   onClick: PropTypes.func,
-   options: PropTypes.bool,
-   children: PropTypes.node.isRequired,
+   icon: PropTypes.node.isRequired,
+   menu: PropTypes.node,
+   closeMenu: PropTypes.func.isRequired
 }
 
 export default ListItem

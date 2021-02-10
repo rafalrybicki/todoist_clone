@@ -10,8 +10,6 @@ const ProjectEditor = styled.div`
    display: flex;
    justify-content: center;
    align-items: center;
-   opacity: ${props => props.isOpen ? '1' : 0};
-   visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
    transition: all 0.2s;
 
    form {

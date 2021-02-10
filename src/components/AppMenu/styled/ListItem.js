@@ -39,15 +39,17 @@ const ListItem = styled.li`
       }
    }
 
-   .options-btn {
+   .popover {
       position: absolute;
       top: 5px;
       right: 0;
       visibility: hidden;
       cursor: pointer;
-      width: 25px;
-      padding-right: 6px;
       color: grey;
+
+      .menu-list {
+         width: 190px;
+      }
 
       &:hover {
          color: #202020;

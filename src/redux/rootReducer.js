@@ -2,13 +2,13 @@ import { combineReducers } from 'redux';
 import userReducer from './userReducer';
 import projectsReducer from './projectsReducer';
 import tasksReducer from './tasksReducer';
-import modalReducer from './modalReducer';
+import projectEditorModal from './projectEditorReducer';
 
 const rootReducer = combineReducers({
    user: userReducer,
    projects: projectsReducer,
    tasks: tasksReducer,
-   modal: modalReducer
+   projectEditor: projectEditorModal
 })
 
 export default rootReducer

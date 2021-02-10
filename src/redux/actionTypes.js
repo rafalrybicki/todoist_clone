@@ -9,5 +9,5 @@ export const ADD_TASK = 'ADD_TASK';
 export const EDIT_TASK = 'EDIT_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
 
-export const OPEN_MODAL = 'OPEN_MODAL';
-export const HIDE_MODAL = 'HIDE_MODAL';
+export const OPEN_PROJECT_EDITOR = 'OPEN_PROJECT_EDITOR';
+export const CLOSE_PROJECT_EDITOR = 'CLOSE_PROJECT_EDITOR';

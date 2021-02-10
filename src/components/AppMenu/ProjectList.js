@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import useProjects from 'hooks/useProjects';
+import { useDispatch } from 'react-redux';
+import { openProjectEditor } from 'redux/actions';
 
 import ExpandableList from './ExpandableList';
 import ProjectListItem from './ProjectListItem';
 import NewItemBtn from 'buttons/NewItemBtn';
 
-function ProjectList({ closeMenu, openProjectEditor }) {
-   const projects = useProjects()
+function ProjectList({ closeMenu }) {
+   const dispatch = useDispatch();
+   const projects = useProjects();
 
    return (
       <ExpandableList text="Projects">
@@ -18,21 +21,21 @@ function ProjectList({ closeMenu, openProjectEditor }) {
                projectId={project.id}
                name={project.name}
                color={project.color}
-               onClick={closeMenu}
+               favorite={project.favorite}
+               closeMenu={closeMenu}
             />
          )}
          <NewItemBtn
             text="Add project"
-            width="110px"
-            onClick={openProjectEditor}
+            width="150px"
+            onClick={() => dispatch(openProjectEditor())}
          />
       </ExpandableList>
    )
 }
 
 ProjectList.propTypes = {
-   closeMenu: PropTypes.func,
-   openProjectEditor: PropTypes.func.isRequired,
+   closeMenu: PropTypes.func.isRequired
 }
 
 export default ProjectList

@@ -1,7 +1,9 @@
+import useUserId from './useUserId';
 import { useSelector } from 'react-redux';
 
 function useProjects() {
-   const projects = useSelector(state => state.projects.filter(project => (project.favorite === false && project.order > 0)));
+   const inboxId = useUserId()
+   const projects = useSelector(state => state.projects.filter(project => (project.favorite === false && project.id !== inboxId)));
 
    return projects
 }
