@@ -15,6 +15,7 @@ import Overlay from 'components/Overlay';
 
 function ProjectEditor() {
    const dispatch = useDispatch();
+   const isOpen = useSelector(state => state.projectEditor.isOpen);
    const project = useSelector(state => state.projectEditor.project);
    const userId = useUserId();
    const [name, setName] = useState(project.name || '');
@@ -72,7 +73,7 @@ function ProjectEditor() {
    }
 
    return (
-      <StyledProjectEditor>
+      <StyledProjectEditor isOpen={isOpen}>
          <form onSubmit={project.projectId ? editProject : addProject}>
             <h1>Add project</h1>
             <label htmlFor="name">Name</label>

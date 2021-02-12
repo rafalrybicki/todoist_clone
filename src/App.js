@@ -14,6 +14,7 @@ import SignUp from './pages/SignUp';
 import MainView from './pages/MainView';
 import Project from './pages/Project';
 import Today from './pages/Today';
+import ProjectEditor from 'components/ProjectEditor/ProjectEditor';
 // import Upcoming from './pages/Upcoming';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path='/'>
             <AppBar toggleMenu={toggleMenu} />
             <AppMenu isOpen={menuOpen} closeMenu={toggleMenu}/>
+            <ProjectEditor />
             <MainView>
               <Switch>
                 <ProtectedRoute path="/inbox" component={Project} />

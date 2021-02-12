@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import StyledMenu from './styled/AppMenu';
-import Overlay from '../Overlay'
+import StyledAppMenu from './styled/AppMenu';
 import ViewList from './ViewList';
 import ProjectList from './ProjectList';
-import ProjectEditor from 'components/ProjectEditor/ProjectEditor';
+import Overlay from 'components/Overlay';
 
 function AppMenu({ isOpen, closeMenu }) {
    const [isMobile, setIsMobile] = useState(window.innerWidth < 750);
-   const projectEditor = useSelector(state => state.projectEditor.isOpen);
 
    useEffect(() => {
       function handleResize() {
@@ -24,18 +21,18 @@ function AppMenu({ isOpen, closeMenu }) {
 
    return (
       <>
-         <StyledMenu isOpen={isOpen}>
-            <ViewList
-               closeMenu={isMobile ? closeMenu : null}
-            />
-            <ProjectList
-               closeMenu={isMobile ? closeMenu : null}
-            />
-            {projectEditor && <ProjectEditor />}
-         </StyledMenu>
-
+         <StyledAppMenu isOpen={isOpen}>
+            <nav>
+               <ViewList
+                  closeMenu={isMobile ? closeMenu : null}
+               />
+               <ProjectList
+                  closeMenu={isMobile ? closeMenu : null}
+               />
+            </nav>
+         </StyledAppMenu>
          <Overlay
-            show={isOpen && isMobile}
+            show={isMobile && isOpen}
             hide={closeMenu}
          />
       </>

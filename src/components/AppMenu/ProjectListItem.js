@@ -33,7 +33,7 @@ function ProjectListItem({ projectId, name, color, favorite, closeMenu}) {
 }
 
 ProjectListItem.propTypes = {
-   closeMenu: PropTypes.func.isRequired
+   closeMenu: PropTypes.func
 }
 
 export default ProjectListItem

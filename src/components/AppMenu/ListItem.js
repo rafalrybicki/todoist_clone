@@ -28,7 +28,7 @@ ListItem.propTypes = {
    path: PropTypes.string.isRequired,
    icon: PropTypes.node.isRequired,
    menu: PropTypes.node,
-   closeMenu: PropTypes.func.isRequired
+   closeMenu: PropTypes.func
 }
 
 export default ListItem

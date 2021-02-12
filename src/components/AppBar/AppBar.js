@@ -22,8 +22,8 @@ function AppBar({ toggleMenu }) {
    return (
       <StyledAppBar
          zIndex={zIndex}
-         onMouseEnter={() => setZindex (100)}
-         onMouseLeave={() => setZindex (1)}
+         onMouseEnter={() => setZindex (1000)}
+         onMouseLeave={() => setZindex (100)}
       >
          <IconBtn
             hoverColor="#e27065"

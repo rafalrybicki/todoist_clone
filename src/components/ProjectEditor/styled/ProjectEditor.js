@@ -7,7 +7,7 @@ const ProjectEditor = styled.div`
    left: 0;
    width: 100vw;
    height: 100vh;
-   display: flex;
+   display: ${props => props.isOpen ? 'flex' : 'none'};
    justify-content: center;
    align-items: center;
    transition: all 0.2s;

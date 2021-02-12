@@ -35,7 +35,7 @@ function ProjectList({ closeMenu }) {
 }
 
 ProjectList.propTypes = {
-   closeMenu: PropTypes.func.isRequired
+   closeMenu: PropTypes.func
 }
 
 export default ProjectList

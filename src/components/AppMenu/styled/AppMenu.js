@@ -4,16 +4,18 @@ const AppMenu = styled.div`
    z-index: 100;
    position: absolute;
    top: 0;
-   padding: 10px 0 30px;
    margin-top: 43px;
-   background-color: #FAFAFA;
    height: calc(100% - 43px);
-   width: ${props => props.isOpen ? '291px' : '0'};
    flex-shrink: 0;
    font-size: 14px;
-   overflow-y: auto;
-   overflow-x: hidden;
-   transition: 0.2s width;
+   transform: ${props => props.isOpen ? 'translateX(0)' : 'translate(-291px)'};
+   transition: 0.2s transform;
+
+   nav {
+      padding: 20px 0;
+      height: 100%;
+      background-color: #fafafa;
+   }
 
    .view-list, .expandable-list {
       width: 291px;
@@ -27,7 +29,7 @@ const AppMenu = styled.div`
       position: static;
       height: 100%;
       margin-top: 0;
-      padding-top: 30px;
+
    }
 `
 

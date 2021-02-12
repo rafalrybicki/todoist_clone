@@ -3,10 +3,7 @@ import { useSelector } from 'react-redux';
 
 import ProtectedRoute from './ProtectedRoute';
 import TaskModal from 'components/TaskModal/TaskModal';
-import IconBtn from 'buttons/IconBtn';
-import { ChatSquare, PersonPlus } from 'react-bootstrap-icons';
 import SortSelector from 'selectors/SortSelector/SortSelector';
-import OptionsBtn from 'buttons/OptionsBtn';
 import SortWidget from 'components/SortWidget';
 import ProjectSection from 'components/ProjectSection/ProjectSection';
 
@@ -25,15 +22,6 @@ function Project({ match }) {
          <div className="view">
             <header>
                <h1>{project.name}</h1>
-               <IconBtn tooltip="Comments" tooltipWidth="68px">
-                  <ChatSquare className="chat-icon" size="18"/>
-               </IconBtn>
-
-               {projectId !== userId && 
-                  <IconBtn tooltip="Share" tooltipWidth="44px">
-                     <PersonPlus size="19"/>
-                  </IconBtn>
-               } 
 
                {project.id &&
                   <SortSelector
@@ -41,8 +29,6 @@ function Project({ match }) {
                      projectId={project.id}
                   />
                }
-
-               <OptionsBtn width="32px" />
             </header>
 
             {project.id && project.sortType !== 'order' && 
