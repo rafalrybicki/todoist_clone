@@ -208,5 +208,9 @@ export function scrollToElement(elementId, viewId) {
       left: 0,
       behavior: 'smooth'
    });
+}
 
+export function validateEmail(email) {
+   var re = /\S+@\S+\.\S+/;
+   return re.test(email);
 }

@@ -8,8 +8,9 @@ const AppMenu = styled.div`
    height: calc(100% - 43px);
    flex-shrink: 0;
    font-size: 14px;
-   transform: ${props => props.isOpen ? 'translateX(0)' : 'translate(-291px)'};
-   transition: 0.2s transform;
+   width: ${props => props.isOpen ? '291px' : '0'};
+   transition: 0.2s width;
+   overflow: hidden;
 
    nav {
       padding: 20px 0;

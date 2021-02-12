@@ -67,7 +67,7 @@ function ViewList({ closeMenu }) {
 }
 
 ViewList.propTypes = {
-   closeMenu: PropTypes.func.isRequired
+   closeMenu: PropTypes.func
 }
 
 export default ViewList

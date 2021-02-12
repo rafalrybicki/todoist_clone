@@ -1,6 +1,7 @@
 import {
    OPEN_PROJECT_EDITOR,
-   CLOSE_PROJECT_EDITOR
+   CLOSE_PROJECT_EDITOR,
+   LOGOUT
 } from './actionTypes';
 
 const initialState = {
@@ -20,6 +21,8 @@ function projectsReducer(state = initialState, action) {
             isOpen: false,
             project: {}
          }
+      case LOGOUT:
+         return initialState;
       default:
          return state;
    } 

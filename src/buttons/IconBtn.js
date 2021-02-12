@@ -11,10 +11,15 @@ const StyledIconBtn = styled.button`
    height: ${props => props.height};
    overflow: visible;
 
+   .tooltip {
+      display: none;
+   }
+
    @media screen and (min-width: 750px) {
       .tooltip {
          position: absolute;
          bottom: -25px;
+         display: block;
          z-index: 101;
          color: white;
          width: max-content;
@@ -25,7 +30,6 @@ const StyledIconBtn = styled.button`
          font-size: 12px;
          text-align: center;
          opacity: 0;
-         visibility: hidden;
          transition: opacity .1s
       }
 
@@ -40,7 +44,7 @@ const StyledIconBtn = styled.button`
    }
 `
 
-function IconBtn({ width='28px', height, hoverColor, onClick, tooltip, className, disabled, children }) {
+function IconBtn({ width = '28px', height, hoverColor, onClick, tooltip, className, disabled, children }) {
    return (
       <StyledIconBtn
          type="button"

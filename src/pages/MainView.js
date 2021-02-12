@@ -11,7 +11,7 @@ const StyledMainView = styled.main`
       position: relative;
       width: 100%;
       height: 100%;
-      padding: 0 55px;
+      padding: 0 25px;
       overflow-y: auto;
 
       > * {
@@ -44,6 +44,12 @@ const StyledMainView = styled.main`
    .icon-btn:hover {
       color: #202020;
       background-color: #eee;
+   }
+
+   @media (min-width: 750px) {
+      .view {
+         padding: 0 55px;
+      }
    }
 `
 

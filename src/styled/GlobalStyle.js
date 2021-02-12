@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
       width: 100vw;
       height: 100vh;
       padding-top: 44px;
+      background-color: #fafafa;
    }
 
    .app {

@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
 const EntrancePage = styled.div`
-   position: relative;
+   position: absolute;
+   top: 0;
    width: 100vw;
    height: 100vh;
    background-color: white;
-   padding: 10px;
-   margin-top: -40px;
+   padding: 40px 10px 0;
    font-size: 13px;
    transition: height .05s;
    overflow-y: auto;
 
    h1 {
-      margin: 8px 0 27px;
+      margin-bottom: 27px;
       font-size: 26px;
    }
 
@@ -28,10 +28,10 @@ const EntrancePage = styled.div`
       transition: all .2s;
 
       &[type="submit"] {
+         margin-top: 15px;
          background-color: red;
          color: white;
          font-weight: bold;
-         margin: 15px 0;
       }
 
       &:hover {
@@ -72,14 +72,6 @@ const EntrancePage = styled.div`
       font-weight: bold;
       margin-bottom: 10px;
       margin-top: 15px;
-      
-      &.checkbox-label {
-         font-weight: normal;
-         position: relative;
-         top: -1px;
-         display: inline-block;
-         margin: 0 0 15px 5px;
-      }
    }
 
    input[type="text"], input[type="email"], input[type="password"] {
@@ -87,11 +79,11 @@ const EntrancePage = styled.div`
       height: 38px;
       border: solid 1px #ddd;
       border-radius: 3px;
+      padding: 0 10px;
    }
 
    > p {
-      border-top: 1px solid #eee;
-      padding-top: 20px;
+      padding-top: 10px;
       text-align: center;
 
       a {
@@ -102,11 +94,21 @@ const EntrancePage = styled.div`
          }
       }
    }
+
+   .error {
+      color: red;
+      display: block;
+      width: fit-content;
+      margin: 15px auto 0;
+      text-align: center;
+   }
    
    @media (min-width: 450px) {
-      max-width: 452px;
+      top: 40px;
+      left: 50%;
+      margin-left: -225px;
+      max-width: 450px;
       height: fit-content;
-      margin: 0 auto;
       padding: 25px;
       border: solid 1px #dbdbdb;
       border-radius: 8px;

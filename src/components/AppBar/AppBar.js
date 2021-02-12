@@ -12,7 +12,7 @@ import SearchInput from './SearchInput';
 
 
 function AppBar({ toggleMenu }) {
-   const [zIndex, setZindex] = useState(1);
+   const [zIndex, setZindex] = useState(100);
    const dispatch = useDispatch();
 
    const onLogout = () => {

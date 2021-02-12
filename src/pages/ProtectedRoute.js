@@ -6,7 +6,6 @@ function ProtectedRoute({ path, component }) {
    const userId = useSelector(state => state.user.id);
 
    if (!userId) {
-      console.log(" NOT LOGGED IN")
       return <Redirect to="/login" />
    } 
 
