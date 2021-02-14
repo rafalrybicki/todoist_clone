@@ -1,29 +1,21 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
 
 import { getTimeArr, getBeginingOfTheDay, getMilisecondsFromTimeArr } from 'utils';
 
-import Suggestions from './Suggestions';
+import StyledDateTimeSelector from './styled/DateTimeSelector';
+import DateSuggestions from './DateSuggestions';
 import Calendar from '../Calendar/Calendar';
 import TimeSelector from '../TimeSelector/TimeSelector';
-import Popover from 'components/Popover';
 
-const StyledDateTimeSelector = styled.div`
-   z-index: 100;
-   top: 28px;
-   left: 0;
-   width: 250px;
-   height: max-content;
-   background-color: white;
-   border: 1px solid #ddd;
-   border-radius: 3px;
-   box-shadow: 0 1px 8px 0 rgba(0,0,0,.08), 0 0 1px 0 rgba(0,0,0,.3);
-   font-family: Arial, Helvetica, sans-serif;
-`
 
 function DateTimeSelector({ miliseconds, isDateTime, onChange, children }) {
    const [timeArr, setTimeArr] = useState(isDateTime ? getTimeArr(miliseconds) : []);
+   const [openSelector, setOpenSelector] = useState(false);
+
+   const toggleSelector = () => {
+      setOpenSelector(openSelector => !openSelector);
+   }
 
    const addTime = (timeArr) => {
       let newMiliseconds = getBeginingOfTheDay(miliseconds);  
@@ -55,27 +47,39 @@ function DateTimeSelector({ miliseconds, isDateTime, onChange, children }) {
    }
 
    return (
-      <Popover
-         activator={children}
+      <StyledDateTimeSelector
          className="date-time-selector"
       >
-         <StyledDateTimeSelector>
-            <Suggestions
-               currentDate={miliseconds}
-               setMiliseconds={setMiliseconds}
-               resetDate={resetDate}
-            />
-            <Calendar
-               currentDate={getBeginingOfTheDay(miliseconds)}
-               setDate={setMiliseconds}
-            />
-            <TimeSelector
-               timeArr={timeArr}
-               addTime={addTime}
-               removeTime={removeTime}
-            />
-         </StyledDateTimeSelector>
-      </Popover>           
+         <div
+            onClick={toggleSelector}
+            className="selector-activator"
+         >
+            {children}
+         </div>
+
+         {openSelector &&
+            <div 
+               className="selector-body"
+            >
+               <DateSuggestions
+                  currentDate={miliseconds}
+                  setMiliseconds={setMiliseconds}
+                  resetDate={resetDate}
+                  closeSelector={toggleSelector}
+               />
+               <Calendar
+                  currentDate={getBeginingOfTheDay(miliseconds)}
+                  setDate={setMiliseconds}
+               />
+               <TimeSelector
+                  miliseconds={miliseconds}
+                  isDateTime={isDateTime}
+                  addTime={addTime}
+                  removeTime={removeTime}
+               />
+            </div>
+         }
+      </StyledDateTimeSelector>           
    )
 }
 

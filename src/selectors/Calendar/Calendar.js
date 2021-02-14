@@ -8,7 +8,7 @@ import Month from './Month';
 import Day from './Day'
 
 const StyledCalendar = styled.div`
-   height: 203px;
+   height: auto;
    border-bottom: 1px solid #ddd;
 `
 
@@ -18,7 +18,7 @@ function Calendar({ currentDate, setDate }) {
    const miliseconds = date.miliseconds;
    const [year, setYear] = useState(date.year);
    const [month, setMonth] = useState(date.month);
-
+   console.log(currentDate)
    const firstDay = getFirstDayOfTheMonth(month, year);
    const lastDay = getLastDayOfTheMonth(month, year);
    const monthArr = getMonth(month, year);

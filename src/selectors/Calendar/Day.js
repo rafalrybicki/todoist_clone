@@ -10,7 +10,14 @@ const StyledCalendarDay = styled.td`
       font-size: 13px;
       color: ${props => props.active? 'white' : '#202020'};
       background-color: ${props => props.active? 'red' : 'transparent'};
-      padding-right: ${props => props.number > 9 ? '1px' : '0'};
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      span {
+         line-height: 1;
+         margin-top: -1px;
+      }
 
       &:disabled {
          opacity: .2
@@ -34,7 +41,9 @@ function CalendarDay({ number, active, onClick, disabled }) {
             onClick={onClick}
             disabled={disabled}
          >
-            {number}
+            <span>
+               {number}
+            </span>
          </button>
       </StyledCalendarDay>
    )

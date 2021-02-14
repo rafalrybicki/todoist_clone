@@ -40,7 +40,7 @@ function App() {
                 <ProtectedRoute path="/project/:projectId" component={Project} />
                 <ProtectedRoute path="/today" component={Today} />
                 {/* <ProtectedRoute path="/upcoming" component={Upcoming} /> */}
-                <ProtectedRoute path='/' render={() => <Redirect to= "/inbox" />} />
+                <Route path='/' render={() => <Redirect to= "/today" />} />
               </Switch>
             </MainView>
           </Route>

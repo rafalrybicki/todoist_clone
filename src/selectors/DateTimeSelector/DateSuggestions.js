@@ -1,40 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
 
 import { getDate, getNextWeek, getWeek } from 'utils';
 
-import SuggestionsItem from './SuggestionsItem';
+import StyledDateSuggestions from './styled/DateSuggestions';
+import SuggestionsItem from './DateSuggestionsItem';
 import TodayIcon from 'icons/TodayIcon';
 import TommorowIcon from 'icons/TomorrowIcon';
 import ThisWeekendIcon from 'icons/ThisWeekendIcon';
 import NextWeekIcon from 'icons/NextWeekIcon';
 import NoDateIcon from 'icons/NoDateIcon';
 
-const StyledSuggestions = styled.div`
-   height: auto;
-   display: flex;
-   flex-direction: column;
-   color: #202020;
-   border-bottom: 1px solid #ddd;
-
-   .today-icon {
-      position: absolute;
-      top: 9px;
-      left: 12px;
-   }
-
-   .next-week-icon {
-      margin-top: 1px;
-      margin-left: 1px;
-   }
-
-   .this-weekend-icon {
-      margin-top: -1px;
-   }
-`
-
-function Suggestions({ currentDate, setMiliseconds, resetDate }) {
+function DateSuggestions({ currentDate, setMiliseconds, resetDate, closeSelector }) {
    const today = getDate().miliseconds;
    const tommorow = today + 86400000;
    const thisWeek = getWeek(today)
@@ -44,7 +21,9 @@ function Suggestions({ currentDate, setMiliseconds, resetDate }) {
    const nextMonday = nextWeek[0].miliseconds;
 
    return (
-      <StyledSuggestions>
+      <StyledDateSuggestions
+         onClick={closeSelector}
+      >
          {currentDate !== today &&
             <SuggestionsItem
                text="Today"
@@ -91,14 +70,15 @@ function Suggestions({ currentDate, setMiliseconds, resetDate }) {
                <NoDateIcon size={15} />
             </SuggestionsItem>
          }
-      </StyledSuggestions>
+      </StyledDateSuggestions>
    )
 }
 
-Suggestions.propTypes = {
+DateSuggestions.propTypes = {
    currentDate: PropTypes.number,
    setMiliseconds: PropTypes.func.isRequired,
    resetDate: PropTypes.func.isRequired,
+   closeSelector: PropTypes.func.isRequired,
 }
 
-export default Suggestions
+export default DateSuggestions

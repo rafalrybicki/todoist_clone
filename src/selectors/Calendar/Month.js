@@ -7,7 +7,7 @@ const StyledCalendarMonth = styled.table`
    position: relative;
    border-spacing: 0;
    font-size: 13px;
-   padding: 0 3px 3px;
+   padding: 0 3px 6px;
 
    thead::after {
       content: '';
