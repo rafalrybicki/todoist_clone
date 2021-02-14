@@ -19,7 +19,7 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
    const tasks = useSelector(state => state.tasks.filter(task => task.projectId === projectId && task.sectionId === sectionId));
    const lastTaskOrder = tasks.length > 0 ? tasks[tasks.length - 1].order + 1 : 1;
    const [openEditor, setOpenEditor] = useState(false);
-
+   
    const toggleEditor = () => {
       setOpenEditor(openEditor => !openEditor)
    }

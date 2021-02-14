@@ -61,17 +61,18 @@ function Today({ match }) {
                      <Task
                         key={task.id}
                         id={task.id}
-                        projectId={task.projectId}
-                        sectionId={task.sectionId}
                         content={task.content}
                         priority={task.priority}
+                        order={task.order}
                         targetDate={task.targetDate}
                         isDateTime={task.isDateTime}
                         completionDate={task.completionDate}
+                        projectId={task.projectId}
+                        sectionId={task.sectionId}
+                        ownerId={task.ownerId}
                         subtasks={task.subtasks}
                         subtasksQuantity={task.subtasksQuantity}
                         completedSubtasksQuantity={task.completedSubtasksQuantity}
-                        showProjectLink={true}
                      />
                   )}
                </section>
@@ -83,17 +84,18 @@ function Today({ match }) {
                   <Task
                      key={task.id}
                      id={task.id}
-                     projectId={task.projectId}
-                     sectionId={task.sectionId}
                      content={task.content}
                      priority={task.priority}
+                     order={task.order}
                      targetDate={task.targetDate}
                      isDateTime={task.isDateTime}
                      completionDate={task.completionDate}
+                     projectId={task.projectId}
+                     sectionId={task.sectionId}
+                     ownerId={task.ownerId}
                      subtasks={task.subtasks}
                      subtasksQuantity={task.subtasksQuantity}
                      completedSubtasksQuantity={task.completedSubtasksQuantity}
-                     showProjectLink={true}
                      prevSiblingOrder={array[index - 1] ? array[index - 1].order : 0}
                      nextSiblingOrder={array[index + 1] ? array[index + 1].order : array[index].order + 1}
                   />

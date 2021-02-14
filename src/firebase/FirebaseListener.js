@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { projectsCollection, tasksCollection } from './index.js';
 
-import { addProject, editProject, deleteProject, addTask, editTask, deleteTask } from '../redux/actions';
+import { addProject, editProject, deleteProject, addTask, editTask, deleteTask } from 'redux/actions';
+import { LOAD_PROJECTS, LOAD_TASKS } from 'redux/actionTypes';
 
 function FirebaseListener() {
    const userId = useSelector(state => state.user.id);
@@ -25,7 +26,7 @@ function FirebaseListener() {
                      dispatch(deleteProject(change.doc.data().id));
                   }
                });
-            });
+            })
 
          return () => projectsListener();
       }
@@ -36,6 +37,7 @@ function FirebaseListener() {
       let tasksListener = false;
       if (userId && tasksListener === false) {
          tasksListener = tasksCollection.where('ownerId', '==', userId)
+         // .get().then(res => console.log(res.docs))
             .onSnapshot(function(snapshot) {
                snapshot.docChanges().forEach(function(change) {
                   if (change.type === "added") {

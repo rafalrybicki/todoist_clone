@@ -1,6 +1,9 @@
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 
+export const LOAD_PROJECTS = 'LOAD_PROJECTS';
+export const LOAD_TASKS = 'LOAD_TASKS';
+
 export const ADD_PROJECT = 'ADD_PROJECT';
 export const EDIT_PROJECT = 'EDIT_PROJECT';
 export const DELETE_PROJECT = 'DELETE_PROJECT';
