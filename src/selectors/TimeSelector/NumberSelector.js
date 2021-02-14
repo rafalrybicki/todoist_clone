@@ -1,38 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
 
+import StyledNumberSelector from './styled/NumberSelector';
 import { ChevronUp, ChevronDown } from 'react-bootstrap-icons';
-
-const StyledNumberSelector = styled.div`
-   display: flex;
-   flex-direction: column;
-
-   input {
-      width: 40px;
-      height: 30px;
-      text-align: center;
-      border-radius: 3px;
-      border: none;
-      border: 1px solid grey;
-   }
-
-   input[type=number]::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-   }
-
-   button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 5px 0;
-
-      &:last-of-type svg {
-         margin-top: 1px;
-      }
-   }
-`
-
 
 function NumberSelector({ value, max, onChange }) {
    const increment = () => {

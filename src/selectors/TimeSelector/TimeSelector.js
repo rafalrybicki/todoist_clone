@@ -1,82 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
 
 import { getTimeArr } from 'utils';
 
+import StyledTimeSelector from './styled/TimeSelector';
 import CloseBtn from 'buttons/CloseBtn';
 import NumberSelector from './NumberSelector';
 import TimePeriodSelector from './TimePriodSelector';
 
-const StyledTimeSelector = styled.div`
-   position: relative;
-   height: 41px;
-   font-weight: bold;
-   padding: 0 8px 0 5px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-
-   .time-btn{
-      font-weight: 13px;
-      height: 26px;
-      padding: 4px;
-      color: red;
-      font-weight: 600;
-      border: ${props => props.isDateTime ? '1px solid #ddd' : '1px solid transparent'};
-      border-bottom-right-radius: 0;
-      border-top-right-radius: 0;
-   }
-
-   .close-btn {
-      padding-top: 2px;
-      border: 1px solid #ddd;
-      border-left: none;
-      border-bottom-left-radius: 0;
-      border-top-left-radius: 0;
-   }
-
-   .selectors {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 20px 0 41px;
-      background-color: white;
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      z-index: ${props => props.openSelector ? '1' : '-1'};
-      opacity: ${props => props.openSelector ? '1' : '0'};
-      transition: opacity .1s;
-
-      .separator {
-         display: flex;
-         align-items: center;
-         margin: 0 12px;
-      }
-
-      .save-btn, .cancel-btn  {
-         position: absolute;
-         bottom: 0;
-         height: 41px;
-         padding: 0 10px;
-      }
-
-      .save-btn {
-         left: 35px;
-         background-color: white;
-         color: red;
-         font-weight: bold;
-      }
-
-      .cancel-btn {
-         right: 35px;
-      }
-   }
-`
-
-function TimeSelector({ timeArr, addTime, removeTime }) {
-   const dateTime = timeArr && timeArr.length > 0 ? timeArr : getTimeArr();
+function TimeSelector({ miliseconds, isDateTime, addTime, removeTime }) {
+   const dateTime = getTimeArr(miliseconds);
    const [hours, setHours] = useState(dateTime[0] < 10 ? '0' + dateTime[0] : dateTime[0]);
    const [minutes, setMinutes] = useState(dateTime[1] < 10 ? '0' + dateTime[1] : dateTime[1]);
    const [timePeriod, setTimePeriod] = useState(dateTime[2]);
@@ -92,13 +25,13 @@ function TimeSelector({ timeArr, addTime, removeTime }) {
    }
 
    const getTimeBtnDescription = () => {
-      return timeArr && timeArr.length > 0  ? `${hours}:${minutes} ${timePeriod}` : '+ Add time';
+      return isDateTime ? `${hours}:${minutes} ${timePeriod}` : '+ Add time';
    }
 
    return (
       <StyledTimeSelector
          openSelector={openSelector}
-         isDateTime={timeArr && timeArr.length > 0 }
+         isDateTime={isDateTime}
       >
          <button
             type="button"
@@ -108,7 +41,7 @@ function TimeSelector({ timeArr, addTime, removeTime }) {
             {getTimeBtnDescription()}
          </button>
 
-         {timeArr && timeArr.length > 0 &&
+         {isDateTime &&
             <CloseBtn
                size={22}
                onClick={removeTime}
@@ -151,7 +84,8 @@ function TimeSelector({ timeArr, addTime, removeTime }) {
 }
 
 TimeSelector.propTypes = {
-   timeArr: PropTypes.array,
+   miliseconds: PropTypes.number,
+   isDateTime: PropTypes.bool.isRequired,
    addTime: PropTypes.func.isRequired,
    removeTime: PropTypes.func.isRequired
 }
