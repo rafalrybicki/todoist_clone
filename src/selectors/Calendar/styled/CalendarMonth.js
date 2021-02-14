@@ -1,8 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
-const StyledCalendarMonth = styled.table`
+const CalendarMonth = styled.table`
    width: 100%;
    position: relative;
    border-spacing: 0;
@@ -40,31 +38,5 @@ const StyledCalendarMonth = styled.table`
       }
    }
 `
-
-function CalendarMonth({ children }) {
-
-   return (
-      <StyledCalendarMonth>
-         <thead>
-            <tr>
-               <th>M</th>
-               <th>T</th>
-               <th>W</th>
-               <th>T</th>
-               <th>F</th>
-               <th>S</th>
-               <th>S</th>
-            </tr>
-         </thead>
-         <tbody>
-            {children}
-         </tbody>
-      </StyledCalendarMonth>
-   )
-}
-
-CalendarMonth.propTypes = {
-   children: PropTypes.node.isRequired
-}
 
 export default CalendarMonth

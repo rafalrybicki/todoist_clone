@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import { getDate, getMonth, getFirstDayOfTheMonth, getLastDayOfTheMonth } from 'utils'
-import Header from './Header';
-import Month from './Month';
-import Day from './Day'
+import CalendarHeader from './CalendarHeader';
+import CalendarMonth from './CalendarMonth';
+import CalendarDay from './CalendarDay'
 
 const StyledCalendar = styled.div`
    height: auto;
@@ -18,7 +18,6 @@ function Calendar({ currentDate, setDate }) {
    const miliseconds = date.miliseconds;
    const [year, setYear] = useState(date.year);
    const [month, setMonth] = useState(date.month);
-   console.log(currentDate)
    const firstDay = getFirstDayOfTheMonth(month, year);
    const lastDay = getLastDayOfTheMonth(month, year);
    const monthArr = getMonth(month, year);
@@ -30,14 +29,14 @@ function Calendar({ currentDate, setDate }) {
 
    return (
       <StyledCalendar>
-         <Header
+         <CalendarHeader
             month={month}
             year={year}
             setYear={setYear}
             setMonth={setMonth}
             reset={reset}
          />
-         <Month
+         <CalendarMonth
             month={month}
             year={year}
             miliseconds={miliseconds}
@@ -45,7 +44,7 @@ function Calendar({ currentDate, setDate }) {
             {monthArr.map(week => 
                <tr key={week[0].miliseconds}>
                   {week.map(day => 
-                     <Day
+                     <CalendarDay
                         key={day.miliseconds}
                         number={day.day}
                         active={day.miliseconds === miliseconds && currentDate >= today.miliseconds}
@@ -55,7 +54,7 @@ function Calendar({ currentDate, setDate }) {
                   )}
                </tr>
             )}
-         </Month>
+         </CalendarMonth>
       </StyledCalendar>
    )
 }

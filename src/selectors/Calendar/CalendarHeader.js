@@ -1,31 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
 
+import StyledCalendarHeader from './styled/CalendarHeader';
 import IconBtn from 'buttons/IconBtn';
 import { ChevronLeft, Circle, ChevronRight } from 'react-bootstrap-icons';
 import { months } from 'utils';
-
-const StyledCalendarHeader = styled.div`
-   display: flex;
-   align-items: center;
-   height: 32px;
-   padding: 0 8px 0 12px;
-
-   .date {
-      font-size: 13px;
-      font-weight: bold;
-      margin-right: auto;
-   }
-
-   .icon-btn {
-      width: 24px;
-
-      &:hover {
-         background-color: #eee;
-      }
-   }
-`
 
 function CalendarHeader({ month, year, setMonth, setYear, reset }) {
    const today = new Date();

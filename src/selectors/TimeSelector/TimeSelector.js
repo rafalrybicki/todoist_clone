@@ -9,7 +9,7 @@ import NumberSelector from './NumberSelector';
 import TimePeriodSelector from './TimePriodSelector';
 
 function TimeSelector({ miliseconds, isDateTime, addTime, removeTime }) {
-   const dateTime = getTimeArr(miliseconds);
+   const dateTime = isDateTime ? getTimeArr(miliseconds) : getTimeArr();
    const [hours, setHours] = useState(dateTime[0] < 10 ? '0' + dateTime[0] : dateTime[0]);
    const [minutes, setMinutes] = useState(dateTime[1] < 10 ? '0' + dateTime[1] : dateTime[1]);
    const [timePeriod, setTimePeriod] = useState(dateTime[2]);

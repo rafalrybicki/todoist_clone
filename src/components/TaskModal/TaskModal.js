@@ -58,7 +58,7 @@ function TaskModal({ location, match, history }) {
                <Activity show={activeTab === 'activity'} />
             </StyledTaskModal>
          }
-         <Overlay show={true} hide={close} />
+         <Overlay show={true} hide={close} zIndex={100} />
       </>
    )
 }
