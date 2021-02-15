@@ -8,7 +8,9 @@ import {
    EDIT_TASK,
    DELETE_TASK,
    OPEN_PROJECT_EDITOR,
-   CLOSE_PROJECT_EDITOR
+   CLOSE_PROJECT_EDITOR,
+   LOAD_TASKS,
+   LOAD_PROJECTS
 } from './actionTypes';
 
 export const login = (user) => {
@@ -22,6 +24,20 @@ export const login = (user) => {
 export const logout = () => {
    localStorage.removeItem('user')
    return { type: LOGOUT }
+}
+
+export const loadProjects = (projects) => {
+   return {
+      type: LOAD_PROJECTS,
+      projects
+   }
+}
+
+export const loadTasks = (tasks) => {
+   return {
+      type: LOAD_TASKS,
+      tasks
+   }
 }
 
 export const addProject = (project) => {

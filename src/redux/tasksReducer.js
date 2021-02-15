@@ -1,4 +1,5 @@
 import {
+   LOAD_TASKS,
    ADD_TASK,
    EDIT_TASK,
    DELETE_TASK,
@@ -9,6 +10,8 @@ const initialState = [];
 
 function projectsReducer(state = initialState, action) {
    switch (action.type) {
+      case LOAD_TASKS:
+         return action.tasks
       case ADD_TASK:
          return [
             ...state,

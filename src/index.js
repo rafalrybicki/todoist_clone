@@ -5,7 +5,6 @@ import store from './redux/store'
 
 import GlobalStyle from 'styled/GlobalStyle';
 import App from './App';
-import FirebaseListener from './firebase/FirebaseListener';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
@@ -13,7 +12,6 @@ ReactDOM.render(
 		<Provider store={store}>
 			<GlobalStyle />
 			<App />
-			<FirebaseListener />
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
