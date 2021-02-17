@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useUserId from 'hooks/useUserId';
 import { updateDocument, addToCollection } from 'firebase/index.js';
-import { closeProjectEditor } from 'redux/actions';
+import { closeProjectEditor, addProject, updateProject } from 'redux/actions';
 
 import StyledProjectEditor from './styled/ProjectEditor';
 import ToggleSwitch from './ToggleSwitch';
@@ -14,38 +14,55 @@ import ColorPicker from './ColorPicker';
 import Overlay from 'components/Overlay';
 
 function ProjectEditor() {
-   const dispatch = useDispatch();
-   const isOpen = useSelector(state => state.projectEditor.isOpen);
-   const project = useSelector(state => state.projectEditor.project);
-   const userId = useUserId();
-   const [name, setName] = useState(project.name || '');
-   const [color, setColor] = useState(project.color || '#808080');
-   const [favorite, setFavorite] = useState(project.favorite || false);
-   const [view, setView] = useState(project.view || 'list');
-   
-   // const nextOrder = useSelector(state => state.projects[state.projects.length - 1].order);
-   const nextOrder = 0
+   const [name, setName] = useState('');
+   const [color, setColor] = useState('#808080');
+   const [favorite, setFavorite] = useState(false);
+   const [view, setView] = useState('list');
 
-   const editProject = () => {
-      console.log('edit project');
-      updateDocument('projects', project.projectId, {
+   const project = useSelector(state => state.projectEditor.project);
+   const isOpen = useSelector(state => state.projectEditor.isOpen);
+   const userId = useUserId();
+
+   const dispatch = useDispatch();
+   const nextOrder = 0;
+
+   useEffect(() => {
+      if (isOpen && project) {
+         setName(project.name);
+         setColor(project.color);
+         setFavorite(project.favorite);
+         setView(project.view);
+      } else {
+         setName('');
+         setColor('#808080');
+         setFavorite(false);
+         setView('list');
+      }
+   }, [isOpen, project])
+
+   const edit = (e) => {
+      e.preventDefault();
+
+      const editedProject = {
          name,
          color: color.val || color,
          favorite,
          view
-      });
+      }
+
+      updateDocument('projects', project.projectId, editedProject);
+      dispatch(updateProject(project.projectId, editedProject));
       close();
    }
 
-   const addProject = (e) => {
-      console.log('add project');
+   const add = (e) => {
       e.preventDefault();
 
       if (name.trim() === '') {
          return
-      }
+      };
 
-      addToCollection('projects', {
+      const newProject = {
          ownerId: userId,
          name: name.trim(),
          order: nextOrder,
@@ -63,9 +80,11 @@ function ProjectEditor() {
             }
          },
          comments: []
-      })
+      };
 
-      close()
+      addToCollection('projects', newProject);
+      dispatch(addProject(newProject));
+      close();
    }
 
    const close = () => {
@@ -74,7 +93,7 @@ function ProjectEditor() {
 
    return (
       <StyledProjectEditor isOpen={isOpen}>
-         <form onSubmit={project.projectId ? editProject : addProject}>
+         <form onSubmit={project ? edit : add}>
             <h1>Add project</h1>
             <label htmlFor="name">Name</label>
             <input

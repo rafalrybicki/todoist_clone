@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { updateDocument } from 'firebase/index.js';
+import { updateProjectSection } from 'redux/actions';
 import { dynamicSort } from 'utils';
 
 import StyledProjectSection from './styled/ProjectSection';
@@ -16,24 +17,26 @@ import NewTask from 'components/NewTask';
 import NewProjectSection from './NewProjectSection';
 
 function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSiblingOrder, sortType, sortOrder }) {
+   const [openEditor, setOpenEditor] = useState(false);
    const tasks = useSelector(state => state.tasks.filter(task => task.projectId === projectId && task.sectionId === sectionId));
    const lastTaskOrder = tasks.length > 0 ? tasks[tasks.length - 1].order + 1 : 1;
-   const [openEditor, setOpenEditor] = useState(false);
-   
+   const dispatch = useDispatch();
+
    const toggleEditor = () => {
       setOpenEditor(openEditor => !openEditor)
    }
 
-   const updateSection = (obj) => {
+   const updateSection = (field) => {
       updateDocument('projects', projectId, {
          [`sections.${sectionId}`]: {
             id: sectionId,
             name,
             order,
             isOpen,
-            ...obj
+            ...field
          }
       });
+      dispatch(updateProjectSection(projectId, sectionId, field));
 
       setOpenEditor(false);
    }

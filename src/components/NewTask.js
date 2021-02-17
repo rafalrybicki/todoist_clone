@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { addToCollection } from 'firebase/index.js';
+import { addTask } from 'redux/actions';
 
 import TaskEditor from './TaskEditor/TaskEditor';
 import NewItemBtn from 'buttons/NewItemBtn';
@@ -15,16 +16,19 @@ function NewTask({ sectionId, projectId, date, nextOrder }) {
       setOpenEditor(openEditor => !openEditor)
    }
 
-   const addTask = (task) => {
-      addToCollection('tasks', {
-         ...task,
+   const addTask = (obj) => {
+      const task = {
+         ...obj,
          ownerId: userId,
          order: nextOrder,
          completionDate: null,
          subtasks: {},
          subtasksQuantity: 0,
          completedSubtasksQuantity: 0
-      });
+      };
+
+      addToCollection('tasks', task);
+      addTask(task)
    }
 
    if (openEditor) {

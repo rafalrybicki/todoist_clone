@@ -1,30 +1,36 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { v4 as uuid } from 'uuid';
 
 import { updateDocument } from 'firebase/index.js';
-import { v4 as uuid } from 'uuid';
+import { addProjectSection } from 'redux/actions';
 
 import StyledNewProjectSection from './styled/NewProjectSection';
 import Editor from 'components/Editor';
 
 function NewProjectSection({ projectId, order }) {
    const [openEditor, setOpenEditor] = useState(false);
+   const dispatch = useDispatch();
 
    const toggleEditor = () => {
       setOpenEditor(openEditor => !openEditor)
    }
 
    const addNewSection = (name) => {
-      const id = uuid();
+      const sectionId = uuid();
+      const section = {
+         id: sectionId,
+         order,
+         isOpen: true,
+         name
+      }
 
       updateDocument('projects', projectId, {
-         [`sections.${id}`]: {
-            id,
-            order,
-            isOpen: true,
-            name
-         }
+         [`sections.${sectionId}`]: section
       });
+
+      dispatch(addProjectSection(projectId, sectionId, section));
 
       toggleEditor()
    }

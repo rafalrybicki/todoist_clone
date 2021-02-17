@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { updateDocument, deleteFromCollection } from 'firebase/index.js';
-import { openProjectEditor } from 'redux/actions';
+import { updateProject, deleteProject, deleteTask, openProjectEditor } from 'redux/actions';
 
 import OptionsBtn from 'buttons/OptionsBtn';
 import Popover from 'components/Popover';
 import MenuList from 'components/MenuList';
 import { Pen, Heart, Trash } from 'react-bootstrap-icons';
 
-function ProjectListItemMenu({ projectId, name, color, favorite }) {
+function ProjectListItemMenu({ projectId, name, color, favorite, view }) {
    const dispatch = useDispatch();
    const tasks = useSelector(state => state.tasks.filter(task => task.projectId === projectId));
    const history = useHistory();
@@ -20,7 +20,8 @@ function ProjectListItemMenu({ projectId, name, color, favorite }) {
          projectId,
          name,
          color,
-         favorite
+         favorite,
+         view
       }))
    }
 
@@ -28,6 +29,7 @@ function ProjectListItemMenu({ projectId, name, color, favorite }) {
       updateDocument('projects', projectId, {
          favorite: !favorite
       });
+      dispatch(updateProject(projectId, { favorite: !favorite }));
    }
 
    const remove = () => {
@@ -37,9 +39,11 @@ function ProjectListItemMenu({ projectId, name, color, favorite }) {
       
       tasks.forEach(task => {
          deleteFromCollection('tasks', task.id);
+         dispatch(deleteTask(task.id))
       })
 
       deleteFromCollection('projects', projectId);
+      dispatch(deleteProject(projectId));
    }
 
    return (

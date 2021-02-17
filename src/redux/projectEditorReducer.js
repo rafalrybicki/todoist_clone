@@ -6,7 +6,7 @@ import {
 
 const initialState = {
    isOpen: false,
-   project: {}
+   project: null
 }
 
 function projectsReducer(state = initialState, action) {
@@ -15,12 +15,9 @@ function projectsReducer(state = initialState, action) {
          return {
             isOpen: true,
             project: action.project
-         }
+         };
       case CLOSE_PROJECT_EDITOR:
-         return {
-            isOpen: false,
-            project: {}
-         }
+         return initialState;
       case LOGOUT:
          return initialState;
       default:

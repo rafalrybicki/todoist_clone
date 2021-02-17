@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { updateDocument } from '../../firebase';
+import { updateDocument } from 'firebase/index.js';
+import { updateTask } from 'redux/actions';
 
 import StyledTask from './styled/Task';
 import TaskEditor from 'components/TaskEditor/TaskEditor';
@@ -52,23 +53,30 @@ function Task(props) {
    }
 
    const toggleEditor = () => {
-      showEditor(editor => !editor)
+      showEditor(editor => !editor);
    }
 
    const edit = (task) => {
       toggleEditor()
-      updateDocument('tasks', id, task)
+      updateDocument('tasks', id, task);
+      updateTask(id, task)
    }
 
    const toggleTaskcompletion = () => {
       if (completionDate) {
-         updateDocument('tasks', id, {
+         const field = {
             completionDate: null
-         })
+         };
+
+         updateDocument('tasks', id, field);
+         updateTask(id, field);
       } else {
-         updateDocument('tasks', id, {
+         const field = {
             completionDate: new Date().valueOf()
-         })
+         };
+
+         updateDocument('tasks', id, field);
+         updateTask(id, field);
       }
    }
 

@@ -2,10 +2,13 @@ import {
    LOGIN, 
    LOGOUT,
    ADD_PROJECT,
-   EDIT_PROJECT,
+   ADD_PROJECT_SECTION,
+   UPDATE_PROJECT,
+   UPDATE_PROJECT_SECTION,
    DELETE_PROJECT,
+   DELETE_PROJECT_SECTION,
    ADD_TASK,
-   EDIT_TASK,
+   UPDATE_TASK,
    DELETE_TASK,
    OPEN_PROJECT_EDITOR,
    CLOSE_PROJECT_EDITOR,
@@ -47,10 +50,29 @@ export const addProject = (project) => {
    }
 }
 
-export const editProject = (project) => {
+export const addProjectSection = (projectId, sectionId, section) => {
    return {
-      type: EDIT_PROJECT,
-      project
+      type: ADD_PROJECT_SECTION,
+      projectId,
+      sectionId,
+      section
+   }
+}
+
+export const updateProject = (id, fields) => {
+   return {
+      type: UPDATE_PROJECT,
+      id,
+      fields
+   }
+}
+
+export const updateProjectSection = (projectId, sectionId, fields) => {
+   return {
+      type: UPDATE_PROJECT_SECTION,
+      projectId,
+      sectionId,
+      fields
    }
 }
 
@@ -61,6 +83,14 @@ export const deleteProject = (id) => {
    }
 }
 
+export const deleteProjectSection = (projectId, sectionId) => {
+   return {
+      type: DELETE_PROJECT_SECTION,
+      projectId,
+      sectionId
+   }
+}
+
 export const addTask = (task) => {
    return {
       type: ADD_TASK,
@@ -68,10 +98,11 @@ export const addTask = (task) => {
    }
 }
 
-export const editTask = (task) => {
+export const updateTask = (id, fields) => {
    return {
-      type: EDIT_TASK,
-      task
+      type: UPDATE_TASK,
+      id,
+      fields
    }
 }
 
@@ -82,7 +113,7 @@ export const deleteTask = (id) => {
    }
 }
 
-export const openProjectEditor = (project = {}) => {
+export const openProjectEditor = (project = null) => {
    return {
       type: OPEN_PROJECT_EDITOR,
       project

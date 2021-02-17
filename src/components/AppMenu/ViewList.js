@@ -60,6 +60,7 @@ function ViewList({ closeMenu }) {
                name={favorite.name}
                color={favorite.color}
                favorite={favorite.favorite}
+               view={favorite.view}
             />
          )}
       </StyledViewList>

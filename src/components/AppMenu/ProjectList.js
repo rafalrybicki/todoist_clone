@@ -22,6 +22,7 @@ function ProjectList({ closeMenu }) {
                name={project.name}
                color={project.color}
                favorite={project.favorite}
+               view={project.view}
                closeMenu={closeMenu}
             />
          )}

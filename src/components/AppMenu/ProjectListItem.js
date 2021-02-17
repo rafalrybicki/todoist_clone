@@ -6,9 +6,9 @@ import ListItem from './ListItem';
 import { CircleFill } from 'react-bootstrap-icons';
 import ProjectListItemMenu from './ProjectListItemMenu';
 
-function ProjectListItem({ projectId, name, color, favorite, closeMenu}) {
+function ProjectListItem({ projectId, name, color, favorite, view, closeMenu}) {
    const quantity = useProjectTasksQuantity(projectId);
-
+   
    return (
       <ListItem
          name={`${name} ${quantity}`}
@@ -26,6 +26,7 @@ function ProjectListItem({ projectId, name, color, favorite, closeMenu}) {
                name={name}
                color={color}
                favorite={favorite}
+               view={view}
             />
          }
       />

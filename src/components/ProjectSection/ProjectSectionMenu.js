@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { v4 as uuid } from 'uuid';
 
 import { addToCollection, deleteFromCollection, firebase, updateDocument } from 'firebase/index.js';
-import { v4 as uuid } from 'uuid';
+import { addProjectSection, addTask, deleteProjectSection, deleteTask, updateTask } from 'redux/actions';
 
 import OptionsBtn from 'buttons/OptionsBtn';
 import MenuList from 'components/MenuList';
@@ -11,6 +13,7 @@ import ProjectSelector from './ProjectSelector';
 
 function ProjectSectionMenu({ projectId, sectionId, name, isOpen, nextOrder, edit, tasks }) {
    const [options, setOptions] = useState(false);
+   const dispatch = useDispatch();
 
    const toggleOptions = () => {
       setOptions(options => !options)
@@ -22,53 +25,70 @@ function ProjectSectionMenu({ projectId, sectionId, name, isOpen, nextOrder, edi
       }
       
       tasks.forEach(task => {
-         updateDocument('tasks', task.id, {
+         const field = {
             projectId: targetProjectId
-         })
-      })
+         };
+
+         updateDocument('tasks', task.id, field);
+         dispatch(updateTask(task.id, field))
+      });
+
+      const section = {
+         id: sectionId,
+         name,
+         isOpen,
+         order
+      };
 
       updateDocument('projects', targetProjectId, {
-         [`sections.${sectionId}`]: {
-            id: sectionId,
-            name,
-            isOpen,
-            order
-         }
-      })
+         [`sections.${sectionId}`]: section
+      });
+
+      dispatch(addProjectSection(targetProjectId, sectionId, section));
 
       updateDocument('projects', projectId, {
          [`sections.${sectionId}`]: firebase.firestore.FieldValue.delete()
-      })
+      });
+      dispatch(deleteProjectSection(projectId, sectionId));
    }
 
    const duplicate = () => {
-      const id = uuid();
+      const sectionId = uuid();
 
       tasks.forEach(task => {
-         addToCollection('tasks', {
+         const newTask = {
             ...task,
-            sectionId: id
-         })
-      })
+            sectionId
+         };
+
+         addToCollection('tasks', newTask);
+         dispatch(addTask(newTask));
+      });
+
+      const newSection = {
+         id: sectionId,
+         name,
+         isOpen,
+         order: nextOrder
+      };
 
       updateDocument('projects', projectId, {
-         [`sections.${id}`]: {
-            id,
-            name,
-            isOpen,
-            order: nextOrder
-         }
-      })
+         [`sections.${sectionId}`]: newSection
+      });
+      dispatch(addProjectSection(projectId, sectionId, newSection));
    }
 
    const remove = () => {
       updateDocument('projects', projectId, {
          [`sections.${sectionId}`]: firebase.firestore.FieldValue.delete()
-      })
+      });
+
+      dispatch(deleteProjectSection(projectId, sectionId));
 
       tasks.forEach(task => {
-         deleteFromCollection('tasks', task.id)
-      })
+         deleteFromCollection('tasks', task.id);
+         dispatch(deleteTask(task.id));
+      });
    }
 
    return (

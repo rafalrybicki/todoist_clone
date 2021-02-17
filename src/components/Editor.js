@@ -9,7 +9,8 @@ import CancelBtn from 'buttons/CancelBtn';
 function Editor({ currentContent = '', onSave, submitBtnText = 'Save', onClose }) {
    const [content, setContent] = useState(currentContent);
 
-   const handleSubmit = () => {
+   const handleSubmit = (e) => {
+      e.preventDefault()
       onSave(content)
    }
 
