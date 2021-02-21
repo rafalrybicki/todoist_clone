@@ -112,7 +112,7 @@ function SortWidget({ projectId, sortType, sortOrder }) {
 
 SortWidget.propTypes = {
    sortType: PropTypes.oneOf([
-      'order', 'date', 'priority', 'content', 'assignee', 'custom'
+      'order', 'targetDate', 'priority', 'content', 'assignee', 'custom'
    ]).isRequired,
    sortOrder: PropTypes.oneOf([
       'asc', 'desc'

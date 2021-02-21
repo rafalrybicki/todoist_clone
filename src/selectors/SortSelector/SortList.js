@@ -25,8 +25,8 @@ function SortList({ sortType, projectId }) {
       <MenuList>
          <SortListitem
             text="Sort by due date"
-            isActive={sortType === 'date'}
-            onClick={() => sortBy('date')}
+            isActive={sortType === 'targetDate'}
+            onClick={() => sortBy('targetDate')}
          >
             <CalendarEvent size={16} />
          </SortListitem>
