@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import StyledTaskModal from './styled/TaskModal'; 
 import ProjectLink from 'components/ProjectLink';
@@ -9,15 +10,20 @@ import Overlay from 'components/Overlay';
 import Subtasks from './Subtasks';
 import Comments from './Comments';
 import Activity from './Activity';
-import { useSelector } from 'react-redux';
 
-function TaskModal({ location, match, history }) {
+function TaskModal({ match, history }) {
    const [activeTab, setActiveTab] = useState('subtasks');
 
    const task = useSelector(state => state.tasks.find(task => task.id === match.params.taskId));
 
    const close = () => {
-      history.push(location.state.prevPath);
+      if (match.path.includes('inbox')) {
+         history.push('/inbox');
+      } else if (match.path.includes('today')) {
+         history.push('/today');
+      } else {
+         history.push('/project/' + task.projectId);
+      }
    }
 
    return (

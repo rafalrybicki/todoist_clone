@@ -130,7 +130,7 @@ ProjectSection.propTypes = {
    order: PropTypes.number.isRequired,
    nextSiblingOrder: PropTypes.number.isRequired,
    sortType: PropTypes.oneOf([
-      'order', 'date', 'priority', 'content', 'assignee', 'custom'
+      'order', 'targetDate', 'priority', 'content', 'assignee', 'custom'
    ]).isRequired,
    sortOrder: PropTypes.oneOf([
       'asc', 'desc'

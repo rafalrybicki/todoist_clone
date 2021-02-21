@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import useUserId from 'hooks/useUserId';
 import { updateDocument } from 'firebase/index.js';
 import { updateTask } from 'redux/actions';
 
@@ -13,7 +15,6 @@ import TaskDate from 'components/TaskDate';
 import { Link } from 'react-router-dom';
 import ProjectLink from 'components/ProjectLink';
 import SubtasksIndicator from './SubtasksIndicator';
-import { useDispatch } from 'react-redux';
 
 function Task(props) {
    const { 
@@ -35,24 +36,20 @@ function Task(props) {
       nextSiblingOrder,
       modal
    } = props;
-   const dispatch = useDispatch();
-   const [editor, showEditor] = useState(false);
-   const pathname = `${window.location.pathname}/${id}`;
-   const state = {
-      id,
-      content,
-      priority,
-      order,
-      targetDate,
-      isDateTime,
-      completionDate,
-      projectId,
-      sectionId,
-      ownerId,
-      subtasks,
-      prevPath: window.location.pathname
-   }
 
+   const [editor, showEditor] = useState(false);
+   const userId = useUserId();
+   const dispatch = useDispatch();
+   let pathname;
+
+   if (window.location.pathname.includes('today')) {
+      pathname = `/today/${id}`;
+   } else if (projectId === userId) {
+      pathname = '/inbox/' + id;
+   } else {
+      pathname`/project/${projectId}/${id}`;
+   }
+   
    const toggleEditor = () => {
       showEditor(editor => !editor);
    }
@@ -114,7 +111,7 @@ function Task(props) {
             </span>
             :
             <Link 
-               to={{ pathname, state }}
+               to={pathname}
                className="link"
             >
                {content}
