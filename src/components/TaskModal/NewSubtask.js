@@ -1,39 +1,42 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { v4 as uuid } from 'uuid';
 import PropTypes from 'prop-types';
 
 import { updateDocument, firebase } from 'firebase/index.js';
-import { v4 as uuid } from 'uuid';
+import { addSubtask } from 'redux/actions';
 
 import NewItemBtn from 'buttons/NewItemBtn';
 import Editor from 'components/Editor';
 
-function NewSubtask({ taskId }) {
+function NewSubtask({ taskId, subtasksQuantity }) {
    const [openEditor, setOpenEditor] = useState(false);
+   const dispatch = useDispatch();
 
    const toggleEditor = () => {
       setOpenEditor(openEditor => !openEditor)
    }
 
-   const addSubtask = (content) => {
-      const id = uuid();
-
+   const addNewSubtask = (content) => {
+      const subtaskId = uuid();
+      const subtask = {
+         id: subtaskId,
+         content,
+         order: new Date().valueOf(),
+         completionDate: null
+      }
       updateDocument('tasks', taskId, {
-         [`subtasks.${id}`]: {
-            id,
-            content,
-            order: new Date().valueOf(),
-            completionDate: null
-         },
+         [`subtasks.${subtaskId}`]: subtask,
          subtasksQuantity: firebase.firestore.FieldValue.increment(1)
       });
-
+      dispatch(addSubtask(taskId, subtask));
       toggleEditor()
    }
 
    if (openEditor) {
       return (
          <Editor
-            onSave={addSubtask}
+            onSave={addNewSubtask}
             onClose={toggleEditor}
             submitBtnText="Add subtask"
          />
@@ -50,7 +53,8 @@ function NewSubtask({ taskId }) {
 }
 
 NewSubtask.propTypes = {
-   taskId: PropTypes.string.isRequired
+   taskId: PropTypes.string.isRequired,
+   subtasksQuantity: PropTypes.number
 }
 
 export default NewSubtask

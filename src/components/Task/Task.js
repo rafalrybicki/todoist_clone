@@ -13,6 +13,7 @@ import TaskDate from 'components/TaskDate';
 import { Link } from 'react-router-dom';
 import ProjectLink from 'components/ProjectLink';
 import SubtasksIndicator from './SubtasksIndicator';
+import { useDispatch } from 'react-redux';
 
 function Task(props) {
    const { 
@@ -34,7 +35,7 @@ function Task(props) {
       nextSiblingOrder,
       modal
    } = props;
-
+   const dispatch = useDispatch();
    const [editor, showEditor] = useState(false);
    const pathname = `${window.location.pathname}/${id}`;
    const state = {
@@ -59,7 +60,7 @@ function Task(props) {
    const edit = (task) => {
       toggleEditor()
       updateDocument('tasks', id, task);
-      updateTask(id, task)
+      dispatch(updateTask(id, task));
    }
 
    const toggleTaskcompletion = () => {
@@ -69,14 +70,14 @@ function Task(props) {
          };
 
          updateDocument('tasks', id, field);
-         updateTask(id, field);
+         dispatch(updateTask(id, field));
       } else {
          const field = {
             completionDate: new Date().valueOf()
          };
 
          updateDocument('tasks', id, field);
-         updateTask(id, field);
+         dispatch(updateTask(id, field));
       }
    }
 

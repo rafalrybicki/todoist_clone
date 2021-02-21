@@ -17,22 +17,26 @@ const addToCollection = (collectionName, newDocument) => {
    const ref = db.collection(collectionName).doc();
    const id = ref.id;
 
-   ref.set({
-      ...newDocument,
-      id,
+   return new Promise((resolve, reject) => {
+      ref.set({
+         ...newDocument,
+         id,
+      })
+         .then(() => {
+            resolve(id);
+         })
+         .catch(e => {
+            console.log(e.message)
+         })
    })
 }
 
 const deleteFromCollection = (collectionName, documentId) => {
    db.collection(collectionName).doc(documentId).delete()
-      .then(() => true)
-      .catch(e => e.message)
 }
 
 const updateDocument = (collectionName, documentId, obj) => {
    db.collection(collectionName).doc(documentId).update(obj)
-      .then(() => true)
-      .catch(e => e.message)
 }
 
 export {

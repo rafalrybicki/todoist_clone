@@ -10,6 +10,9 @@ import {
    ADD_TASK,
    UPDATE_TASK,
    DELETE_TASK,
+   ADD_SUBTASK,
+   UPDATE_SUBTASK,
+   DELETE_SUBTASK,
    OPEN_PROJECT_EDITOR,
    CLOSE_PROJECT_EDITOR,
    LOAD_TASKS,
@@ -110,6 +113,32 @@ export const deleteTask = (id) => {
    return {
       type: DELETE_TASK,
       id
+   }
+}
+
+export const addSubtask = (taskId, subtask) => {
+   return {
+      type: ADD_SUBTASK,
+      taskId,
+      subtask
+   }
+}
+
+export const updateSubtask = (taskId, subtaskId, fields) => {
+   return {
+      type: UPDATE_SUBTASK,
+      taskId,
+      subtaskId,
+      fields
+   }
+}
+
+export const deleteSubtask = (taskId, subtaskId, decrementCompletedSubtasks) => {
+   return {
+      type: DELETE_SUBTASK,
+      taskId,
+      subtaskId,
+      decrementCompletedSubtasks
    }
 }
 

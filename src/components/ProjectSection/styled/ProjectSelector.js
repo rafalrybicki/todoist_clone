@@ -11,7 +11,7 @@ const ProjectSelector = styled.li`
 
       .activator {
          display: block;
-         padding-left: 40px;
+         padding-left: 44px;
          padding-top: 7px;
          width: 100%;
          height: 32px;

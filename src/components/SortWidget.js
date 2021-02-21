@@ -1,8 +1,10 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import { projectsCollection } from 'firebase/index.js';
+import { updateProject } from 'redux/actions';
 
 import IconBtn from 'buttons/IconBtn';
 import { ArrowDown, ArrowUp } from 'react-bootstrap-icons';
@@ -61,6 +63,8 @@ function getSortDescription(sortType) {
 }
 
 function SortWidget({ projectId, sortType, sortOrder }) {
+   const dispatch = useDispatch();
+
    if (sortType === 'order' || !sortType) {
       return null
    }
@@ -70,16 +74,22 @@ function SortWidget({ projectId, sortType, sortOrder }) {
    const changeOrder = () => {
       const direction = sortOrder === 'desc' ? 'asc' : 'desc';
 
-      projectRef.update({
+      const field = {
          sortOrder: direction
-      })
+      };
+
+      projectRef.update(field);
+      dispatch(updateProject(projectId, field));
    }
 
    const resetSorting = () => {
-      projectRef.update({
+      const fields = {
          sortType: 'order',
          sortOrder: 'asc'
-      })
+      };
+
+      projectRef.update(fields);
+      dispatch(updateProject(projectId, fields));
    }
 
    return (
@@ -92,9 +102,7 @@ function SortWidget({ projectId, sortType, sortOrder }) {
                <ArrowUp size={16} />
             }
          </IconBtn>
-         <button
-            onClick={() => alert('custom sorting is coming soon')}
-         >
+         <button>
             {getSortDescription(sortType)}
          </button>
          <CloseBtn onClick={resetSorting} />

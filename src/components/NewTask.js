@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { addToCollection } from 'firebase/index.js';
@@ -11,12 +11,13 @@ import NewItemBtn from 'buttons/NewItemBtn';
 function NewTask({ sectionId, projectId, date, nextOrder }) {
    const [openEditor, setOpenEditor] = useState(false);
    const userId = useSelector(state => state.user.id);
+   const dispatch = useDispatch();
 
    const toggleEditor = () => {
       setOpenEditor(openEditor => !openEditor)
    }
 
-   const addTask = (obj) => {
+   const add = async (obj) => {
       const task = {
          ...obj,
          ownerId: userId,
@@ -27,8 +28,8 @@ function NewTask({ sectionId, projectId, date, nextOrder }) {
          completedSubtasksQuantity: 0
       };
 
-      addToCollection('tasks', task);
-      addTask(task)
+      const id = await addToCollection('tasks', task);
+      dispatch(addTask({id, ...task}));
    }
 
    if (openEditor) {
@@ -37,9 +38,8 @@ function NewTask({ sectionId, projectId, date, nextOrder }) {
             currentSectionId={sectionId}
             currentProjectId={projectId}
             currentTargetDate={date}
-            onSave={addTask}
+            onSave={add}
             onClose={toggleEditor}
-            isTask
          />
       )
    }

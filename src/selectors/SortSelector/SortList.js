@@ -5,13 +5,20 @@ import { projectsCollection } from 'firebase/index.js';
 
 import MenuList from 'components/MenuList';
 import SortListitem from './SortListItem';
-import { CalendarEvent, Flag, Gear, Person, SortAlphaDown } from 'react-bootstrap-icons';
+import { CalendarEvent, Flag, SortAlphaDown } from 'react-bootstrap-icons';
+import { useDispatch } from 'react-redux';
+import { updateProject } from 'redux/actions';
 
 function SortList({ sortType, projectId }) {
+   const dispatch = useDispatch();
+
    const sortBy = (sortType) => {
-      projectsCollection.doc(projectId).update({
+      const field = {
          sortType
-      })
+      };
+
+      projectsCollection.doc(projectId).update(field);
+      dispatch(updateProject(projectId, field))
    }
 
    return (
@@ -34,28 +41,10 @@ function SortList({ sortType, projectId }) {
 
          <SortListitem
             text="Sort by alphabetically"
-            isActive={sortType === 'alphabetically'}
-            onClick={() => sortBy('alphabetically')}
+            isActive={sortType === 'content'}
+            onClick={() => sortBy('content')}
          >
             <SortAlphaDown size={16} />
-         </SortListitem>
-
-         <SortListitem
-            text="Sort by assignee"
-            isActive={sortType === 'assignee'}
-            // onClick={() => sortBy('assignee')}
-            onClick={() => alert('coming soon')}
-         >
-            <Person size={16} />
-         </SortListitem>
-
-         <SortListitem
-            text="Custom sort"
-            isActive={sortType === 'custom'}
-            // onClick={() => sortBy('custom')}
-            onClick={() => alert('coming soon')}
-         >
-            <Gear size={16} />
          </SortListitem>
       </MenuList>
    )

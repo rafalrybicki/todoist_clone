@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { addToCollection, deleteFromCollection, updateDocument } from 'firebase/index.js';
+import { updateTask, addTask, deleteTask } from 'redux/actions';
 
 import StyledTaskMenu from './styled/TaskMenu';
 import OptionsBtn from 'buttons/OptionsBtn';
@@ -15,6 +16,7 @@ import SectionSelector from 'selectors/SectionSelector/SectionSelector';
 function TaskMenu({ id, priority, currentDate, isDateTime, completionDate, nextOrder, projectId, edit }) {
    const [options, setOptions] = useState(false);
    const history = useHistory();
+   const dispatch = useDispatch();
 
    const task = useSelector(state => state.tasks.find(task => task.id === id));
 
@@ -24,19 +26,23 @@ function TaskMenu({ id, priority, currentDate, isDateTime, completionDate, nextO
 
    const setPriority = (priority) => {
       updateDocument('tasks', id, { priority });
+      dispatch(updateTask(id, { priority }));
       toggleOptions();
    }
 
    const move = (projectId, sectionId) => {
-      updateDocument('tasks', id, {
+      const fields = {
          projectId,
          sectionId,
          order: 0
-      });
+      };
+
+      updateDocument('tasks', id, fields);
+      dispatch(updateTask(id, fields));
    }
 
-   const duplicate = () => {
-      addToCollection('tasks', {
+   const duplicate = async () => {
+      const newTask = {
          content: task.content,
          priority: task.priority,
          order: nextOrder,
@@ -47,17 +53,19 @@ function TaskMenu({ id, priority, currentDate, isDateTime, completionDate, nextO
          sectionId: task.sectionId,
          ownerId: task.ownerId,
          subTasks: []
-      });
+      };
+
+      const id = await addToCollection('tasks', newTask);
+      dispatch(addTask({...task, id}));
 
       toggleOptions();
    }
 
-   const deleteTask = () => {
+   const remove = () => {
       deleteFromCollection('tasks', id);
+      dispatch(deleteTask(id));
       history.replace('/project/' + projectId)
    }
-
-
 
    return (
       <StyledTaskMenu>
@@ -96,7 +104,7 @@ function TaskMenu({ id, priority, currentDate, isDateTime, completionDate, nextO
                   </li>
                </>
                }
-               <li onClick={deleteTask}>
+               <li onClick={remove}>
                   <Trash size={16} />
                   Delete task
                </li>

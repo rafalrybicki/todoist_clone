@@ -24,7 +24,7 @@ function ProjectEditor() {
    const userId = useUserId();
 
    const dispatch = useDispatch();
-   const nextOrder = 0;
+   const nextOrder = 1;
 
    useEffect(() => {
       if (isOpen && project) {
@@ -55,7 +55,7 @@ function ProjectEditor() {
       close();
    }
 
-   const add = (e) => {
+   const add = async (e) => {
       e.preventDefault();
 
       if (name.trim() === '') {
@@ -82,8 +82,9 @@ function ProjectEditor() {
          comments: []
       };
 
-      addToCollection('projects', newProject);
-      dispatch(addProject(newProject));
+      const id = await addToCollection('projects', newProject);
+      
+      dispatch(addProject({id, ...newProject}));
       close();
    }
 

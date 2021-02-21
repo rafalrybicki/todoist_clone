@@ -73,7 +73,7 @@ const updateProjectSection = (projects, projectId, sectionId, fields) => {
 const deleteProjectSection = (projects, projectId, sectionId) => {
    const newProjects = [...projects];
    const index = newProjects.findIndex(project => project.id === projectId);
-   const newSections = newProjects[index].sections;
+   const newSections = {...newProjects[index].sections};
    delete newSections[sectionId];
 
    newProjects[index] = {

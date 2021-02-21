@@ -1,8 +1,10 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getDate, getNextWeek, getWeek, getTimeArr, getMilisecondsFromTimeArr } from 'utils';
 import { updateDocument } from 'firebase/index.js';
+import { updateTask } from 'redux/actions';
 
 import IconBtn from 'buttons/IconBtn';
 import TodayIcon from 'icons/TodayIcon';
@@ -21,27 +23,33 @@ function ScheduleOptions({ id, currentDate, isDateTime }) {
    const thisWeekend = thisWeek[5].miliseconds;
    const nextWeekend = nextWeek[5].miliseconds;
    const nextMonday = nextWeek[0].miliseconds;
+   const dispatch = useDispatch();
 
    const setDate = (miliseconds, isDateTime) => {
+      let fields;
+
       if (isDateTime) {
          const timeArr = getTimeArr(currentDate);
          const newMiliseconds = getMilisecondsFromTimeArr(timeArr) + miliseconds;
-
-         updateDocument('tasks', id, {
+         
+         fields = {
             targetDate: newMiliseconds,
             isDateTime: true
-         });
+         }
       } else if (miliseconds === null) {
-         updateDocument('tasks', id, {
+         fields = {
             targetDate: miliseconds,
             isDateTime: false
-         });
+         }
       } else {
-         updateDocument('tasks', id, {
+         fields = {
             targetDate: miliseconds,
             isDateTime: false
-         });
+         }
       }
+
+      updateDocument('tasks', id, fields);
+      dispatch(updateTask(id, fields))
    }
 
    return (

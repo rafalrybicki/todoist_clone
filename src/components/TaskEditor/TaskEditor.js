@@ -151,8 +151,7 @@ TaskEditor.propTypes = {
    currentSectionId: PropTypes.string,
    currentPriority: PropTypes.number,
    onSave: PropTypes.func.isRequired,
-   onClose: PropTypes.func.isRequired,
-   isTask: PropTypes.bool
+   onClose: PropTypes.func.isRequired
 }
 
 export default TaskEditor

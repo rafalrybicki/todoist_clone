@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { updateDocument, firebase} from 'firebase/index.js';
+import { deleteSubtask, updateSubtask, updateTask } from 'redux/actions';
 
 import StyledSubtask from './styled/Subtask';
 import Editor from 'components/Editor';
@@ -10,8 +12,9 @@ import OptionsBtn from 'buttons/OptionsBtn';
 import MenuList from 'components/MenuList';
 import { Pen, Trash } from 'react-bootstrap-icons';
 
-function Subtask({ id, content, completionDate, order, taskId }) {
+function Subtask({ id, content, completionDate, order, taskId, subtasksQuantity, completedSubtasksQuantity }) {
    const [openEditor, setOpenEditior] = useState(false);
+   const dispatch = useDispatch();
 
    const toggleEditor = () => {
       setOpenEditior(openEditor => !openEditor)
@@ -28,6 +31,8 @@ function Subtask({ id, content, completionDate, order, taskId }) {
             },
             completedSubtasksQuantity: firebase.firestore.FieldValue.increment(-1)
          });
+         dispatch(updateSubtask(taskId, id, {completionDate: null}));
+         dispatch(updateTask(taskId, {completedSubtasksQuantity: completedSubtasksQuantity -= 1}));
       } else {
          updateDocument('tasks', taskId, {
             [`subtasks.${id}`]: {
@@ -38,18 +43,24 @@ function Subtask({ id, content, completionDate, order, taskId }) {
             },
             completedSubtasksQuantity: firebase.firestore.FieldValue.increment(1)
          });
+         dispatch(updateSubtask(taskId, id, {completionDate: new Date().valueOf()}));
+         dispatch(updateTask(taskId, {completedSubtasksQuantity: completedSubtasksQuantity += 1}));
       }
    }
 
    const edit = (content) => {
+      const subtask = {
+         id,
+         content,
+         completionDate,
+         order,
+      };
+
       updateDocument('tasks', taskId, {
-         [`subtasks.${id}`]: {
-            id,
-            content,
-            completionDate,
-            order,
-         }
+         [`subtasks.${id}`]: subtask
       });
+
+      dispatch(updateSubtask(taskId, id, subtask));
 
       toggleEditor()
    }
@@ -58,13 +69,22 @@ function Subtask({ id, content, completionDate, order, taskId }) {
       if (completionDate > 0) {
          updateDocument('tasks', taskId, {
             [`subtasks.${id}`]: firebase.firestore.FieldValue.delete(),
+            subtasksQuantity: firebase.firestore.FieldValue.increment(-1),
             completedSubtasksQuantity: firebase.firestore.FieldValue.increment(-1)
-         })
+         });
+         dispatch(deleteSubtask(taskId, id, true));
+         dispatch(updateTask(taskId, {
+            subtasksQuantity: subtasksQuantity -= 1,
+            completedSubtasksQuantity: completedSubtasksQuantity -= 1
+         }));
+      } else {
+         updateDocument('tasks', taskId, {
+            [`subtasks.${id}`]: firebase.firestore.FieldValue.delete(),
+            subtasksQuantity: firebase.firestore.FieldValue.increment(-1)
+         });
+         dispatch(deleteSubtask(taskId, id, false));
+         dispatch(updateTask(taskId, {subtasksQuantity: subtasksQuantity -= 1}));
       }
-      updateDocument('tasks', taskId, {
-         [`subtasks.${id}`]: firebase.firestore.FieldValue.delete(),
-         subtasksQuantity: firebase.firestore.FieldValue.increment(-1)
-      })
    }
 
    if (openEditor) {

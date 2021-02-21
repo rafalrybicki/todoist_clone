@@ -53,6 +53,8 @@ function TaskModal({ location, match, history }) {
                   show={activeTab === 'subtasks'}
                   subtasksObj={task.subtasks}
                   taskId={task.id}
+                  subtasksQuantity={task.subtasksQuantity}
+                  completedSubtasksQuantity={task.completedSubtasksQuantity}
                />
                <Comments show={activeTab === 'comments'} />
                <Activity show={activeTab === 'activity'} />

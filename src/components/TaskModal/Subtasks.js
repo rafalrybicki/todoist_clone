@@ -10,9 +10,9 @@ const StyledSubtasks = styled.div`
    display: ${props => props.show ? 'block' : 'none'};
 `
 
-function Subtasks({ show, subtasksObj, taskId }) {
+function Subtasks({ show, subtasksObj, taskId, subtasksQuantity, completedSubtasksQuantity}) {
    const subtasks = Object.values(subtasksObj).sort((a, b) => a.order - b.order);
-   
+
    return (
       <StyledSubtasks show={show}>
             {subtasks.map(subtask => 
@@ -23,6 +23,8 @@ function Subtasks({ show, subtasksObj, taskId }) {
                   completionDate={subtask.completionDate}
                   order={subtask.order}
                   taskId={taskId}
+                  subtasksQuantity={subtasksQuantity}
+                  completedSubtasksQuantity={completedSubtasksQuantity}
                />
             )}
          <NewSubtask taskId={taskId} />
