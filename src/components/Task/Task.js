@@ -47,7 +47,7 @@ function Task(props) {
    } else if (projectId === userId) {
       pathname = '/inbox/' + id;
    } else {
-      pathname`/project/${projectId}/${id}`;
+      pathname = `/project/${projectId}/${id}`;
    }
    
    const toggleEditor = () => {

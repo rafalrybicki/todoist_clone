@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,25 +23,24 @@ import ProjectEditor from 'components/ProjectEditor/ProjectEditor';
 // import Upcoming from './pages/Upcoming';
 
 function App() {
-	const dispatch = useDispatch();
-	const userId = useUserId();
 	const [menuOpen, setMenuOpen] = useState(true);
-	const isDataLoaded = useRef(false);
+	const isDataLoaded = useSelector(state => state.loader.projects && state.loader.tasks);
+	const userId = useUserId();
+	const dispatch = useDispatch();
+
 	const toggleMenu = () => {
 		setMenuOpen(!menuOpen);
 	}
 
 	useEffect(() => {
-		if(userId && isDataLoaded.current === false) {
-			isDataLoaded.current = true;
-
+		if(userId && !isDataLoaded) {
 			projectsCollection.where('ownerId', '==', userId).get()
 				.then((querySnapshot) => {
-						const projects = [];
-						querySnapshot.forEach((doc) => {
+					const projects = [];
+					querySnapshot.forEach((doc) => {
 						projects.push(doc.data());
-						});
-						dispatch(loadProjects(projects))
+					});
+					dispatch(loadProjects(projects));
 				})
 
 			tasksCollection.where('ownerId', '==', userId).get()
@@ -50,10 +49,10 @@ function App() {
 					querySnapshot.forEach((doc) => {
 						tasks.push(doc.data());
 					});
-					dispatch(loadTasks(tasks))
+					dispatch(loadTasks(tasks));
 				})
 		}
-	}, [userId, dispatch])
+	}, [userId, isDataLoaded, dispatch])
 
 	return (
 		<Router>

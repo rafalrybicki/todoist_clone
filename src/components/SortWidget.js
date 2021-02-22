@@ -43,7 +43,7 @@ function getSortDescription(sortType) {
    let description;
 
    switch(sortType) {
-      case 'date':
+      case 'targetDate':
          description = 'Sorted by due date';
          break;
       case 'priority':

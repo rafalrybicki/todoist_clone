@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
    projects: projectsReducer,
    tasks: tasksReducer,
    projectEditor: projectEditorModal,
-   lodader: loaderReducer
+   loader: loaderReducer
 })
 
 export default rootReducer

@@ -14,7 +14,8 @@ function Login({ history }) {
    const userId = useUserId();
 
    if (userId) {
-      history.replace('/today')
+      history.replace('/today');
+      return null
    } 
 
    function loginWithGoogle() {
@@ -30,7 +31,8 @@ function Login({ history }) {
             usersCollection.doc(resp.user.uid).get().then(doc => {
                const user = doc.data();
 
-               dispatch(login(user))
+               dispatch(login(user));
+               history.replace('/today');
             })
          })
          .catch(error => setErrorMsg(error.message));
