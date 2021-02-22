@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { addToCollection, deleteFromCollection, updateDocument } from 'firebase/index.js';
 import { updateTask, addTask, deleteTask } from 'redux/actions';
+import useOutsideClick from 'hooks/useOutsideClick';
 
 import StyledTaskMenu from './styled/TaskMenu';
 import OptionsBtn from 'buttons/OptionsBtn';
@@ -17,11 +18,14 @@ function TaskMenu({ id, priority, currentDate, isDateTime, completionDate, nextO
    const [options, setOptions] = useState(false);
    const history = useHistory();
    const dispatch = useDispatch();
+   const taskMenuRef = useRef(null);
+
+   useOutsideClick(options, taskMenuRef, () => setOptions(false));
 
    const task = useSelector(state => state.tasks.find(task => task.id === id));
 
    const toggleOptions = () => {
-      setOptions(options => setOptions(!options))
+      setOptions(options => setOptions(!options));
    }
 
    const setPriority = (priority) => {
@@ -68,7 +72,7 @@ function TaskMenu({ id, priority, currentDate, isDateTime, completionDate, nextO
    }
 
    return (
-      <StyledTaskMenu>
+      <StyledTaskMenu ref={taskMenuRef}>
          <OptionsBtn onClick={toggleOptions} />
          {options &&
             <ul>

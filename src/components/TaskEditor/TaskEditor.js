@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
+
+import useOutsideClick from 'hooks/useOutsideClick';
 
 import DateTimeSelector from 'selectors/DateTimeSelector/DateTimeSelector';
 import SectionSelector from 'selectors/SectionSelector/SectionSelector';
@@ -59,6 +61,10 @@ function TaskEditor({ currentContent, currentTargetDate, currentIsDateTime, curr
    const [sectionId, setSectionId] = useState(currentSectionId || null);
    const [priority, setPriority] = useState(currentPriority || 4);
 
+   const taskEditorRef = useRef(null);
+   
+   useOutsideClick(true, taskEditorRef, onClose)
+
    const handleSave = (e) => {
       e.preventDefault();
 
@@ -74,12 +80,6 @@ function TaskEditor({ currentContent, currentTargetDate, currentIsDateTime, curr
       setContent('')
    }
 
-   const handleKeyDown = (e) => {
-      if (e.keyCode === 27) {
-         onClose();
-      }
-   }
-
    const setProjectAndSection = (projectId, sectionId) => {
       setProjectId(projectId)
       setSectionId(sectionId)
@@ -92,8 +92,8 @@ function TaskEditor({ currentContent, currentTargetDate, currentIsDateTime, curr
    
    return (
       <StyledTaskEditor
+         ref={taskEditorRef}
          onSubmit={handleSave}
-         onKeyDown={handleKeyDown}
          className="editor"
       >
          <input

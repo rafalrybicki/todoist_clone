@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { getTimeArr, getBeginingOfTheDay, getMilisecondsFromTimeArr } from 'utils';
+import useOutsideClick from 'hooks/useOutsideClick';
 
 import StyledDateTimeSelector from './styled/DateTimeSelector';
 import DateSuggestions from './DateSuggestions';
@@ -13,9 +14,13 @@ function DateTimeSelector({ miliseconds, isDateTime, onChange, children }) {
    const [timeArr, setTimeArr] = useState(isDateTime ? getTimeArr(miliseconds) : []);
    const [openSelector, setOpenSelector] = useState(false);
 
+   const dateTimeSelectorRef = useRef(null);
+
    const toggleSelector = () => {
       setOpenSelector(openSelector => !openSelector);
    }
+
+   useOutsideClick(openSelector, dateTimeSelectorRef, toggleSelector);
 
    const addTime = (timeArr) => {
       let newMiliseconds = getBeginingOfTheDay(miliseconds);  
@@ -48,6 +53,7 @@ function DateTimeSelector({ miliseconds, isDateTime, onChange, children }) {
 
    return (
       <StyledDateTimeSelector
+         ref={dateTimeSelectorRef}
          className="date-time-selector"
       >
          <div

@@ -11,7 +11,7 @@ const StyledlabelPicker = styled.div`
 function LabelPicker() {
    return (
       <StyledlabelPicker
-         onClick={() => console.log('coming soon')}
+         onClick={() => alert('coming soon')}
          className="label-picker"
       >
          <IconBtn

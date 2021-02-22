@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
+
+import useOutsideClick from 'hooks/useOutsideClick';
 
 const StyledPopover = styled.div`
    position: relative;
@@ -17,9 +19,13 @@ const StyledPopover = styled.div`
 
 function Popover({ activator, className, children }) {
    const [open, toggle] = useState(false);
+   const popoverRef = useRef(null);
+
+   useOutsideClick(open, popoverRef, () => toggle(false));
 
    return (
       <StyledPopover
+         ref={popoverRef}
          isOpen={open}
          onClick={() => toggle(!open)}
          className={"popover " + className} 
