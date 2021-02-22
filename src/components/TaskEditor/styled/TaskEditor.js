@@ -37,6 +37,11 @@ const TaskEditor = styled.form`
    > .cancel-btn, > .submit-btn {
       margin: 10px 10px 0 0;
    }
+
+   .section-selector ul {
+      left: 50%;
+      transform: translateX(-50%)
+   }
 `
 
 export default TaskEditor
