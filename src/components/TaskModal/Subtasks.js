@@ -36,6 +36,8 @@ Subtasks.propTypes = {
    show: PropTypes.bool.isRequired,
    subtasksObj: PropTypes.object.isRequired,
    taskId: PropTypes.string.isRequired,
+   subtasksQuantity: PropTypes.number.isRequired,
+   completedSubtasksQuantity: PropTypes.number.isRequired
 }
 
 export default Subtasks

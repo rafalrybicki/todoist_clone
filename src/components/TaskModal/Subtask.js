@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { updateDocument, firebase} from 'firebase/index.js';
 import { deleteSubtask, updateSubtask, updateTask } from 'redux/actions';
@@ -121,6 +122,15 @@ function Subtask({ id, content, completionDate, order, taskId, subtasksQuantity,
          </Popover>
       </StyledSubtask>
    )
+}
+
+Subtask.propTypes = {
+   id: PropTypes.string.isRequired,
+   content: PropTypes.string.isRequired,
+   order: PropTypes.number.isRequired,
+   taskId: PropTypes.string.isRequired,
+   subtasksQuantity: PropTypes.number.isRequired,
+   completedSubtasksQuantity: PropTypes.number.isRequired
 }
 
 export default Subtask

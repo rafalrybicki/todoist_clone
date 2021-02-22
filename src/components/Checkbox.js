@@ -19,6 +19,7 @@ const StyledCheckbox = styled.span`
    font-size: 10px;
    color: transparent;
    transition: all .1s;
+   user-select: none;
 
    &:hover {
       background-color: rgba(209,69,59,.2);
