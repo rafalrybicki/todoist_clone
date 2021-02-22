@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
 
 import useOutsideClick from 'hooks/useOutsideClick';
 
+import StyledTaskEditor from './styled/TaskEditor';
 import DateTimeSelector from 'selectors/DateTimeSelector/DateTimeSelector';
 import SectionSelector from 'selectors/SectionSelector/SectionSelector';
 import SectionSelectorActivator from './SectionSelectorActivator';
@@ -14,44 +14,6 @@ import SubmitBtn from 'buttons/SubmitBtn';
 import CancelBtn from 'buttons/CancelBtn';
 import DateTimeSelectorActivator from './DateTimeSelectorActivator';
 
-const StyledTaskEditor = styled.form`
-   position: relative;
-   width: 100%;
-
-   > input {
-      display: block;
-      width: 100%;
-      height: 81px;
-      padding: 0 10px 40px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      outline: none;
-
-      &:focus {
-         border: 1px solid grey;
-      }
-   }
-
-   section {
-      position: absolute;
-      top: 43px;
-      width: 100%;
-      display: flex;
-
-      > * {
-         margin-left: 10px;
-
-         &.label-picker {
-            margin-left: auto;
-            margin-right: 0;
-         }
-      }
-   }
-
-   > .cancel-btn, > .submit-btn {
-      margin: 10px 10px 0 0;
-   }
-`
 
 function TaskEditor({ currentContent, currentTargetDate, currentIsDateTime, currentProjectId, currentSectionId, currentPriority, onSave, onClose }) {
    const [content, setContent] = useState(currentContent || '');

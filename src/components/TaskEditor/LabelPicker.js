@@ -1,16 +1,12 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 
 import IconBtn from 'buttons/IconBtn';
 import { Tag } from 'react-bootstrap-icons';
 
-const StyledlabelPicker = styled.div`
-`
-
 
 function LabelPicker() {
    return (
-      <StyledlabelPicker
+      <div
          onClick={() => alert('coming soon')}
          className="label-picker"
       >
@@ -24,7 +20,7 @@ function LabelPicker() {
                size={20}
             />
          </IconBtn>
-      </StyledlabelPicker>
+      </div>
    )
 }
 
