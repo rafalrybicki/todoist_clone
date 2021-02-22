@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { v4 as uuid } from 'uuid';
 
 import { addToCollection, deleteFromCollection, firebase, updateDocument } from 'firebase/index.js';
 import { addProjectSection, addTask, deleteProjectSection, deleteTask, updateTask } from 'redux/actions';
+import useOutsideClick from 'hooks/useOutsideClick';
 
 import OptionsBtn from 'buttons/OptionsBtn';
 import MenuList from 'components/MenuList';
@@ -15,9 +16,13 @@ function ProjectSectionMenu({ projectId, sectionId, name, isOpen, nextOrder, edi
    const [options, setOptions] = useState(false);
    const dispatch = useDispatch();
 
+   const sectionMenuRef = useRef(null);
+   
    const toggleOptions = () => {
-      setOptions(options => !options)
+      setOptions(options => !options);
    }
+
+   useOutsideClick(options, sectionMenuRef, toggleOptions);
 
    const move = (targetProjectId, order) => {
       if (targetProjectId === projectId) {
@@ -92,7 +97,10 @@ function ProjectSectionMenu({ projectId, sectionId, name, isOpen, nextOrder, edi
    }
 
    return (
-      <div className="section-menu">
+      <div
+         ref={sectionMenuRef}
+         className="section-menu"
+      >
          <OptionsBtn onClick={toggleOptions} />
          {options &&
             <MenuList>

@@ -14,7 +14,7 @@ const initialState = [];
 function projectsReducer(state = initialState, action) {
    switch (action.type) {
       case LOAD_PROJECTS:
-         return action.projects
+         return action.projects.sort((a,b) => a.order - b.order);
       case ADD_PROJECT:
          return [
             ...state,

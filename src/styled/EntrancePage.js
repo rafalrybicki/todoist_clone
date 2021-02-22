@@ -53,18 +53,8 @@ const EntrancePage = styled.div`
       width: 40px;
       text-align: center;
       background-color: white;
-      margin: 20px auto 10px;
+      margin: 20px auto 0;
       color: #777777;
-   }
-
-   &:after {
-      content: '';
-      position: absolute;
-      top: 174px;
-      left: 10px;
-      height: 1px;
-      width: calc(100% - 20px);
-      background-color: #ddd;
    }
 
    label {

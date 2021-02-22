@@ -48,7 +48,7 @@ const ProjectSection = styled.section`
    }
 
    .section-menu {
-      z-index: 100;
+      z-index: 10;
       position: relative;
       height: 28px;
       width: 28px;

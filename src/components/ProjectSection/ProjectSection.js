@@ -8,7 +8,7 @@ import { dynamicSort } from 'utils';
 
 import StyledProjectSection from './styled/ProjectSection';
 import Editor from 'components/Editor';
-import Grip from 'components/Grip';
+// import Grip from 'components/Grip';
 import IconBtn from 'buttons/IconBtn';
 import ChevronIcon from 'icons/ChevronIcon';
 import ProjectSectionMenu from './ProjectSectionMenu';
@@ -60,7 +60,7 @@ function ProjectSection({ name, sectionId, projectId, isOpen, order, nextSibling
 
          {sectionId !== 'default' && openEditor === false &&
             <header>
-               <Grip />
+               {/* <Grip /> */}
                <IconBtn
                   hoverColor="#eee"
                   width="28px"
