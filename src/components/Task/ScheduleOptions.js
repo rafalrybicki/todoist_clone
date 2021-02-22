@@ -15,7 +15,7 @@ import NoDateIcon from 'icons/NoDateIcon';
 import OptionsBtn from 'buttons/OptionsBtn';
 import DateTimeSelector from 'selectors/DateTimeSelector/DateTimeSelector';
 
-function ScheduleOptions({ id, currentDate, isDateTime }) {
+function ScheduleOptions({ id, currentDate, isDateTime, close }) {
    const today = getDate().miliseconds;
    const tommorow = today + 86400000;
    const thisWeek = getWeek(today)
@@ -49,7 +49,8 @@ function ScheduleOptions({ id, currentDate, isDateTime }) {
       }
 
       updateDocument('tasks', id, fields);
-      dispatch(updateTask(id, fields))
+      dispatch(updateTask(id, fields));
+      close();
    }
 
    return (
@@ -111,7 +112,8 @@ function ScheduleOptions({ id, currentDate, isDateTime }) {
 ScheduleOptions.porpTypes = {
    id: PropTypes.string.isRequired,
    currentDate: PropTypes.number,
-   isDateTime: PropTypes.bool.isRequired
+   isDateTime: PropTypes.bool.isRequired,
+   close: PropTypes.func.isRequired,
 }
 
 export default ScheduleOptions

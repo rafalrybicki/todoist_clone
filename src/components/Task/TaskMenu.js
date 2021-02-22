@@ -87,6 +87,7 @@ function TaskMenu({ id, priority, currentDate, isDateTime, completionDate, nextO
                         id={id}
                         currentDate={currentDate}
                         isDateTime={isDateTime}
+                        close={toggleOptions}
                      />
                   </li>
                   <li className="selector">
